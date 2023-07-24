@@ -1,0 +1,34 @@
+{
+    "sites": ["gitlab"],
+    "task_id": 0,
+    "require_login": true,
+    "storage_state": "./.auth/gitlab_state.json",
+    "start_url": null,
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+        "eval_types": ["program_html"],
+        "reference_answers": [],
+        "reference_url": "",
+        "program_html": [
+            {
+                "url": "last",
+                "required_contents": "Accessible light and dark syntax highlighting themes",
+                "locator": ""
+            },
+            {
+                "url": "http://metis.lti.cs.cmu.edu:8023/primer/design",
+                "required_contents": "Add more deploy triggers",
+                "locator": ""
+            },
+            {
+                "url": "http://metis.lti.cs.cmu.edu:8023/primer/design",
+                "required_contents": "Create MVP React component layout",
+                "locator": ""
+            }
+        ]
+    }
+}

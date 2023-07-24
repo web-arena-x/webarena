@@ -1,0 +1,8 @@
+gymnasium
+playwright==1.32.1
+Pillow
+evaluate
+openai
+types-tqdm
+tiktoken
+aiolimiter

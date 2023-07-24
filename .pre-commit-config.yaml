@@ -1,0 +1,23 @@
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+    hooks:
+    -   id: trailing-whitespace
+    -   id: end-of-file-fixer
+    -   id: check-yaml
+    -   id: check-added-large-files
+-   repo: https://github.com/psf/black
+    rev: 22.12.0
+    hooks:
+    -   id: black
+        exclude: '^(agent/prompts/raw)'
+        args: [--line-length=79]
+-   repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+    -   id: isort
+        args: ["--profile", "black", --line-length=72]
+-   repo: https://github.com/kynan/nbstripout
+    rev: 0.6.0
+    hooks:
+      - id: nbstripout

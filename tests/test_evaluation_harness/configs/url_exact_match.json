@@ -1,0 +1,23 @@
+{
+    "sites": ["reddit"],
+    "task_id": 0,
+    "require_login": true,
+    "storage_state": "./.auth/reddit_state.json",
+    "start_url": null,
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+        "eval_types": ["url_match"],
+        "reference_answers": [],
+        "reference_url": "http://metis.lti.cs.cmu.edu:9999",
+        "program_html": [
+            {
+                "url": "",
+                "required_contents": []
+            }
+        ]
+    }
+}
