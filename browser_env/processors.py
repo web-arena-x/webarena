@@ -518,16 +518,21 @@ class TextObervationProcessor(ObservationProcessor):
     def process(self, page: Page, client: CDPSession) -> str:
         # get the tab info
         open_tabs = page.context.pages
-        tab_titles = [tab.title() for tab in open_tabs]
-        current_tab_idx = open_tabs.index(page)
-        for idx in range(len(open_tabs)):
-            if idx == current_tab_idx:
-                tab_titles[
-                    idx
-                ] = f"Tab {idx} (current): {open_tabs[idx].title()}"
-            else:
-                tab_titles[idx] = f"Tab {idx}: {open_tabs[idx].title()}"
-        tab_title_str = " | ".join(tab_titles)
+        try:
+            tab_titles = [tab.title() for tab in open_tabs]
+            current_tab_idx = open_tabs.index(page)
+            for idx in range(len(open_tabs)):
+                if idx == current_tab_idx:
+                    tab_titles[
+                        idx
+                    ] = f"Tab {idx} (current): {open_tabs[idx].title()}"
+                else:
+                    tab_titles[idx] = f"Tab {idx}: {open_tabs[idx].title()}"
+            tab_title_str = " | ".join(tab_titles)
+        except Exception:
+            tab_title_str = " | ".join(
+                ["Tab {idx}" for idx in range(len(open_tabs))]
+            )
 
         try:
             browser_info = self.fetch_browser_info(page, client)
