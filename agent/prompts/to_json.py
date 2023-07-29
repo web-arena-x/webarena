@@ -16,6 +16,10 @@ def run() -> None:
         module = importlib.import_module(f"agent.prompts.raw.{base_name}")
         prompt = module.prompt
         # save the prompt as a json file
+        os.makedirs("agent/prompts/jsons", exist_ok=True)
         with open(f"agent/prompts/jsons/{base_name}.json", "w+") as f:
             json.dump(prompt, f, indent=2)
     print(f"Done convert python files to json")
+
+if __name__ == "__main__":
+    run()
