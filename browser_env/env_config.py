@@ -1,11 +1,13 @@
 # websites domain
-REDDIT = ""
-SHOPPING = ""
-SHOPPING_ADMIN = ""
-GITLAB = ""
-WIKIPEDIA = ""
-MAP = ""
-HOMEPAGE = ""
+import os
+
+REDDIT = os.environ.get("REDDIT", "")
+SHOPPING = os.environ.get("SHOPPING", "")
+SHOPPING_ADMIN = os.environ.get("SHOPPING_ADMIN", "")
+GITLAB = os.environ.get("GITLAB", "")
+WIKIPEDIA = os.environ.get("WIKIPEDIA", "")
+MAP = os.environ.get("MAP", "")
+HOMEPAGE = os.environ.get("HOMEPAGE", "")
 
 assert (
     REDDIT
