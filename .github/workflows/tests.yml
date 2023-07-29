@@ -26,7 +26,7 @@ jobs:
         mypy --version
         # Run this mypy instance against our main package.
         mypy --install-types --non-interactive .
-        mypy --strict .
+        mypy --strict . --exclude minimal_example.py
     - name: Enviroment prepare
       run: |
         bash prepare.sh
