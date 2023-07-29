@@ -6,3 +6,4 @@ openai
 types-tqdm
 tiktoken
 aiolimiter
+beartype==0.12.0

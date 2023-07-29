@@ -6,13 +6,14 @@
 
 # WebArena: A Realistic Web Environment for Building Autonomous Agents
 [[Website]](https://webarena.dev/)
-[[Paper]]()
+[[Paper]](https://arxiv.org/pdf/2307.13854.pdf)
 
 ![Overview](media/overview.png)
-> WebArena is a standalone, self-hostable web environment for building autonomous agents. WebArena creates websites from four popular categories with functionality and data mimicking their real-world equivalents. To emulate human problem-solving, WebArena also embeds tools and knowledge resources as independent websites. WebArena introduces a benchmark on interpreting high-level realistic natural language command to concrete web-based interactions. We provide annotated programs designed to programmatically validate the functional correctness of each task.
+> WebArena is a standalone, self-hostable web environment for building autonomous agents
 
 > **Note** This README is still under constructions. Stay tuned!
-
+## News
+[7/29/2023] Added [a well commented script](minimal_example.py) to walk through the environment setup.
 ## Install
 ```bash
 # Python 3.10+
@@ -27,8 +28,11 @@ mypy --install-types --non-interactive browser_env
 pip install pre-commit
 pre-commit install
 ```
-## Preperation
-* Config the URLs of each website in [env_config](browser_env/env_config.py)
+## Quick Walkthrough
+Check out [this script](minimal_example.py) for a quick walkthrough on how to set up the environment and interact with it.
+
+## To Reproduce Our Results
+* Setup the `environ` as described in the quick walkthrough
 * `python scripts/generate_test_data.py` will generate individual config file for each test example in [config_files](config_files)
 * `bash prepare.sh` to obtain the auto-login cookies for all websites
 * export OPENAI_API_KEY=your_key

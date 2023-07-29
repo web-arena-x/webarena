@@ -6,17 +6,33 @@ import time
 
 SLEEP = 1.5
 # set the URLs of each website, we use the demo sites as an example
-os.environ["SHOPPING"] = "http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:7770"
-os.environ["SHOPPING_ADMIN"] = "http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:7780/admin"
-os.environ["REDDIT"] = "http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:9999"
-os.environ["GITLAB"] = "http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:8023"
-os.environ["MAP"] = "http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:3000"
-os.environ["WIKIPEDIA"] = "http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:8888/wikipedia_en_all_maxi_2022-05/A/User:The_other_Kiwix_guy/Landing"
-os.environ["HOMEPAGE"] = "PASS" # The home page is not currently hosted in the demo site
+os.environ[
+    "SHOPPING"
+] = "http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:7770"
+os.environ[
+    "SHOPPING_ADMIN"
+] = "http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:7780/admin"
+os.environ[
+    "REDDIT"
+] = "http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:9999"
+os.environ[
+    "GITLAB"
+] = "http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:8023"
+os.environ[
+    "MAP"
+] = "http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:3000"
+os.environ[
+    "WIKIPEDIA"
+] = "http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:8888/wikipedia_en_all_maxi_2022-05/A/User:The_other_Kiwix_guy/Landing"
+os.environ[
+    "HOMEPAGE"
+] = "PASS"  # The home page is not currently hosted in the demo site
 print("Done setting up URLs")
 
 # First, run `python scripts/generate_test_data.py` to generate the config files
-p = subprocess.run(["python", "scripts/generate_test_data.py"], capture_output=True)
+p = subprocess.run(
+    ["python", "scripts/generate_test_data.py"], capture_output=True
+)
 
 # It will generate individual config file for each test example in config_files
 assert os.path.exists("config_files/0.json")
@@ -24,13 +40,18 @@ assert os.path.exists("config_files/0.json")
 # Make sure the URLs in the config files are replaced properly
 with open("config_files/0.json", "r") as f:
     config = json.load(f)
-    assert os.environ["SHOPPING_ADMIN"] in config["start_url"], (os.environ["SHOPPING_ADMIN"], config["start_url"])
+    assert os.environ["SHOPPING_ADMIN"] in config["start_url"], (
+        os.environ["SHOPPING_ADMIN"],
+        config["start_url"],
+    )
 
 print("Done generating config files with the correct URLs")
 
-# run bash prepare.sh to save all account cookies
-# subprocess.run(["bash", "prepare.sh"])
-# print("Done saving account cookies")
+# run bash prepare.sh to save all account cookies, this only needs to be done once
+subprocess.run(["bash", "prepare.sh"])
+print("Done saving account cookies")
+
+from agent.utils import Trajectory
 
 # Init an environment
 from browser_env import (
@@ -43,8 +64,6 @@ from browser_env import (
     create_id_based_action,
     create_stop_action,
 )
-
-from agent.utils import Trajectory
 from evaluation_harness.evaluators import evaluator_router
 
 # Init the environment
@@ -53,14 +72,12 @@ env = ScriptBrowserEnv(
     slow_mo=100,
     observation_type="accessibility_tree",
     current_viewport_only=True,
-    viewport_size={
-        "width": 1280,
-        "height": 720
-    })
+    viewport_size={"width": 1280, "height": 720},
+)
 
 # example 156 as an example
 config_file = "config_files/156.json"
-# maintain a trajectory 
+# maintain a trajectory
 trajectory: Trajectory = []
 
 # set the environment for the current example
@@ -85,7 +102,7 @@ print(actree_obs)
 # save the state info to the trajectory
 state_info: StateInfo = {"observation": obs, "info": info}
 trajectory.append(state_info)
-                
+
 # Now let's try to perform the action of clicking the "Merge request" link
 # As the element ID is dynamic each time, we use regex to match the element as the demo
 match = re.search(r"\[(\d+)\] link 'Merge requests'", actree_obs).group(1)
@@ -120,7 +137,7 @@ trajectory.append(state_info)
 trajectory.append(create_stop_action(""))
 
 
-# Demo evaluation 
+# Demo evaluation
 evaluator = evaluator_router(config_file)
 score = evaluator(
     trajectory=trajectory,
