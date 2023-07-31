@@ -37,3 +37,14 @@ Check out [this script](minimal_example.py) for a quick walkthrough on how to se
 * `bash prepare.sh` to obtain the auto-login cookies for all websites
 * export OPENAI_API_KEY=your_key
 * `python run.py --instruction_path agent/prompts/jsons/p_cot_id_actree_2s.json --test_start_idx 0 --test_end_idx 1 --model gpt-3.5-turbo --result_dir your_result_dir` to run the first example with GPT-3.5 reasoning agent. The trajectory will be saved in `your_result_dir/0.html`
+
+## Citation
+If you use our environment or data, please cite our paper:
+```
+@article{zhou2023webarena,
+  title={WebArena: A Realistic Web Environment for Building Autonomous Agents},
+  author={Zhou, Shuyan and Xu, Frank F and Zhu, Hao and Zhou, Xuhui and Lo, Robert and Sridhar, Abishek and Cheng, Xianyi and Bisk, Yonatan and Fried, Daniel and Alon, Uri and others},
+  journal={arXiv preprint arXiv:2307.13854},
+  year={2023}
+}
+```
