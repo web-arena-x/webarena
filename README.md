@@ -13,7 +13,8 @@
 
 > **Note** This README is still under constructions. Stay tuned!
 ## News
-[7/29/2023] Added [a well commented script](minimal_example.py) to walk through the environment setup.
+* [8/4/2023] Added the instructions and the docker resources to host your own WebArena Environment. Check out [this page](environment_docker/README.md) for details.
+* [7/29/2023] Added [a well commented script](minimal_example.py) to walk through the environment setup.
 ## Install
 ```bash
 # Python 3.10+
