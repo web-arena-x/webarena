@@ -21,5 +21,6 @@ def run() -> None:
             json.dump(prompt, f, indent=2)
     print(f"Done convert python files to json")
 
+
 if __name__ == "__main__":
     run()
