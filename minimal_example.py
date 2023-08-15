@@ -51,8 +51,6 @@ print("Done generating config files with the correct URLs")
 subprocess.run(["bash", "prepare.sh"])
 print("Done saving account cookies")
 
-from agent.utils import Trajectory
-
 # Init an environment
 from browser_env import (
     Action,
@@ -60,6 +58,7 @@ from browser_env import (
     ObservationMetadata,
     ScriptBrowserEnv,
     StateInfo,
+    Trajectory,
     action2str,
     create_id_based_action,
     create_stop_action,
