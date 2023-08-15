@@ -4,22 +4,22 @@ app = Flask(__name__)
 
 
 @app.route("/")
-def index():
+def index() -> str:
     return render_template("index.html")
 
 
 @app.route("/scratchpad.html")
-def scratchpad():
+def scratchpad() -> str:
     return render_template("scratchpad.html")
 
 
 @app.route("/calculator.html")
-def calculator():
+def calculator() -> str:
     return render_template("calculator.html")
 
 
 @app.route("/password.html")
-def password():
+def password() -> str:
     return render_template("password.html")
 
 
