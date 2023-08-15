@@ -1,8 +1,6 @@
-import argparse
 import json
 from typing import Any
 
-import tiktoken
 from beartype import beartype
 from beartype.door import is_bearable
 
@@ -22,6 +20,9 @@ from llms.providers.openai_utils import (
 )
 
 from .utils import *
+
+# from llms.providers.openai_utils import generate_from_openai_completion
+# from llms.providers.openai_utils import fake_generate_from_openai_chat_completion as generate_from_openai_chat_completion
 
 
 class Agent:
@@ -174,44 +175,3 @@ class PromptAgent(Agent):
 
     def reset(self, test_config_file: str) -> None:
         pass
-
-
-def construct_llm_config(args: argparse.Namespace) -> lm_config.LMConfig:
-    llm_config = lm_config.LMConfig(
-        provider=args.provider, model=args.model, mode=args.mode
-    )
-    if args.provider == "openai":
-        llm_config.gen_config["temperature"] = args.temperature
-        llm_config.gen_config["top_p"] = args.top_p
-        llm_config.gen_config["context_length"] = args.context_length
-        llm_config.gen_config["max_tokens"] = args.max_tokens
-        llm_config.gen_config["stop_token"] = args.stop_token
-        llm_config.gen_config["max_obs_length"] = args.max_obs_length
-    else:
-        raise NotImplementedError(f"provider {args.provider} not implemented")
-    return llm_config
-
-
-def construct_agent(args: argparse.Namespace) -> Agent:
-    llm_config = construct_llm_config(args)
-
-    agent: Agent
-    if args.agent_type == "teacher_forcing":
-        agent = TeacherForcingAgent()
-    elif args.agent_type == "prompt":
-        with open(args.instruction_path) as f:
-            constructor_type = json.load(f)["meta_data"]["prompt_constructor"]
-        tokenizer = tiktoken.encoding_for_model(llm_config.model)
-        prompt_constructor = eval(constructor_type)(
-            args.instruction_path, lm_config=llm_config, tokenizer=tokenizer
-        )
-        agent = PromptAgent(
-            action_set_tag=args.action_set_tag,
-            lm_config=llm_config,
-            prompt_constructor=prompt_constructor,
-        )
-    else:
-        raise NotImplementedError(
-            f"agent type {args.agent_type} not implemented"
-        )
-    return agent
