@@ -1,39 +1,36 @@
 """Script to run end-to-end evaluation on the benchmark"""
 import argparse
-import base64
 import glob
-import io
 import json
 import logging
 import os
 import random
-import re
-import subprocess
 import time
-from itertools import chain
 from pathlib import Path
-from typing import Any
 
 import openai
-import tiktoken
 from beartype import beartype
-from PIL import Image
-from prompt_toolkit import prompt
 
-from agent import Agent, PromptAgent, TeacherForcingAgent
+from agent import (
+    Agent,
+    PromptAgent,
+    TeacherForcingAgent,
+    construct_agent,
+)
 from agent.prompts import *
+from agent.utils import Trajectory
 from browser_env import (
-    Action,
     ActionTypes,
-    ObservationMetadata,
     ScriptBrowserEnv,
     StateInfo,
-    action2str,
     create_stop_action,
 )
-from browser_env.actions import is_equivalent
+from browser_env.helper_functions import (
+    RenderHelper,
+    early_stop,
+    get_action_description,
+)
 from evaluation_harness import evaluator_router
-from llms import lm_config
 
 LOG_FOLDER = "log_files"
 Path(LOG_FOLDER).mkdir(parents=True, exist_ok=True)
@@ -54,24 +51,6 @@ logger.addHandler(file_handler)
 formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
 console_handler.setFormatter(formatter)
 file_handler.setFormatter(formatter)
-
-Trajectory = list[Action | StateInfo]
-HTML_TEMPLATE = """
-<!DOCTYPE html>
-<head>
-    <style>
-        pre {{
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }}
-    </style>
-</head>
-<html>
-    <body>
-     {body}
-    </body>
-</html>
-"""
 
 
 def config() -> argparse.Namespace:
@@ -165,225 +144,9 @@ def config() -> argparse.Namespace:
 
 
 @beartype
-def get_render_action(
-    action: Action,
-    observation_metadata: dict[str, ObservationMetadata],
-    action_set_tag: str,
-) -> str:
-    """Parse the predicted actions for rendering purpose. More comprehensive information"""
-    match action_set_tag:
-        case "id_accessibility_tree":
-            text_meta_data = observation_metadata["text"]
-            if action["element_id"] in text_meta_data["obs_nodes_info"]:
-                node_content = text_meta_data["obs_nodes_info"][
-                    action["element_id"]
-                ]["text"]
-            else:
-                node_content = "No match found"
-
-            action_str = f"<div class='raw_parsed_prediction' style='background-color:grey'><pre>{action['raw_prediction']}</pre></div>"
-            action_str += f"<div class='action_object' style='background-color:grey'><pre>{repr(action)}</pre></div>"
-            action_str += f"<div class='parsed_action' style='background-color:yellow'><pre>{action2str(action, action_set_tag, node_content)}</pre></div>"
-
-        case "playwright":
-            action_str = action["pw_code"]
-        case _:
-            raise ValueError(f"Unknown action type {action['action_type']}")
-    return action_str
-
-
-@beartype
-def get_action_description(
-    action: Action,
-    observation_metadata: dict[str, ObservationMetadata],
-    action_set_tag: str,
-    prompt_constructor: PromptConstructor | None,
-) -> str:
-    """Generate the text version of the predicted actions to store in action history for prompt use.
-    May contain hint information to recover from the failures"""
-
-    match action_set_tag:
-        case "id_accessibility_tree":
-            text_meta_data = observation_metadata["text"]
-            if action["action_type"] in [
-                ActionTypes.CLICK,
-                ActionTypes.HOVER,
-                ActionTypes.TYPE,
-            ]:
-                action_name = str(action["action_type"]).split(".")[1].lower()
-                if action["element_id"] in text_meta_data["obs_nodes_info"]:
-                    node_content = text_meta_data["obs_nodes_info"][
-                        action["element_id"]
-                    ]["text"]
-                    node_content = " ".join(node_content.split()[1:])
-                    action_str = action2str(
-                        action, action_set_tag, node_content
-                    )
-                else:
-                    action_str = f"Attempt to perfom \"{action_name}\" on element \"[{action['element_id']}]\" but no matching element found. Please check the observation more carefully."
-            else:
-                if (
-                    action["action_type"] == ActionTypes.NONE
-                    and prompt_constructor is not None
-                ):
-                    action_splitter = prompt_constructor.instruction[
-                        "meta_data"
-                    ]["action_splitter"]
-                    action_str = f'The previous prediction you issued was "{action["raw_prediction"]}". However, the format was incorrect. Ensure that the action is wrapped inside a pair of {action_splitter} and enclose arguments within [] as follows: {action_splitter}action [arg] ...{action_splitter}.'
-                else:
-                    action_str = action2str(action, action_set_tag, "")
-
-        case "playwright":
-            action_str = action["pw_code"]
-
-        case _:
-            raise ValueError(f"Unknown action type {action['action_type']}")
-
-    return action_str
-
-
-class RenderHelper(object):
-    """Helper class to render text and image observations and meta data in the trajectory"""
-
-    def __init__(
-        self, config_file: str, result_dir: str, action_set_tag: str
-    ) -> None:
-        with open(config_file, "r") as f:
-            _config = json.load(f)
-            _config_str = ""
-            for k, v in _config.items():
-                _config_str += f"{k}: {v}\n"
-            _config_str = f"<pre>{_config_str}</pre>\n"
-            task_id = _config["task_id"]
-
-        self.action_set_tag = action_set_tag
-
-        self.render_file = open(
-            Path(result_dir) / f"render_{task_id}.html", "a+"
-        )
-        self.render_file.truncate(0)
-        # write init template
-        self.render_file.write(HTML_TEMPLATE.format(body=f"{_config_str}"))
-        self.render_file.read()
-        self.render_file.flush()
-
-    def render(
-        self,
-        action: Action,
-        state_info: StateInfo,
-        meta_data: dict[str, Any],
-        render_screenshot: bool = False,
-    ) -> None:
-        """Render the trajectory"""
-        # text observation
-        observation = state_info["observation"]
-        text_obs = observation["text"]
-        info = state_info["info"]
-        new_content = f"<h2>New Page</h2>\n"
-        new_content += f"<h3 class='url'><a href={state_info['info']['page'].url}>URL: {state_info['info']['page'].url}</a></h3>\n"
-        new_content += f"<div class='state_obv'><pre>{text_obs}</pre><div>\n"
-
-        if render_screenshot:
-            # image observation
-            img_obs = observation["image"]
-            image = Image.fromarray(img_obs)
-            byte_io = io.BytesIO()
-            image.save(byte_io, format="PNG")
-            byte_io.seek(0)
-            image_bytes = base64.b64encode(byte_io.read())
-            image_str = image_bytes.decode("utf-8")
-            new_content += f"<img src='data:image/png;base64,{image_str}' style='width:50vw; height:auto;'/>\n"
-
-        # meta data
-        new_content += f"<div class='prev_action' style='background-color:pink'>{meta_data['action_history'][-1]}</div>\n"
-
-        # action
-        action_str = get_render_action(
-            action,
-            info["observation_metadata"],
-            action_set_tag=self.action_set_tag,
-        )
-        # with yellow background
-        action_str = f"<div class='predict_action'>{action_str}</div>"
-        new_content += f"{action_str}\n"
-
-        # add new content
-        self.render_file.seek(0)
-        html = self.render_file.read()
-        html_body = re.findall(r"<body>(.*?)</body>", html, re.DOTALL)[0]
-        html_body += new_content
-
-        html = HTML_TEMPLATE.format(body=html_body)
-        self.render_file.seek(0)
-        self.render_file.truncate()
-        self.render_file.write(html)
-        self.render_file.flush()
-
-    def close(self) -> None:
-        self.render_file.close()
-
-
-@beartype
-def early_stop(
-    trajectory: Trajectory, max_steps: int, thresholds: dict[str, int]
-) -> tuple[bool, str]:
-    """Check whether need to early stop"""
-
-    # reach the max step
-    num_steps = (len(trajectory) - 1) / 2
-    if num_steps >= max_steps:
-        return True, f"Reach max steps {max_steps}"
-
-    last_k_actions: list[Action]
-    action_seq: list[Action]
-
-    # Case: parsing failure for k times
-    k = thresholds["parsing_failure"]
-    last_k_actions = trajectory[1::2][-k:]  # type: ignore[assignment]
-    if len(last_k_actions) >= k:
-        if all(
-            [
-                action["action_type"] == ActionTypes.NONE
-                for action in last_k_actions
-            ]
-        ):
-            return True, f"Failed to parse actions for {k} times"
-
-    # Case: same action for k times
-    k = thresholds["repeating_action"]
-    last_k_actions = trajectory[1::2][-k:]  # type: ignore[assignment]
-    action_seq = trajectory[1::2]  # type: ignore[assignment]
-
-    if len(action_seq) == 0:
-        return False, ""
-
-    last_action: Action = action_seq[-1]
-
-    if last_action["action_type"] != ActionTypes.TYPE:
-        if len(last_k_actions) >= k:
-            if all(
-                [
-                    is_equivalent(action, last_action)
-                    for action in last_k_actions
-                ]
-            ):
-                return True, f"Same action for {k} times"
-
-    else:
-        # check the action sequence
-        if (
-            sum([is_equivalent(action, last_action) for action in action_seq])
-            >= k
-        ):
-            return True, f"Same typing action for {k} times"
-
-    return False, ""
-
-
-@beartype
 def test(
     args: argparse.Namespace,
-    agent: Agent | PromptAgent,
+    agent: Agent | PromptAgent | TeacherForcingAgent,
     config_file_list: list[str],
 ) -> None:
     scores = []
@@ -504,53 +267,10 @@ def test(
                 f.write(f"[Unhandled Error] {repr(e)}\n")
                 f.write(traceback.format_exc())  # write stack trace to file
 
-        # logger.info(f"[Render] {render_helper.render_file.name}")
-        # subprocess.run(["open", render_helper.render_file.name])
         render_helper.close()
 
     env.close()
     logger.info(f"Average score: {sum(scores) / len(scores)}")
-
-
-def construct_llm_config(args: argparse.Namespace) -> lm_config.LMConfig:
-    llm_config = lm_config.LMConfig(
-        provider=args.provider, model=args.model, mode=args.mode
-    )
-    if args.provider == "openai":
-        llm_config.gen_config["temperature"] = args.temperature
-        llm_config.gen_config["top_p"] = args.top_p
-        llm_config.gen_config["context_length"] = args.context_length
-        llm_config.gen_config["max_tokens"] = args.max_tokens
-        llm_config.gen_config["stop_token"] = args.stop_token
-        llm_config.gen_config["max_obs_length"] = args.max_obs_length
-    else:
-        raise NotImplementedError(f"provider {args.provider} not implemented")
-    return llm_config
-
-
-def construct_agent(args: argparse.Namespace) -> Agent:
-    llm_config = construct_llm_config(args)
-
-    agent: Agent
-    if args.agent_type == "teacher_forcing":
-        agent = TeacherForcingAgent()
-    elif args.agent_type == "prompt":
-        with open(args.instruction_path) as f:
-            constructor_type = json.load(f)["meta_data"]["prompt_constructor"]
-        tokenizer = tiktoken.encoding_for_model(llm_config.model)
-        prompt_constructor = eval(constructor_type)(
-            args.instruction_path, lm_config=llm_config, tokenizer=tokenizer
-        )
-        agent = PromptAgent(
-            action_set_tag=args.action_set_tag,
-            lm_config=llm_config,
-            prompt_constructor=prompt_constructor,
-        )
-    else:
-        raise NotImplementedError(
-            f"agent type {args.agent_type} not implemented"
-        )
-    return agent
 
 
 def prepare(args: argparse.Namespace) -> None:
