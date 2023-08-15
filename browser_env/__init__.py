@@ -34,6 +34,7 @@ from .actions import (
 from .async_envs import AsyncScriptBrowserEnv
 from .envs import ScriptBrowserEnv
 from .processors import ObservationMetadata
+from .trajectory import Trajectory
 from .utils import DetachedPage, StateInfo
 
 __all__ = [
@@ -71,4 +72,5 @@ __all__ = [
     "create_select_option_action",
     "create_stop_action",
     "ActionParsingError",
+    "Trajectory",
 ]

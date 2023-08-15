@@ -6,8 +6,7 @@ from typing import Any, TypedDict
 import tiktoken
 from beartype import beartype
 
-from agent.utils import Trajectory
-from browser_env import Action, ActionParsingError
+from browser_env import Action, ActionParsingError, Trajectory
 from browser_env.env_config import URL_MAPPINGS
 from browser_env.utils import StateInfo
 from llms import lm_config
