@@ -1,7 +1,10 @@
 # WebArena: A Realistic Web Environment for Building Autonomous Agents
 <p align="center">
-<b>WebArena is a standalone, self-hostable web environment for building autonomous agents</b>
+    <img src="media/logo.png" alt="Logo" width="80px">
+    <br>
+    <b>WebArena is a standalone, self-hostable web environment for building autonomous agents</b>
 </p>
+
 
 <p align="center">
 <a href="https://www.python.org/downloads/release/python-3109/"><img src="https://img.shields.io/badge/python-3.10-blue.svg" alt="Python 3.10"></a>
