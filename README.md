@@ -39,33 +39,36 @@ pip install pre-commit
 pre-commit install
 ```
 ## Quick Walkthrough
-Check out [this script](minimal_example.py) for a quick walkthrough on how to set up the environment and interact with it.
+Check out [this script](minimal_example.py) for a quick walkthrough on how to set up the browser environment and interact with it using the demo sites we hosted. This script is only for education purpose, to perform *reproducible* experiments, please check out the next section.
 
-## To Reproduce Our Results
-1. Configurate the urls for each website, in the following example, we use the demo websites we host as an example. You can replace the URLs with your own websites if you [host your own WebArena environment](./environment_docker/).
+## To Perform End-to-end Evaluation
+1. Setup the standalone environment.
+Please check out [this page](environment_docker/README.md) for details.
+
+2. Configurate the urls for each website.
 ```bash
-export SHOPPING="http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:7770"
-export SHOPPING_ADMIN="http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:7780/admin"
-export REDDIT="http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:9999"
-export GITLAB="http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:8023"
-export MAP="http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:3000"
-export WIKIPEDIA="http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:8888/wikipedia_en_all_maxi_2022-05/A/User:The_other_Kiwix_guy/Landing"
-export HOMEPAGE="PASS" # this is a placeholder
+export SHOPPING="<your_shopping_site_domain>:7770"
+export SHOPPING_ADMIN="<your_e_commerce_cms_domain>:7780/admin"
+export REDDIT="<your_reddit_domain>:9999"
+export GITLAB="<your_gitlab_domain>:8023"
+export MAP="<your_map_domain>:3000"
+export WIKIPEDIA="<your_wikipedia_domain>:8888/wikipedia_en_all_maxi_2022-05/A/User:The_other_Kiwix_guy/Landing"
+export HOMEPAGE="<your_homepage_domain>:4399" # this is a placeholder
 ```
 
-2. Generate config file for each test example
+3. Generate config file for each test example
 ```bash
 python scripts/generate_test_data.py
 ```
 You will see `*.json` files generated in [config_files](./config_files) folder. Each file contains the configuration for one test example.
 
-3. Obtain the auto-login cookies for all websites
+4. Obtain the auto-login cookies for all websites
 ```
 bash prepare.sh
 ```
-4. export `OPENAI_API_KEY=your_key`, a valid OpenAI API key starts with `sk-`
+5. export `OPENAI_API_KEY=your_key`, a valid OpenAI API key starts with `sk-`
 
-5. Launch the evaluation
+6. Launch the evaluation
 ```bash
 python run.py \
   --instruction_path agent/prompts/jsons/p_cot_id_actree_2s.json \ # this is the reasoning agent prompt we used in the paper
