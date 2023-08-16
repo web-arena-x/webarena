@@ -1,3 +1,5 @@
+import json
+import os
 import random
 from glob import glob
 from pathlib import Path
@@ -89,7 +91,7 @@ def test_url_exact_match_success(script_browser_env: ScriptBrowserEnv) -> None:
 
     agent = TeacherForcingAgent()
     agent.set_action_set_tag(tag="playwright")
-    action_seq = f"""page.goto("{REDDIT}")
+    action_seq = f"""page.goto("https://www.google.com/")
     page.stop()"""
     agent.set_actions(action_seq)
 
@@ -133,7 +135,7 @@ def test_html_content_match_success(
     # randomly sample a string
     agent = TeacherForcingAgent()
     agent.set_action_set_tag(tag="playwright")
-    action_seq = f"""page.goto("{GITLAB}")
+    action_seq = f"""page.goto("https://russmaxdesign.github.io/exercise")
     page.stop()"""
     agent.set_actions(action_seq)
 
@@ -154,7 +156,7 @@ def test_html_content_match_fail(script_browser_env: ScriptBrowserEnv) -> None:
     # randomly sample a string
     agent = TeacherForcingAgent()
     agent.set_action_set_tag(tag="playwright")
-    action_seq = """page.goto("https://russmaxdesign.github.io/exercise")
+    action_seq = """page.goto("https://www.google.com/")
     page.stop()"""
     agent.set_actions(action_seq)
 
@@ -254,8 +256,7 @@ def test_func_success(
 
     agent = TeacherForcingAgent()
     agent.set_action_set_tag(tag="playwright")
-    action_seq = f"""page.goto("https://russmaxdesign.github.io/exercise/")
-    page.stop()"""
+    action_seq = f"""page.stop()"""
     agent.set_actions(action_seq)
 
     env = script_browser_env
@@ -276,8 +277,7 @@ def test_func_fail(
 
     agent = TeacherForcingAgent()
     agent.set_action_set_tag(tag="playwright")
-    action_seq = f"""page.goto("https://russmaxdesign.github.io/exercise/")
-    page.stop()"""
+    action_seq = f"""page.stop()"""
     agent.set_actions(action_seq)
 
     env = script_browser_env
@@ -318,16 +318,30 @@ def test_func_url_func_page_success(
 ) -> None:
     config_file = f"{config_file_folder}/func_url_func_2.json"
 
+    # change the URL placeholder with the concrete URL
+    with open(config_file, "r") as f:
+        configs = json.load(f)
+        configs["eval"]["program_html"][0]["url"] = configs["eval"][
+            "program_html"
+        ][0]["url"].replace("__GITLAB__", GITLAB)
+        configs["eval"]["program_html"][1]["url"] = configs["eval"][
+            "program_html"
+        ][1]["url"].replace("__GITLAB__", GITLAB)
+    tmp_config = config_file.replace(".json", ".tmp.json")
+    with open(tmp_config, "w+") as f:
+        json.dump(configs, f, indent=4)
+
     agent = TeacherForcingAgent()
     agent.set_action_set_tag(tag="playwright")
     action_seq = f"""page.stop()"""
     agent.set_actions(action_seq)
 
     env = script_browser_env
-    trajectory = tf_roll_out(agent, env, config_file)
+    trajectory = tf_roll_out(agent, env, tmp_config)
 
     evalutor = HTMLContentExactEvaluator()
     score = evalutor(
-        trajectory, config_file, env.page, env.get_page_client(env.page)
+        trajectory, tmp_config, env.page, env.get_page_client(env.page)
     )
     assert score == 1.0
+    os.remove(tmp_config)

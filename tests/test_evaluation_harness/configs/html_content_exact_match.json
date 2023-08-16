@@ -16,17 +16,12 @@
         "program_html": [
             {
                 "url": "last",
-                "required_contents": "Accessible light and dark syntax highlighting themes",
+                "required_contents": "What are mammals?",
                 "locator": ""
             },
             {
-                "url": "http://metis.lti.cs.cmu.edu:8023/primer/design",
-                "required_contents": "Add more deploy triggers",
-                "locator": ""
-            },
-            {
-                "url": "http://metis.lti.cs.cmu.edu:8023/primer/design",
-                "required_contents": "Create MVP React component layout",
+                "url": "https://www.google.com/",
+                "required_contents": "Google Search",
                 "locator": ""
             }
         ]

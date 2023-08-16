@@ -2,7 +2,7 @@
     "sites": ["reddit"],
     "task_id": 0,
     "require_login": true,
-    "storage_state": "./.auth/reddit_state.json",
+    "storage_state": null,
     "start_url": null,
     "geolocation": null,
     "intent_template": "",
@@ -12,7 +12,7 @@
     "eval": {
         "eval_types": ["url_match"],
         "reference_answers": [],
-        "reference_url": "http://metis.lti.cs.cmu.edu:9999",
+        "reference_url": "https://www.google.com/",
         "program_html": [
             {
                 "url": "",

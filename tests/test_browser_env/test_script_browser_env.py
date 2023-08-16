@@ -21,7 +21,13 @@ from browser_env import (
     create_scroll_action,
 )
 from browser_env.actions import create_id_based_action
-from browser_env.env_config import *
+from browser_env.env_config import (
+    ACCOUNTS,
+    GITLAB,
+    REDDIT,
+    SHOPPING,
+    SHOPPING_ADMIN,
+)
 
 
 def test_script_browser_env(script_browser_env: ScriptBrowserEnv) -> None:

@@ -61,7 +61,8 @@ You will see `*.json` files generated in [config_files](./config_files) folder. 
 
 3. Obtain the auto-login cookies for all websites
 ```
-bash prepare.sh
+mkdir -p ./.auth
+python browser_env/auto_login.py
 ```
 4. export `OPENAI_API_KEY=your_key`, a valid OpenAI API key starts with `sk-`
 
