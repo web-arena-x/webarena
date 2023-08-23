@@ -19,6 +19,7 @@ from evaluation_harness import (
 )
 from evaluation_harness.evaluators import EvaluatorComb
 
+IN_GITHUB_ACTIONS = os.getenv("GITHUB_ACTIONS") == "true"
 HEADLESS = True
 config_file_folder = "tests/test_evaluation_harness/configs"
 
@@ -249,6 +250,9 @@ def test_html_content_url_comb_success(
 
 
 @beartype
+@pytest.mark.skipif(
+    IN_GITHUB_ACTIONS, reason="Won't work using the demo sites"
+)
 def test_func_success(
     script_browser_env: ScriptBrowserEnv,
 ) -> None:
@@ -270,6 +274,9 @@ def test_func_success(
 
 
 @beartype
+@pytest.mark.skipif(
+    IN_GITHUB_ACTIONS, reason="Won't work using the demo sites"
+)
 def test_func_fail(
     script_browser_env: ScriptBrowserEnv,
 ) -> None:
