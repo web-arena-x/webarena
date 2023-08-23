@@ -58,6 +58,10 @@ docker run -d --name=wikipedia --volume=<your-path-to-downloaded-folder>/:/data 
 ```
 Now you can visit `http://<your-server-hostname>:8888/wikipedia_en_all_maxi_2022-05/A/User:The_other_Kiwix_guy/Landing`.
 
+## Map
+
+As the content of the map site is static, we currently host it on our server. You can set the link of the map site to `http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:3000/`. We are working on making the map site locally hostable.
+
 ## Homepage
 
 The homepage lists all available websites which the agent can use to navigate to different sites.
