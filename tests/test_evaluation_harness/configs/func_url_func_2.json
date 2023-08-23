@@ -1,5 +1,7 @@
 {
-    "sites": ["shopping"],
+    "sites": [
+        "shopping"
+    ],
     "task_id": 0,
     "require_login": true,
     "storage_state": "./.auth/gitlab_state.json",
@@ -10,17 +12,19 @@
     "intent": "",
     "require_reset": false,
     "eval": {
-        "eval_types": ["program_html"],
+        "eval_types": [
+            "program_html"
+        ],
         "reference_answers": [],
         "reference_url": "",
         "program_html": [
             {
-                "url": "http://metis.lti.cs.cmu.edu:8023/primer/design/-/project_members",
+                "url": "__GITLAB__/primer/design/-/project_members",
                 "locator": "func:gitlab_get_project_memeber_role(__page__, 'byteblaze')",
                 "required_contents": "Developer"
             },
             {
-                "url": "http://metis.lti.cs.cmu.edu:8023/primer/design/-/project_members",
+                "url": "__GITLAB__/primer/design/-/project_members",
                 "locator": "func:gitlab_get_project_memeber_role(__page__, 'primer')",
                 "required_contents": "Owner"
             }

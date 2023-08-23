@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# type: ignore
+
 import json
 import os
 import re

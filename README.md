@@ -60,6 +60,8 @@ export WIKIPEDIA="<your_wikipedia_domain>:8888/wikipedia_en_all_maxi_2022-05/A/U
 export HOMEPAGE="<your_homepage_domain>:4399" # this is a placeholder
 ```
 
+> You are encouraged to update the environment variables in [github workflow](.github/workflows/tests.yml#L7) to ensure the correctness of unit tests
+
 3. Generate config file for each test example
 ```bash
 python scripts/generate_test_data.py
@@ -68,7 +70,8 @@ You will see `*.json` files generated in [config_files](./config_files) folder. 
 
 4. Obtain the auto-login cookies for all websites
 ```
-bash prepare.sh
+mkdir -p ./.auth
+python browser_env/auto_login.py
 ```
 5. export `OPENAI_API_KEY=your_key`, a valid OpenAI API key starts with `sk-`
 

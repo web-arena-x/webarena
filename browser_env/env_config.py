@@ -17,7 +17,17 @@ assert (
     and WIKIPEDIA
     and MAP
     and HOMEPAGE
-), "Please setup the URLs to each site"
+), (
+    f"Please setup the URLs to each site. Current: "
+    + f"Reddit: {REDDIT}"
+    + f"Shopping: {SHOPPING}"
+    + f"Shopping Admin: {SHOPPING_ADMIN}"
+    + f"Gitlab: {GITLAB}"
+    + f"Wikipedia: {WIKIPEDIA}"
+    + f"Map: {MAP}"
+    + f"Homepage: {HOMEPAGE}"
+)
+
 
 ACCOUNTS = {
     "reddit": {"username": "MarvelsGrantMan136", "password": "test1234"},
