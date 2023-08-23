@@ -21,6 +21,10 @@
 
 ![Overview](media/overview.png)
 
+## Roadmap
+- [ ] In-house end-to-end evaluation. We are working on an API that accepts predicted actions from any interface and then returns the subsequent observation.
+- [ ] Support more agents with different prompting mechanisms such as [ASH](https://arxiv.org/pdf/2305.14257.pdf).
+
 ## News
 * [8/4/2023] Added the instructions and the docker resources to host your own WebArena Environment. Check out [this page](environment_docker/README.md) for details.
 * [7/29/2023] Added [a well commented script](minimal_example.py) to walk through the environment setup.
@@ -41,7 +45,7 @@ pre-commit install
 ## Quick Walkthrough
 Check out [this script](minimal_example.py) for a quick walkthrough on how to set up the browser environment and interact with it using the demo sites we hosted. This script is only for education purpose, to perform *reproducible* experiments, please check out the next section.
 
-## To Perform End-to-end Evaluation
+## End-to-end Evaluation
 1. Setup the standalone environment.
 Please check out [this page](environment_docker/README.md) for details.
 
@@ -82,7 +86,7 @@ python run.py \
 ```
 This script will run the first example with GPT-3.5 reasoning agent. The trajectory will be saved in `<your_result_dir>/0.html`
 
-## To Develop Your Prompt-based Agent
+## Develop Your Prompt-based Agent
 1. Define the prompts. We provide two baseline agents whose correrponding prompts are listed [here](./agent/prompts/raw). Each prompt is a dictionary with the following keys:
 ```python
 prompt = {
