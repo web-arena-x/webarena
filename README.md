@@ -43,8 +43,28 @@ pip install pre-commit
 pre-commit install
 ```
 ## Quick Walkthrough
-Check out [this script](minimal_example.py) for a quick walkthrough on how to set up the browser environment and interact with it using the demo sites we hosted. This script is only for education purpose, to perform *reproducible* experiments, please check out the next section.
+Check out [this script](minimal_example.py) for a quick walkthrough on how to set up the browser environment and interact with it using the demo sites we hosted. This script is only for education purpose, to perform *reproducible* experiments, please check out the next section. In the nutshell, using WebArena is very similar to using OpenAI Gym. The following code snippet shows how to interact with the environment.
+```python
+from browser_env import ScriptBrowserEnv, create_id_based_action
+# init the environment
+env = ScriptBrowserEnv(
+    headless=False,
+    observation_type="accessibility_tree",
+    current_viewport_only=True,
+    viewport_size={"width": 1280, "height": 720},
+)
+# prepare the environment for a configuration defined in a json file
+config_file = "config_files/0.json"
+obs, info = env.reset(options={"config_file": config_file})
+# get the text observation (e.g., html, accessibility tree) through obs["text"]
 
+# create a random action
+id = random.randint(0, 1000)
+action = create_id_based_action(f"click [id]")
+
+# take the action
+obs, _, terminated, _, info = env.step(action)
+```
 ## End-to-end Evaluation
 1. Setup the standalone environment.
 Please check out [this page](environment_docker/README.md) for details.
