@@ -67,9 +67,22 @@ As the content of the map site is static, we currently host it on our server. Yo
 The homepage lists all available websites which the agent can use to navigate to different sites.
 ![Homepage](../media/homepage_demo.png)
 
-To host the homepage, first change `<your-server-hostname>` to the corresponding server hostnames in [webarena_homepage/index.html](webarena_homepage/index.html) and then run
+To host the homepage, first change `<your-server-hostname>` to the corresponding server hostnames in [webarena_homepage/templates/index.html](webarena-homepage/templates/index.html)
+```bash
+# Define your actual server hostname
+YOUR_ACTUAL_HOSTNAME=""
+# Remove trailing / if it exists
+YOUR_ACTUAL_HOSTNAME=${YOUR_ACTUAL_HOSTNAME%/}
+# Use sed to replace placeholder in the HTML file
+perl -pi -e "s|<your-server-hostname>|${YOUR_ACTUAL_HOSTNAME}|g" webarena-homepage/templates/index.html
+```
+
+Then run
 ```
 cd webarena_homepage
 flask run --host=0.0.0.0 --port=4399
 ```
 The homepage will be available at `http://<your-server-hostname>:4399`.
+
+## Documentation sites
+We are still working on dockerizing the documentation sites. As they are read-only sites and they usually don't change rapidly. It is safe to use their live sites for test purpose right now.
