@@ -9,7 +9,9 @@ Download the image tar from https://drive.google.com/file/d/1gxXalk9O0p9eu1YkIJc
 ```
 docker load --input shopping_final_0712.tar
 docker run --name shopping -p 7770:80 -d shopping_final_0712
-docker exec shopping /var/www/magento2/bin/magento setup:store-config:set --base-url="http://<your-server-hostname>:7770/"
+# wait ~1 min to wait all services to start
+docker exec shopping /var/www/magento2/bin/magento setup:store-config:set --base-url="http://<your-server-hostname>:7770" # no trailing /
+docker exec shopping mysql -u magentouser -pMyPassword magentodb -e  'UPDATE core_config_data SET value="http://<your-server-hostname>:7770/" WHERE path = "web/secure/base_url";'
 docker exec shopping /var/www/magento2/bin/magento cache:flush
 ```
 Now you can visit `http://<your-server-hostname>:7770`.
@@ -22,7 +24,8 @@ Download the image tar from https://drive.google.com/file/d/1See0ZhJRw0WTTL9y8hF
 ```
 docker load --input shopping_admin_final_0719.tar
 docker run --name shopping_admin -p 7780:80 -d shopping_admin_final_0719
-docker exec shopping_admin /var/www/magento2/bin/magento setup:store-config:set --base-url="http://<your-server-hostname>:7780/"
+docker exec shopping_admin /var/www/magento2/bin/magento setup:store-config:set --base-url="http://<your-server-hostname>:7780"
+docker exec shopping_admin mysql -u magentouser -pMyPassword magentodb -e  'UPDATE core_config_data SET value="http://<your-server-hostname>:7780/" WHERE path = "web/secure/base_url";'
 docker exec shopping_admin /var/www/magento2/bin/magento cache:flush
 ```
 Now you can visit `http://<your-server-hostname>:7780/admin`.
