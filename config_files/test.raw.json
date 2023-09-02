@@ -5986,9 +5986,9 @@
     "geolocation": null,
     "intent_template": "Tell me the total cost of my latest {{status}} order?",
     "instantiation_dict": {
-      "status": "cancelled"
+      "status": "canceled"
     },
-    "intent": "Tell me the total cost of my latest cancelled order?",
+    "intent": "Tell me the total cost of my latest canceled order?",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -6108,9 +6108,9 @@
     "geolocation": null,
     "intent_template": "Tell me the total cost of my latest {{status}} order?",
     "instantiation_dict": {
-      "status": "non-cancelled"
+      "status": "non-canceled"
     },
-    "intent": "Tell me the total cost of my latest non-cancelled order?",
+    "intent": "Tell me the total cost of my latest non-canceled order?",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -6235,11 +6235,11 @@
     "geolocation": null,
     "intent_template": "Compare the payment difference of the last {{N}} {{status_1}} orders and {{status_2}} orders",
     "instantiation_dict": {
-      "status_1": "cancelled",
+      "status_1": "canceled",
       "status_2": "completed",
       "N": "4"
     },
-    "intent": "Compare the payment difference of the last 4 cancelled orders and completed orders",
+    "intent": "Compare the payment difference of the last 4 canceled orders and completed orders",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -6268,10 +6268,10 @@
     "geolocation": null,
     "intent_template": "Get the total payment amount of the last {{N}} {{status}} orders",
     "instantiation_dict": {
-      "status": "non-cancelled",
+      "status": "non-canceled",
       "N": "5"
     },
-    "intent": "Get the total payment amount of the last 5 non-cancelled orders",
+    "intent": "Get the total payment amount of the last 5 non-canceled orders",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -6302,9 +6302,9 @@
     "intent_template": "Get the {{attribute}} of the {{status}} order",
     "instantiation_dict": {
       "attribute": "customer name",
-      "status": "most recent cancelled"
+      "status": "most recent canceled"
     },
-    "intent": "Get the customer name of the most recent cancelled order",
+    "intent": "Get the customer name of the most recent canceled order",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -6424,9 +6424,9 @@
     "intent_template": "Get the {{attribute}} of the {{status}} order",
     "instantiation_dict": {
       "attribute": "date",
-      "status": "most recent canlled"
+      "status": "most recent canceled"
     },
-    "intent": "Get the date of the most recent canlled order",
+    "intent": "Get the date of the most recent canceled order",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -7341,9 +7341,9 @@
     "geolocation": null,
     "intent_template": "Get the order number of my most recent {{status}} order ",
     "instantiation_dict": {
-      "status": "cancelled"
+      "status": "canceled"
     },
-    "intent": "Get the order number of my most recent cancelled order ",
+    "intent": "Get the order number of my most recent canceled order ",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -9089,9 +9089,9 @@
     "geolocation": null,
     "intent_template": "Tell me the {{attribute}} of the customer who has the most cancellations in the history",
     "instantiation_dict": {
-      "attribute": "product SKUs in the most recent cancelled orders"
+      "attribute": "product SKUs in the most recent canceled orders"
     },
-    "intent": "Tell me the product SKUs in the most recent cancelled orders of the customer who has the most cancellations in the history",
+    "intent": "Tell me the product SKUs in the most recent canceled orders of the customer who has the most cancellations in the history",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -9123,9 +9123,9 @@
     "geolocation": null,
     "intent_template": "Tell me the {{attribute}} of the customer who has the most cancellations in the history",
     "instantiation_dict": {
-      "attribute": "total spend on products in the most recent cancelled orders"
+      "attribute": "total spend on products in the most recent canceled orders"
     },
-    "intent": "Tell me the total spend on products in the most recent cancelled orders of the customer who has the most cancellations in the history",
+    "intent": "Tell me the total spend on products in the most recent canceled orders of the customer who has the most cancellations in the history",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -9356,9 +9356,9 @@
     "geolocation": null,
     "intent_template": "Show the most recent {{status}} order",
     "instantiation_dict": {
-      "status": "cancelled"
+      "status": "canceled"
     },
-    "intent": "Show the most recent cancelled order",
+    "intent": "Show the most recent canceled order",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -9960,11 +9960,11 @@
     "storage_state": "./.auth/shopping_state.json",
     "start_url": "__SHOPPING__",
     "geolocation": null,
-    "intent_template": "How much refund I should expect from my order canlled in {{time}}, including shipping fee",
+    "intent_template": "How much refund I should expect from my order canceled in {{time}}, including shipping fee",
     "instantiation_dict": {
       "time": "April 2022"
     },
-    "intent": "How much refund I should expect from my order canlled in April 2022, including shipping fee",
+    "intent": "How much refund I should expect from my order canceled in April 2022, including shipping fee",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -9991,11 +9991,11 @@
     "storage_state": "./.auth/shopping_state.json",
     "start_url": "__SHOPPING__",
     "geolocation": null,
-    "intent_template": "How much refund I should expect from my order canlled in {{time}}, including shipping fee",
+    "intent_template": "How much refund I should expect from my order canceled in {{time}}, including shipping fee",
     "instantiation_dict": {
       "time": "Feb 2023"
     },
-    "intent": "How much refund I should expect from my order canlled in Feb 2023, including shipping fee",
+    "intent": "How much refund I should expect from my order canceled in Feb 2023, including shipping fee",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -10022,11 +10022,11 @@
     "storage_state": "./.auth/shopping_state.json",
     "start_url": "__SHOPPING__",
     "geolocation": null,
-    "intent_template": "How much refund I should expect from my order canlled in {{time}}, including shipping fee",
+    "intent_template": "How much refund I should expect from my order canceled in {{time}}, including shipping fee",
     "instantiation_dict": {
       "time": "2022"
     },
-    "intent": "How much refund I should expect from my order canlled in 2022, including shipping fee",
+    "intent": "How much refund I should expect from my order canceled in 2022, including shipping fee",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -10053,11 +10053,11 @@
     "storage_state": "./.auth/shopping_state.json",
     "start_url": "__SHOPPING__",
     "geolocation": null,
-    "intent_template": "How much refund I should expect from my order canlled in {{time}} if I cannot get the shipping fee refunded?",
+    "intent_template": "How much refund I should expect from my order canceled in {{time}} if I cannot get the shipping fee refunded?",
     "instantiation_dict": {
       "time": "May 2023"
     },
-    "intent": "How much refund I should expect from my order canlled in May 2023 if I cannot get the shipping fee refunded?",
+    "intent": "How much refund I should expect from my order canceled in May 2023 if I cannot get the shipping fee refunded?",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -10084,11 +10084,11 @@
     "storage_state": "./.auth/shopping_state.json",
     "start_url": "__SHOPPING__",
     "geolocation": null,
-    "intent_template": "How much refund I should expect from my order canlled in {{time}}? I only kept the AC-DC Adapter and the shop told me that I cannot get the shipping fee back",
+    "intent_template": "How much refund I should expect from my order canceled in {{time}}? I only kept the AC-DC Adapter and the shop told me that I cannot get the shipping fee back",
     "instantiation_dict": {
       "time": "2022/03"
     },
-    "intent": "How much refund I should expect from my order canlled in 2022/03? I only kept the AC-DC Adapter and the shop told me that I cannot get the shipping fee back",
+    "intent": "How much refund I should expect from my order canceled in 2022/03? I only kept the AC-DC Adapter and the shop told me that I cannot get the shipping fee back",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -11225,14 +11225,14 @@
       ],
       "reference_answers": {
         "fuzzy_match": [
-          "170: cancelled",
+          "170: canceled",
           "189: pending"
         ]
       },
       "reference_url": "",
       "program_html": [],
       "string_note": "",
-      "reference_answer_raw_annotation": "170: cancelled, 189: pending"
+      "reference_answer_raw_annotation": "170: canceled, 189: pending"
     },
     "intent_template_id": 206
   },
@@ -13550,12 +13550,12 @@
     "storage_state": "./.auth/shopping_state.json",
     "start_url": "__SHOPPING__",
     "geolocation": null,
-    "intent_template": "I previously ordered some {{product}} {{time}} and later cancelled. Can you reorder it for me?",
+    "intent_template": "I previously ordered some {{product}} {{time}} and later canceled. Can you reorder it for me?",
     "instantiation_dict": {
       "product": "a mattress foundation",
       "time": "around Feb or March 2023"
     },
-    "intent": "I previously ordered some a mattress foundation around Feb or March 2023 and later cancelled. Can you reorder it for me?",
+    "intent": "I previously ordered some a mattress foundation around Feb or March 2023 and later canceled. Can you reorder it for me?",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -13582,12 +13582,12 @@
     "storage_state": "./.auth/shopping_state.json",
     "start_url": "__SHOPPING__",
     "geolocation": null,
-    "intent_template": "I previously ordered some {{product}} {{time}} and later cancelled. Can you reorder it for me?",
+    "intent_template": "I previously ordered some {{product}} {{time}} and later canceled. Can you reorder it for me?",
     "instantiation_dict": {
       "product": "a table lamp",
       "time": "in May 2023"
     },
-    "intent": "I previously ordered some a table lamp in May 2023 and later cancelled. Can you reorder it for me?",
+    "intent": "I previously ordered some a table lamp in May 2023 and later canceled. Can you reorder it for me?",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -13614,12 +13614,12 @@
     "storage_state": "./.auth/shopping_state.json",
     "start_url": "__SHOPPING__",
     "geolocation": null,
-    "intent_template": "I previously ordered some {{product}} {{time}} and later cancelled. Can you reorder it for me?",
+    "intent_template": "I previously ordered some {{product}} {{time}} and later canceled. Can you reorder it for me?",
     "instantiation_dict": {
       "product": "a TV stand",
       "time": "sometime around sep 2022"
     },
-    "intent": "I previously ordered some a TV stand sometime around sep 2022 and later cancelled. Can you reorder it for me?",
+    "intent": "I previously ordered some a TV stand sometime around sep 2022 and later canceled. Can you reorder it for me?",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -13646,12 +13646,12 @@
     "storage_state": "./.auth/shopping_state.json",
     "start_url": "__SHOPPING__",
     "geolocation": null,
-    "intent_template": "I previously ordered some {{product}} {{time}} and later cancelled. Can you reorder it for me?",
+    "intent_template": "I previously ordered some {{product}} {{time}} and later canceled. Can you reorder it for me?",
     "instantiation_dict": {
       "product": "a cat t-shirt",
       "time": "during 2022"
     },
-    "intent": "I previously ordered some a cat t-shirt during 2022 and later cancelled. Can you reorder it for me?",
+    "intent": "I previously ordered some a cat t-shirt during 2022 and later canceled. Can you reorder it for me?",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -13678,12 +13678,12 @@
     "storage_state": "./.auth/shopping_state.json",
     "start_url": "__SHOPPING__",
     "geolocation": null,
-    "intent_template": "I previously ordered some {{product}} {{time}} and later cancelled. Can you reorder it for me?",
+    "intent_template": "I previously ordered some {{product}} {{time}} and later canceled. Can you reorder it for me?",
     "instantiation_dict": {
       "product": "a make up removal kit",
       "time": "during summer 2022"
     },
-    "intent": "I previously ordered some a make up removal kit during summer 2022 and later cancelled. Can you reorder it for me?",
+    "intent": "I previously ordered some a make up removal kit during summer 2022 and later canceled. Can you reorder it for me?",
     "require_reset": false,
     "eval": {
       "eval_types": [
