@@ -4,13 +4,17 @@ This REAME file host the instructions for our Docker images and quick start guid
 
 ## Shopping Website (OneStopShop)
 
-Download the image tar from https://drive.google.com/file/d/1gxXalk9O0p9eu1YkIJcmZta1nvvyAJpA/view?usp=sharing
+Download the image tar from the following mirrors:
+https://drive.google.com/file/d/1gxXalk9O0p9eu1YkIJcmZta1nvvyAJpA/view?usp=sharing
+https://archive.org/download/webarena-env-shopping-image
+http://metis.lti.cs.cmu.edu/webarena-images/shopping_final_0712.tar
 
 ```
 docker load --input shopping_final_0712.tar
 docker run --name shopping -p 7770:80 -d shopping_final_0712
 # wait ~1 min to wait all services to start
-docker exec shopping /var/www/magento2/bin/magento setup:store-config:set --base-url="http://<your-server-hostname>:7770" # no trailing /
+
+docker exec shopping /var/www/magento2/bin/magento setup:store-config:set --base-url="http://<your-server-hostname>:7770" # no trailing slash
 docker exec shopping mysql -u magentouser -pMyPassword magentodb -e  'UPDATE core_config_data SET value="http://<your-server-hostname>:7770/" WHERE path = "web/secure/base_url";'
 docker exec shopping /var/www/magento2/bin/magento cache:flush
 ```
@@ -19,12 +23,17 @@ Now you can visit `http://<your-server-hostname>:7770`.
 
 ## E-commerce Content Management System (CMS)
 
-Download the image tar from https://drive.google.com/file/d/1See0ZhJRw0WTTL9y8hFlgaduwPZ_nGfd/view?usp=sharing
+Download the image tar from the following mirrors:
+https://drive.google.com/file/d/1See0ZhJRw0WTTL9y8hFlgaduwPZ_nGfd/view?usp=sharing
+https://archive.org/download/webarena-env-shopping-admin-image
+http://metis.lti.cs.cmu.edu/webarena-images/shopping_admin_final_0719.tar
 
 ```
 docker load --input shopping_admin_final_0719.tar
 docker run --name shopping_admin -p 7780:80 -d shopping_admin_final_0719
-docker exec shopping_admin /var/www/magento2/bin/magento setup:store-config:set --base-url="http://<your-server-hostname>:7780"
+# wait ~1 min to wait all services to start
+
+docker exec shopping_admin /var/www/magento2/bin/magento setup:store-config:set --base-url="http://<your-server-hostname>:7780" # no trailing slash
 docker exec shopping_admin mysql -u magentouser -pMyPassword magentodb -e  'UPDATE core_config_data SET value="http://<your-server-hostname>:7780/" WHERE path = "web/secure/base_url";'
 docker exec shopping_admin /var/www/magento2/bin/magento cache:flush
 ```
@@ -33,7 +42,10 @@ Now you can visit `http://<your-server-hostname>:7780/admin`.
 
 ## Social Forum Website (Reddit)
 
-Download the image tar from https://drive.google.com/file/d/17Qpp1iu_mPqzgO_73Z9BnFjHrzmX9DGf/view?usp=sharing
+Download the image tar from the following mirrors:
+https://drive.google.com/file/d/17Qpp1iu_mPqzgO_73Z9BnFjHrzmX9DGf/view?usp=sharing
+https://archive.org/download/webarena-env-forum-image
+http://metis.lti.cs.cmu.edu/webarena-images/postmill-populated-exposed-withimg.tar
 
 ```
 docker load --input postmill-populated-exposed-withimg.tar
@@ -44,7 +56,10 @@ Now you can visit `http://<your-server-hostname>:9999/`.
 
 ## Gitlab Website
 
-Download the image tar from https://drive.google.com/file/d/19W8qM0DPyRvWCLyQe0qtnCWAHGruolMR/view?usp=sharing
+Download the image tar from the following mirrors:
+https://drive.google.com/file/d/19W8qM0DPyRvWCLyQe0qtnCWAHGruolMR/view?usp=sharing
+https://archive.org/download/webarena-env-gitlab-image
+http://metis.lti.cs.cmu.edu/webarena-images/gitlab-populated-final-port8023.tar
 
 ```
 docker load --input gitlab-populated-final-port8023.tar
@@ -54,7 +69,10 @@ It might take 5 mins to start and then you can visit `http://<your-server-hostna
 
 ## Wikipedia Website
 
-Download the data from https://drive.google.com/file/d/1Um4QLxi_bGv5bP6kt83Ke0lNjuV9Tm0P/view?usp=sharing
+Download the data from the following mirrors:
+https://drive.google.com/file/d/1Um4QLxi_bGv5bP6kt83Ke0lNjuV9Tm0P/view?usp=sharing
+https://archive.org/download/webarena-env-wiki-image
+http://metis.lti.cs.cmu.edu/webarena-images/wikipedia_en_all_maxi_2022-05.zim
 
 ```
 docker run -d --name=wikipedia --volume=<your-path-to-downloaded-folder>/:/data -p 8888:80 ghcr.io/kiwix/kiwix-serve:3.3.0 wikipedia_en_all_maxi_2022-05.zim
