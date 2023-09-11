@@ -11969,7 +11969,7 @@
     "instantiation_dict": {
       "product": "Ugreen lightning to 3.5mm cable"
     },
-    "intent": "What is the rating of Ugreen lightning to 3.5mm cable",
+    "intent": "What is the rating of Ugreen lightning to 3.5mm cable. Please round to the nearest whole number",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -11977,7 +11977,7 @@
       ],
       "reference_answers": {
         "must_include": [
-          "65%"
+          "3"
         ]
       },
       "reference_url": "",
@@ -26066,7 +26066,7 @@
         {
           "url": "__GITLAB__/byteblaze/project_site/-/commits",
           "locator": "",
-          "required_contents": "Initialized from 'NodeJS' project template"
+          "required_contents": "Initialized from 'NodeJS Express' project template"
         },
         {
           "url": "__GITLAB__/byteblaze/project_site/-/project_members",
@@ -26118,8 +26118,8 @@
         },
         {
           "url": "__GITLAB__/byteblaze/agi_index/-/commits",
-          "locator": "",
-          "required_contents": "Initialized from 'HTML' project template"
+          "locator": "document.querySelector('.home-panel-description-markdown').outerText",
+          "required_contents": "Example plain HTML site using GitLab Pages: https://pages.gitlab.io/plain-html |OR| A plain HTML site that uses Netlify for CI/CD instead of GitLab, but still with all the other great GitLab features."
         },
         {
           "url": "__GITLAB__/byteblaze/agi_index/-/project_members",
@@ -26161,8 +26161,8 @@
         },
         {
           "url": "__GITLAB__/byteblaze/AGISite/-/commits",
-          "locator": "",
-          "required_contents": "Initialized from 'JEKYLL' project template"
+          "locator": "document.querySelector('.home-panel-description-markdown').outerText",
+          "required_contents": "Example Jekyll site using GitLab Pages: https://pages.gitlab.io/jekyll |OR| A Jekyll site that uses Netlify for CI/CD instead of GitLab, but still with all the other great GitLab features."
         },
         {
           "url": "__GITLAB__/byteblaze/AGISite/-/project_members",
@@ -26283,7 +26283,7 @@
         {
           "url": "__GITLAB__/byteblaze/web_agent_nodejs/-/commits",
           "locator": "",
-          "required_contents": "Initialized from 'Android' project template"
+          "required_contents": "Initialized from 'NodeJS Express' project template"
         }
       ]
     },
@@ -26318,9 +26318,9 @@
           "required_contents": "Private"
         },
         {
-          "url": "__GITLAB__/byteblaze/web_agent_index/-/commits",
-          "locator": "",
-          "required_contents": "Initialized from 'HTML' project template"
+          "url": "__GITLAB__/byteblaze/agi_index/-/commits",
+          "locator": "document.querySelector('.home-panel-description-markdown').outerText",
+          "required_contents": "Example plain HTML site using GitLab Pages: https://pages.gitlab.io/plain-html |OR| A plain HTML site that uses Netlify for CI/CD instead of GitLab, but still with all the other great GitLab features."
         }
       ]
     },
@@ -26355,9 +26355,9 @@
           "required_contents": "Private"
         },
         {
-          "url": "__GITLAB__/byteblaze/11711_gitlab/-/commits",
-          "locator": "",
-          "required_contents": "Initialized from 'JEKYLL' project template"
+          "url": "__GITLAB__/byteblaze/AGISite/-/commits",
+          "locator": "document.querySelector('.home-panel-description-markdown').outerText",
+          "required_contents": "Example Jekyll site using GitLab Pages: https://pages.gitlab.io/jekyll |OR| A Jekyll site that uses Netlify for CI/CD instead of GitLab, but still with all the other great GitLab features."
         }
       ]
     },
