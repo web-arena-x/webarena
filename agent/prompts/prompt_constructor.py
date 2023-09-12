@@ -1,7 +1,7 @@
 import json
 import re
 from pathlib import Path
-from typing import Any, TypedDict
+from typing import Any, TypedDict, Callable, Optional
 
 import tiktoken
 from beartype import beartype
@@ -37,6 +37,24 @@ class PromptConstructor(object):
         instruction["examples"] = [tuple(e) for e in instruction["examples"]]
         self.instruction: Instruction = instruction
         self.tokenizer = tokenizer
+
+    @beartype
+    def _get_llm_output(
+        self,
+        intro: str,
+        examples: list[tuple[str, str]],
+        template: str,
+        llm: Callable,
+        **kwargs
+    ) -> tuple[str, Optional[str]]:
+        prompt = template.format(**kwargs)
+        prompt = self.get_lm_api_input(intro, examples, prompt)
+        response = llm(prompt)
+
+        try:
+            return response, self._extract_action(response)
+        except ActionParsingError as e:
+            return response, None
 
     @beartype
     def get_lm_api_input(
@@ -137,7 +155,8 @@ class DirectPromptConstructor(PromptConstructor):
         trajectory: Trajectory,
         intent: str,
         meta_data: dict[str, Any] = {},
-    ) -> APIInput:
+        llm: Callable = None
+    ) -> tuple[list[str], str]:
         """Construct prompt given the trajectory"""
         intro = self.instruction["intro"]
         examples = self.instruction["examples"]
@@ -154,18 +173,21 @@ class DirectPromptConstructor(PromptConstructor):
         url = page.url
         previous_action_str = meta_data["action_history"][-1]
 
-        # input x
-        current = template.format(
+        raw, action = self._get_llm_output(
+            intro,
+            examples,
+            template,
+            llm,
             objective=intent,
             url=self.map_url_to_real(url),
             observation=obs,
             previous_action=previous_action_str,
         )
 
-        # make sure all keywords are replaced
-        assert all([f"{{k}}" not in current for k in keywords])
-        prompt = self.get_lm_api_input(intro, examples, current)
-        return prompt
+        if action is None:
+            raise ActionParsingError("Direct Parsing Error with raw response: " + raw)
+        
+        return [raw], action
 
     @beartype
     def _extract_action(self, response: str) -> str:
@@ -198,7 +220,8 @@ class CoTPromptConstructor(PromptConstructor):
         trajectory: Trajectory,
         intent: str,
         meta_data: dict[str, Any] = {},
-    ) -> APIInput:
+        llm: Callable = None
+    ) -> tuple[list[str], str]:
         intro = self.instruction["intro"]
         examples = self.instruction["examples"]
         template = self.instruction["template"]
@@ -213,17 +236,215 @@ class CoTPromptConstructor(PromptConstructor):
         page = state_info["info"]["page"]
         url = page.url
         previous_action_str = meta_data["action_history"][-1]
-        current = template.format(
+
+        raw, action = self._get_llm_output(
+            intro,
+            examples,
+            template,
+            llm,
             objective=intent,
             url=self.map_url_to_real(url),
             observation=obs,
             previous_action=previous_action_str,
         )
+        
+        if action is None:
+            raise ActionParsingError("CoT Parsing Error with raw response: " + raw)
+        
+        return [raw], action
 
-        assert all([f"{{k}}" not in current for k in keywords])
+    @beartype
+    def _extract_action(self, response: str) -> str:
+        # find the first occurence of action
+        action_splitter = self.instruction["meta_data"]["action_splitter"]
+        pattern = rf"{action_splitter}(.*?){action_splitter}"
+        match = re.search(pattern, response)
+        if match:
+            return match.group(1)
+        else:
+            raise ActionParsingError(
+                f'Cannot find the answer phrase "{self.answer_phrase}" in "{response}"'
+            )
 
-        prompt = self.get_lm_api_input(intro, examples, current)
-        return prompt
+class RCIPromptConstructor(PromptConstructor):
+    def __init__(
+        self,
+        instruction_path: str | Path,
+        lm_config: lm_config.LMConfig,
+        tokenizer: tiktoken.core.Encoding,
+    ):
+        super().__init__(instruction_path, lm_config, tokenizer)
+        self.answer_phrase = self.instruction["meta_data"]["answer_phrase"]
+        self.plan = None
+
+    @beartype
+    def construct(
+        self,
+        trajectory: Trajectory,
+        intent: str,
+        meta_data: dict[str, Any] = {},
+        llm: Callable = None
+    ) -> tuple[list[str], str]:
+        intro = self.instruction["intro"]
+
+        state_info: StateInfo = trajectory[-1]  # type: ignore[assignment]
+
+        page = state_info["info"]["page"]
+        url = self.map_url_to_real(page.url)
+        history_actions = ', '.join(meta_data["action_history"])
+
+        obs = state_info["observation"][self.obs_modality]
+        max_obs_length = self.lm_config.gen_config["max_obs_length"]
+        if max_obs_length:
+            obs = self.tokenizer.decode(self.tokenizer.encode(obs)[:max_obs_length])  # type: ignore[arg-type]
+
+        print('observation')
+        print('=====================')
+        print(obs)
+        print()
+
+        print('history actions')
+        print('=====================')
+        print(history_actions)
+        print()
+
+        print('url')
+        print('=====================')
+        print(url)
+        print()
+
+
+        raw_prediction = []
+        # Get plan
+        if self.plan is None:
+            print('generating plan')
+            plan, _ = self._get_llm_output(
+                intro,
+                [],
+                self.instruction["template_plan"],
+                llm,
+                observation=obs,
+                url=url,
+                objective=intent,
+            )
+            print('plan')
+            print('=====================')
+            print(plan)
+            print()
+
+            # Get critique
+            print('generating critique')
+            critique, _ = self._get_llm_output(
+                intro,
+                [],
+                self.instruction["template_critique"],
+                llm,
+                observation=obs,
+                url=url,
+                objective=intent,
+                plan=plan,
+            )
+            print('critique')
+            print('=====================')
+            print(critique)
+            print()
+
+            # Get improved plan
+            print('generating improved plan')
+            plan, _ = self._get_llm_output(
+                intro,
+                [],
+                self.instruction["template_improve"],
+                llm,
+                observation=obs,
+                url=url,
+                objective=intent,
+                plan=plan,
+                critique=critique,
+            )
+            print('improved plan')
+            print('=====================')
+            print(plan)
+            print()
+
+            self.plan = plan
+
+        # Get next step
+        print('generating next step')
+        next_action, _ = self._get_llm_output(
+            intro,
+            [],
+            self.instruction["template_next_step"],
+            llm,
+            observation=obs,
+            url=url,
+            objective=intent,
+            history_actions=history_actions,
+            plan=self.plan,
+        )
+        print('next step')
+        print('=====================')
+        print(next_action)
+        print()
+
+        # Get state grounding
+        print('generating state grounding')
+        state_grounding, _ = self._get_llm_output(
+            intro,
+            [],
+            self.instruction["template_state_grounding"],
+            llm,
+            observation=obs,
+            url=url,
+            history_actions=history_actions,
+            next_action=next_action,
+        )
+        print('state grounding')
+        print('=====================')
+        print(state_grounding)
+        print()
+
+        # Get agent grounding
+        print('generating agent grounding')
+        agent_grounding, _ = self._get_llm_output(
+            intro,
+            [],
+            self.instruction["template_agent_grounding"],
+            llm,
+            observation=obs,
+            url=url,
+            history_actions=history_actions,
+            next_action=next_action,
+            critique=state_grounding,
+        )
+        # agent_grounding = agent_grounding.split()
+        # skip = False
+        # for i in range(1, len(agent_grounding)):
+        #     if agent_grounding[i][-1] == '"':
+        #         skip = False
+
+        #     if skip:
+        #         continue
+
+        #     if agent_grounding[i][0] == '"':
+        #         skip = True
+        #     if not agent_grounding[i].startswith('['):
+        #         agent_grounding[i] = '[' + agent_grounding[i]
+        #         if agent_grounding[i][1] == '"':
+        #             skip = True
+        #     if not agent_grounding[i].endswith(']'):
+        #         agent_grounding[i] = agent_grounding[i] + ']'
+        #         if agent_grounding[i][1] == '"':
+        #             skip = False
+        # agent_grounding = ' '.join(agent_grounding)
+        print('agent grounding')
+        print('=====================')
+        print(agent_grounding)
+        print()
+
+        print('final action:', agent_grounding)
+
+        return raw_prediction, agent_grounding
 
     @beartype
     def _extract_action(self, response: str) -> str:
