@@ -153,12 +153,12 @@ class PromptAgent(Agent):
                 )
             
             return response
-            
+        
         try:
-            raw_responses, parsed_response = self.prompt_constructor.construct(
+            response = self.prompt_constructor.construct(
                 trajectory, intent, meta_data, llm
             )
-
+            parsed_response = self.prompt_constructor.extract_action(response)
             if self.action_set_tag == "id_accessibility_tree":
                 action = create_id_based_action(parsed_response)
             elif self.action_set_tag == "playwright":
@@ -166,11 +166,11 @@ class PromptAgent(Agent):
             else:
                 raise ValueError(f"Unknown action type {self.action_set_tag}")
 
-            action["raw_prediction"] = raw_responses
+            action["raw_prediction"] = response
 
         except ActionParsingError as e:
             action = create_none_action()
-            action["raw_prediction"] = None
+            action["raw_prediction"] = response
 
         return action
 

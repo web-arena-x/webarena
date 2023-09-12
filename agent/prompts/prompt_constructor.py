@@ -46,15 +46,12 @@ class PromptConstructor(object):
         template: str,
         llm: Callable,
         **kwargs
-    ) -> tuple[str, Optional[str]]:
+    ) -> str:
         prompt = template.format(**kwargs)
         prompt = self.get_lm_api_input(intro, examples, prompt)
         response = llm(prompt)
 
-        try:
-            return response, self._extract_action(response)
-        except ActionParsingError as e:
-            return response, None
+        return response
 
     @beartype
     def get_lm_api_input(
@@ -156,7 +153,7 @@ class DirectPromptConstructor(PromptConstructor):
         intent: str,
         meta_data: dict[str, Any] = {},
         llm: Callable = None
-    ) -> tuple[list[str], str]:
+    ) -> str:
         """Construct prompt given the trajectory"""
         intro = self.instruction["intro"]
         examples = self.instruction["examples"]
@@ -173,7 +170,7 @@ class DirectPromptConstructor(PromptConstructor):
         url = page.url
         previous_action_str = meta_data["action_history"][-1]
 
-        raw, action = self._get_llm_output(
+        response = self._get_llm_output(
             intro,
             examples,
             template,
@@ -184,10 +181,7 @@ class DirectPromptConstructor(PromptConstructor):
             previous_action=previous_action_str,
         )
 
-        if action is None:
-            raise ActionParsingError("Direct Parsing Error with raw response: " + raw)
-        
-        return [raw], action
+        return response
 
     @beartype
     def _extract_action(self, response: str) -> str:
@@ -221,7 +215,7 @@ class CoTPromptConstructor(PromptConstructor):
         intent: str,
         meta_data: dict[str, Any] = {},
         llm: Callable = None
-    ) -> tuple[list[str], str]:
+    ) -> str:
         intro = self.instruction["intro"]
         examples = self.instruction["examples"]
         template = self.instruction["template"]
@@ -237,7 +231,7 @@ class CoTPromptConstructor(PromptConstructor):
         url = page.url
         previous_action_str = meta_data["action_history"][-1]
 
-        raw, action = self._get_llm_output(
+        response = self._get_llm_output(
             intro,
             examples,
             template,
@@ -247,11 +241,10 @@ class CoTPromptConstructor(PromptConstructor):
             observation=obs,
             previous_action=previous_action_str,
         )
+
+        print('CoT', response)
         
-        if action is None:
-            raise ActionParsingError("CoT Parsing Error with raw response: " + raw)
-        
-        return [raw], action
+        return response
 
     @beartype
     def _extract_action(self, response: str) -> str:
@@ -284,7 +277,7 @@ class RCIPromptConstructor(PromptConstructor):
         intent: str,
         meta_data: dict[str, Any] = {},
         llm: Callable = None
-    ) -> tuple[list[str], str]:
+    ) -> str:
         intro = self.instruction["intro"]
 
         state_info: StateInfo = trajectory[-1]  # type: ignore[assignment]
@@ -313,12 +306,10 @@ class RCIPromptConstructor(PromptConstructor):
         print(url)
         print()
 
-
-        raw_prediction = []
         # Get plan
         if self.plan is None:
             print('generating plan')
-            plan, _ = self._get_llm_output(
+            plan = self._get_llm_output(
                 intro,
                 [],
                 self.instruction["template_plan"],
@@ -334,7 +325,7 @@ class RCIPromptConstructor(PromptConstructor):
 
             # Get critique
             print('generating critique')
-            critique, _ = self._get_llm_output(
+            critique = self._get_llm_output(
                 intro,
                 [],
                 self.instruction["template_critique"],
@@ -351,7 +342,7 @@ class RCIPromptConstructor(PromptConstructor):
 
             # Get improved plan
             print('generating improved plan')
-            plan, _ = self._get_llm_output(
+            plan = self._get_llm_output(
                 intro,
                 [],
                 self.instruction["template_improve"],
@@ -371,7 +362,7 @@ class RCIPromptConstructor(PromptConstructor):
 
         # Get next step
         print('generating next step')
-        next_action, _ = self._get_llm_output(
+        meta_next_action = self._get_llm_output(
             intro,
             [],
             self.instruction["template_next_step"],
@@ -382,14 +373,14 @@ class RCIPromptConstructor(PromptConstructor):
             history_actions=history_actions,
             plan=self.plan,
         )
-        print('next step')
+        print('meta next step')
         print('=====================')
-        print(next_action)
+        print(meta_next_action)
         print()
 
         # Get state grounding
         print('generating state grounding')
-        state_grounding, _ = self._get_llm_output(
+        draft_next_action = self._get_llm_output(
             intro,
             [],
             self.instruction["template_state_grounding"],
@@ -397,16 +388,16 @@ class RCIPromptConstructor(PromptConstructor):
             observation=obs,
             url=url,
             history_actions=history_actions,
-            next_action=next_action,
+            meta_next_action=meta_next_action,
         )
-        print('state grounding')
+        print('draft_next_action')
         print('=====================')
-        print(state_grounding)
+        print(draft_next_action)
         print()
 
         # Get agent grounding
         print('generating agent grounding')
-        agent_grounding, _ = self._get_llm_output(
+        response = self._get_llm_output(
             intro,
             [],
             self.instruction["template_agent_grounding"],
@@ -414,8 +405,8 @@ class RCIPromptConstructor(PromptConstructor):
             observation=obs,
             url=url,
             history_actions=history_actions,
-            next_action=next_action,
-            critique=state_grounding,
+            meta_next_action=meta_next_action,
+            draft_next_action=draft_next_action
         )
         # agent_grounding = agent_grounding.split()
         # skip = False
@@ -439,12 +430,10 @@ class RCIPromptConstructor(PromptConstructor):
         # agent_grounding = ' '.join(agent_grounding)
         print('agent grounding')
         print('=====================')
-        print(agent_grounding)
+        print(response)
         print()
 
-        print('final action:', agent_grounding)
-
-        return raw_prediction, agent_grounding
+        return response
 
     @beartype
     def _extract_action(self, response: str) -> str:
