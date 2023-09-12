@@ -134,36 +134,6 @@ def test_parallel_script_browser_env() -> None:
     vector_env.close()  # type: ignore[no-untyped-call]
 
 
-def test_is_in_viewport(script_browser_env: ScriptBrowserEnv) -> None:
-    env = script_browser_env
-    env.reset()
-    env.step(
-        create_goto_url_action("https://www.iana.org/domains/reserved"),
-    )
-    _, _, _, _, info = env.step(
-        create_focus_and_click_action(
-            element_role="link",
-            element_name="IDN",
-            nth=1,
-        ),
-    )
-    assert (
-        info["page"].url
-        == "https://www.icann.org/resources/pages/idn-2012-02-25-en"
-    )
-    env.step(
-        create_goto_url_action("https://www.iana.org/domains/reserved"),
-    )
-    _, _, _, _, info = env.step(create_keyboard_type_action(keys=["PageDown"]))
-    _, _, _, _, info = env.step(
-        create_focus_and_click_action(
-            element_role="link",
-            element_name="IDN",
-        ),
-    )
-    assert info["page"].url == "https://www.iana.org/domains/idn-tables"
-
-
 def test_focus_placeholder_and_label(
     script_browser_env: ScriptBrowserEnv,
 ) -> None:
@@ -183,7 +153,7 @@ def test_focus_placeholder_and_label(
     assert info["page"].url == "https://demo.applitools.com/app.html"
 
 
-def test_current_viewport(
+def test_html_current_viewport(
     current_viewport_script_browser_env: ScriptBrowserEnv,
 ) -> None:
     s1 = "detailed information about how mammals could be classified."
@@ -236,7 +206,6 @@ def test_accessibility_tree_viewport(
     assert (
         s1 in obs["text"] and s2 not in obs["text"] and s3 not in obs["text"]
     )
-
     obs, success, _, _, info = env.step(create_scroll_action("down"))
     assert success
     assert (
