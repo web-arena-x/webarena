@@ -2,8 +2,6 @@ import json
 import os
 from pathlib import Path
 
-from beartype import beartype
-
 from browser_env import ScriptBrowserEnv
 from browser_env.env_config import *
 from evaluation_harness.helper_functions import (

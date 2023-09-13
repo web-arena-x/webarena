@@ -5,7 +5,6 @@ from typing import Any, TypedDict, Union
 
 import numpy as np
 import numpy.typing as npt
-from beartype import beartype
 from gymnasium import spaces
 from playwright.sync_api import CDPSession, Page, ViewportSize
 
@@ -60,7 +59,6 @@ class TextObervationProcessor(ObservationProcessor):
             create_empty_metadata()
         )  # use the store meta data of this observation type
 
-    @beartype
     def fetch_browser_info(
         self,
         page: Page,
@@ -108,7 +106,6 @@ class TextObervationProcessor(ObservationProcessor):
 
         return info
 
-    @beartype
     @staticmethod
     def get_bounding_client_rect(
         client: CDPSession, backend_node_id: str
@@ -134,7 +131,6 @@ class TextObervationProcessor(ObservationProcessor):
         except Exception as e:
             return {"result": {"subtype": "error"}}
 
-    @beartype
     @staticmethod
     def get_element_in_viewport_ratio(
         elem_left_bound: float,
@@ -167,7 +163,6 @@ class TextObervationProcessor(ObservationProcessor):
         ratio = overlap_width * overlap_height / width * height
         return ratio
 
-    @beartype
     def fetch_page_html(
         self,
         info: BrowserInfo,
@@ -323,7 +318,6 @@ class TextObervationProcessor(ObservationProcessor):
 
         return dom_tree
 
-    @beartype
     @staticmethod
     def parse_html(dom_tree: DOMTree) -> tuple[str, dict[str, Any]]:
         """Parse the html tree into a string text"""
@@ -367,7 +361,6 @@ class TextObervationProcessor(ObservationProcessor):
         html = dfs(0, 0)
         return html, obs_nodes_info
 
-    @beartype
     def fetch_page_accessibility_tree(
         self,
         info: BrowserInfo,
@@ -487,7 +480,6 @@ class TextObervationProcessor(ObservationProcessor):
 
         return accessibility_tree
 
-    @beartype
     @staticmethod
     def parse_accessibility_tree(
         accessibility_tree: AccessibilityTree,
@@ -575,7 +567,6 @@ class TextObervationProcessor(ObservationProcessor):
         tree_str = dfs(0, accessibility_tree[0]["nodeId"], 0)
         return tree_str, obs_nodes_info
 
-    @beartype
     @staticmethod
     def clean_accesibility_tree(tree_str: str) -> str:
         """further clean accesibility tree"""
@@ -598,7 +589,6 @@ class TextObervationProcessor(ObservationProcessor):
 
         return "\n".join(clean_lines)
 
-    @beartype
     def process(self, page: Page, client: CDPSession) -> str:
         # get the tab info
         open_tabs = page.context.pages
@@ -657,7 +647,6 @@ class TextObervationProcessor(ObservationProcessor):
         content = f"{tab_title_str}\n\n{content}"
         return content
 
-    @beartype
     def get_element_center(self, element_id: str) -> tuple[float, float]:
         node_info = self.obs_nodes_info[element_id]
         node_bound = node_info["union_bound"]
@@ -705,7 +694,6 @@ class ObservationHandler:
         )
         self.viewport_size = viewport_size
 
-    @beartype
     def get_observation_space(self) -> spaces.Dict:
         text_space = spaces.Text(
             min_length=0,
@@ -729,7 +717,6 @@ class ObservationHandler:
 
         return spaces.Dict({"text": text_space, "image": image_space})
 
-    @beartype
     def get_observation(
         self, page: Page, client: CDPSession
     ) -> dict[str, Observation]:
@@ -737,7 +724,6 @@ class ObservationHandler:
         image_obs = self.image_processor.process(page, client)
         return {"text": text_obs, "image": image_obs}
 
-    @beartype
     def get_observation_metadata(self) -> dict[str, ObservationMetadata]:
         return {
             "text": self.text_processor.meta_data,

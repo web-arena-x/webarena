@@ -3,7 +3,6 @@ import glob
 from itertools import combinations
 from pathlib import Path
 
-from beartype import beartype
 from playwright.sync_api import sync_playwright
 
 from browser_env.env_config import (
@@ -18,7 +17,6 @@ HEADLESS = True
 SLOW_MO = 0
 
 
-@beartype
 def is_expired(
     storage_state: Path, url: str, keyword: str, url_exact: bool = True
 ) -> bool:
@@ -44,7 +42,6 @@ def is_expired(
             return url not in d_url
 
 
-@beartype
 def renew_comb(comb: list[str]) -> None:
     context_manager = sync_playwright()
     playwright = context_manager.__enter__()
@@ -91,7 +88,6 @@ def renew_comb(comb: list[str]) -> None:
     context_manager.__exit__()
 
 
-@beartype
 def main() -> None:
     sites = ["gitlab", "shopping", "shopping_admin", "reddit"]
     urls = [

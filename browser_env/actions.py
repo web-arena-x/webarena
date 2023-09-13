@@ -12,8 +12,6 @@ from typing import Any, TypedDict, Union, cast
 
 import numpy as np
 import numpy.typing as npt
-from beartype import beartype
-from beartype.door import is_bearable
 from gymnasium import spaces
 from playwright._impl._api_structures import ViewportSize
 from playwright.async_api import BrowserContext as ABrowserContext
@@ -55,7 +53,6 @@ from browser_env.processors import (
 )
 
 
-@beartype
 def is_in_viewport(
     element: Locator, viewport: ViewportSize, threshold: float = 0.3
 ) -> bool:
@@ -75,7 +72,6 @@ def is_in_viewport(
     return ratio > threshold
 
 
-@beartype
 async def async_is_in_viewport(
     element: ALocator, viewport: ViewportSize, threshold: float = 0.3
 ) -> bool:
@@ -111,7 +107,6 @@ class Action(TypedDict):
     raw_prediction: str  # raw prediction from the model
 
 
-@beartype
 def action2str(
     action: Action, action_set_tag: str, semantic_element: str = ""
 ) -> str:
@@ -274,7 +269,6 @@ class ActionTypes(IntEnum):
         return f"ACTION_TYPES.{self.name}"
 
 
-@beartype
 def is_equivalent(a: Action, b: Action) -> bool:
     """Return True if two actions are equal."""
     if a["action_type"] != b["action_type"]:
@@ -338,12 +332,11 @@ _role2id: dict[RolesType, int] = {
 _id2role: list[RolesType] = sorted(_role2id, key=_role2id.get)  # type: ignore[arg-type]
 
 
-@beartype
 def _keys2ids(keys: list[int | str] | str) -> list[int]:
     return list(
         map(
             lambda key: _key2id[str(key)]
-            if is_bearable(key, str)
+            if isinstance(key, str)
             else int(key),
             keys,
         )
@@ -424,7 +417,6 @@ def create_random_action() -> Action:
     }
 
 
-@beartype
 def create_none_action() -> Action:
     """Return a valid action object that does nothing."""
     return {
@@ -445,14 +437,12 @@ def create_none_action() -> Action:
     }
 
 
-@beartype
 def create_stop_action(answer: str) -> Action:
     action = create_none_action()
     action.update({"action_type": ActionTypes.STOP, "answer": answer})
     return action
 
 
-@beartype
 def create_scroll_action(direction: str) -> Action:
     """Return the playwright action"""
     assert direction in ["up", "down"]
@@ -466,7 +456,6 @@ def create_scroll_action(direction: str) -> Action:
     return action
 
 
-@beartype
 def create_mouse_hover_action(
     left: float | None = None, top: float | None = None
 ) -> Action:
@@ -481,7 +470,6 @@ def create_mouse_hover_action(
     return action
 
 
-@beartype
 def create_key_press_action(key_comb: str) -> Action:
     """Return the key press action"""
 
@@ -504,7 +492,6 @@ def create_key_press_action(key_comb: str) -> Action:
     return action
 
 
-@beartype
 def create_page_focus_action(page_number: int) -> Action:
     """Return a valid action object with type PAGE_FOCUS."""
     action = create_none_action()
@@ -517,7 +504,6 @@ def create_page_focus_action(page_number: int) -> Action:
     return action
 
 
-@beartype
 def create_new_tab_action() -> Action:
     """Return a valid action object with type NEW_TAB."""
     action = create_none_action()
@@ -529,7 +515,6 @@ def create_new_tab_action() -> Action:
     return action
 
 
-@beartype
 def create_go_back_action() -> Action:
     """Return a valid action object with type GO_BACK."""
     action = create_none_action()
@@ -541,7 +526,6 @@ def create_go_back_action() -> Action:
     return action
 
 
-@beartype
 def create_go_forward_action() -> Action:
     """Return a valid action object with type GO_FORWARD."""
     action = create_none_action()
@@ -553,7 +537,6 @@ def create_go_forward_action() -> Action:
     return action
 
 
-@beartype
 def create_goto_url_action(url: str) -> Action:
     """Return a valid action object with type GOTO_URL."""
     action = create_none_action()
@@ -566,7 +549,6 @@ def create_goto_url_action(url: str) -> Action:
     return action
 
 
-@beartype
 def create_page_close_action() -> Action:
     """Return a valid action object with type PAGE_CLOSE."""
     action = create_none_action()
@@ -578,7 +560,6 @@ def create_page_close_action() -> Action:
     return action
 
 
-@beartype
 def create_mouse_click_action(
     left: float | None = None, top: float | None = None
 ) -> Action:
@@ -602,7 +583,6 @@ def create_mouse_click_action(
     return action
 
 
-@beartype
 def create_keyboard_type_action(keys: list[int | str] | str) -> Action:
     """Return a valid action object with type TYPE."""
     action = create_none_action()
@@ -615,7 +595,6 @@ def create_keyboard_type_action(keys: list[int | str] | str) -> Action:
     return action
 
 
-@beartype
 def create_click_action(
     element_id: str = "",
     element_role: RolesType = "link",
@@ -637,7 +616,6 @@ def create_click_action(
     return action
 
 
-@beartype
 def create_hover_action(
     element_id: str = "",
     element_role: RolesType = "link",
@@ -659,7 +637,6 @@ def create_hover_action(
     return action
 
 
-@beartype
 def create_type_action(
     text: str,
     element_id: str = "",
@@ -683,7 +660,6 @@ def create_type_action(
     return action
 
 
-@beartype
 def create_check_action(pw_code: str) -> Action:
     action = create_none_action()
     action.update(
@@ -695,7 +671,6 @@ def create_check_action(pw_code: str) -> Action:
     return action
 
 
-@beartype
 def create_select_option_action(
     pw_code: str,
 ) -> Action:
@@ -709,7 +684,6 @@ def create_select_option_action(
     return action
 
 
-@beartype
 def create_focus_action(
     element_role: RolesType, element_name: str = "", nth: int = 0
 ) -> Action:
@@ -728,7 +702,6 @@ def create_focus_action(
     return action
 
 
-@beartype
 def create_focus_and_click_action(
     element_role: RolesType, element_name: str = "", nth: int = 0
 ) -> Action:
@@ -748,7 +721,6 @@ def create_focus_and_click_action(
     return action
 
 
-@beartype
 def create_focus_and_type_action(
     keys: list[int | str] | str,
     element_role: RolesType,
@@ -771,7 +743,6 @@ def create_focus_and_type_action(
     return action
 
 
-@beartype
 def execute_scroll(direction: str, page: Page) -> None:
     # perform the action
     # code from natbot
@@ -785,7 +756,6 @@ def execute_scroll(direction: str, page: Page) -> None:
         )
 
 
-@beartype
 async def aexecute_scroll(direction: str, page: APage) -> None:
     # perform the action
     # code from natbot
@@ -799,19 +769,16 @@ async def aexecute_scroll(direction: str, page: APage) -> None:
         )
 
 
-@beartype
 def execute_key_press(key: str, page: Page) -> None:
     """Press a key."""
     page.keyboard.press(key)
 
 
-@beartype
 async def aexecute_key_press(key: str, page: APage) -> None:
     """Press a key."""
     await page.keyboard.press(key)
 
 
-@beartype
 def execute_mouse_hover(left: float, top: float, page: Page) -> None:
     """Click at coordinates (left, top)."""
     viewport_size = page.viewport_size
@@ -821,7 +788,6 @@ def execute_mouse_hover(left: float, top: float, page: Page) -> None:
     )
 
 
-@beartype
 async def aexecute_mouse_hover(left: float, top: float, page: APage) -> None:
     """Click at coordinates (left, top)."""
     viewport_size = page.viewport_size
@@ -840,7 +806,6 @@ def execute_mouse_click(left: float, top: float, page: Page) -> None:
     )
 
 
-@beartype
 async def aexecute_mouse_click(left: float, top: float, page: APage) -> None:
     """Click at coordinates (left, top)."""
     viewport_size = page.viewport_size
@@ -850,19 +815,16 @@ async def aexecute_mouse_click(left: float, top: float, page: APage) -> None:
     )
 
 
-@beartype
 def execute_keyboard_type(text: str, page: Page) -> None:
     """Fill the focused element with text."""
     page.keyboard.type(text)
 
 
-@beartype
 async def aexecute_keyboard_type(text: str, page: APage) -> None:
     """Fill the focused element with text."""
     await page.keyboard.type(text)
 
 
-@beartype
 def execute_click_current(page: Page) -> None:
     """Click at the current mouse position."""
     locators = page.locator("*:focus")
@@ -874,7 +836,6 @@ def execute_click_current(page: Page) -> None:
     locators.click()
 
 
-@beartype
 async def aexecute_click_current(page: APage) -> None:
     """Click at the current mouse position."""
     locators = page.locator("*:focus")
@@ -889,21 +850,18 @@ async def aexecute_click_current(page: APage) -> None:
     await page.wait_for_load_state("load")
 
 
-@beartype
 def execute_type(keys: list[int], page: Page) -> None:
     """Send keystrokes to the focused element."""
     text = "".join([_id2key[key] for key in keys])
     page.keyboard.type(text)
 
 
-@beartype
 async def aexecute_type(keys: list[int], page: APage) -> None:
     """Send keystrokes to the focused element."""
     text = "".join([_id2key[key] for key in keys])
     await page.keyboard.type(text)
 
 
-@beartype
 def execute_focus(
     element_role: int, element_name: str, nth: int, page: Page
 ) -> None:
@@ -940,7 +898,6 @@ def execute_focus(
     element_location_list[nth][0].focus()
 
 
-@beartype
 async def aexecute_focus(
     element_role: int, element_name: str, nth: int, page: APage
 ) -> None:
@@ -977,7 +934,6 @@ async def aexecute_focus(
     await element_location_list[nth][0].focus()
 
 
-@beartype
 def locate(locator_calls: list[ParsedPlaywrightCode], page: Page) -> Locator:
     locator = page
     for call in locator_calls:
@@ -988,7 +944,6 @@ def locate(locator_calls: list[ParsedPlaywrightCode], page: Page) -> Locator:
     return locator  # type: ignore[return-value]
 
 
-@beartype
 async def alocate(
     locator_calls: list[ParsedPlaywrightCode], page: APage
 ) -> ALocator:
@@ -1001,7 +956,6 @@ async def alocate(
     return locator  # type: ignore[return-value]
 
 
-@beartype
 def execute_playwright_click(
     locator_code: list[ParsedPlaywrightCode],
     page: Page,
@@ -1014,7 +968,6 @@ def execute_playwright_click(
     locator.click(*pw_action_args, **pw_action_kwargs)
 
 
-@beartype
 async def aexecute_playwright_click(
     locator_code: list[ParsedPlaywrightCode],
     page: APage,
@@ -1027,7 +980,6 @@ async def aexecute_playwright_click(
     await locator.click(*pw_action_args, **pw_action_kwargs)
 
 
-@beartype
 def execute_playwright_hover(
     locator_code: list[ParsedPlaywrightCode], page: Page
 ) -> None:
@@ -1037,7 +989,6 @@ def execute_playwright_hover(
     locator.hover()
 
 
-@beartype
 async def aexecute_playwright_hover(
     locator_code: list[ParsedPlaywrightCode], page: APage
 ) -> None:
@@ -1047,7 +998,6 @@ async def aexecute_playwright_hover(
     await locator.hover()
 
 
-@beartype
 def execute_playwright_type(
     text: str,
     locator_code: list[ParsedPlaywrightCode],
@@ -1061,7 +1011,6 @@ def execute_playwright_type(
     locator.type(*pw_action_args, **pw_action_kwargs)
 
 
-@beartype
 async def aexecute_playwright_type(
     text: str,
     locator_code: list[ParsedPlaywrightCode],
@@ -1075,7 +1024,6 @@ async def aexecute_playwright_type(
     await locator.type(*pw_action_args, **pw_action_kwargs)
 
 
-@beartype
 def execute_playwright_select_option(
     locator_code: list[ParsedPlaywrightCode],
     page: Page,
@@ -1087,7 +1035,6 @@ def execute_playwright_select_option(
     locator.select_option(*pw_action_args, **pw_action_kwargs)
 
 
-@beartype
 async def aexecute_playwright_select_option(
     locator_code: list[ParsedPlaywrightCode],
     page: APage,
@@ -1099,7 +1046,6 @@ async def aexecute_playwright_select_option(
     await locator.select_option(*pw_action_args, **pw_action_kwargs)
 
 
-@beartype
 def execute_playwright_check(
     locator_code: list[ParsedPlaywrightCode], page: Page
 ) -> None:
@@ -1108,7 +1054,6 @@ def execute_playwright_check(
     locator.check()
 
 
-@beartype
 async def aexecute_playwright_check(
     locator_code: list[ParsedPlaywrightCode], page: APage
 ) -> None:
@@ -1117,7 +1062,6 @@ async def aexecute_playwright_check(
     await locator.check()
 
 
-@beartype
 def execute_action(
     action: Action,
     page: Page,
@@ -1252,7 +1196,6 @@ def execute_action(
     return page
 
 
-@beartype
 async def aexecute_action(
     action: Action, page: APage, browser_ctx: ABrowserContext
 ) -> APage:
@@ -1383,7 +1326,6 @@ async def aexecute_action(
     return page
 
 
-@beartype
 def parse_playwright_code(code: str) -> list[ParsedPlaywrightCode]:
     # extract function calls
     if not code.startswith("page."):
@@ -1444,14 +1386,12 @@ def parse_playwright_code(code: str) -> list[ParsedPlaywrightCode]:
     return parsed_chain
 
 
-@beartype
 class ActionParsingError(Exception):
     def __init__(self, message: str) -> None:
         self.message = message
         super().__init__(self.message)
 
 
-@beartype
 def create_playwright_action(playwright_code: str) -> Action:
     """Main function to return individual playwright action"""
     # get the last action
@@ -1524,7 +1464,6 @@ def create_playwright_action(playwright_code: str) -> Action:
     raise ActionParsingError(f"Unknown playwright action {action}")
 
 
-@beartype
 def create_id_based_action(action_str: str) -> Action:
     """Main function to return individual id based action"""
     action_str = action_str.strip()

@@ -5,7 +5,6 @@ import tempfile
 from typing import Callable, Dict, Optional, Tuple, Type, Union, cast
 
 import pytest
-from beartype.door import is_bearable
 from gymnasium.vector import AsyncVectorEnv
 from playwright.sync_api import Page
 
@@ -128,7 +127,7 @@ def test_parallel_script_browser_env() -> None:
             ]
         )
     )
-    assert is_bearable(info["page"].tolist(), list[DetachedPage])
+    # assert is_bearable(info["page"].tolist(), list[DetachedPage])
     assert info["page"][0].url == "https://www.rfc-editor.org/rfc/rfc2606.html"
     assert info["page"][1].url == "https://www.rfc-editor.org/rfc/rfc6761.html"
     vector_env.close()  # type: ignore[no-untyped-call]

@@ -4,7 +4,6 @@ from typing import Any, Dict, TypedDict, Union
 
 import numpy as np
 import numpy.typing as npt
-from beartype import beartype
 from PIL import Image
 
 
@@ -14,7 +13,6 @@ class DetachedPage:
     content: str  # html
 
 
-@beartype
 def png_bytes_to_numpy(png: bytes) -> npt.NDArray[np.uint8]:
     """Convert png bytes to numpy array
 
