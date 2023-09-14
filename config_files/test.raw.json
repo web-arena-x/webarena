@@ -3813,15 +3813,7 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "jaw bruxism"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "jaw bruxism",
               "mouth guard"
             ]
           }
@@ -11063,11 +11055,9 @@
       "program_html": [
         {
           "url": "last",
-          "locator": "document.querySelector('[name=\"route_from\"').value",
+          "locator": "document.querySelector(\"div#content select.routing_engines\").selectedIndex",
           "required_contents": {
-            "must_include": [
-              "Gates and Hillman Centers"
-            ]
+            "exact_match": "1"
           }
         },
         {
@@ -11075,6 +11065,7 @@
           "locator": "document.querySelector('[name=\"route_from\"').value",
           "required_contents": {
             "must_include": [
+              "Gates and Hillman Centers",
               "Pittsburgh"
             ]
           }
@@ -11084,24 +11075,9 @@
           "locator": "document.querySelector('[name=\"route_to\"').value",
           "required_contents": {
             "must_include": [
-              "Independence Hall"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[name=\"route_to\"').value",
-          "required_contents": {
-            "must_include": [
+              "Independence Hall",
               "Philadelphia"
             ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector(\"div#content select.routing_engines\").selectedIndex",
-          "required_contents": {
-            "exact_match": "1"
           }
         }
       ]
@@ -11572,15 +11548,7 @@
           "locator": "document.querySelector('[id=\"sidebar_content\"').outerText",
           "required_contents": {
             "must_include": [
-              "Piada Italian Street Food"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[id=\"sidebar_content\"').outerText",
-          "required_contents": {
-            "must_include": [
+              "Piada Italian Street Food",
               "Forbes Avenue"
             ]
           }
@@ -11616,15 +11584,7 @@
           "locator": "document.querySelector('[id=\"sidebar_content\"').outerText",
           "required_contents": {
             "must_include": [
-              "Costco"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[id=\"sidebar_content\"').outerText",
-          "required_contents": {
-            "must_include": [
+              "Costco",
               "Waterfront Drive West"
             ]
           }
@@ -11660,15 +11620,7 @@
           "locator": "document.querySelector('[id=\"sidebar_content\"').outerText",
           "required_contents": {
             "must_include": [
-              "Whole Foods"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[id=\"sidebar_content\"').outerText",
-          "required_contents": {
-            "must_include": [
+              "Whole Foods",
               "East Liberty"
             ]
           }
@@ -16794,15 +16746,7 @@
           "locator": "document.querySelector('[data-qa-selector=\"projects_list\"').outerText",
           "required_contents": {
             "must_include": [
-              "create-react-app"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/dashboard/projects",
-          "locator": "document.querySelector('[data-qa-selector=\"projects_list\"').outerText",
-          "required_contents": {
-            "must_include": [
+              "create-react-app",
               "buck"
             ]
           }
@@ -16838,42 +16782,10 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "AndroidSlidingUpPanel"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/users/byteblaze/starred",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "create-react-app"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/users/byteblaze/starred",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "ffmpeg-python"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/users/byteblaze/starred",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "PHP_XLSXWriter"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/users/byteblaze/starred",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "AndroidSlidingUpPanel",
+              "create-react-app",
+              "ffmpeg-python",
+              "PHP_XLSXWriter",
               "AndroidAsync"
             ]
           }
@@ -16909,78 +16821,14 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "AndroidSlidingUpPanel"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/users/byteblaze/starred",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "create-react-app"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/users/byteblaze/starred",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "ffmpeg-python"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/users/byteblaze/starred",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "PHP_XLSXWriter"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/users/byteblaze/starred",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "AndroidAsync"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/users/byteblaze/starred",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "Pytorch-GAN"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/users/byteblaze/starred",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "administrate"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/users/byteblaze/starred",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "keycloak"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/users/byteblaze/starred",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "AndroidSlidingUpPanel",
+              "create-react-app",
+              "ffmpeg-python",
+              "PHP_XLSXWriter",
+              "AndroidAsync",
+              "Pytorch-GAN",
+              "administrate",
+              "keycloak",
               "openapi-generator"
             ]
           }
@@ -17016,33 +16864,9 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "AndroidSlidingUpPanel"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/users/byteblaze/starred",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "create-react-app"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/users/byteblaze/starred",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "ffmpeg-python"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/users/byteblaze/starred",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "AndroidSlidingUpPanel",
+              "create-react-app",
+              "ffmpeg-python",
               "PHP_XLSXWriter"
             ]
           }
@@ -17078,24 +16902,8 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "AndroidSlidingUpPanel"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/users/byteblaze/starred",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "create-react-app"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/users/byteblaze/starred",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "AndroidSlidingUpPanel",
+              "create-react-app",
               "ffmpeg-python"
             ]
           }
@@ -17167,33 +16975,9 @@
           "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
           "required_contents": {
             "must_include": [
-              "refund"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
-          "required_contents": {
-            "must_include": [
-              "it broke after three days of use"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
-          "required_contents": {
-            "must_include": [
-              "000000180"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
-          "required_contents": {
-            "must_include": [
+              "refund",
+              "it broke after three days of use",
+              "000000180",
               "12.99"
             ]
           }
@@ -17230,33 +17014,9 @@
           "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
           "required_contents": {
             "must_include": [
-              "refund"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
-          "required_contents": {
-            "must_include": [
-              "it broke after three days of use"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
-          "required_contents": {
-            "must_include": [
-              "000000148"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
-          "required_contents": {
-            "must_include": [
+              "refund",
+              "it broke after three days of use",
+              "000000148",
               "169.95"
             ]
           }
@@ -17293,33 +17053,9 @@
           "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
           "required_contents": {
             "must_include": [
-              "refund"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
-          "required_contents": {
-            "must_include": [
-              "it broke after three days of use"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
-          "required_contents": {
-            "must_include": [
-              "000000161"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
-          "required_contents": {
-            "must_include": [
+              "refund",
+              "it broke after three days of use",
+              "000000161",
               "68.88"
             ]
           }
@@ -17356,33 +17092,9 @@
           "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
           "required_contents": {
             "must_include": [
-              "refund"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
-          "required_contents": {
-            "must_include": [
-              "it broke after three days of use"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
-          "required_contents": {
-            "must_include": [
-              "000000180"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
-          "required_contents": {
-            "must_include": [
+              "refund",
+              "it broke after three days of use",
+              "000000180",
               "$12.99"
             ]
           }
@@ -17419,33 +17131,9 @@
           "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
           "required_contents": {
             "must_include": [
-              "refund"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
-          "required_contents": {
-            "must_include": [
-              "it broke after three days of use"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
-          "required_contents": {
-            "must_include": [
-              "000000180"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
-          "required_contents": {
-            "must_include": [
+              "refund",
+              "it broke after three days of use",
+              "000000180",
               "1.63"
             ]
           }
@@ -17484,15 +17172,7 @@
           "locator": "document.querySelector('.user-profile').outerText",
           "required_contents": {
             "must_include": [
-              "@convexegg"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/users/byteblaze/following",
-          "locator": "document.querySelector('.user-profile').outerText",
-          "required_contents": {
-            "must_include": [
+              "@convexegg",
               "@yjlou"
             ]
           }
@@ -17532,24 +17212,8 @@
           "locator": "document.querySelector('.user-profile').outerText",
           "required_contents": {
             "must_include": [
-              "@lahwaacz"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/users/byteblaze/following",
-          "locator": "document.querySelector('.user-profile').outerText",
-          "required_contents": {
-            "must_include": [
-              "@koush"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/users/byteblaze/following",
-          "locator": "document.querySelector('.user-profile').outerText",
-          "required_contents": {
-            "must_include": [
+              "@lahwaacz",
+              "@koush",
               "@vinta"
             ]
           }
@@ -17589,24 +17253,8 @@
           "locator": "document.querySelector('.user-profile').outerText",
           "required_contents": {
             "must_include": [
-              "@lahwaacz"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/users/byteblaze/following",
-          "locator": "document.querySelector('.user-profile').outerText",
-          "required_contents": {
-            "must_include": [
-              "@ghost"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/users/byteblaze/following",
-          "locator": "document.querySelector('.user-profile').outerText",
-          "required_contents": {
-            "must_include": [
+              "@lahwaacz",
+              "@ghost",
               "@bblanchon"
             ]
           }
@@ -17646,24 +17294,8 @@
           "locator": "document.querySelector('.user-profile').outerText",
           "required_contents": {
             "must_include": [
-              "@lahwaacz"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/users/byteblaze/following",
-          "locator": "document.querySelector('.user-profile').outerText",
-          "required_contents": {
-            "must_include": [
-              "@R1kk3r"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/users/byteblaze/following",
-          "locator": "document.querySelector('.user-profile').outerText",
-          "required_contents": {
-            "must_include": [
+              "@lahwaacz",
+              "@R1kk3r",
               "@abisubramanya27"
             ]
           }
@@ -17705,42 +17337,10 @@
           "locator": "document.querySelector('.user-profile').outerText",
           "required_contents": {
             "must_include": [
-              "@lahwaacz"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/users/byteblaze/following",
-          "locator": "document.querySelector('.user-profile').outerText",
-          "required_contents": {
-            "must_include": [
-              "@convexegg"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/users/byteblaze/following",
-          "locator": "document.querySelector('.user-profile').outerText",
-          "required_contents": {
-            "must_include": [
-              "@vinta"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/users/byteblaze/following",
-          "locator": "document.querySelector('.user-profile').outerText",
-          "required_contents": {
-            "must_include": [
-              "@yjlou"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/users/byteblaze/following",
-          "locator": "document.querySelector('.user-profile').outerText",
-          "required_contents": {
-            "must_include": [
+              "@lahwaacz",
+              "@convexegg",
+              "@vinta",
+              "@yjlou",
               "@abisubramanya27"
             ]
           }
@@ -17777,33 +17377,9 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "456 Oak Avenue"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING_ADMIN__/sales/order/view/order_id/299",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "Apartment 5B"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING_ADMIN__/sales/order/view/order_id/299",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "New York"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING_ADMIN__/sales/order/view/order_id/299",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "456 Oak Avenue",
+              "Apartment 5B",
+              "New York",
               "10001"
             ]
           }
@@ -17840,33 +17416,9 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "789 Pine Lane"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING_ADMIN__/sales/order/view/order_id/65",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "San Francisco"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING_ADMIN__/sales/order/view/order_id/65",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "California"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING_ADMIN__/sales/order/view/order_id/65",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "789 Pine Lane",
+              "San Francisco",
+              "California",
               "94102"
             ]
           }
@@ -17903,42 +17455,10 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "321 Birch Boulevard"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING_ADMIN__/sales/order/view/order_id/301",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "Suite 200"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING_ADMIN__/sales/order/view/order_id/301",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "Dallas"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING_ADMIN__/sales/order/view/order_id/301",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "Texas"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING_ADMIN__/sales/order/view/order_id/301",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "321 Birch Boulevard",
+              "Suite 200",
+              "Dallas",
+              "Texas",
               "75201"
             ]
           }
@@ -17975,42 +17495,10 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "654 Elm Drive"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING_ADMIN__/sales/order/view/order_id/125",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "Apartment 12"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING_ADMIN__/sales/order/view/order_id/125",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "Miami"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING_ADMIN__/sales/order/view/order_id/125",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "Florida"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING_ADMIN__/sales/order/view/order_id/125",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "654 Elm Drive",
+              "Apartment 12",
+              "Miami",
+              "Florida",
               "33101"
             ]
           }
@@ -18047,33 +17535,9 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "987 Cedar Court"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING_ADMIN__/sales/order/view/order_id/300",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "Los Angeles"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING_ADMIN__/sales/order/view/order_id/300",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "California"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING_ADMIN__/sales/order/view/order_id/300",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "987 Cedar Court",
+              "Los Angeles",
+              "California",
               "90012"
             ]
           }
@@ -18109,15 +17573,7 @@
           "locator": "document.querySelector('.product.info.detailed').outerText",
           "required_contents": {
             "must_include": [
-              "Good choice for working out and stylin' enough to wear when I'm hanging with friends on hot days. Also washes really well!"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING_ADMIN__/bella-tank.html",
-          "locator": "document.querySelector('.product.info.detailed').outerText",
-          "required_contents": {
-            "must_include": [
+              "Good choice for working out and stylin' enough to wear when I'm hanging with friends on hot days. Also washes really well!",
               "Always a sweet n sporty look for the gym! Keeps me cool and the seams don't rub up against me like some of my other tanks."
             ]
           }
@@ -18153,33 +17609,9 @@
           "locator": "document.querySelector('.product.info.detailed').outerText",
           "required_contents": {
             "must_include": [
-              "I was super cold and it did the job."
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING_ADMIN__/selene-yoga-hoodie.html",
-          "locator": "document.querySelector('.product.info.detailed').outerText",
-          "required_contents": {
-            "must_include": [
-              "The sleeves are definitely thicker than you realize, which is a good thing"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING_ADMIN__/selene-yoga-hoodie.html",
-          "locator": "document.querySelector('.product.info.detailed').outerText",
-          "required_contents": {
-            "must_include": [
-              "really quite substantial"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING_ADMIN__/selene-yoga-hoodie.html",
-          "locator": "document.querySelector('.product.info.detailed').outerText",
-          "required_contents": {
-            "must_include": [
+              "I was super cold and it did the job.",
+              "The sleeves are definitely thicker than you realize, which is a good thing",
+              "really quite substantial",
               "m planning on buying another one of these in another color. the best hoodie ive ever owned."
             ]
           }
@@ -18215,42 +17647,10 @@
           "locator": "document.querySelector('.product.info.detailed').outerText",
           "required_contents": {
             "must_include": [
-              "What I rally love here is that it does the job of keeping me cool and dry"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING_ADMIN__/radiant-tee.html",
-          "locator": "document.querySelector('.product.info.detailed').outerText",
-          "required_contents": {
-            "must_include": [
-              "I'm a big guy and sweat A LOT! Even after a day of gulf, I'm still dry and comfortable"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING_ADMIN__/radiant-tee.html",
-          "locator": "document.querySelector('.product.info.detailed').outerText",
-          "required_contents": {
-            "must_include": [
-              "What a versatile shirt!"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING_ADMIN__/radiant-tee.html",
-          "locator": "document.querySelector('.product.info.detailed').outerText",
-          "required_contents": {
-            "must_include": [
-              "Not only does it feel very soft compared to my old worn out polos, but it also does the job promised."
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING_ADMIN__/radiant-tee.html",
-          "locator": "document.querySelector('.product.info.detailed').outerText",
-          "required_contents": {
-            "must_include": [
+              "What I rally love here is that it does the job of keeping me cool and dry",
+              "I'm a big guy and sweat A LOT! Even after a day of gulf, I'm still dry and comfortable",
+              "What a versatile shirt!",
+              "Not only does it feel very soft compared to my old worn out polos, but it also does the job promised.",
               "I like going out after my game for drinks so I look good then too and don't need to change into something fresh."
             ]
           }
@@ -18362,15 +17762,7 @@
           "locator": "document.querySelector('[data-index=\"configurable\"').outerText",
           "required_contents": {
             "must_include": [
-              "Sweatshirt-M-Blue"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/110/",
-          "locator": "document.querySelector('[data-index=\"configurable\"').outerText",
-          "required_contents": {
-            "must_include": [
+              "Sweatshirt-M-Blue",
               "Sweatshirt-S-Blue"
             ]
           }
@@ -18447,15 +17839,7 @@
           "locator": "document.querySelector('[data-index=\"configurable\"').outerText",
           "required_contents": {
             "must_include": [
-              "Tank-XXS-Blue"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/1732/",
-          "locator": "document.querySelector('[data-index=\"configurable\"').outerText",
-          "required_contents": {
-            "must_include": [
+              "Tank-XXS-Blue",
               "Tank-XXS-Purple"
             ]
           }
@@ -18494,51 +17878,11 @@
           "locator": "document.querySelector('[data-index=\"configurable\"').outerText",
           "required_contents": {
             "must_include": [
-              "Tights-30-Blue"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/1854/",
-          "locator": "document.querySelector('[data-index=\"configurable\"').outerText",
-          "required_contents": {
-            "must_include": [
-              "Tights-30-Black"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/1854/",
-          "locator": "document.querySelector('[data-index=\"configurable\"').outerText",
-          "required_contents": {
-            "must_include": [
-              "Tights-30-Orange"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/1854/",
-          "locator": "document.querySelector('[data-index=\"configurable\"').outerText",
-          "required_contents": {
-            "must_include": [
-              "Tights-31-Blue"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/1854/",
-          "locator": "document.querySelector('[data-index=\"configurable\"').outerText",
-          "required_contents": {
-            "must_include": [
-              "Tights-31-Black"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/1854/",
-          "locator": "document.querySelector('[data-index=\"configurable\"').outerText",
-          "required_contents": {
-            "must_include": [
+              "Tights-30-Blue",
+              "Tights-30-Black",
+              "Tights-30-Orange",
+              "Tights-31-Blue",
+              "Tights-31-Black",
               "Tights-31-Orange"
             ]
           }
@@ -18577,42 +17921,10 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "__REDDIT__/f/space/134164/scientists-erupt-at-nasa-gutting-funding-for-crucial-venus"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/gimmiethat.space/-/raw/main/real_space/urls.txt",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "__REDDIT__/f/space/134163/virgin-orbit-fails-to-secure-funding-will-cease-operations"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/gimmiethat.space/-/raw/main/real_space/urls.txt",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "__REDDIT__/f/space/134162/nasa-to-name-artemis-2-crew-next-week-the-first-moon"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/gimmiethat.space/-/raw/main/real_space/urls.txt",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "__REDDIT__/f/space/134161/bent-light-in-deep-space-reveals-one-of-the-biggest-black"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/gimmiethat.space/-/raw/main/real_space/urls.txt",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "__REDDIT__/f/space/134164/scientists-erupt-at-nasa-gutting-funding-for-crucial-venus",
+              "__REDDIT__/f/space/134163/virgin-orbit-fails-to-secure-funding-will-cease-operations",
+              "__REDDIT__/f/space/134162/nasa-to-name-artemis-2-crew-next-week-the-first-moon",
+              "__REDDIT__/f/space/134161/bent-light-in-deep-space-reveals-one-of-the-biggest-black",
               "__REDDIT__/f/space/134160/seti-s-new-machine-learning-algorithm-works-like-google-s"
             ]
           }
@@ -18651,42 +17963,10 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "__REDDIT__/f/news/129905/ohio-man-charged-for-using-molotov-cocktails-to-attack"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/gimmiethat.space/-/raw/main/news/urls.txt",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "__REDDIT__/f/news/129904/in-a-loss-for-fox-news-judge-allows-dominion-s-defamation"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/gimmiethat.space/-/raw/main/news/urls.txt",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "__REDDIT__/f/news/129903/theater-group-sues-to-block-tennessee-s-new-anti-drag-law"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/gimmiethat.space/-/raw/main/news/urls.txt",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "__REDDIT__/f/news/129902/andrew-tate-released-from-jail-in-romania-and-placed-under"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/gimmiethat.space/-/raw/main/news/urls.txt",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "__REDDIT__/f/news/129905/ohio-man-charged-for-using-molotov-cocktails-to-attack",
+              "__REDDIT__/f/news/129904/in-a-loss-for-fox-news-judge-allows-dominion-s-defamation",
+              "__REDDIT__/f/news/129903/theater-group-sues-to-block-tennessee-s-new-anti-drag-law",
+              "__REDDIT__/f/news/129902/andrew-tate-released-from-jail-in-romania-and-placed-under",
               "__REDDIT__/f/news/129901/rare-high-risk-storm-alert-issued-for-parts-of-midwest-and"
             ]
           }
@@ -18725,42 +18005,10 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "__REDDIT__/f/movies/128825/scenes-in-film-that-feel-off-or-wrong-in-some-way-and-make"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/gimmiethat.space/-/raw/main/moive_space/urls.txt",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "__REDDIT__/f/movies/128824/disney-s-live-action-lilo-amp-stitch-movie-finds-its-lilo-in"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/gimmiethat.space/-/raw/main/moive_space/urls.txt",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "__REDDIT__/f/movies/128823/fantastic-four-movie-gets-new-writer-with-avatar-the-way-of"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/gimmiethat.space/-/raw/main/moive_space/urls.txt",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "__REDDIT__/f/movies/128822/can-someone-explain-what-made-steven-seagal-so-appealing-for"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/gimmiethat.space/-/raw/main/moive_space/urls.txt",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "__REDDIT__/f/movies/128825/scenes-in-film-that-feel-off-or-wrong-in-some-way-and-make",
+              "__REDDIT__/f/movies/128824/disney-s-live-action-lilo-amp-stitch-movie-finds-its-lilo-in",
+              "__REDDIT__/f/movies/128823/fantastic-four-movie-gets-new-writer-with-avatar-the-way-of",
+              "__REDDIT__/f/movies/128822/can-someone-explain-what-made-steven-seagal-so-appealing-for",
               "__REDDIT__/f/movies/128821/ban-on-fetish-sex-depictions-in-film-should-end-australia"
             ]
           }
@@ -18799,42 +18047,10 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "__REDDIT__/f/memes/127991/it-do-be-like-that-tho"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/gimmiethat.space/-/raw/main/funny_pic/urls.txt",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "__REDDIT__/f/memes/127990/thank-you-memers-this-wouldn-t-be-possible-without-you"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/gimmiethat.space/-/raw/main/funny_pic/urls.txt",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "__REDDIT__/f/memes/127989/if-you-have-no-other-choice"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/gimmiethat.space/-/raw/main/funny_pic/urls.txt",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "__REDDIT__/f/memes/127988/yes-yes-yes"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/gimmiethat.space/-/raw/main/funny_pic/urls.txt",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "__REDDIT__/f/memes/127991/it-do-be-like-that-tho",
+              "__REDDIT__/f/memes/127990/thank-you-memers-this-wouldn-t-be-possible-without-you",
+              "__REDDIT__/f/memes/127989/if-you-have-no-other-choice",
+              "__REDDIT__/f/memes/127988/yes-yes-yes",
               "__REDDIT__/f/memes/127987/shagadelic-baby"
             ]
           }
@@ -18872,105 +18088,17 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "Following"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/nolan_honest_fans/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "Memento"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/nolan_honest_fans/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "Insomnia"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/nolan_honest_fans/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "Batman Begins"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/nolan_honest_fans/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "The Prestige"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/nolan_honest_fans/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "The Dark Knight"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/nolan_honest_fans/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "Inception"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/nolan_honest_fans/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "The Dark Knight Rises"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/nolan_honest_fans/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "Interstellar"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/nolan_honest_fans/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "Dunkirk"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/nolan_honest_fans/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "Tenet"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/nolan_honest_fans/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "Following",
+              "Memento",
+              "Insomnia",
+              "Batman Begins",
+              "The Prestige",
+              "The Dark Knight",
+              "Inception",
+              "The Dark Knight Rises",
+              "Interstellar",
+              "Dunkirk",
+              "Tenet",
               "Oppenheimer"
             ]
           }
@@ -19008,51 +18136,11 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "Following"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/nolan_old_fans/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "Memento"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/nolan_old_fans/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "Insomnia"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/nolan_old_fans/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "Batman Begins"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/nolan_old_fans/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "The Prestige"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/nolan_old_fans/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "Following",
+              "Memento",
+              "Insomnia",
+              "Batman Begins",
+              "The Prestige",
               "The Dark Knight"
             ]
           }
@@ -19090,51 +18178,11 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "Inception"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/nolan_young_fans/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "The Dark Knight Rises"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/nolan_young_fans/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "Interstellar"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/nolan_young_fans/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "Dunkirk"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/nolan_young_fans/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "Tenet"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/nolan_young_fans/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "Inception",
+              "The Dark Knight Rises",
+              "Interstellar",
+              "Dunkirk",
+              "Tenet",
               "Oppenheimer"
             ]
           }
@@ -19172,33 +18220,9 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "1993\u20132003: Early career and breakthrough"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/nolan_followers/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "2003\u20132013: Widespread recognition"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/nolan_followers/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "2014\u20132019: Established Hollywood auteur"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/nolan_followers/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "1993\u20132003: Early career and breakthrough",
+              "2003\u20132013: Widespread recognition",
+              "2014\u20132019: Established Hollywood auteur",
               "2020\u2013present"
             ]
           }
@@ -19236,42 +18260,10 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "The Dark Knight"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/nolan_academy_awards/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "Inception"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/nolan_academy_awards/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "Interstellar"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/nolan_academy_awards/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "Dunkirk"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/nolan_academy_awards/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "The Dark Knight",
+              "Inception",
+              "Interstellar",
+              "Dunkirk",
               "Tenet"
             ]
           }
@@ -19309,60 +18301,12 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "Batman Begins"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/bafta_awards_nolan/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "The Dark Knight"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/bafta_awards_nolan/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "Inception"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/bafta_awards_nolan/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "The Dark Knight Rises"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/bafta_awards_nolan/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "Interstellar"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/bafta_awards_nolan/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "Dunkirk"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/bafta_awards_nolan/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "Batman Begins",
+              "The Dark Knight",
+              "Inception",
+              "The Dark Knight Rises",
+              "Interstellar",
+              "Dunkirk",
               "Tenet"
             ]
           }
@@ -19400,51 +18344,11 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "__REDDIT__/f/DIY/118903/separate-glued-plastic-parts"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/Awesome_DIY_ideas/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "__REDDIT__/f/DIY/118923/how-would-you-fix-this-dryer-vent-mess"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/Awesome_DIY_ideas/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "__REDDIT__/f/DIY/118935/basement-bulkhead-soffit-wall-framing"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/Awesome_DIY_ideas/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "__REDDIT__/f/DIY/118904/ge-water-heater-pilot-light-won-t-stay-lit"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/Awesome_DIY_ideas/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "__REDDIT__/f/DIY/118960/attempting-to-move-a-wall-outlet-in-my-basement-a-few-inches"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/Awesome_DIY_ideas/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "__REDDIT__/f/DIY/118903/separate-glued-plastic-parts",
+              "__REDDIT__/f/DIY/118923/how-would-you-fix-this-dryer-vent-mess",
+              "__REDDIT__/f/DIY/118935/basement-bulkhead-soffit-wall-framing",
+              "__REDDIT__/f/DIY/118904/ge-water-heater-pilot-light-won-t-stay-lit",
+              "__REDDIT__/f/DIY/118960/attempting-to-move-a-wall-outlet-in-my-basement-a-few-inches",
               "__REDDIT__/f/DIY/118931/afci-outlet-question"
             ]
           }
@@ -19482,42 +18386,10 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "__REDDIT__/f/DIY/118903/separate-glued-plastic-parts"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/fun_thing_to_do/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "__REDDIT__/f/DIY/118923/how-would-you-fix-this-dryer-vent-mess"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/fun_thing_to_do/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "__REDDIT__/f/DIY/118935/basement-bulkhead-soffit-wall-framing"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/fun_thing_to_do/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "__REDDIT__/f/DIY/118904/ge-water-heater-pilot-light-won-t-stay-lit"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/fun_thing_to_do/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "__REDDIT__/f/DIY/118903/separate-glued-plastic-parts",
+              "__REDDIT__/f/DIY/118923/how-would-you-fix-this-dryer-vent-mess",
+              "__REDDIT__/f/DIY/118935/basement-bulkhead-soffit-wall-framing",
+              "__REDDIT__/f/DIY/118904/ge-water-heater-pilot-light-won-t-stay-lit",
               "__REDDIT__/f/DIY/118960/attempting-to-move-a-wall-outlet-in-my-basement-a-few-inches"
             ]
           }
@@ -19555,24 +18427,8 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "__REDDIT__/f/DIY/118903/separate-glued-plastic-parts"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/live_a_life/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "__REDDIT__/f/DIY/118923/how-would-you-fix-this-dryer-vent-mess"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/live_a_life/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "__REDDIT__/f/DIY/118903/separate-glued-plastic-parts",
+              "__REDDIT__/f/DIY/118923/how-would-you-fix-this-dryer-vent-mess",
               "__REDDIT__/f/DIY/118935/basement-bulkhead-soffit-wall-framing"
             ]
           }
@@ -19610,87 +18466,15 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "__REDDIT__/f/DIY/118903/separate-glued-plastic-parts"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/TODO/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "__REDDIT__/f/DIY/118923/how-would-you-fix-this-dryer-vent-mess"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/TODO/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "__REDDIT__/f/DIY/118935/basement-bulkhead-soffit-wall-framing"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/TODO/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "__REDDIT__/f/DIY/118904/ge-water-heater-pilot-light-won-t-stay-lit"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/TODO/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "__REDDIT__/f/DIY/118960/attempting-to-move-a-wall-outlet-in-my-basement-a-few-inches"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/TODO/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "__REDDIT__/f/DIY/118931/afci-outlet-question"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/TODO/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "__REDDIT__/f/DIY/118824/teflon-tape-to-attach-washing-machine-drain-hose-to-pipe"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/TODO/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "__REDDIT__/f/DIY/118866/paver-base-for-shed"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/TODO/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "__REDDIT__/f/DIY/118820/ways-to-locate-our-buried-electrical-service"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/TODO/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "__REDDIT__/f/DIY/118903/separate-glued-plastic-parts",
+              "__REDDIT__/f/DIY/118923/how-would-you-fix-this-dryer-vent-mess",
+              "__REDDIT__/f/DIY/118935/basement-bulkhead-soffit-wall-framing",
+              "__REDDIT__/f/DIY/118904/ge-water-heater-pilot-light-won-t-stay-lit",
+              "__REDDIT__/f/DIY/118960/attempting-to-move-a-wall-outlet-in-my-basement-a-few-inches",
+              "__REDDIT__/f/DIY/118931/afci-outlet-question",
+              "__REDDIT__/f/DIY/118824/teflon-tape-to-attach-washing-machine-drain-hose-to-pipe",
+              "__REDDIT__/f/DIY/118866/paver-base-for-shed",
+              "__REDDIT__/f/DIY/118820/ways-to-locate-our-buried-electrical-service",
               "__REDDIT__/f/DIY/118836/how-to-eliminate-transitions-for-disability-mobility-reasons"
             ]
           }
@@ -19728,69 +18512,13 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "__REDDIT__/f/DIY/118903/separate-glued-plastic-parts"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/Do-it-myself/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "__REDDIT__/f/DIY/118923/how-would-you-fix-this-dryer-vent-mess"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/Do-it-myself/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "__REDDIT__/f/DIY/118935/basement-bulkhead-soffit-wall-framing"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/Do-it-myself/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "__REDDIT__/f/DIY/118904/ge-water-heater-pilot-light-won-t-stay-lit"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/Do-it-myself/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "__REDDIT__/f/DIY/118960/attempting-to-move-a-wall-outlet-in-my-basement-a-few-inches"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/Do-it-myself/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "__REDDIT__/f/DIY/118931/afci-outlet-question"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/Do-it-myself/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "__REDDIT__/f/DIY/118824/teflon-tape-to-attach-washing-machine-drain-hose-to-pipe"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/Do-it-myself/-/raw/main/README.md",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "__REDDIT__/f/DIY/118903/separate-glued-plastic-parts",
+              "__REDDIT__/f/DIY/118923/how-would-you-fix-this-dryer-vent-mess",
+              "__REDDIT__/f/DIY/118935/basement-bulkhead-soffit-wall-framing",
+              "__REDDIT__/f/DIY/118904/ge-water-heater-pilot-light-won-t-stay-lit",
+              "__REDDIT__/f/DIY/118960/attempting-to-move-a-wall-outlet-in-my-basement-a-few-inches",
+              "__REDDIT__/f/DIY/118931/afci-outlet-question",
+              "__REDDIT__/f/DIY/118824/teflon-tape-to-attach-washing-machine-drain-hose-to-pipe",
               "__REDDIT__/f/DIY/118866/paver-base-for-shed"
             ]
           }
@@ -19827,15 +18555,7 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "@lahwaacz"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/gimmiethat.space/-/project_members",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "@lahwaacz",
               "@bblanchon"
             ]
           }
@@ -19872,15 +18592,7 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "@abisubramanya27"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/a11yproject/a11yproject.com/-/project_members",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "@abisubramanya27",
               "@vinta"
             ]
           }
@@ -19917,15 +18629,7 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "@bblanchon"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/accessible-html-content-patterns/-/project_members",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "@bblanchon",
               "@abisubramanya27"
             ]
           }
@@ -19962,33 +18666,9 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "@lahwaacz"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/timeit/-/project_members",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "@V13Axel"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/timeit/-/project_members",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "@alexhutnik"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/timeit/-/project_members",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "@lahwaacz",
+              "@V13Axel",
+              "@alexhutnik",
               "@bblanchon"
             ]
           }
@@ -20024,24 +18704,8 @@
           "locator": "document.querySelector('.box.box-shipping-address').outerText",
           "required_contents": {
             "must_include": [
-              "231 Willow Way"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING__/customer/account/",
-          "locator": "document.querySelector('.box.box-shipping-address').outerText",
-          "required_contents": {
-            "must_include": [
-              "Suite 100"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING__/customer/account/",
-          "locator": "document.querySelector('.box.box-shipping-address').outerText",
-          "required_contents": {
-            "must_include": [
+              "231 Willow Way",
+              "Suite 100",
               "Chicago, Illinois, 60601"
             ]
           }
@@ -20077,24 +18741,8 @@
           "locator": "document.querySelector('.box.box-shipping-address').outerText",
           "required_contents": {
             "must_include": [
-              "654 Aspen Road"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING__/customer/account/",
-          "locator": "document.querySelector('.box.box-shipping-address').outerText",
-          "required_contents": {
-            "must_include": [
-              "House #3"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING__/customer/account/",
-          "locator": "document.querySelector('.box.box-shipping-address').outerText",
-          "required_contents": {
-            "must_include": [
+              "654 Aspen Road",
+              "House #3",
               "Boston, Massachusetts, 02110"
             ]
           }
@@ -20130,15 +18778,7 @@
           "locator": "document.querySelector('.box.box-shipping-address').outerText",
           "required_contents": {
             "must_include": [
-              "987 Sycamore Circle"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING__/customer/account/",
-          "locator": "document.querySelector('.box.box-shipping-address').outerText",
-          "required_contents": {
-            "must_include": [
+              "987 Sycamore Circle",
               "Philadelphia, Pennsylvania, 19102"
             ]
           }
@@ -20148,15 +18788,7 @@
           "locator": "document.querySelector('.box.box-billing-address').outerText",
           "required_contents": {
             "must_include": [
-              "987 Sycamore Circle"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING__/customer/account/",
-          "locator": "document.querySelector('.box.box-billing-address').outerText",
-          "required_contents": {
-            "must_include": [
+              "987 Sycamore Circle",
               "Philadelphia, Pennsylvania, 19102"
             ]
           }
@@ -20192,15 +18824,7 @@
           "locator": "document.querySelector('.box.box-shipping-address').outerText",
           "required_contents": {
             "must_include": [
-              "111 Magnolia Path"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING__/customer/account/",
-          "locator": "document.querySelector('.box.box-shipping-address').outerText",
-          "required_contents": {
-            "must_include": [
+              "111 Magnolia Path",
               "Atlanta, Georgia, 30303"
             ]
           }
@@ -20210,15 +18834,7 @@
           "locator": "document.querySelector('.box.box-billing-address').outerText",
           "required_contents": {
             "must_include": [
-              "111 Magnolia Path"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING__/customer/account/",
-          "locator": "document.querySelector('.box.box-billing-address').outerText",
-          "required_contents": {
-            "must_include": [
+              "111 Magnolia Path",
               "Atlanta, Georgia, 30303"
             ]
           }
@@ -20254,24 +18870,8 @@
           "locator": "document.querySelector('.box.box-shipping-address').outerText",
           "required_contents": {
             "must_include": [
-              "222 Redwood Rise"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING__/customer/account/",
-          "locator": "document.querySelector('.box.box-shipping-address').outerText",
-          "required_contents": {
-            "must_include": [
-              "Suite 300"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING__/customer/account/",
-          "locator": "document.querySelector('.box.box-shipping-address').outerText",
-          "required_contents": {
-            "must_include": [
+              "222 Redwood Rise",
+              "Suite 300",
               "Seattle, Washington, 98101"
             ]
           }
@@ -20281,24 +18881,8 @@
           "locator": "document.querySelector('.box.box-billing-address').outerText",
           "required_contents": {
             "must_include": [
-              "222 Redwood Rise"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING__/customer/account/",
-          "locator": "document.querySelector('.box.box-billing-address').outerText",
-          "required_contents": {
-            "must_include": [
-              "Suite 300"
-            ]
-          }
-        },
-        {
-          "url": "__SHOPPING__/customer/account/",
-          "locator": "document.querySelector('.box.box-billing-address').outerText",
-          "required_contents": {
-            "must_include": [
+              "222 Redwood Rise",
+              "Suite 300",
               "Seattle, Washington, 98101"
             ]
           }
@@ -20537,42 +19121,10 @@
           "locator": "document.querySelector(\"#forum_sidebar\").outerText",
           "required_contents": {
             "must_include": [
-              "New"
-            ]
-          }
-        },
-        {
-          "url": "__REDDIT__/f/sci_fi/edit",
-          "locator": "document.querySelector(\"#forum_sidebar\").outerText",
-          "required_contents": {
-            "must_include": [
-              "Classic"
-            ]
-          }
-        },
-        {
-          "url": "__REDDIT__/f/sci_fi/edit",
-          "locator": "document.querySelector(\"#forum_sidebar\").outerText",
-          "required_contents": {
-            "must_include": [
-              "Movies"
-            ]
-          }
-        },
-        {
-          "url": "__REDDIT__/f/sci_fi/edit",
-          "locator": "document.querySelector(\"#forum_sidebar\").outerText",
-          "required_contents": {
-            "must_include": [
-              "Post my novel"
-            ]
-          }
-        },
-        {
-          "url": "__REDDIT__/f/sci_fi/edit",
-          "locator": "document.querySelector(\"#forum_sidebar\").outerText",
-          "required_contents": {
-            "must_include": [
+              "New",
+              "Classic",
+              "Movies",
+              "Post my novel",
               "Random"
             ]
           }
@@ -20623,24 +19175,8 @@
           "locator": "document.querySelector(\"#forum_sidebar\").outerText",
           "required_contents": {
             "must_include": [
-              "announcement"
-            ]
-          }
-        },
-        {
-          "url": "__REDDIT__/f/cmu_lti/edit",
-          "locator": "document.querySelector(\"#forum_sidebar\").outerText",
-          "required_contents": {
-            "must_include": [
-              "paper"
-            ]
-          }
-        },
-        {
-          "url": "__REDDIT__/f/cmu_lti/edit",
-          "locator": "document.querySelector(\"#forum_sidebar\").outerText",
-          "required_contents": {
-            "must_include": [
+              "announcement",
+              "paper",
               "alumni"
             ]
           }
@@ -20692,33 +19228,9 @@
           "locator": "document.querySelector(\"#forum_sidebar\").outerText",
           "required_contents": {
             "must_include": [
-              "Games"
-            ]
-          }
-        },
-        {
-          "url": "__REDDIT__/f/Cyberpunk/edit",
-          "locator": "document.querySelector(\"#forum_sidebar\").outerText",
-          "required_contents": {
-            "must_include": [
-              "Books"
-            ]
-          }
-        },
-        {
-          "url": "__REDDIT__/f/Cyberpunk/edit",
-          "locator": "document.querySelector(\"#forum_sidebar\").outerText",
-          "required_contents": {
-            "must_include": [
-              "Movies"
-            ]
-          }
-        },
-        {
-          "url": "__REDDIT__/f/Cyberpunk/edit",
-          "locator": "document.querySelector(\"#forum_sidebar\").outerText",
-          "required_contents": {
-            "must_include": [
+              "Games",
+              "Books",
+              "Movies",
               "Future"
             ]
           }
@@ -20770,33 +19282,9 @@
           "locator": "document.querySelector(\"#forum_sidebar\").outerText",
           "required_contents": {
             "must_include": [
-              "Cat friendly"
-            ]
-          }
-        },
-        {
-          "url": "__REDDIT__/f/PlantsForCatParents/edit",
-          "locator": "document.querySelector(\"#forum_sidebar\").outerText",
-          "required_contents": {
-            "must_include": [
-              "Local vendors"
-            ]
-          }
-        },
-        {
-          "url": "__REDDIT__/f/PlantsForCatParents/edit",
-          "locator": "document.querySelector(\"#forum_sidebar\").outerText",
-          "required_contents": {
-            "must_include": [
-              "Promotion"
-            ]
-          }
-        },
-        {
-          "url": "__REDDIT__/f/PlantsForCatParents/edit",
-          "locator": "document.querySelector(\"#forum_sidebar\").outerText",
-          "required_contents": {
-            "must_include": [
+              "Cat friendly",
+              "Local vendors",
+              "Promotion",
               "Toxic plants!"
             ]
           }
@@ -20846,15 +19334,7 @@
           "locator": "document.querySelector(\"#forum_sidebar\").outerText",
           "required_contents": {
             "must_include": [
-              "devices"
-            ]
-          }
-        },
-        {
-          "url": "__REDDIT__/f/Karaoke",
-          "locator": "document.querySelector(\"#forum_sidebar\").outerText",
-          "required_contents": {
-            "must_include": [
+              "devices",
               "setup"
             ]
           }
@@ -21967,15 +20447,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "To Kill a Mockingbird by Harper Lee"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "To Kill a Mockingbird by Harper Lee",
               "good book!"
             ]
           }
@@ -22014,15 +20486,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "Harry Potter"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "Harry Potter",
               "Wonderful journey"
             ]
           }
@@ -22061,15 +20525,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "big little lies"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "big little lies",
               "can't stop it"
             ]
           }
@@ -22108,15 +20564,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "Love story"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "Love story",
               "I cried"
             ]
           }
@@ -22155,15 +20603,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "Gone with the wind"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "Gone with the wind",
               "It's a book with history"
             ]
           }
@@ -22626,15 +21066,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "your opinion"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "your opinion",
               "the effectiveness of online learning"
             ]
           }
@@ -22672,15 +21104,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "your opinion"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "your opinion",
               "Iphone 14"
             ]
           }
@@ -22718,15 +21142,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "your opinion"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "your opinion",
               "Harry Potter movie series"
             ]
           }
@@ -22764,15 +21180,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "your opinion"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "your opinion",
               "long distance relationship"
             ]
           }
@@ -22810,15 +21218,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "your opinion"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "your opinion",
               "Fun thing to do in Pittsburgh"
             ]
           }
@@ -22858,15 +21258,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "200"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "200",
               "noise-cancelling",
               "headphone"
             ]
@@ -22907,15 +21299,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "100"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "100",
               "running",
               "shoes"
             ]
@@ -22956,15 +21340,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "500"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "500",
               "running",
               "shoes"
             ]
@@ -23005,15 +21381,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "500"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "500",
               "running",
               "pants"
             ]
@@ -23054,15 +21422,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "1000"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "1000",
               "used iphone"
             ]
           }
@@ -23101,15 +21461,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "200"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "200",
               "noise-cancelling",
               "headphone"
             ]
@@ -23149,15 +21501,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "100"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "100",
               "DIY",
               "toolkit"
             ]
@@ -23197,15 +21541,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "500"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "500",
               "sony headphone"
             ]
           }
@@ -23244,15 +21580,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "30"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "30",
               "must-have",
               "product",
               "life"
@@ -23293,15 +21621,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "1000"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "1000",
               "used iphone"
             ]
           }
@@ -23341,24 +21661,8 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "book reading"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
-              "March 15th"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "book reading",
+              "March 15th",
               "virtual meetup"
             ]
           }
@@ -23398,24 +21702,8 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "Harry Poter"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
-              "July 8th"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "Harry Poter",
+              "July 8th",
               "virtual meetup"
             ]
           }
@@ -23455,24 +21743,8 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "Big little lies"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
-              "Sep 10th"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "Big little lies",
+              "Sep 10th",
               "virtual meetup"
             ]
           }
@@ -23512,24 +21784,8 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "racing cars"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
-              "Oct 21st"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "racing cars",
+              "Oct 21st",
               "virtual meetup"
             ]
           }
@@ -23569,24 +21825,8 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "Tears of Kingdom"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
-              "Dec 15th"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "Tears of Kingdom",
+              "Dec 15th",
               "virtual meetup"
             ]
           }
@@ -23624,15 +21864,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "machine learning"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "machine learning",
               "help"
             ]
           }
@@ -23670,15 +21902,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "midjourney"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "midjourney",
               "help"
             ]
           }
@@ -23716,15 +21940,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "open-source LLMs"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "open-source LLMs",
               "help"
             ]
           }
@@ -23762,15 +21978,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "large language models"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "large language models",
               "help"
             ]
           }
@@ -23808,15 +22016,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "diffusion model"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "diffusion model",
               "help"
             ]
           }
@@ -23963,33 +22163,9 @@
           "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
           "required_contents": {
             "must_include": [
-              "refund"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
-          "required_contents": {
-            "must_include": [
-              "it broke after three days of use"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
-          "required_contents": {
-            "must_include": [
-              "000000180"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
-          "required_contents": {
-            "must_include": [
+              "refund",
+              "it broke after three days of use",
+              "000000180",
               "B087QJN9W1"
             ]
           }
@@ -24028,33 +22204,9 @@
           "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
           "required_contents": {
             "must_include": [
-              "refund"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
-          "required_contents": {
-            "must_include": [
-              "it broke after three days of use"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
-          "required_contents": {
-            "must_include": [
-              "161"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
-          "required_contents": {
-            "must_include": [
+              "refund",
+              "it broke after three days of use",
+              "161",
               "B09P7BFL4H"
             ]
           }
@@ -24093,33 +22245,9 @@
           "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
           "required_contents": {
             "must_include": [
-              "refund"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
-          "required_contents": {
-            "must_include": [
-              "it broke after three days of use"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
-          "required_contents": {
-            "must_include": [
-              "180"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
-          "required_contents": {
-            "must_include": [
+              "refund",
+              "it broke after three days of use",
+              "180",
               "B087QJN9W1"
             ]
           }
@@ -24158,33 +22286,9 @@
           "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
           "required_contents": {
             "must_include": [
-              "refund"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
-          "required_contents": {
-            "must_include": [
-              "it broke after three days of use"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
-          "required_contents": {
-            "must_include": [
-              "180"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
-          "required_contents": {
-            "must_include": [
+              "refund",
+              "it broke after three days of use",
+              "180",
               "B0041MSF2S"
             ]
           }
@@ -24223,33 +22327,9 @@
           "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
           "required_contents": {
             "must_include": [
-              "refund"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
-          "required_contents": {
-            "must_include": [
-              "it broke after three days of use"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
-          "required_contents": {
-            "must_include": [
-              "148"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
-          "required_contents": {
-            "must_include": [
+              "refund",
+              "it broke after three days of use",
+              "148",
               "B003FVW3VA"
             ]
           }
@@ -24890,24 +22970,8 @@
           "locator": "document.querySelector('.submission__body').outerText",
           "required_contents": {
             "must_include": [
-              "didn't last a year without issues"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__body').outerText",
-          "required_contents": {
-            "must_include": [
-              "Disappointing. Didn't last long before it stopped powering on and needed to be sent in for repair."
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__body').outerText",
-          "required_contents": {
-            "must_include": [
+              "didn't last a year without issues",
+              "Disappointing. Didn't last long before it stopped powering on and needed to be sent in for repair.",
               "Received used items!!"
             ]
           }
@@ -24954,51 +23018,11 @@
           "locator": "document.querySelector('.submission__body').outerText",
           "required_contents": {
             "must_include": [
-              "EU charger and wild cat card doesn\u2019t even work!"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__body').outerText",
-          "required_contents": {
-            "must_include": [
-              "REFUND REJECTED"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__body').outerText",
-          "required_contents": {
-            "must_include": [
-              "Charging port not compatible"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__body').outerText",
-          "required_contents": {
-            "must_include": [
-              "not compatible in the US"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__body').outerText",
-          "required_contents": {
-            "must_include": [
-              "Wildcard Bonus Credits Not Redeemable!"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__body').outerText",
-          "required_contents": {
-            "must_include": [
+              "EU charger and wild cat card doesn\u2019t even work!",
+              "REFUND REJECTED",
+              "Charging port not compatible",
+              "not compatible in the US",
+              "Wildcard Bonus Credits Not Redeemable!",
               "Code not available!!"
             ]
           }
@@ -25045,33 +23069,9 @@
           "locator": "document.querySelector('.submission__body').outerText",
           "required_contents": {
             "must_include": [
-              "Unable to set neutral steering"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__body').outerText",
-          "required_contents": {
-            "must_include": [
-              "Doesn\u2019t work with PC."
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__body').outerText",
-          "required_contents": {
-            "must_include": [
-              "Crazy problems in automatic mode; then pedals stopped working"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__body').outerText",
-          "required_contents": {
-            "must_include": [
+              "Unable to set neutral steering",
+              "Doesn\u2019t work with PC.",
+              "Crazy problems in automatic mode; then pedals stopped working",
               "Only works with certain games."
             ]
           }
@@ -25118,24 +23118,8 @@
           "locator": "document.querySelector('.submission__body').outerText",
           "required_contents": {
             "must_include": [
-              "Poorly Made Exterior. Consider a different Company."
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__body').outerText",
-          "required_contents": {
-            "must_include": [
-              "piece of junk ,..can't believe I spent money on this !!!!"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__body').outerText",
-          "required_contents": {
-            "must_include": [
+              "Poorly Made Exterior. Consider a different Company.",
+              "piece of junk ,..can't believe I spent money on this !!!!",
               "Based arrived broken but game itself works"
             ]
           }
@@ -25182,24 +23166,8 @@
           "locator": "document.querySelector('.submission__body').outerText",
           "required_contents": {
             "must_include": [
-              "Not worth it for PC users"
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__body').outerText",
-          "required_contents": {
-            "must_include": [
-              "I really wanted to like this."
-            ]
-          }
-        },
-        {
-          "url": "func:reddit_get_post_url('__last_url__')",
-          "locator": "document.querySelector('.submission__body').outerText",
-          "required_contents": {
-            "must_include": [
+              "Not worth it for PC users",
+              "I really wanted to like this.",
               "I wish this was better..."
             ]
           }
@@ -25423,15 +23391,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "gan implementation"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "gan implementation",
               "__GITLAB__/eriklindernoren/PyTorch-GAN"
             ]
           }
@@ -25470,15 +23430,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "chatgpt"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "chatgpt",
               "__GITLAB__/convexegg/chatgpt"
             ]
           }
@@ -25517,15 +23469,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "metaseq"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "metaseq",
               "__GITLAB__/root/metaseq"
             ]
           }
@@ -25565,15 +23509,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "Chrome extension that replaces occurrences of 'the cloud' with 'my butt'"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "Chrome extension that replaces occurrences of 'the cloud' with 'my butt'",
               "__GITLAB__/byteblaze/cloud-to-butt"
             ]
           }
@@ -25613,15 +23549,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "Computer setup"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "Computer setup",
               "__GITLAB__/byteblaze/dotfiles"
             ]
           }
@@ -25661,15 +23589,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "A storage library for AngularJS done right"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "A storage library for AngularJS done right",
               "__GITLAB__/auth0/angular-storage"
             ]
           }
@@ -25709,15 +23629,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "Asynchronous socket, http(s) (client+server) and websocket library for android. Based on nio, not threads."
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "Asynchronous socket, http(s) (client+server) and websocket library for android. Based on nio, not threads.",
               "__GITLAB__/koush/AndroidAsync"
             ]
           }
@@ -25757,15 +23669,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "A script to download pages from Arch Wiki for offline browsing"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('.submission__inner').outerText",
-          "required_contents": {
-            "must_include": [
+              "A script to download pages from Arch Wiki for offline browsing",
               "__GITLAB__/lahwaacz/arch-wiki-docs"
             ]
           }
@@ -25803,15 +23707,7 @@
           "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
           "required_contents": {
             "must_include": [
-              "coupon"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
-          "required_contents": {
-            "must_include": [
+              "coupon",
               "I am a loyal customer"
             ]
           }
@@ -25849,15 +23745,7 @@
           "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
           "required_contents": {
             "must_include": [
-              "coupon"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
-          "required_contents": {
-            "must_include": [
+              "coupon",
               "promised"
             ]
           }
@@ -25895,15 +23783,7 @@
           "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
           "required_contents": {
             "must_include": [
-              "coupon"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
-          "required_contents": {
-            "must_include": [
+              "coupon",
               "bulk purchase"
             ]
           }
@@ -25941,15 +23821,7 @@
           "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
           "required_contents": {
             "must_include": [
-              "coupon"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
-          "required_contents": {
-            "must_include": [
+              "coupon",
               "student"
             ]
           }
@@ -25987,15 +23859,7 @@
           "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
           "required_contents": {
             "must_include": [
-              "coupon"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[title=\"What\u2019s on your mind?\"').value",
-          "required_contents": {
-            "must_include": [
+              "coupon",
               "refund"
             ]
           }
@@ -26034,6 +23898,13 @@
       "program_html": [
         {
           "url": "last",
+          "locator": "document.querySelector('[name=\"product[price]\"').value",
+          "required_contents": {
+            "exact_match": "60.00"
+          }
+        },
+        {
+          "url": "last",
           "locator": "document.querySelector('[name=\"product[name]\"').outerText",
           "required_contents": {
             "must_include": [
@@ -26048,13 +23919,6 @@
             "must_include": [
               "50"
             ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[name=\"product[price]\"').value",
-          "required_contents": {
-            "exact_match": "60.00"
           }
         },
         {
@@ -26127,6 +23991,13 @@
       "program_html": [
         {
           "url": "last",
+          "locator": "document.querySelector('[name=\"product[price]\"').value",
+          "required_contents": {
+            "exact_match": "69.99"
+          }
+        },
+        {
+          "url": "last",
           "locator": "document.querySelector('[name=\"product[name]\"').outerText",
           "required_contents": {
             "must_include": [
@@ -26141,13 +24012,6 @@
             "must_include": [
               "50"
             ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[name=\"product[price]\"').value",
-          "required_contents": {
-            "exact_match": "69.99"
           }
         },
         {
@@ -28274,15 +26138,7 @@
           "locator": "document.querySelector('.submission__body').outerText",
           "required_contents": {
             "must_include": [
-              "EDIT: This news aged well"
-            ]
-          }
-        },
-        {
-          "url": "__REDDIT__/f/MachineLearning/1/nvidia-rtx-4090",
-          "locator": "document.querySelector('.submission__body').outerText",
-          "required_contents": {
-            "must_include": [
+              "EDIT: This news aged well",
               "Crazy device for ML!"
             ]
           }
@@ -28509,15 +26365,7 @@
           "locator": "document.querySelector('[name=\"route_from\"').value",
           "required_contents": {
             "must_include": [
-              "Carnegie Mellon University"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[name=\"route_from\"').value",
-          "required_contents": {
-            "must_include": [
+              "Carnegie Mellon University",
               "Pittsburgh"
             ]
           }
@@ -28527,15 +26375,7 @@
           "locator": "document.querySelector('[name=\"route_to\"').value",
           "required_contents": {
             "must_include": [
-              "Wells Fargo Center"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[name=\"route_to\"').value",
-          "required_contents": {
-            "must_include": [
+              "Wells Fargo Center",
               "South Philadelphia Sports Complex"
             ]
           }
@@ -28583,15 +26423,7 @@
           "locator": "document.querySelector('[name=\"route_from\"').value",
           "required_contents": {
             "must_include": [
-              "Carnegie Mellon University"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[name=\"route_from\"').value",
-          "required_contents": {
-            "must_include": [
+              "Carnegie Mellon University",
               "Pittsburgh"
             ]
           }
@@ -28601,15 +26433,7 @@
           "locator": "document.querySelector('[name=\"route_to\"').value",
           "required_contents": {
             "must_include": [
-              "3601 South Broad Street"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[name=\"route_to\"').value",
-          "required_contents": {
-            "must_include": [
+              "3601 South Broad Street",
               "South Philadelphia"
             ]
           }
@@ -28657,15 +26481,7 @@
           "locator": "document.querySelector('[name=\"route_from\"').value",
           "required_contents": {
             "must_include": [
-              "Carnegie Mellon University"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[name=\"route_from\"').value",
-          "required_contents": {
-            "must_include": [
+              "Carnegie Mellon University",
               "Pittsburgh"
             ]
           }
@@ -28675,15 +26491,7 @@
           "locator": "document.querySelector('[name=\"route_to\"').value",
           "required_contents": {
             "must_include": [
-              "Yankee Stadium"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[name=\"route_to\"').value",
-          "required_contents": {
-            "must_include": [
+              "Yankee Stadium",
               "East 161st Street"
             ]
           }
@@ -28731,15 +26539,7 @@
           "locator": "document.querySelector('[name=\"route_from\"').value",
           "required_contents": {
             "must_include": [
-              "Carnegie Mellon University"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[name=\"route_from\"').value",
-          "required_contents": {
-            "must_include": [
+              "Carnegie Mellon University",
               "Pittsburgh"
             ]
           }
@@ -28749,33 +26549,9 @@
           "locator": "document.querySelector('[name=\"route_to\"').value",
           "required_contents": {
             "must_include": [
-              "Madison Square Garden"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[name=\"route_to\"').value",
-          "required_contents": {
-            "must_include": [
-              "Pennsylvania Plaza"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[name=\"route_to\"').value",
-          "required_contents": {
-            "must_include": [
-              "Manhattan"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[name=\"route_to\"').value",
-          "required_contents": {
-            "must_include": [
+              "Madison Square Garden",
+              "Pennsylvania Plaza",
+              "Manhattan",
               "New York"
             ]
           }
@@ -28823,15 +26599,7 @@
           "locator": "document.querySelector('[name=\"route_from\"').value",
           "required_contents": {
             "must_include": [
-              "Carnegie Mellon University"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[name=\"route_from\"').value",
-          "required_contents": {
-            "must_include": [
+              "Carnegie Mellon University",
               "Pittsburgh"
             ]
           }
@@ -28841,24 +26609,8 @@
           "locator": "document.querySelector('[name=\"route_to\"').value",
           "required_contents": {
             "must_include": [
-              "150, Causeway Street"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[name=\"route_to\"').value",
-          "required_contents": {
-            "must_include": [
-              "Boston"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[name=\"route_to\"').value",
-          "required_contents": {
-            "must_include": [
+              "150, Causeway Street",
+              "Boston",
               "Massachusetts"
             ]
           }
@@ -28913,15 +26665,7 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "@abisubramanya27"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/planner/-/project_members",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "@abisubramanya27",
               "@vinta"
             ]
           }
@@ -28967,15 +26711,7 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "@abisubramanya27"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/web_arena/-/project_members",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "@abisubramanya27",
               "@vinta"
             ]
           }
@@ -29066,24 +26802,8 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "@primer"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/awesome-llms/-/project_members",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "@convexegg"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/awesome-llms/-/project_members",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "@primer",
+              "@convexegg",
               "@abisubramanya27"
             ]
           }
@@ -29129,24 +26849,8 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "@primer"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/llm_bulk_inference/-/project_members",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "@convexegg"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/llm_bulk_inference/-/project_members",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "@primer",
+              "@convexegg",
               "@abisubramanya27"
             ]
           }
@@ -29202,15 +26906,7 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "@abisubramanya27"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/awesome_web_agents/-/project_members",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "@abisubramanya27",
               "@vinta"
             ]
           }
@@ -29266,24 +26962,8 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "@primer"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/web_agent_android/-/project_members",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "@convexegg"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/web_agent_android/-/project_members",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "@primer",
+              "@convexegg",
               "@abisubramanya27"
             ]
           }
@@ -29339,24 +27019,8 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "@primer"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/project_site/-/project_members",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "@convexegg"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/project_site/-/project_members",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "@primer",
+              "@convexegg",
               "@vinta"
             ]
           }
@@ -29467,15 +27131,7 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "@Seirdy"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/byteblaze/AGISite/-/project_members",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "@Seirdy",
               "@vinta"
             ]
           }
@@ -29734,6 +27390,13 @@
       "program_html": [
         {
           "url": "last",
+          "locator": "document.querySelector(\"div#content select.routing_engines\").selectedIndex",
+          "required_contents": {
+            "exact_match": "1"
+          }
+        },
+        {
+          "url": "last",
           "locator": "document.querySelector('[name=\"route_from\"').value",
           "required_contents": {
             "must_include": [
@@ -29748,13 +27411,6 @@
             "must_include": [
               "New York"
             ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector(\"div#content select.routing_engines\").selectedIndex",
-          "required_contents": {
-            "exact_match": "1"
           }
         }
       ]
@@ -29786,6 +27442,13 @@
       "program_html": [
         {
           "url": "last",
+          "locator": "document.querySelector(\"div#content select.routing_engines\").selectedIndex",
+          "required_contents": {
+            "exact_match": "1"
+          }
+        },
+        {
+          "url": "last",
           "locator": "document.querySelector('[name=\"route_from\"').value",
           "required_contents": {
             "must_include": [
@@ -29798,24 +27461,9 @@
           "locator": "document.querySelector('[name=\"route_to\"').value",
           "required_contents": {
             "must_include": [
-              "Portland"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[name=\"route_to\"').value",
-          "required_contents": {
-            "must_include": [
+              "Portland",
               "Maine"
             ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector(\"div#content select.routing_engines\").selectedIndex",
-          "required_contents": {
-            "exact_match": "1"
           }
         }
       ]
@@ -29848,6 +27496,13 @@
       "program_html": [
         {
           "url": "last",
+          "locator": "document.querySelector(\"div#content select.routing_engines\").selectedIndex",
+          "required_contents": {
+            "exact_match": "1"
+          }
+        },
+        {
+          "url": "last",
           "locator": "document.querySelector('[name=\"route_from\"').value",
           "required_contents": {
             "must_include": [
@@ -29862,13 +27517,6 @@
             "must_include": [
               "New York"
             ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector(\"div#content select.routing_engines\").selectedIndex",
-          "required_contents": {
-            "exact_match": "1"
           }
         }
       ]
@@ -29901,6 +27549,13 @@
       "program_html": [
         {
           "url": "last",
+          "locator": "document.querySelector(\"div#content select.routing_engines\").selectedIndex",
+          "required_contents": {
+            "exact_match": "1"
+          }
+        },
+        {
+          "url": "last",
           "locator": "document.querySelector('[name=\"route_from\"').value",
           "required_contents": {
             "must_include": [
@@ -29913,24 +27568,9 @@
           "locator": "document.querySelector('[name=\"route_to\"').value",
           "required_contents": {
             "must_include": [
-              "Hoboken"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[name=\"route_to\"').value",
-          "required_contents": {
-            "must_include": [
+              "Hoboken",
               "New Jersey"
             ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector(\"div#content select.routing_engines\").selectedIndex",
-          "required_contents": {
-            "exact_match": "1"
           }
         }
       ]
@@ -29963,54 +27603,30 @@
       "program_html": [
         {
           "url": "last",
-          "locator": "document.querySelector('[name=\"route_from\"').value",
-          "required_contents": {
-            "must_include": [
-              "Carnegie Science Center"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[name=\"route_from\"').value",
-          "required_contents": {
-            "must_include": [
-              "Allegheny County"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[name=\"route_from\"').value",
-          "required_contents": {
-            "must_include": [
-              "Pittsburgh"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[name=\"route_to\"').value",
-          "required_contents": {
-            "must_include": [
-              "Hunt Library"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[name=\"route_to\"').value",
-          "required_contents": {
-            "must_include": [
-              "Pittsburgh"
-            ]
-          }
-        },
-        {
-          "url": "last",
           "locator": "document.querySelector(\"div#content select.routing_engines\").selectedIndex",
           "required_contents": {
             "exact_match": "2"
+          }
+        },
+        {
+          "url": "last",
+          "locator": "document.querySelector('[name=\"route_from\"').value",
+          "required_contents": {
+            "must_include": [
+              "Carnegie Science Center",
+              "Allegheny County",
+              "Pittsburgh"
+            ]
+          }
+        },
+        {
+          "url": "last",
+          "locator": "document.querySelector('[name=\"route_to\"').value",
+          "required_contents": {
+            "must_include": [
+              "Hunt Library",
+              "Pittsburgh"
+            ]
           }
         }
       ]
@@ -30043,11 +27659,9 @@
       "program_html": [
         {
           "url": "last",
-          "locator": "document.querySelector('[name=\"route_from\"').value",
+          "locator": "document.querySelector(\"div#content select.routing_engines\").selectedIndex",
           "required_contents": {
-            "must_include": [
-              "Carnegie Hall"
-            ]
+            "exact_match": "1"
           }
         },
         {
@@ -30055,24 +27669,9 @@
           "locator": "document.querySelector('[name=\"route_from\"').value",
           "required_contents": {
             "must_include": [
-              "West 56th Street"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[name=\"route_from\"').value",
-          "required_contents": {
-            "must_include": [
-              "Manhattan"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[name=\"route_from\"').value",
-          "required_contents": {
-            "must_include": [
+              "Carnegie Hall",
+              "West 56th Street",
+              "Manhattan",
               "New York"
             ]
           }
@@ -30082,24 +27681,9 @@
           "locator": "document.querySelector('[name=\"route_to\"').value",
           "required_contents": {
             "must_include": [
-              "Carnegie Mellon University"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('[name=\"route_to\"').value",
-          "required_contents": {
-            "must_include": [
+              "Carnegie Mellon University",
               "Pittsburgh"
             ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector(\"div#content select.routing_engines\").selectedIndex",
-          "required_contents": {
-            "exact_match": "1"
           }
         }
       ]
@@ -30131,6 +27715,13 @@
       "program_html": [
         {
           "url": "last",
+          "locator": "document.querySelector(\"div#content select.routing_engines\").selectedIndex",
+          "required_contents": {
+            "exact_match": "2"
+          }
+        },
+        {
+          "url": "last",
           "locator": "document.querySelector('[name=\"route_from\"').value",
           "required_contents": {
             "must_include": [
@@ -30145,13 +27736,6 @@
             "must_include": [
               "Trader Joe's, 6343, Penn Avenue, East Liberty"
             ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector(\"div#content select.routing_engines\").selectedIndex",
-          "required_contents": {
-            "exact_match": "2"
           }
         }
       ]
@@ -30183,6 +27767,13 @@
       "program_html": [
         {
           "url": "last",
+          "locator": "document.querySelector(\"div#content select.routing_engines\").selectedIndex",
+          "required_contents": {
+            "exact_match": "2"
+          }
+        },
+        {
+          "url": "last",
           "locator": "document.querySelector('[name=\"route_from\"').value",
           "required_contents": {
             "must_include": [
@@ -30197,13 +27788,6 @@
             "must_include": [
               "Target, 6231, Penn Avenue, East Liberty"
             ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector(\"div#content select.routing_engines\").selectedIndex",
-          "required_contents": {
-            "exact_match": "2"
           }
         }
       ]
@@ -30235,6 +27819,13 @@
       "program_html": [
         {
           "url": "last",
+          "locator": "document.querySelector(\"div#content select.routing_engines\").selectedIndex",
+          "required_contents": {
+            "exact_match": "2"
+          }
+        },
+        {
+          "url": "last",
           "locator": "document.querySelector('[name=\"route_from\"').value",
           "required_contents": {
             "must_include": [
@@ -30249,13 +27840,6 @@
             "must_include": [
               "Tokyo Japanese Food Store, 5855, Ellsworth Avenue, Shadyside"
             ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector(\"div#content select.routing_engines\").selectedIndex",
-          "required_contents": {
-            "exact_match": "2"
           }
         }
       ]
@@ -30287,6 +27871,13 @@
       "program_html": [
         {
           "url": "last",
+          "locator": "document.querySelector(\"div#content select.routing_engines\").selectedIndex",
+          "required_contents": {
+            "exact_match": "2"
+          }
+        },
+        {
+          "url": "last",
           "locator": "document.querySelector('[name=\"route_from\"').value",
           "required_contents": {
             "must_include": [
@@ -30301,13 +27892,6 @@
             "must_include": [
               "Whole Foods Market, 5700, Penn Avenue, East Liberty"
             ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector(\"div#content select.routing_engines\").selectedIndex",
-          "required_contents": {
-            "exact_match": "2"
           }
         }
       ]
@@ -30339,6 +27923,13 @@
       "program_html": [
         {
           "url": "last",
+          "locator": "document.querySelector(\"div#content select.routing_engines\").selectedIndex",
+          "required_contents": {
+            "exact_match": "2"
+          }
+        },
+        {
+          "url": "last",
           "locator": "document.querySelector('[name=\"route_from\"').value",
           "required_contents": {
             "must_include": [
@@ -30353,13 +27944,6 @@
             "must_include": [
               "Giant Eagle, 5550, Centre Avenue, Shadyside"
             ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector(\"div#content select.routing_engines\").selectedIndex",
-          "required_contents": {
-            "exact_match": "2"
           }
         }
       ]
@@ -31590,33 +29174,9 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "@patou"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/groups/n-lab/-/group_members",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "@egpast"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/groups/n-lab/-/group_members",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "@westurner"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/groups/n-lab/-/group_members",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "@patou",
+              "@egpast",
+              "@westurner",
               "@jontutcher"
             ]
           }
@@ -31653,42 +29213,10 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "@JonasVautherin"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/groups/x-lab/-/group_members",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "@dilipchandima"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/groups/x-lab/-/group_members",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "@dawiss1337"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/groups/x-lab/-/group_members",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "@bmyun"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/groups/x-lab/-/group_members",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "@JonasVautherin",
+              "@dilipchandima",
+              "@dawiss1337",
+              "@bmyun",
               "@DCMJY"
             ]
           }
@@ -31725,33 +29253,9 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "@ASWATFZLLC"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/groups/crew/-/group_members",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "@patrickhlauke"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/groups/crew/-/group_members",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
-              "@westurner"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/groups/crew/-/group_members",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "@ASWATFZLLC",
+              "@patrickhlauke",
+              "@westurner",
               "@linkmatrix"
             ]
           }
@@ -31788,15 +29292,7 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "@qhduan"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/groups/coding_friends/-/group_members",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "@qhduan",
               "@Agnes-U"
             ]
           }
@@ -31833,15 +29329,7 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "@pandey2000"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/groups/webagent/-/group_members",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "@pandey2000",
               "@sayakpaul"
             ]
           }
@@ -31878,15 +29366,7 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "Add documentation on using Flash alerts in dialog components"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/dashboard/issues?scope=all&state=opened&assignee_username=byteblaze",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "Add documentation on using Flash alerts in dialog components",
               "Clarify usage of flash alert"
             ]
           }
@@ -31896,15 +29376,7 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "Add documentation on using Flash alerts in dialog components"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/dashboard/issues?scope=all&state=opened&assignee_username=primer",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "Add documentation on using Flash alerts in dialog components",
               "Clarify usage of flash alert"
             ]
           }
@@ -31961,15 +29433,7 @@
           "locator": "document.querySelector('.block.reviewer').outerText",
           "required_contents": {
             "must_include": [
-              "Byte Blaze"
-            ]
-          }
-        },
-        {
-          "url": "last",
-          "locator": "document.querySelector('.block.reviewer').outerText",
-          "required_contents": {
-            "must_include": [
+              "Byte Blaze",
               "Roshan Jossy"
             ]
           }
@@ -32234,15 +29698,7 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "Add documentation on using Flash alerts in dialog components"
-            ]
-          }
-        },
-        {
-          "url": "__GITLAB__/dashboard/issues?scope=all&state=opened&assignee_username=byteblaze",
-          "locator": "",
-          "required_contents": {
-            "must_include": [
+              "Add documentation on using Flash alerts in dialog components",
               "Clarify usage of flash alert"
             ]
           }
