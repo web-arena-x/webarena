@@ -12932,7 +12932,8 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "Apache License"
+              "Apache License",
+              "http://www.apache.org/licenses/LICENSE-2.0"
             ]
           }
         }
@@ -13002,7 +13003,8 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "MIT license"
+              "MIT license",
+              "The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software."
             ]
           }
         }
@@ -14344,9 +14346,7 @@
           "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/78/",
           "locator": "document.querySelector('[name=\"product[status]\"').value",
           "required_contents": {
-            "must_include": [
-              "2"
-            ]
+            "exact_match": "2"
           }
         }
       ]
@@ -14379,9 +14379,7 @@
           "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/478/",
           "locator": "document.querySelector('[name=\"product[status]\"').value",
           "required_contents": {
-            "must_include": [
-              "2"
-            ]
+            "exact_match": "2"
           }
         }
       ]
@@ -14414,9 +14412,7 @@
           "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/676/",
           "locator": "document.querySelector('[name=\"product[status]\"').value",
           "required_contents": {
-            "must_include": [
-              "2"
-            ]
+            "exact_match": "2"
           }
         }
       ]
@@ -14927,11 +14923,9 @@
       "program_html": [
         {
           "url": "__SHOPPING_ADMIN__/sales/order/view/order_id/302/",
-          "locator": "document.querySelector(\".admin__page-section-item.order-information\").outerText",
+          "locator": "document.querySelector(\"#order_status\").outerText",
           "required_contents": {
-            "must_include": [
-              "Canceled"
-            ]
+            "exact_match": "Canceled"
           }
         }
       ]
@@ -14962,11 +14956,9 @@
       "program_html": [
         {
           "url": "__SHOPPING_ADMIN__/sales/order/view/order_id/307/",
-          "locator": "document.querySelector(\".admin__page-section-item.order-information\").outerText",
+          "locator": "document.querySelector(\"#order_status\").outerText",
           "required_contents": {
-            "must_include": [
-              "Canceled"
-            ]
+            "exact_match": "Canceled"
           }
         }
       ]
@@ -14997,11 +14989,9 @@
       "program_html": [
         {
           "url": "__SHOPPING_ADMIN__/sales/order/view/order_id/299/",
-          "locator": "document.querySelector(\".admin__page-section-item.order-information\").outerText",
+          "locator": "document.querySelector(\"#order_status\").outerText",
           "required_contents": {
-            "must_include": [
-              "Canceled"
-            ]
+            "exact_match": "Canceled"
           }
         }
       ]
@@ -15032,11 +15022,9 @@
       "program_html": [
         {
           "url": "__SHOPPING_ADMIN__/sales/order/view/order_id/301/",
-          "locator": "document.querySelector(\".admin__page-section-item.order-information\").outerText",
+          "locator": "document.querySelector(\"#order_status\").outerText",
           "required_contents": {
-            "must_include": [
-              "Canceled"
-            ]
+            "exact_match": "Canceled"
           }
         }
       ]
@@ -15067,11 +15055,9 @@
       "program_html": [
         {
           "url": "__SHOPPING_ADMIN__/sales/order/view/order_id/305/",
-          "locator": "document.querySelector(\".admin__page-section-item.order-information\").outerText",
+          "locator": "document.querySelector(\"#order_status\").outerText",
           "required_contents": {
-            "must_include": [
-              "Canceled"
-            ]
+            "exact_match": "Canceled"
           }
         }
       ]
@@ -15659,11 +15645,9 @@
       "program_html": [
         {
           "url": "__SHOPPING_ADMIN__/sales/order/view/order_id/299/",
-          "locator": "document.querySelector(\"#order_history_block\").outerText",
+          "locator": "document.querySelector(\"#order_history_block\").querySelector(\".note-list\").firstElementChild.querySelector(\".note-list-comment\").outerText",
           "required_contents": {
-            "must_include": [
-              "the order is ready to be shipped soon!"
-            ]
+            "exact_match": "the order is ready to be shipped soon!"
           }
         }
       ]
@@ -15695,11 +15679,9 @@
       "program_html": [
         {
           "url": "__SHOPPING_ADMIN__/sales/order/view/order_id/302/",
-          "locator": "document.querySelector(\"#order_history_block\").outerText",
+          "locator": "document.querySelector(\"#order_history_block\").querySelector(\".note-list\").firstElementChild.querySelector(\".note-list-comment\").outerText",
           "required_contents": {
-            "must_include": [
-              "sorry we are out of stock, please reorder"
-            ]
+            "exact_match": "sorry we are out of stock, please reorder"
           }
         }
       ]
@@ -15731,11 +15713,9 @@
       "program_html": [
         {
           "url": "__SHOPPING_ADMIN__/sales/order/view/order_id/307/",
-          "locator": "document.querySelector(\"#order_history_block\").outerText",
+          "locator": "document.querySelector(\"#order_history_block\").querySelector(\".note-list\").firstElementChild.querySelector(\".note-list-comment\").outerText",
           "required_contents": {
-            "must_include": [
-              "sorry we are bankrupt, please contact our customer service for refund"
-            ]
+            "exact_match": "sorry we are bankrupt, please contact our customer service for refund"
           }
         }
       ]
@@ -15767,11 +15747,9 @@
       "program_html": [
         {
           "url": "__SHOPPING_ADMIN__/sales/order/view/order_id/304/",
-          "locator": "document.querySelector(\"#order_history_block\").outerText",
+          "locator": "document.querySelector(\"#order_history_block\").querySelector(\".note-list\").firstElementChild.querySelector(\".note-list-comment\").outerText",
           "required_contents": {
-            "must_include": [
-              "Yo, your order will be shipped soon!"
-            ]
+            "exact_match": "Yo, your order will be shipped soon!"
           }
         }
       ]
@@ -15803,11 +15781,9 @@
       "program_html": [
         {
           "url": "__SHOPPING_ADMIN__/sales/order/view/order_id/303/",
-          "locator": "document.querySelector(\"#order_history_block\").outerText",
+          "locator": "document.querySelector(\"#order_history_block\").querySelector(\".note-list\").firstElementChild.querySelector(\".note-list-comment\").outerText",
           "required_contents": {
-            "must_include": [
-              "Thanks, your order is ready to be shipped!"
-            ]
+            "exact_match": "Thanks, your order is ready to be shipped!"
           }
         }
       ]
@@ -16025,9 +16001,7 @@
           "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/350/",
           "locator": "document.querySelector('[name=\"product[quantity_and_stock_status][is_in_stock]\"').value",
           "required_contents": {
-            "must_include": [
-              "0"
-            ]
+            "exact_match": "0"
           }
         }
       ]
@@ -18700,8 +18674,19 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__SHOPPING__/customer/account/",
-          "locator": "document.querySelector('.box.box-shipping-address').outerText",
+          "url": "__SHOPPING__/customer/address",
+          "locator": "document.querySelector(\".box.box-address-billing > .box-content\").outerText",
+          "required_contents": {
+            "must_include": [
+              "231 Willow Way",
+              "Suite 100",
+              "Chicago, Illinois, 60601"
+            ]
+          }
+        },
+        {
+          "url": "__SHOPPING__/customer/address",
+          "locator": "document.querySelector(\".box.box-address-shipping > .box-content\").outerText",
           "required_contents": {
             "must_include": [
               "231 Willow Way",
@@ -18737,8 +18722,19 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__SHOPPING__/customer/account/",
-          "locator": "document.querySelector('.box.box-shipping-address').outerText",
+          "url": "__SHOPPING__/customer/address",
+          "locator": "document.querySelector(\".box.box-address-billing > .box-content\").outerText",
+          "required_contents": {
+            "must_include": [
+              "654 Aspen Road",
+              "House #3",
+              "Boston, Massachusetts, 02110"
+            ]
+          }
+        },
+        {
+          "url": "__SHOPPING__/customer/address",
+          "locator": "document.querySelector(\".box.box-address-shipping > .box-content\").outerText",
           "required_contents": {
             "must_include": [
               "654 Aspen Road",
@@ -18774,8 +18770,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__SHOPPING__/customer/account/",
-          "locator": "document.querySelector('.box.box-shipping-address').outerText",
+          "url": "__SHOPPING__/customer/address",
+          "locator": "document.querySelector(\".box.box-address-shipping > .box-content\").outerText",
           "required_contents": {
             "must_include": [
               "987 Sycamore Circle",
@@ -18784,8 +18780,8 @@
           }
         },
         {
-          "url": "__SHOPPING__/customer/account/",
-          "locator": "document.querySelector('.box.box-billing-address').outerText",
+          "url": "__SHOPPING__/customer/address",
+          "locator": "document.querySelector(\".box.box-address-billing > .box-content\").outerText",
           "required_contents": {
             "must_include": [
               "987 Sycamore Circle",
@@ -18820,8 +18816,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__SHOPPING__/customer/account/",
-          "locator": "document.querySelector('.box.box-shipping-address').outerText",
+          "url": "__SHOPPING__/customer/address",
+          "locator": "document.querySelector(\".box.box-address-shipping > .box-content\").outerText",
           "required_contents": {
             "must_include": [
               "111 Magnolia Path",
@@ -18830,8 +18826,8 @@
           }
         },
         {
-          "url": "__SHOPPING__/customer/account/",
-          "locator": "document.querySelector('.box.box-billing-address').outerText",
+          "url": "__SHOPPING__/customer/address",
+          "locator": "document.querySelector(\".box.box-address-billing > .box-content\").outerText",
           "required_contents": {
             "must_include": [
               "111 Magnolia Path",
@@ -18866,8 +18862,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__SHOPPING__/customer/account/",
-          "locator": "document.querySelector('.box.box-shipping-address').outerText",
+          "url": "__SHOPPING__/customer/address",
+          "locator": "document.querySelector(\".box.box-address-shipping > .box-content\").outerText",
           "required_contents": {
             "must_include": [
               "222 Redwood Rise",
@@ -18877,8 +18873,8 @@
           }
         },
         {
-          "url": "__SHOPPING__/customer/account/",
-          "locator": "document.querySelector('.box.box-billing-address').outerText",
+          "url": "__SHOPPING__/customer/address",
+          "locator": "document.querySelector(\".box.box-address-billing > .box-content\").outerText",
           "required_contents": {
             "must_include": [
               "222 Redwood Rise",
@@ -22328,7 +22324,7 @@
           "required_contents": {
             "must_include": [
               "refund",
-              "it broke after three days of use",
+              "broke after three days of use",
               "148",
               "B003FVW3VA"
             ]
@@ -23506,7 +23502,7 @@
       "program_html": [
         {
           "url": "last",
-          "locator": "document.querySelector('.submission__inner').outerText",
+          "locator": "document.querySelector('.submission__inner').outerText + [...document.querySelector('.submission__inner').querySelectorAll('[href],[src]')].map(elem => elem.getAttribute('href') || elem.getAttribute('src')).join(' ')",
           "required_contents": {
             "must_include": [
               "Chrome extension that replaces occurrences of 'the cloud' with 'my butt'",
@@ -23546,7 +23542,7 @@
       "program_html": [
         {
           "url": "last",
-          "locator": "document.querySelector('.submission__inner').outerText",
+          "locator": "document.querySelector('.submission__inner').outerText + [...document.querySelector('.submission__inner').querySelectorAll('[href],[src]')].map(elem => elem.getAttribute('href') || elem.getAttribute('src')).join(' ')",
           "required_contents": {
             "must_include": [
               "Computer setup",
@@ -23586,7 +23582,7 @@
       "program_html": [
         {
           "url": "last",
-          "locator": "document.querySelector('.submission__inner').outerText",
+          "locator": "document.querySelector('.submission__inner').outerText + [...document.querySelector('.submission__inner').querySelectorAll('[href],[src]')].map(elem => elem.getAttribute('href') || elem.getAttribute('src')).join(' ')",
           "required_contents": {
             "must_include": [
               "A storage library for AngularJS done right",
@@ -23626,7 +23622,7 @@
       "program_html": [
         {
           "url": "last",
-          "locator": "document.querySelector('.submission__inner').outerText",
+          "locator": "document.querySelector('.submission__inner').outerText + [...document.querySelector('.submission__inner').querySelectorAll('[href],[src]')].map(elem => elem.getAttribute('href') || elem.getAttribute('src')).join(' ')",
           "required_contents": {
             "must_include": [
               "Asynchronous socket, http(s) (client+server) and websocket library for android. Based on nio, not threads.",
@@ -23666,7 +23662,7 @@
       "program_html": [
         {
           "url": "last",
-          "locator": "document.querySelector('.submission__inner').outerText",
+          "locator": "document.querySelector('.submission__inner').outerText + [...document.querySelector('.submission__inner').querySelectorAll('[href],[src]')].map(elem => elem.getAttribute('href') || elem.getAttribute('src')).join(' ')",
           "required_contents": {
             "must_include": [
               "A script to download pages from Arch Wiki for offline browsing",
@@ -23916,9 +23912,7 @@
           "url": "last",
           "locator": "document.querySelector('[name=\"product[quantity_and_stock_status][qty]\"').value",
           "required_contents": {
-            "must_include": [
-              "50"
-            ]
+            "exact_match": "50"
           }
         },
         {
@@ -23934,18 +23928,14 @@
           "url": "last",
           "locator": "document.querySelector('[name=\"product[size]\"').value",
           "required_contents": {
-            "must_include": [
-              "167"
-            ]
+            "exact_match": "167"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"product[color]\"').value",
           "required_contents": {
-            "must_include": [
-              "50"
-            ]
+            "exact_match": "50"
           }
         },
         {
@@ -24009,9 +23999,7 @@
           "url": "last",
           "locator": "document.querySelector('[name=\"product[quantity_and_stock_status][qty]\"').value",
           "required_contents": {
-            "must_include": [
-              "50"
-            ]
+            "exact_match": "50"
           }
         },
         {
@@ -24027,18 +24015,14 @@
           "url": "last",
           "locator": "document.querySelector('[name=\"product[size]\"').value",
           "required_contents": {
-            "must_include": [
-              "179"
-            ]
+            "exact_match": "179"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"product[color]\"').value",
           "required_contents": {
-            "must_include": [
-              "60"
-            ]
+            "exact_match": "60"
           }
         },
         {
@@ -24095,18 +24079,14 @@
           "url": "last",
           "locator": "document.querySelector('[name=\"product[quantity_and_stock_status][qty]\"').value",
           "required_contents": {
-            "must_include": [
-              "42"
-            ]
+            "exact_match": "42"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"product[price]\"').value",
           "required_contents": {
-            "must_include": [
-              "169.99"
-            ]
+            "exact_match": "169.99"
           }
         },
         {
@@ -24122,18 +24102,14 @@
           "url": "last",
           "locator": "document.querySelector('[name=\"product[size]\"').value",
           "required_contents": {
-            "must_include": [
-              "177"
-            ]
+            "exact_match": "177"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"product[color]\"').value",
           "required_contents": {
-            "must_include": [
-              "50"
-            ]
+            "exact_match": "50"
           }
         },
         {
@@ -24190,18 +24166,14 @@
           "url": "last",
           "locator": "document.querySelector('[name=\"product[quantity_and_stock_status][qty]\"').value",
           "required_contents": {
-            "must_include": [
-              "42"
-            ]
+            "exact_match": "42"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"product[price]\"').value",
           "required_contents": {
-            "must_include": [
-              "769.99"
-            ]
+            "exact_match": "769.99"
           }
         },
         {
@@ -24217,9 +24189,7 @@
           "url": "last",
           "locator": "document.querySelector('[name=\"product[color]\"').value",
           "required_contents": {
-            "must_include": [
-              "50"
-            ]
+            "exact_match": "50"
           }
         },
         {
@@ -24276,18 +24246,14 @@
           "url": "last",
           "locator": "document.querySelector('[name=\"product[quantity_and_stock_status][qty]\"').value",
           "required_contents": {
-            "must_include": [
-              "42"
-            ]
+            "exact_match": "42"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"product[price]\"').value",
           "required_contents": {
-            "must_include": [
-              "769.99"
-            ]
+            "exact_match": "769.99"
           }
         },
         {
@@ -24303,9 +24269,7 @@
           "url": "last",
           "locator": "document.querySelector('[name=\"product[color]\"').value",
           "required_contents": {
-            "must_include": [
-              "49"
-            ]
+            "exact_match": "49"
           }
         },
         {
@@ -24359,36 +24323,28 @@
           "url": "last",
           "locator": "document.querySelector('[name=\"website_ids\"').selectedIndex",
           "required_contents": {
-            "must_include": [
-              "0"
-            ]
+            "exact_match": "0"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"customer_group_ids\"').selectedIndex",
           "required_contents": {
-            "must_include": [
-              "1"
-            ]
+            "exact_match": "1"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"simple_action\"').value",
           "required_contents": {
-            "must_include": [
-              "by_percent"
-            ]
+            "exact_match": "by_percent"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"discount_amount\"').value",
           "required_contents": {
-            "must_include": [
-              "20"
-            ]
+            "exact_match": "20"
           }
         }
       ],
@@ -24433,36 +24389,28 @@
           "url": "last",
           "locator": "document.querySelector('[name=\"website_ids\"').selectedIndex",
           "required_contents": {
-            "must_include": [
-              "0"
-            ]
+            "exact_match": "0"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"customer_group_ids\"').selectedIndex",
           "required_contents": {
-            "must_include": [
-              "1"
-            ]
+            "exact_match": "1"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"simple_action\"').value",
           "required_contents": {
-            "must_include": [
-              "cart_fixed"
-            ]
+            "exact_match": "cart_fixed"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"discount_amount\"').value",
           "required_contents": {
-            "must_include": [
-              "10"
-            ]
+            "exact_match": "10"
           }
         }
       ],
@@ -24507,36 +24455,28 @@
           "url": "last",
           "locator": "document.querySelector('[name=\"website_ids\"').selectedIndex",
           "required_contents": {
-            "must_include": [
-              "0"
-            ]
+            "exact_match": "0"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"customer_group_ids\"').selectedIndex",
           "required_contents": {
-            "must_include": [
-              "1"
-            ]
+            "exact_match": "1"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"simple_action\"').value",
           "required_contents": {
-            "must_include": [
-              "cart_fixed"
-            ]
+            "exact_match": "cart_fixed"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"discount_amount\"').value",
           "required_contents": {
-            "must_include": [
-              "15"
-            ]
+            "exact_match": "15"
           }
         }
       ],
@@ -24581,36 +24521,28 @@
           "url": "last",
           "locator": "document.querySelector('[name=\"website_ids\"').selectedIndex",
           "required_contents": {
-            "must_include": [
-              "0"
-            ]
+            "exact_match": "0"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"customer_group_ids\"').selectedIndex",
           "required_contents": {
-            "must_include": [
-              "1"
-            ]
+            "exact_match": "1"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"simple_action\"').value",
           "required_contents": {
-            "must_include": [
-              "by_percent"
-            ]
+            "exact_match": "by_percent"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"discount_amount\"').value",
           "required_contents": {
-            "must_include": [
-              "45"
-            ]
+            "exact_match": "45"
           }
         }
       ],
@@ -24655,36 +24587,28 @@
           "url": "last",
           "locator": "document.querySelector('[name=\"website_ids\"').selectedIndex",
           "required_contents": {
-            "must_include": [
-              "0"
-            ]
+            "exact_match": "0"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"customer_group_ids\"').selectedIndex",
           "required_contents": {
-            "must_include": [
-              "1"
-            ]
+            "exact_match": "1"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"simple_action\"').value",
           "required_contents": {
-            "must_include": [
-              "cart_fixed"
-            ]
+            "exact_match": "cart_fixed"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"discount_amount\"').value",
           "required_contents": {
-            "must_include": [
-              "40"
-            ]
+            "exact_match": "40"
           }
         }
       ],
@@ -24720,18 +24644,14 @@
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_from\"').value",
           "required_contents": {
-            "must_include": [
-              "2/1/2023"
-            ]
+            "exact_match": "02/1/2023"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_to\"').value",
           "required_contents": {
-            "must_include": [
-              "2/28/2023"
-            ]
+            "exact_match": "02/28/2023"
           }
         }
       ],
@@ -24767,18 +24687,14 @@
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_from\"').value",
           "required_contents": {
-            "must_include": [
-              "1/29/2023"
-            ]
+            "exact_match": "01/29/2023"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_to\"').value",
           "required_contents": {
-            "must_include": [
-              "3/15/2023"
-            ]
+            "exact_match": "03/15/2023"
           }
         }
       ],
@@ -24814,18 +24730,14 @@
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_from\"').value",
           "required_contents": {
-            "must_include": [
-              "1/1/2023"
-            ]
+            "exact_match": "01/1/2023"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_to\"').value",
           "required_contents": {
-            "must_include": [
-              "3/31/2023"
-            ]
+            "exact_match": "03/31/2023"
           }
         }
       ],
@@ -24861,18 +24773,14 @@
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_from\"').value",
           "required_contents": {
-            "must_include": [
-              "1/1/2022"
-            ]
+            "exact_match": "01/1/2022"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_to\"').value",
           "required_contents": {
-            "must_include": [
-              "12/31/2022"
-            ]
+            "exact_match": "12/31/2022"
           }
         }
       ],
@@ -24908,18 +24816,14 @@
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_from\"').value",
           "required_contents": {
-            "must_include": [
-              "1/1/2023"
-            ]
+            "exact_match": "01/1/2023"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_to\"').value",
           "required_contents": {
-            "must_include": [
-              "12/31/2023"
-            ]
+            "exact_match": "12/31/2023"
           }
         }
       ],
@@ -24956,18 +24860,14 @@
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_from\"').value",
           "required_contents": {
-            "must_include": [
-              "5/1/2021"
-            ]
+            "exact_match": "05/1/2021"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_to\"').value",
           "required_contents": {
-            "must_include": [
-              "3/31/2022"
-            ]
+            "exact_match": "03/31/2022"
           }
         }
       ],
@@ -25004,18 +24904,14 @@
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_from\"').value",
           "required_contents": {
-            "must_include": [
-              "8/5/2022"
-            ]
+            "exact_match": "08/5/2022"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_to\"').value",
           "required_contents": {
-            "must_include": [
-              "3/1/2023"
-            ]
+            "exact_match": "03/1/2023"
           }
         }
       ],
@@ -25052,18 +24948,14 @@
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_from\"').value",
           "required_contents": {
-            "must_include": [
-              "7/5/2021"
-            ]
+            "exact_match": "07/5/2021"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_to\"').value",
           "required_contents": {
-            "must_include": [
-              "5/31/2023"
-            ]
+            "exact_match": "05/31/2023"
           }
         }
       ],
@@ -25100,18 +24992,14 @@
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_from\"').value",
           "required_contents": {
-            "must_include": [
-              "5/1/2021"
-            ]
+            "exact_match": "05/1/2021"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_to\"').value",
           "required_contents": {
-            "must_include": [
-              "5/15/2023"
-            ]
+            "exact_match": "05/15/2023"
           }
         }
       ],
@@ -25148,18 +25036,14 @@
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_from\"').value",
           "required_contents": {
-            "must_include": [
-              "5/1/2022"
-            ]
+            "exact_match": "05/1/2022"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_to\"').value",
           "required_contents": {
-            "must_include": [
-              "5/31/2023"
-            ]
+            "exact_match": "05/31/2023"
           }
         }
       ],
@@ -26174,9 +26058,7 @@
           "url": "__REDDIT__/f/television/134868/the-night-agent-renewed-for-season-2-at-netflix",
           "locator": "document.querySelector('.submission__body').outerText",
           "required_contents": {
-            "must_include": [
-              "Done watching, pretty cool!"
-            ]
+            "exact_match": "Done watching, pretty cool!"
           }
         }
       ]
@@ -26210,9 +26092,7 @@
           "url": "__REDDIT__/f/television/135201/star-trek-starfleet-academy-series-from-alex-kurtzman-and",
           "locator": "document.querySelector('.submission__body').outerText",
           "required_contents": {
-            "must_include": [
-              "Every watch makes me feel like a kid again"
-            ]
+            "exact_match": "Every watch makes me feel like a kid again"
           }
         }
       ]
@@ -26246,9 +26126,7 @@
           "url": "__REDDIT__/f/television/135156/ted-lasso-season-3-premiere-scores-870k-u-s-households-up-59",
           "locator": "document.querySelector('.submission__body').outerText",
           "required_contents": {
-            "must_include": [
-              "Done watching. I love the renew!"
-            ]
+            "exact_match": "Done watching. I love the renew!"
           }
         }
       ]
@@ -26282,9 +26160,7 @@
           "url": "__REDDIT__/f/television/135152/lord-of-the-rings-the-rings-of-power-season-2-cast-adds",
           "locator": "document.querySelector('.submission__body').outerText",
           "required_contents": {
-            "must_include": [
-              "The cast is amazing!"
-            ]
+            "exact_match": "The cast is amazing!"
           }
         }
       ]
@@ -26318,7 +26194,8 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "MIT license"
+              "MIT license",
+              "The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software."
             ]
           }
         },
@@ -26327,7 +26204,8 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "MIT license"
+              "MIT license",
+              "The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software."
             ]
           }
         }
@@ -26384,9 +26262,7 @@
           "url": "last",
           "locator": "document.querySelector(\"div#content select.routing_engines\").selectedIndex",
           "required_contents": {
-            "must_include": [
-              "1"
-            ]
+            "exact_match": "1"
           }
         }
       ]
@@ -26442,9 +26318,7 @@
           "url": "last",
           "locator": "document.querySelector(\"div#content select.routing_engines\").selectedIndex",
           "required_contents": {
-            "must_include": [
-              "1"
-            ]
+            "exact_match": "1"
           }
         }
       ]
@@ -26500,9 +26374,7 @@
           "url": "last",
           "locator": "document.querySelector(\"div#content select.routing_engines\").selectedIndex",
           "required_contents": {
-            "must_include": [
-              "1"
-            ]
+            "exact_match": "1"
           }
         }
       ]
@@ -26560,9 +26432,7 @@
           "url": "last",
           "locator": "document.querySelector(\"div#content select.routing_engines\").selectedIndex",
           "required_contents": {
-            "must_include": [
-              "1"
-            ]
+            "exact_match": "1"
           }
         }
       ]
@@ -26619,9 +26489,7 @@
           "url": "last",
           "locator": "document.querySelector(\"div#content select.routing_engines\").selectedIndex",
           "required_contents": {
-            "must_include": [
-              "1"
-            ]
+            "exact_match": "1"
           }
         }
       ]
@@ -27984,9 +27852,7 @@
           "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/872/",
           "locator": "document.querySelector('[name=\"product[quantity_and_stock_status][is_in_stock]\"').value",
           "required_contents": {
-            "must_include": [
-              "In stock"
-            ]
+            "exact_match": "1"
           }
         }
       ]
@@ -28617,36 +28483,28 @@
           "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/496/",
           "locator": "document.querySelector('[name=\"product[price]\"').value",
           "required_contents": {
-            "must_include": [
-              "22.33"
-            ]
+            "exact_match": "22.33"
           }
         },
         {
           "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/499/",
           "locator": "document.querySelector('[name=\"product[price]\"').value",
           "required_contents": {
-            "must_include": [
-              "22.33"
-            ]
+            "exact_match": "22.33"
           }
         },
         {
           "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/479/",
           "locator": "document.querySelector('[name=\"product[price]\"').value",
           "required_contents": {
-            "must_include": [
-              "21.56"
-            ]
+            "exact_match": "21.56"
           }
         },
         {
           "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/482/",
           "locator": "document.querySelector('[name=\"product[price]\"').value",
           "required_contents": {
-            "must_include": [
-              "21.56"
-            ]
+            "exact_match": "21.56"
           }
         }
       ]
@@ -29414,18 +29272,14 @@
           "url": "last",
           "locator": "document.querySelectorAll(\".detail-page-description > a.gl-font-monospace\")[0].outerText",
           "required_contents": {
-            "must_include": [
-              "replace-gulp"
-            ]
+            "exact_match": "feature/replace-gulp"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelectorAll(\".detail-page-description > a.gl-font-monospace\")[1].outerText",
           "required_contents": {
-            "must_include": [
-              "main"
-            ]
+            "exact_match": "main"
           }
         },
         {
@@ -29472,18 +29326,14 @@
           "url": "last",
           "locator": "document.querySelectorAll(\".detail-page-description > a.gl-font-monospace\")[0].outerText",
           "required_contents": {
-            "must_include": [
-              "redesign"
-            ]
+            "exact_match": "redesign"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelectorAll(\".detail-page-description > a.gl-font-monospace\")[1].outerText",
           "required_contents": {
-            "must_include": [
-              "markdown-figure-block"
-            ]
+            "exact_match": "feature/markdown-figure-block"
           }
         },
         {
@@ -29529,18 +29379,14 @@
           "url": "last",
           "locator": "document.querySelectorAll(\".detail-page-description > a.gl-font-monospace\")[1].outerText",
           "required_contents": {
-            "must_include": [
-              "main"
-            ]
+            "exact_match": "main"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelectorAll(\".detail-page-description > a.gl-font-monospace\")[0].outerText",
           "required_contents": {
-            "must_include": [
-              "debug-build-time"
-            ]
+            "exact_match": "debug-build-time"
           }
         },
         {
