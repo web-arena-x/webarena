@@ -212,7 +212,16 @@ def test_key_press(
 
     assert success
     expect(env.page.get_by_label("Full name")).to_be_focused()
+    expect(env.page.get_by_label("Full name")).to_have_value(s)
 
+    obs, success, _, _, info = env.step(
+        create_id_based_action("press [meta+a]")
+    )
+    assert success
+
+    env.page.get_by_label("Full name").type(s)
+    expect(env.page.get_by_label("Full name")).to_have_value(s)
+    
     obs, success, _, _, info = env.step(create_key_press_action("Enter"))
     assert success
     expect(env.page.get_by_label("Email")).to_be_focused()
