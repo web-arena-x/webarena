@@ -24,9 +24,7 @@ def test_frame_locator(script_browser_env: ScriptBrowserEnv) -> None:
     env.reset()
     for action in seq.split("\n"):
         action = action.strip()
-        _, success, _, _, info = env.step(
-            create_playwright_action(action)
-        )
+        _, success, _, _, info = env.step(create_playwright_action(action))
         assert success
 
 
@@ -49,9 +47,7 @@ def test_basic(script_browser_env: ScriptBrowserEnv) -> None:
     env.reset()
     for action in seq.split("\n"):
         action = action.strip()
-        _, success, _, _, info = env.step(
-            create_playwright_action(action)
-        )
+        _, success, _, _, info = env.step(create_playwright_action(action))
         assert success
 
 
@@ -63,9 +59,7 @@ def test_hover(script_browser_env: ScriptBrowserEnv) -> None:
     env.reset()
     for action in seq.split("\n"):
         action = action.strip()
-        _, success, _, _, info = env.step(
-            create_playwright_action(action)
-        )
+        _, success, _, _, info = env.step(create_playwright_action(action))
         assert success
 
 
@@ -76,9 +70,7 @@ def test_select_option(script_browser_env: ScriptBrowserEnv) -> None:
     env.reset()
     for action in seq.split("\n"):
         action = action.strip()
-        _, success, _, _, info = env.step(
-            create_playwright_action(action)
-        )
+        _, success, _, _, info = env.step(create_playwright_action(action))
         assert success
 
 
@@ -98,9 +90,7 @@ def test_xpath(script_browser_env: ScriptBrowserEnv) -> None:
     env.reset()
     for action in seq.split("\n"):
         action = action.strip()
-        _, success, _, _, info = env.step(
-            create_playwright_action(action)
-        )
+        _, success, _, _, info = env.step(create_playwright_action(action))
         assert success
 
 
@@ -120,9 +110,7 @@ def test_inter_page_actions(
     env.reset()
     for action in seq.split("\n"):
         action = action.strip()
-        _, success, _, _, info = env.step(
-            create_playwright_action(action)
-        )
+        _, success, _, _, info = env.step(create_playwright_action(action))
         assert success
     assert "https://demo.playwright.dev/todomvc" in info["page"].url
 
@@ -238,9 +226,7 @@ def test_key_press(
     env.page.get_by_label("Full name").type(s)
     expect(env.page.get_by_label("Full name")).to_have_value(s)
 
-    obs, success, _, _, info = env.step(
-        create_key_press_action("Enter")
-    )
+    obs, success, _, _, info = env.step(create_key_press_action("Enter"))
     assert success
     expect(env.page.get_by_label("Email")).to_be_focused()
 
@@ -282,9 +268,7 @@ def test_e2e_id_based_actions(
     obs, *_ = env.step(create_id_based_action(f"click [{element_id}]"))
     element_id = re.search(r"\[(\d+)\] textbox 'Email'", obs["text"]).group(1)  # type: ignore
     env.step(
-        create_id_based_action(
-            f"type [{element_id}] [test@gmail.com] [0]"
-        )
+        create_id_based_action(f"type [{element_id}] [test@gmail.com] [0]")
     )
     env.step(create_id_based_action("scroll [down]"))
     env.step(create_id_based_action("scroll [up]"))

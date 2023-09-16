@@ -68,9 +68,9 @@ def is_in_viewport(
     boxy1 = box["y"] + box["height"]
     viewportx0, viewporty0 = 0, 0
     viewportx1, viewporty1 = viewport["width"], viewport["height"]
-    inter = max(
-        0, min(boxx1, viewportx1) - max(boxx0, viewportx0)
-    ) * max(0, min(boxy1, viewporty1) - max(boxy0, viewporty0))
+    inter = max(0, min(boxx1, viewportx1) - max(boxx0, viewportx0)) * max(
+        0, min(boxy1, viewporty1) - max(boxy0, viewporty0)
+    )
     ratio = inter / (box["width"] * box["height"])
     return ratio > threshold
 
@@ -87,9 +87,9 @@ async def async_is_in_viewport(
     boxy1 = box["y"] + box["height"]
     viewportx0, viewporty0 = 0, 0
     viewportx1, viewporty1 = viewport["width"], viewport["height"]
-    inter = max(
-        0, min(boxx1, viewportx1) - max(boxx0, viewportx0)
-    ) * max(0, min(boxy1, viewporty1) - max(boxy0, viewporty0))
+    inter = max(0, min(boxx1, viewportx1) - max(boxx0, viewportx0)) * max(
+        0, min(boxy1, viewporty1) - max(boxy0, viewporty0)
+    )
     ratio = inter / (box["width"] * box["height"])
     return ratio > threshold
 
@@ -156,9 +156,7 @@ def action2str(
                     f"Unknown action type {action['action_type']}"
                 )
     else:
-        raise NotImplementedError(
-            f"Unknown action set tag {action_set_tag}"
-        )
+        raise NotImplementedError(f"Unknown action set tag {action_set_tag}")
 
     return action_str
 
@@ -172,9 +170,7 @@ def action2create_function(action: Action) -> str:
             direction = "up" if "up" in action["direction"] else "down"
             return f"create_scroll_action({repr(direction)})"
         case ActionTypes.KEY_PRESS:
-            return (
-                f"create_key_press_action({repr(action['key_comb'])})"
-            )
+            return f"create_key_press_action({repr(action['key_comb'])})"
         # inter-page actions
         case ActionTypes.PAGE_FOCUS:
             return f"create_page_focus_action({action['page_number']})"
@@ -397,13 +393,9 @@ def create_random_action() -> Action:
     return {
         "action_type": np.random.randint(len(ActionTypes)),
         "coords": np.random.rand(2).astype(np.float32),
-        "element_role": np.random.randint(
-            len(ROLES) + len(SPECIAL_LOCATORS)
-        ),
+        "element_role": np.random.randint(len(ROLES) + len(SPECIAL_LOCATORS)),
         "element_name": "".join(
-            random.choices(
-                ASCII_CHARSET, k=np.random.randint(TEXT_MAX_LENGTH)
-            )
+            random.choices(ASCII_CHARSET, k=np.random.randint(TEXT_MAX_LENGTH))
         ),
         "text": list(
             random.choices(
@@ -413,9 +405,7 @@ def create_random_action() -> Action:
         ),
         "page_number": np.random.randint(MAX_PAGE_NUMBER),
         "url": "".join(
-            random.choices(
-                ASCII_CHARSET, k=np.random.randint(URL_MAX_LENGTH)
-            )
+            random.choices(ASCII_CHARSET, k=np.random.randint(URL_MAX_LENGTH))
         ),
         "nth": np.random.randint(MAX_ELEMENT_INDEX_IN_VIEWPORT),
         "element_id": str(np.random.randint(MAX_ELEMENT_ID)),
@@ -608,9 +598,7 @@ def create_mouse_click_action(
             }
         )
     else:
-        raise ValueError(
-            "left and top must be both None or both not None"
-        )
+        raise ValueError("left and top must be both None or both not None")
     return action
 
 
@@ -814,9 +802,7 @@ async def aexecute_scroll(direction: str, page: APage) -> None:
 @beartype
 def execute_key_press(key: str, page: Page) -> None:
     """Press a key."""
-    if "Meta" in key and "Mac" not in page.evaluate(
-        "navigator.platform"
-    ):
+    if "Meta" in key and "Mac" not in page.evaluate("navigator.platform"):
         key = key.replace("Meta", "Control")
     page.keyboard.press(key)
 
@@ -824,9 +810,7 @@ def execute_key_press(key: str, page: Page) -> None:
 @beartype
 async def aexecute_key_press(key: str, page: APage) -> None:
     """Press a key."""
-    if "Meta" in key and "Mac" not in page.evaluate(
-        "navigator.platform"
-    ):
+    if "Meta" in key and "Mac" not in page.evaluate("navigator.platform"):
         key = key.replace("Meta", "Control")
     await page.keyboard.press(key)
 
@@ -842,9 +826,7 @@ def execute_mouse_hover(left: float, top: float, page: Page) -> None:
 
 
 @beartype
-async def aexecute_mouse_hover(
-    left: float, top: float, page: APage
-) -> None:
+async def aexecute_mouse_hover(left: float, top: float, page: APage) -> None:
     """Click at coordinates (left, top)."""
     viewport_size = page.viewport_size
     assert viewport_size
@@ -863,9 +845,7 @@ def execute_mouse_click(left: float, top: float, page: Page) -> None:
 
 
 @beartype
-async def aexecute_mouse_click(
-    left: float, top: float, page: APage
-) -> None:
+async def aexecute_mouse_click(left: float, top: float, page: APage) -> None:
     """Click at coordinates (left, top)."""
     viewport_size = page.viewport_size
     assert viewport_size
@@ -934,9 +914,7 @@ def execute_focus(
     """Click the specified DOM element."""
     element_role_str = _id2role[element_role]
     if page.viewport_size is None:
-        raise ValueError(
-            "Viewport size is not set for the current page"
-        )
+        raise ValueError("Viewport size is not set for the current page")
     element_location_list: list[tuple[Locator, float, float]] = []
     for frame in page.frames:
         match element_role_str:
@@ -962,9 +940,7 @@ def execute_focus(
         raise ValueError(
             f"There are only {len(element_location_list)} elements found in viewport, but {nth + 1} is requested"
         )
-    element_location_list.sort(
-        key=lambda x: (x[2], x[1])
-    )  # row major order
+    element_location_list.sort(key=lambda x: (x[2], x[1]))  # row major order
     element_location_list[nth][0].focus()
 
 
@@ -975,9 +951,7 @@ async def aexecute_focus(
     """Click the specified DOM element."""
     element_role_str = _id2role[element_role]
     if page.viewport_size is None:
-        raise ValueError(
-            "Viewport size is not set for the current page"
-        )
+        raise ValueError("Viewport size is not set for the current page")
     element_location_list: list[tuple[ALocator, float, float]] = []
     for frame in page.frames:
         match element_role_str:
@@ -1003,24 +977,18 @@ async def aexecute_focus(
         raise ValueError(
             f"There are only {len(element_location_list)} elements found in viewport, but {nth + 1} is requested"
         )
-    element_location_list.sort(
-        key=lambda x: (x[2], x[1])
-    )  # row major order
+    element_location_list.sort(key=lambda x: (x[2], x[1]))  # row major order
     await element_location_list[nth][0].focus()
 
 
 @beartype
-def locate(
-    locator_calls: list[ParsedPlaywrightCode], page: Page
-) -> Locator:
+def locate(locator_calls: list[ParsedPlaywrightCode], page: Page) -> Locator:
     locator = page
     for call in locator_calls:
         function_name = call["function_name"]
         arguments = call["arguments"]
         keywords = call["keywords"]
-        locator = getattr(locator, function_name)(
-            *arguments, **keywords
-        )
+        locator = getattr(locator, function_name)(*arguments, **keywords)
     return locator  # type: ignore[return-value]
 
 
@@ -1033,9 +1001,7 @@ async def alocate(
         function_name = call["function_name"]
         arguments = call["arguments"]
         keywords = call["keywords"]
-        locator = await getattr(locator, function_name)(
-            *arguments, **keywords
-        )
+        locator = await getattr(locator, function_name)(*arguments, **keywords)
     return locator  # type: ignore[return-value]
 
 
@@ -1095,9 +1061,7 @@ def execute_playwright_type(
 ) -> None:
     locator = locate(locator_code, page)
     # perform the action
-    pw_action_args = [
-        text
-    ] + pw_action_args  # text is the first argument
+    pw_action_args = [text] + pw_action_args  # text is the first argument
     locator.type(*pw_action_args, **pw_action_kwargs)
 
 
@@ -1111,9 +1075,7 @@ async def aexecute_playwright_type(
 ) -> None:
     locator = await alocate(locator_code, page)
     # perform the action
-    pw_action_args = [
-        text
-    ] + pw_action_args  # text is the first argument
+    pw_action_args = [text] + pw_action_args  # text is the first argument
     await locator.type(*pw_action_args, **pw_action_kwargs)
 
 
@@ -1180,13 +1142,9 @@ def execute_action(
             execute_key_press(keys, page)
 
         case ActionTypes.MOUSE_CLICK:
-            execute_mouse_click(
-                action["coords"][0], action["coords"][1], page
-            )
+            execute_mouse_click(action["coords"][0], action["coords"][1], page)
         case ActionTypes.MOUSE_HOVER:
-            execute_mouse_hover(
-                action["coords"][0], action["coords"][1], page
-            )
+            execute_mouse_hover(action["coords"][0], action["coords"][1], page)
         case ActionTypes.KEYBOARD_TYPE:
             execute_type(action["text"], page)
 
@@ -1196,9 +1154,7 @@ def execute_action(
             if action["element_id"]:
                 element_id = action["element_id"]
                 element_center = obseration_processor.get_element_center(element_id)  # type: ignore[attr-defined]
-                execute_mouse_click(
-                    element_center[0], element_center[1], page
-                )
+                execute_mouse_click(element_center[0], element_center[1], page)
             elif action["element_role"] and action["element_name"]:
                 element_role = int(action["element_role"])
                 element_name = action["element_name"]
@@ -1209,20 +1165,14 @@ def execute_action(
                 parsed_code = parse_playwright_code(action["pw_code"])
                 locator_code = parsed_code[:-1]
                 # [shuyanzh], don't support action args and kwargs now
-                execute_playwright_click(
-                    locator_code=locator_code, page=page
-                )
+                execute_playwright_click(locator_code=locator_code, page=page)
             else:
-                raise ValueError(
-                    "No proper locator found for click action"
-                )
+                raise ValueError("No proper locator found for click action")
         case ActionTypes.HOVER:
             if action["element_id"]:
                 element_id = action["element_id"]
                 element_center = obseration_processor.get_element_center(element_id)  # type: ignore[attr-defined]
-                execute_mouse_hover(
-                    element_center[0], element_center[1], page
-                )
+                execute_mouse_hover(element_center[0], element_center[1], page)
             elif action["element_role"] and action["element_name"]:
                 element_role = int(action["element_role"])
                 element_name = action["element_name"]
@@ -1232,9 +1182,7 @@ def execute_action(
                 parsed_code = parse_playwright_code(action["pw_code"])
                 locator_code = parsed_code[:-1]
                 # [shuyanzh], don't support action args and kwargs now
-                execute_playwright_hover(
-                    locator_code=locator_code, page=page
-                )
+                execute_playwright_hover(locator_code=locator_code, page=page)
             else:
                 raise NotImplementedError(
                     "No proper locator found for hover action"
@@ -1243,9 +1191,7 @@ def execute_action(
             if action["element_id"]:
                 element_id = action["element_id"]
                 element_center = obseration_processor.get_element_center(element_id)  # type: ignore[attr-defined]
-                execute_mouse_click(
-                    element_center[0], element_center[1], page
-                )
+                execute_mouse_click(element_center[0], element_center[1], page)
                 execute_type(action["text"], page)
             elif action["element_role"] and action["element_name"]:
                 element_role = int(action["element_role"])
@@ -1346,9 +1292,7 @@ async def aexecute_action(
                 element_role = int(action["element_role"])
                 element_name = action["element_name"]
                 nth = action["nth"]
-                await aexecute_focus(
-                    element_role, element_name, nth, page
-                )
+                await aexecute_focus(element_role, element_name, nth, page)
                 await aexecute_click_current(page)
             elif action["pw_code"]:
                 parsed_code = parse_playwright_code(action["pw_code"])
@@ -1358,9 +1302,7 @@ async def aexecute_action(
                     locator_code=locator_code, page=page
                 )
             else:
-                raise ValueError(
-                    "No proper locator found for click action"
-                )
+                raise ValueError("No proper locator found for click action")
         case ActionTypes.HOVER:
             if action["element_id"]:
                 raise NotImplementedError
@@ -1368,9 +1310,7 @@ async def aexecute_action(
                 element_role = int(action["element_role"])
                 element_name = action["element_name"]
                 nth = action["nth"]
-                await aexecute_focus(
-                    element_role, element_name, nth, page
-                )
+                await aexecute_focus(element_role, element_name, nth, page)
             elif action["pw_code"]:
                 parsed_code = parse_playwright_code(action["pw_code"])
                 locator_code = parsed_code[:-1]
@@ -1389,9 +1329,7 @@ async def aexecute_action(
                 element_role = int(action["element_role"])
                 element_name = action["element_name"]
                 nth = action["nth"]
-                await aexecute_focus(
-                    element_role, element_name, nth, page
-                )
+                await aexecute_focus(element_role, element_name, nth, page)
                 await aexecute_type(action["text"], page)
             elif action["pw_code"]:
                 parsed_code = parse_playwright_code(action["pw_code"])
@@ -1428,9 +1366,7 @@ async def aexecute_action(
             if action["pw_code"]:
                 parsed_code = parse_playwright_code(action["pw_code"])
                 locator_code = parsed_code[:-1]
-                await aexecute_playwright_select_option(
-                    locator_code, page
-                )
+                await aexecute_playwright_select_option(locator_code, page)
             else:
                 raise NotImplementedError(
                     "No proper locator found for select option action"
@@ -1471,9 +1407,7 @@ def parse_playwright_code(code: str) -> list[ParsedPlaywrightCode]:
             if isinstance(node, ast.Call):
                 function_name = node.func.id  # type: ignore[attr-defined]
                 arguments = [
-                    ast.literal_eval(arg)
-                    if isinstance(arg, ast.Str)
-                    else arg
+                    ast.literal_eval(arg) if isinstance(arg, ast.Str) else arg
                     for arg in node.args
                 ]
                 keywords = {
@@ -1552,9 +1486,7 @@ def create_playwright_action(playwright_code: str) -> Action:
                     f"Invalid type/fill action, required to be page.type(TEXT)"
                 )
             text = match.group(1)
-            return create_type_action(
-                text=text, pw_code=playwright_code
-            )
+            return create_type_action(text=text, pw_code=playwright_code)
         case "select_option":
             return create_select_option_action(pw_code=playwright_code)
         case "check":
@@ -1573,9 +1505,7 @@ def create_playwright_action(playwright_code: str) -> Action:
             p = r"page_focus\((\d+)\)"
             match = re.search(p, playwright_code)
             if not match:
-                raise ActionParsingError(
-                    "page focus requires a page number"
-                )
+                raise ActionParsingError("page focus requires a page number")
             page_num = int(match.group(1))
             return create_page_focus_action(page_num)
         case "new_tab":
@@ -1611,33 +1541,25 @@ def create_id_based_action(action_str: str) -> Action:
         case "click":
             match = re.search(r"click ?\[(\d+)\]", action_str)
             if not match:
-                raise ActionParsingError(
-                    f"Invalid click action {action_str}"
-                )
+                raise ActionParsingError(f"Invalid click action {action_str}")
             element_id = match.group(1)
             return create_click_action(element_id=element_id)
         case "hover":
             match = re.search(r"hover ?\[(\d+)\]", action_str)
             if not match:
-                raise ActionParsingError(
-                    f"Invalid hover action {action_str}"
-                )
+                raise ActionParsingError(f"Invalid hover action {action_str}")
             element_id = match.group(1)
             return create_hover_action(element_id=element_id)
         case "type":
             # add default enter flag
-            if not (
-                action_str.endswith("[0]") or action_str.endswith("[1]")
-            ):
+            if not (action_str.endswith("[0]") or action_str.endswith("[1]")):
                 action_str += " [1]"
 
             match = re.search(
                 r"type ?\[(\d+)\] ?\[(.+)\] ?\[(\d+)\]", action_str
             )
             if not match:
-                raise ActionParsingError(
-                    f"Invalid type action {action_str}"
-                )
+                raise ActionParsingError(f"Invalid type action {action_str}")
             element_id, text, enter_flag = (
                 match.group(1),
                 match.group(2),
@@ -1649,26 +1571,20 @@ def create_id_based_action(action_str: str) -> Action:
         case "press":
             match = re.search(r"press ?\[(.+)\]", action_str)
             if not match:
-                raise ActionParsingError(
-                    f"Invalid press action {action_str}"
-                )
+                raise ActionParsingError(f"Invalid press action {action_str}")
             key_comb = match.group(1)
             return create_key_press_action(key_comb=key_comb)
         case "scroll":
             # up or down
             match = re.search(r"scroll ?\[?(up|down)\]?", action_str)
             if not match:
-                raise ActionParsingError(
-                    f"Invalid scroll action {action_str}"
-                )
+                raise ActionParsingError(f"Invalid scroll action {action_str}")
             direction = match.group(1)
             return create_scroll_action(direction=direction)
         case "goto":
             match = re.search(r"goto ?\[(.+)\]", action_str)
             if not match:
-                raise ActionParsingError(
-                    f"Invalid goto action {action_str}"
-                )
+                raise ActionParsingError(f"Invalid goto action {action_str}")
             url = match.group(1)
             return create_goto_url_action(url=url)
         case "new_tab":
