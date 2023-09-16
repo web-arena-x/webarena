@@ -256,6 +256,7 @@ def test_e2e_id_based_actions(
     x = env.step(create_id_based_action("tab_focus [0]"))
     assert x[-1]["page"].url == "https://russmaxdesign.github.io/exercise/#link-one"
 
+
 def test_id_delete_input(
     accessibility_tree_current_viewport_script_browser_env: ScriptBrowserEnv,
 ) -> None:
@@ -278,19 +279,13 @@ def test_id_delete_input(
     locator = env.page.get_by_label("Full name")
     expect(locator).to_have_value(s)
 
-    obs, success, _, _, info = env.step(
-        create_id_based_action(f"click [{element_id}]")
-    )
+    obs, success, _, _, info = env.step(create_id_based_action(f"click [{element_id}]"))
     assert success
 
-    obs, success, _, _, info = env.step(
-        create_id_based_action(f"press [Meta+a]")
-    )
+    obs, success, _, _, info = env.step(create_id_based_action(f"press [Meta+a]"))
     assert success
 
-    obs, success, _, _, info = env.step(
-        create_id_based_action("press [backspace]")
-    )
+    obs, success, _, _, info = env.step(create_id_based_action("press [backspace]"))
     assert success
 
     new_s = "NEW"
