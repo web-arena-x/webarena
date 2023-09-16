@@ -3,6 +3,7 @@ import json
 from typing import Any
 
 import tiktoken
+from beartype import beartype
 
 from agent.prompts import *
 from browser_env import Trajectory
@@ -96,6 +97,7 @@ class TeacherForcingAgent(Agent):
 class PromptAgent(Agent):
     """prompt-based agent that emits action given the history"""
 
+    @beartype
     def __init__(
         self,
         action_set_tag: str,
@@ -110,6 +112,7 @@ class PromptAgent(Agent):
     def set_action_set_tag(self, tag: str) -> None:
         self.action_set_tag = tag
 
+    @beartype
     def next_action(
         self, trajectory: Trajectory, intent: str, meta_data: dict[str, Any]
     ) -> Action:

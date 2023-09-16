@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any, Tuple, Union
 
 import evaluate  # type: ignore[import]
+from beartype import beartype
 from playwright.sync_api import CDPSession, Page
 
 from browser_env.actions import Action
@@ -28,6 +29,7 @@ class Evaluator(object):
     def __init__(self, eval_tag: str = "") -> None:
         self.eval_tag = eval_tag
 
+    @beartype
     def __call__(
         self,
         trajectory: Trajectory,
@@ -65,6 +67,7 @@ class Evaluator(object):
 class StringExactEvaluator(Evaluator):
     """Check whether the answer is exactly the same as one of the reference answers"""
 
+    @beartype
     def __call__(
         self,
         trajectory: Trajectory,
@@ -98,6 +101,7 @@ class StringEvaluator(Evaluator):
     fuzzy match: the answer is similar to the reference answer, using LLM judge
     """
 
+    @beartype
     def __call__(
         self,
         trajectory: Trajectory,
@@ -142,6 +146,7 @@ class StringEvaluator(Evaluator):
 class StringSoftEvaluator(Evaluator):
     """Use text generation metrics such as BLEU, ROUGE, etc. to evaluate the answer"""
 
+    @beartype
     def __call__(
         self,
         trajectory: Trajectory,
@@ -164,6 +169,7 @@ class StringSoftEvaluator(Evaluator):
 class URLExactEvaluator(Evaluator):
     """Check whether the URL is exactly the same as of the reference URLs"""
 
+    @beartype
     def __call__(
         self,
         trajectory: Trajectory,
@@ -201,6 +207,7 @@ class URLExactEvaluator(Evaluator):
 class HTMLContentExactEvaluator(Evaluator):
     """Check whether the contents appear in the page"""
 
+    @beartype
     def __call__(
         self,
         trajectory: Trajectory,
@@ -341,6 +348,7 @@ class EvaluatorComb:
     def __init__(self, evaluators: list[Evaluator]) -> None:
         self.evaluators = evaluators
 
+    @beartype
     def __call__(
         self,
         trajectory: Trajectory,
@@ -357,6 +365,7 @@ class EvaluatorComb:
         return score
 
 
+@beartype
 def evaluator_router(config_file: Path | str) -> EvaluatorComb:
     """Router to get the evaluator class"""
     with open(config_file, "r") as f:

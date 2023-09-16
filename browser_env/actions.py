@@ -12,6 +12,7 @@ from typing import Any, TypedDict, Union, cast
 
 import numpy as np
 import numpy.typing as npt
+from beartype import beartype
 from gymnasium import spaces
 from playwright._impl._api_structures import ViewportSize
 from playwright.async_api import BrowserContext as ABrowserContext
@@ -107,6 +108,7 @@ class Action(TypedDict):
     raw_prediction: str  # raw prediction from the model
 
 
+@beartype
 def action2str(
     action: Action, action_set_tag: str, semantic_element: str = ""
 ) -> str:
@@ -156,6 +158,7 @@ def action2str(
     return action_str
 
 
+@beartype
 def action2create_function(action: Action) -> str:
     match (action["action_type"]):
         case ActionTypes.NONE:
@@ -269,6 +272,7 @@ class ActionTypes(IntEnum):
         return f"ACTION_TYPES.{self.name}"
 
 
+@beartype
 def is_equivalent(a: Action, b: Action) -> bool:
     """Return True if two actions are equal."""
     if a["action_type"] != b["action_type"]:
@@ -343,6 +347,7 @@ def _keys2ids(keys: list[int | str] | str) -> list[int]:
     )
 
 
+@beartype
 def get_action_space() -> spaces.Dict:
     """Return the space of serialized actions."""
     space = spaces.Dict(
@@ -381,6 +386,7 @@ def get_action_space() -> spaces.Dict:
     return space
 
 
+@beartype
 def create_random_action() -> Action:
     """Return a random action."""
     return {
@@ -417,6 +423,7 @@ def create_random_action() -> Action:
     }
 
 
+@beartype
 def create_none_action() -> Action:
     """Return a valid action object that does nothing."""
     return {
@@ -437,12 +444,14 @@ def create_none_action() -> Action:
     }
 
 
+@beartype
 def create_stop_action(answer: str) -> Action:
     action = create_none_action()
     action.update({"action_type": ActionTypes.STOP, "answer": answer})
     return action
 
 
+@beartype
 def create_scroll_action(direction: str) -> Action:
     """Return the playwright action"""
     assert direction in ["up", "down"]
@@ -456,6 +465,7 @@ def create_scroll_action(direction: str) -> Action:
     return action
 
 
+@beartype
 def create_mouse_hover_action(
     left: float | None = None, top: float | None = None
 ) -> Action:
@@ -470,6 +480,7 @@ def create_mouse_hover_action(
     return action
 
 
+@beartype
 def create_key_press_action(key_comb: str) -> Action:
     """Return the key press action"""
 
@@ -492,6 +503,7 @@ def create_key_press_action(key_comb: str) -> Action:
     return action
 
 
+@beartype
 def create_page_focus_action(page_number: int) -> Action:
     """Return a valid action object with type PAGE_FOCUS."""
     action = create_none_action()
@@ -504,6 +516,7 @@ def create_page_focus_action(page_number: int) -> Action:
     return action
 
 
+@beartype
 def create_new_tab_action() -> Action:
     """Return a valid action object with type NEW_TAB."""
     action = create_none_action()
@@ -515,6 +528,7 @@ def create_new_tab_action() -> Action:
     return action
 
 
+@beartype
 def create_go_back_action() -> Action:
     """Return a valid action object with type GO_BACK."""
     action = create_none_action()
@@ -526,6 +540,7 @@ def create_go_back_action() -> Action:
     return action
 
 
+@beartype
 def create_go_forward_action() -> Action:
     """Return a valid action object with type GO_FORWARD."""
     action = create_none_action()
@@ -537,6 +552,7 @@ def create_go_forward_action() -> Action:
     return action
 
 
+@beartype
 def create_goto_url_action(url: str) -> Action:
     """Return a valid action object with type GOTO_URL."""
     action = create_none_action()
@@ -549,6 +565,7 @@ def create_goto_url_action(url: str) -> Action:
     return action
 
 
+@beartype
 def create_page_close_action() -> Action:
     """Return a valid action object with type PAGE_CLOSE."""
     action = create_none_action()
@@ -560,6 +577,7 @@ def create_page_close_action() -> Action:
     return action
 
 
+@beartype
 def create_mouse_click_action(
     left: float | None = None, top: float | None = None
 ) -> Action:
@@ -583,6 +601,7 @@ def create_mouse_click_action(
     return action
 
 
+@beartype
 def create_keyboard_type_action(keys: list[int | str] | str) -> Action:
     """Return a valid action object with type TYPE."""
     action = create_none_action()
@@ -595,6 +614,7 @@ def create_keyboard_type_action(keys: list[int | str] | str) -> Action:
     return action
 
 
+@beartype
 def create_click_action(
     element_id: str = "",
     element_role: RolesType = "link",
@@ -616,6 +636,7 @@ def create_click_action(
     return action
 
 
+@beartype
 def create_hover_action(
     element_id: str = "",
     element_role: RolesType = "link",
@@ -637,6 +658,7 @@ def create_hover_action(
     return action
 
 
+@beartype
 def create_type_action(
     text: str,
     element_id: str = "",
@@ -660,6 +682,7 @@ def create_type_action(
     return action
 
 
+@beartype
 def create_check_action(pw_code: str) -> Action:
     action = create_none_action()
     action.update(
@@ -684,6 +707,7 @@ def create_select_option_action(
     return action
 
 
+@beartype
 def create_focus_action(
     element_role: RolesType, element_name: str = "", nth: int = 0
 ) -> Action:
@@ -702,6 +726,7 @@ def create_focus_action(
     return action
 
 
+@beartype
 def create_focus_and_click_action(
     element_role: RolesType, element_name: str = "", nth: int = 0
 ) -> Action:
@@ -721,6 +746,7 @@ def create_focus_and_click_action(
     return action
 
 
+@beartype
 def create_focus_and_type_action(
     keys: list[int | str] | str,
     element_role: RolesType,
@@ -1392,6 +1418,7 @@ class ActionParsingError(Exception):
         super().__init__(self.message)
 
 
+@beartype
 def create_playwright_action(playwright_code: str) -> Action:
     """Main function to return individual playwright action"""
     # get the last action
@@ -1464,6 +1491,7 @@ def create_playwright_action(playwright_code: str) -> Action:
     raise ActionParsingError(f"Unknown playwright action {action}")
 
 
+@beartype
 def create_id_based_action(action_str: str) -> Action:
     """Main function to return individual id based action"""
     action_str = action_str.strip()

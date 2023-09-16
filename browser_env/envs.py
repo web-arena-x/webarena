@@ -8,6 +8,8 @@ from typing import Any, Union
 
 import numpy as np
 import numpy.typing as npt
+from beartype import beartype
+from beartype.door import is_bearable
 from gymnasium import Env
 from gymnasium.spaces import Box, Text
 from playwright.sync_api import (
@@ -71,6 +73,7 @@ class ScriptBrowserEnv(Env[dict[str, Observation], Action]):
     and observation space is the html content of the page.
     """
 
+    @beartype
     def __init__(
         self,
         max_page_length: int = 8192,
@@ -118,6 +121,7 @@ class ScriptBrowserEnv(Env[dict[str, Observation], Action]):
             self.observation_handler.get_observation_space()
         )
 
+    @beartype
     def setup(self, config_file: Path | None = None) -> None:
         self.context_manager = sync_playwright()
         self.playwright = self.context_manager.__enter__()
@@ -177,6 +181,7 @@ class ScriptBrowserEnv(Env[dict[str, Observation], Action]):
         metadata = self.observation_handler.get_observation_metadata()
         return metadata
 
+    @beartype
     def reset(
         self,
         *,
