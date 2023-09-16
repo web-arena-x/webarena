@@ -15,11 +15,6 @@
             "must_include": ["1985/04/18"]
         },
         "reference_url": "",
-        "program_html": [
-            {
-                "url": "",
-                "required_contents": []
-            }
-        ]
+        "program_html": null
     }
 }

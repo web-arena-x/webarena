@@ -16,12 +16,12 @@
         "program_html": [
             {
                 "url": "last",
-                "required_contents": "What are mammals?",
+                "required_contents": {"must_include": ["What are mammals?"]},
                 "locator": ""
             },
             {
                 "url": "https://www.google.com/",
-                "required_contents": "Google Search",
+                "required_contents": {"must_include": ["Google Search"]},
                 "locator": ""
             }
         ]
