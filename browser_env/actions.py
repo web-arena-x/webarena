@@ -810,7 +810,9 @@ def execute_key_press(key: str, page: Page) -> None:
 @beartype
 async def aexecute_key_press(key: str, page: APage) -> None:
     """Press a key."""
-    if "Meta" in key and "Mac" not in page.evaluate("navigator.platform"):
+    if "Meta" in key and "Mac" not in await page.evaluate(
+        "navigator.platform"
+    ):
         key = key.replace("Meta", "Control")
     await page.keyboard.press(key)
 
