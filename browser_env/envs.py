@@ -9,6 +9,7 @@ from typing import Any, Union
 import numpy as np
 import numpy.typing as npt
 from beartype import beartype
+from beartype.door import is_bearable
 from gymnasium import Env
 from gymnasium.spaces import Box, Text
 from playwright.sync_api import (
@@ -39,7 +40,6 @@ class PlaywrightScript:
     value: str | None = None  # avatar movie, Enter
 
 
-@beartype
 def parse_action(action: str) -> PlaywrightScript:
     splitted = action.strip().split(" ")
     assert len(splitted) >= 2
@@ -168,18 +168,15 @@ class ScriptBrowserEnv(Env[dict[str, Observation], Action]):
                 client.send("Accessibility.enable")
             self.page.client = client  # type: ignore
 
-    @beartype
     def get_page_client(self, page: Page) -> CDPSession:
         return page.client  # type: ignore
 
-    @beartype
     def _get_obs(self) -> dict[str, Observation]:
         obs = self.observation_handler.get_observation(
             self.page, self.get_page_client(self.page)
         )
         return obs
 
-    @beartype
     def _get_obs_metadata(self) -> dict[str, ObservationMetadata]:
         metadata = self.observation_handler.get_observation_metadata()
         return metadata
@@ -223,12 +220,10 @@ class ScriptBrowserEnv(Env[dict[str, Observation], Action]):
 
         return (observation, info)
 
-    @beartype
     def save_trace(self, trace_path: str | Path) -> None:
         if self.save_trace_enabled:
             self.context.tracing.stop(path=trace_path)
 
-    @beartype
     def close(self) -> None:
         if self.reset_finished:
             self.context_manager.__exit__()

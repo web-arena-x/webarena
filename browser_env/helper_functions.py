@@ -5,7 +5,6 @@ import re
 from pathlib import Path
 from typing import Any
 
-from beartype import beartype
 from PIL import Image
 
 from agent.prompts import *
@@ -35,7 +34,6 @@ HTML_TEMPLATE = """
 """
 
 
-@beartype
 def get_render_action(
     action: Action,
     observation_metadata: dict[str, ObservationMetadata],
@@ -63,7 +61,6 @@ def get_render_action(
     return action_str
 
 
-@beartype
 def get_action_description(
     action: Action,
     observation_metadata: dict[str, ObservationMetadata],

@@ -9,7 +9,6 @@ import time
 from pathlib import Path
 
 import openai
-from beartype import beartype
 
 from agent import (
     Agent,
@@ -144,7 +143,6 @@ def config() -> argparse.Namespace:
     return args
 
 
-@beartype
 def early_stop(
     trajectory: Trajectory, max_steps: int, thresholds: dict[str, int]
 ) -> tuple[bool, str]:
@@ -201,7 +199,6 @@ def early_stop(
     return False, ""
 
 
-@beartype
 def test(
     args: argparse.Namespace,
     agent: Agent | PromptAgent | TeacherForcingAgent,
@@ -369,7 +366,6 @@ def get_unfinished(config_files: list[str], result_dir: str) -> list[str]:
     return unfinished_configs
 
 
-@beartype
 def dump_config(args: argparse.Namespace) -> None:
     config_file = Path(args.result_dir) / "config.json"
     if not config_file.exists():

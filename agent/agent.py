@@ -4,7 +4,6 @@ from typing import Any
 
 import tiktoken
 from beartype import beartype
-from beartype.door import is_bearable
 
 from agent.prompts import *
 from browser_env import Trajectory
@@ -48,11 +47,9 @@ class TeacherForcingAgent(Agent):
     def __init__(self) -> None:
         super().__init__()
 
-    @beartype
     def set_action_set_tag(self, tag: str) -> None:
         self.action_set_tag = tag
 
-    @beartype
     def set_actions(self, action_seq: str | list[str]) -> None:
         if isinstance(action_seq, str):
             action_strs = action_seq.strip().split("\n")
@@ -79,14 +76,12 @@ class TeacherForcingAgent(Agent):
 
         self.actions: list[Action] = actions
 
-    @beartype
     def next_action(
         self, trajectory: Trajectory, intent: str, meta_data: Any
     ) -> Action:
         """Predict the next action given the observation"""
         return self.actions.pop(0)
 
-    @beartype
     def reset(
         self,
         test_config_file: str,
@@ -102,6 +97,7 @@ class TeacherForcingAgent(Agent):
 class PromptAgent(Agent):
     """prompt-based agent that emits action given the history"""
 
+    @beartype
     def __init__(
         self,
         action_set_tag: str,
@@ -113,7 +109,6 @@ class PromptAgent(Agent):
         self.prompt_constructor = prompt_constructor
         self.action_set_tag = action_set_tag
 
-    @beartype
     def set_action_set_tag(self, tag: str) -> None:
         self.action_set_tag = tag
 

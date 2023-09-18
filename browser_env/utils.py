@@ -4,7 +4,6 @@ from typing import Any, Dict, TypedDict, Union
 
 import numpy as np
 import numpy.typing as npt
-from beartype import beartype
 from PIL import Image
 
 
@@ -14,7 +13,6 @@ class DetachedPage:
     content: str  # html
 
 
-@beartype
 def png_bytes_to_numpy(png: bytes) -> npt.NDArray[np.uint8]:
     """Convert png bytes to numpy array
 
@@ -35,15 +33,28 @@ class AccessibilityTreeNode(TypedDict):
     properties: list[dict[str, Any]]
     childIds: list[str]
     parentId: str
-    backendDOMNodeId: int
+    backendDOMNodeId: str
     frameId: str
     bound: list[float] | None
     union_bound: list[float] | None
     offsetrect_bound: list[float] | None
 
 
+class DOMNode(TypedDict):
+    nodeId: str
+    nodeType: str
+    nodeName: str
+    nodeValue: str
+    attributes: str
+    backendNodeId: str
+    parentId: str
+    childIds: list[str]
+    cursor: int
+    union_bound: list[float] | None
+
+
 class BrowserConfig(TypedDict):
-    win_upper_bound: float
+    win_top_bound: float
     win_left_bound: float
     win_width: float
     win_height: float
@@ -58,6 +69,7 @@ class BrowserInfo(TypedDict):
 
 
 AccessibilityTree = list[AccessibilityTreeNode]
+DOMTree = list[DOMNode]
 
 
 Observation = str | npt.NDArray[np.uint8]
