@@ -16,12 +16,12 @@
         "program_html": [
             {
                 "url": "last",
-                "required_contents": "100",
+                "required_contents": {"must_include": ["100"]},
                 "locator": "func:shopping_get_sku_latest_review_rating('B09BCM56J7')"
             },
             {
                 "url": "last",
-                "required_contents": "cupcakecupcake",
+                "required_contents": {"must_include": ["cupcakecupcake"]},
                 "locator": "func:shopping_get_sku_latest_review_author('B09BCM56J7')"
             }
         ]
