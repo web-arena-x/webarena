@@ -10,7 +10,7 @@ from typing import Any, Tuple, Union
 import evaluate  # type: ignore[import]
 from beartype import beartype
 from beartype.door import is_bearable
-from nltk.tokenize import word_tokenize
+from nltk.tokenize import word_tokenize  # type: ignore
 from playwright.sync_api import CDPSession, Page
 
 from browser_env.actions import Action
