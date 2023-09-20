@@ -9414,12 +9414,13 @@
     "require_reset": false,
     "eval": {
       "eval_types": [
-        "url_match"
+        "string_match"
       ],
-      "reference_answers": null,
-      "reference_url": "NA",
+      "reference_answers": "N/A",
+      "reference_url": "",
       "program_html": [],
-      "url_note": "EXACT"
+      "string_note": "There is no order in the processing status",
+      "reference_answer_raw_annotation": "N/A"
     },
     "intent_template_id": 180
   },
@@ -9440,12 +9441,13 @@
     "require_reset": false,
     "eval": {
       "eval_types": [
-        "url_match"
+        "string_match"
       ],
-      "reference_answers": null,
-      "reference_url": "NA",
+      "reference_answers": "N/A",
+      "reference_url": "",
       "program_html": [],
-      "url_note": "EXACT"
+      "string_note": "There is no order out of delivery",
+      "reference_answer_raw_annotation": "N/A"
     },
     "intent_template_id": 180
   },
