@@ -18,14 +18,14 @@ assert (
     and MAP
     and HOMEPAGE
 ), (
-    f"Please setup the URLs to each site. Current: "
-    + f"Reddit: {REDDIT}"
-    + f"Shopping: {SHOPPING}"
-    + f"Shopping Admin: {SHOPPING_ADMIN}"
-    + f"Gitlab: {GITLAB}"
-    + f"Wikipedia: {WIKIPEDIA}"
-    + f"Map: {MAP}"
-    + f"Homepage: {HOMEPAGE}"
+    f"Please setup the URLs to each site. Current: \n"
+    + f"Reddit: {REDDIT}\n"
+    + f"Shopping: {SHOPPING}\n"
+    + f"Shopping Admin: {SHOPPING_ADMIN}\n"
+    + f"Gitlab: {GITLAB}\n"
+    + f"Wikipedia: {WIKIPEDIA}\n"
+    + f"Map: {MAP}\n"
+    + f"Homepage: {HOMEPAGE}\n"
 )
 
 
