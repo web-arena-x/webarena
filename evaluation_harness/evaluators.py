@@ -16,6 +16,7 @@ from playwright.sync_api import CDPSession, Page
 from browser_env.actions import Action
 from browser_env.utils import StateInfo
 from evaluation_harness.helper_functions import (
+    PseudoPage,
     gitlab_get_project_memeber_role,
     llm_fuzzy_match,
     reddit_get_post_url,
@@ -36,7 +37,7 @@ class Evaluator(object):
         self,
         trajectory: Trajectory,
         config_file: Path | str,
-        page: Page,
+        page: Page | PseudoPage,
         client: CDPSession,
     ) -> float:
         raise NotImplementedError
@@ -112,7 +113,7 @@ class StringEvaluator(Evaluator):
         self,
         trajectory: Trajectory,
         config_file: Path | str,
-        page: Page | None = None,
+        page: Page | PseudoPage | None = None,
         client: CDPSession | None = None,
     ) -> float:
         with open(config_file, "r") as f:
@@ -148,7 +149,7 @@ class StringSoftEvaluator(Evaluator):
         self,
         trajectory: Trajectory,
         config_file: Path | str,
-        page: Page | None = None,
+        page: Page | PseudoPage | None = None,
         client: CDPSession | None = None,
     ) -> float:
         with open(config_file, "r") as f:
@@ -171,7 +172,7 @@ class URLExactEvaluator(Evaluator):
         self,
         trajectory: Trajectory,
         config_file: Path | str,
-        page: Page,
+        page: Page | PseudoPage,
         client: CDPSession | None = None,
     ) -> float:
         with open(config_file, "r") as f:
@@ -209,7 +210,7 @@ class HTMLContentExactEvaluator(Evaluator):
         self,
         trajectory: Trajectory,
         config_file: Path | str,
-        page: Page,
+        page: Page | PseudoPage,
         client: CDPSession | None = None,
     ) -> float:
         with open(config_file, "r") as f:
@@ -236,7 +237,9 @@ class HTMLContentExactEvaluator(Evaluator):
             if not locator.strip():
                 selected_element = page.content()
             # use JS to select the element
-            elif locator.startswith("document."):
+            elif locator.startswith("document.") or locator.startswith(
+                "[...document."
+            ):
                 try:
                     selected_element = page.evaluate(f"() => {locator}")
                     if not selected_element:
@@ -295,7 +298,7 @@ class EvaluatorPartial(Evaluator):
         self,
         trajectory: Trajectory,
         config_file: Path | str,
-        page: Page,
+        page: Page | PseudoPage,
         client: CDPSession,
     ) -> float:
         raise NotImplementedError
@@ -308,7 +311,7 @@ class URLSoftEvaluator(EvaluatorPartial):
         self,
         trajectory: Trajectory,
         config_file: Path | str,
-        page: Page,
+        page: Page | PseudoPage,
         client: CDPSession,
     ) -> float:
         with open(config_file, "r") as f:
@@ -355,7 +358,7 @@ class EvaluatorComb:
         self,
         trajectory: Trajectory,
         config_file: Path | str,
-        page: Page,
+        page: Page | PseudoPage,
         client: CDPSession,
     ) -> float:
 

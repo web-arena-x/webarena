@@ -170,3 +170,16 @@ def llm_fuzzy_match(pred: str, reference: str, question: str) -> float:
         return 1.0
     else:
         return 0.0
+
+
+class PseudoPage:
+    def __init__(self, original_page: Page, url: str):
+        self.url = url
+        self.original_page = original_page
+
+    def __getattr__(self, attr: str) -> any:
+        # Delegate attribute access to the original page object
+        if attr not in ["url"]:
+            return getattr(self.original_page, attr)
+        else:
+            return getattr(self, attr)
