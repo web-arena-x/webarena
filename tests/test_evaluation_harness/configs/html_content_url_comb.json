@@ -17,12 +17,12 @@
         "program_html": [
             {
                 "url": "last",
-                "required_contents": "Hello World",
+                "required_contents": {"must_include": ["Hello World"]},
                 "locator": "document.querySelector('[id=\"form-name\"').value"
             },
             {
                 "url": "last",
-                "required_contents": "alexisxy@hotmail.com",
+                "required_contents": {"must_include": ["alexisxy@hotmail.com"]},
                 "locator": "document.querySelector('[id=\"form-email\"').value"
             }
         ]
