@@ -121,7 +121,15 @@ class TextObervationProcessor(ObservationProcessor):
                     "objectId": remote_object_id,
                     "functionDeclaration": """
                         function() {
-                            return this.getBoundingClientRect().toJSON();
+                            if (this.nodeType == 3) {
+                                var range = document.createRange();
+                                range.selectNode(this);
+                                var rect = range.getBoundingClientRect().toJSON();
+                                range.detach();
+                                return rect;
+                            } else {
+                                return this.getBoundingClientRect().toJSON();
+                            }
                         }
                     """,
                     "returnByValue": True,
@@ -231,8 +239,6 @@ class TextObervationProcessor(ObservationProcessor):
             # get the bound
             if cur_node["parentId"] == "-1":
                 cur_node["union_bound"] = [0.0, 0.0, 10.0, 10.0]
-            elif cur_node["nodeName"] == "#text":
-                todo_nodes[node_idx] = int(cur_node["parentId"])
             else:
                 response = self.get_bounding_client_rect(
                     client, cur_node["backendNodeId"]
@@ -392,8 +398,6 @@ class TextObervationProcessor(ObservationProcessor):
             if node["role"]["value"] == "RootWebArea":
                 # always inside the viewport
                 node["union_bound"] = [0.0, 0.0, 10.0, 10.0]
-            elif node["role"]["value"] == "StaticText":
-                todo_nodes[cursor] = node["parentId"]
             else:
                 response = self.get_bounding_client_rect(
                     client, backend_node_id
