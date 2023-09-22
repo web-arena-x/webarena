@@ -245,6 +245,28 @@ def test(
                 _c = json.load(f)
                 intent = _c["intent"]
                 task_id = _c["task_id"]
+                # automatically login
+                if _c["storage_state"]:
+                    cookie_file_name = os.path.basename(_c["storage_state"])
+                    comb = get_site_comb_from_filepath(cookie_file_name)
+                    temp_dir = tempfile.mkdtemp()
+                    # subprocess to renew the cookie
+                    subprocess.run(
+                        [
+                            "python",
+                            "browser_env/auto_login.py",
+                            "--auth_folder",
+                            temp_dir,
+                            "--site_list",
+                            *comb,
+                        ]
+                    )
+                    _c["storage_state"] = f"{temp_dir}/{cookie_file_name}"
+                    assert os.path.exists(_c["storage_state"])
+                    # update the config file
+                    config_file = f"{temp_dir}/{os.path.basename(config_file)}"
+                    with open(config_file, "w") as f:
+                        json.dump(_c, f)
 
             logger.info(f"[Config file]: {config_file}")
             logger.info(f"[Intent]: {intent}")
