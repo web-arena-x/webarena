@@ -141,6 +141,7 @@ run.sh
 
 # trajectory visualization
 render_cache/*
+cache/*
 
 # TMP IGNORE
 agent/prompts/jsons/*
