@@ -115,6 +115,7 @@ async def agenerate_from_openai_completion(
             "OPENAI_API_KEY environment variable must be set when using OpenAI API."
         )
     openai.api_key = os.environ["OPENAI_API_KEY"]
+    openai.organization = os.environ.get("OPENAI_ORGANIZATION", "")
 
     limiter = aiolimiter.AsyncLimiter(requests_per_minute)
     async_responses = [
@@ -147,6 +148,7 @@ def generate_from_openai_completion(
             "OPENAI_API_KEY environment variable must be set when using OpenAI API."
         )
     openai.api_key = os.environ["OPENAI_API_KEY"]
+    openai.organization = os.environ.get("OPENAI_ORGANIZATION", "")
     response = openai.Completion.create(  # type: ignore
         prompt=prompt,
         engine=engine,
@@ -218,6 +220,7 @@ async def agenerate_from_openai_chat_completion(
             "OPENAI_API_KEY environment variable must be set when using OpenAI API."
         )
     openai.api_key = os.environ["OPENAI_API_KEY"]
+    openai.organization = os.environ.get("OPENAI_ORGANIZATION", "")
 
     limiter = aiolimiter.AsyncLimiter(requests_per_minute)
     async_responses = [
@@ -250,6 +253,7 @@ def generate_from_openai_chat_completion(
             "OPENAI_API_KEY environment variable must be set when using OpenAI API."
         )
     openai.api_key = os.environ["OPENAI_API_KEY"]
+    openai.organization = os.environ.get("OPENAI_ORGANIZATION", "")
 
     response = openai.ChatCompletion.create(  # type: ignore
         model=model,
@@ -279,5 +283,6 @@ def fake_generate_from_openai_chat_completion(
             "OPENAI_API_KEY environment variable must be set when using OpenAI API."
         )
     openai.api_key = os.environ["OPENAI_API_KEY"]
+    openai.organization = os.environ.get("OPENAI_ORGANIZATION", "")
     answer = "Let's think step-by-step. This page shows a list of links and buttons. There is a search box with the label 'Search query'. I will click on the search box to type the query. So the action I will perform is \"click [60]\"."
     return answer

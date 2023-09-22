@@ -5,6 +5,8 @@ import json
 import logging
 import os
 import random
+import subprocess
+import tempfile
 import time
 from pathlib import Path
 
@@ -26,6 +28,7 @@ from browser_env import (
     create_stop_action,
 )
 from browser_env.actions import is_equivalent
+from browser_env.auto_login import get_site_comb_from_filepath
 from browser_env.helper_functions import (
     RenderHelper,
     get_action_description,
@@ -121,6 +124,12 @@ def config() -> argparse.Namespace:
         type=int,
         help="when not zero, will truncate the observation to this length before feeding to the model",
         default=1920,
+    )
+    parser.add_argument(
+        "--model_endpoint",
+        help="huggingface model endpoint",
+        type=str,
+        default="",
     )
 
     # example config
@@ -376,7 +385,7 @@ def dump_config(args: argparse.Namespace) -> None:
 
 if __name__ == "__main__":
     args = config()
-    args.sleep_after_execution = 2.5
+    args.sleep_after_execution = 2.0
     prepare(args)
 
     test_file_list = []
@@ -384,9 +393,10 @@ if __name__ == "__main__":
     ed_idx = args.test_end_idx
     for i in range(st_idx, ed_idx):
         test_file_list.append(f"config_files/{i}.json")
-    test_file_list = get_unfinished(test_file_list, args.result_dir)
+    if "debug" not in args.result_dir:
+        test_file_list = get_unfinished(test_file_list, args.result_dir)
     print(f"Total {len(test_file_list)} tasks left")
-    args.render = True
+    args.render = False
     args.render_screenshot = True
     args.save_trace_enabled = True
 

@@ -3,12 +3,11 @@ import re
 from pathlib import Path
 from typing import Any, TypedDict
 
-import tiktoken
-
 from browser_env import Action, ActionParsingError, Trajectory
 from browser_env.env_config import URL_MAPPINGS
 from browser_env.utils import StateInfo
 from llms import lm_config
+from llms.tokenizers import Tokenizer
 
 APIInput = str | list[Any] | dict[str, Any]
 
@@ -27,7 +26,7 @@ class PromptConstructor(object):
         self,
         instruction_path: str | Path,
         lm_config: lm_config.LMConfig,
-        tokenizer: tiktoken.core.Encoding,
+        tokenizer: Tokenizer,
     ):
         self.instrction_path = Path(instruction_path)
         self.obs_modality = "text"
@@ -77,6 +76,37 @@ class PromptConstructor(object):
                 raise ValueError(
                     f"OpenAI models do not support mode {self.lm_config.mode}"
                 )
+        elif "huggingface" in self.lm_config.provider:
+            # https://huggingface.co/blog/llama2#how-to-prompt-llama-2
+            # https://github.com/facebookresearch/llama/blob/main/llama/generation.py#L320
+            if "Llama-2" in self.lm_config.model:
+                if self.lm_config.mode == "chat":
+                    B_INST, E_INST = "[INST]", "[/INST]"
+                    B_SYS, E_SYS = "<<SYS>>\n", "\n<</SYS>>\n\n"
+                    BOS, EOS = "<s>", "</s>"
+                    # adding the system message to be the starting of the first example
+                    examples = [
+                        (
+                            B_SYS + intro + E_SYS + examples[0][0],
+                            examples[0][1],
+                        )
+                    ] + examples[1:]
+                    message = "".join(
+                        [
+                            f"{BOS}{B_INST} {x.strip()} {E_INST} {y.strip()} {EOS}"
+                            for (x, y) in examples
+                        ]
+                    )
+                    # add the current observation
+                    message += f"{BOS}{B_INST} {current.strip()} {E_INST} {self.instruction['meta_data'].get('force_prefix', '')}"
+
+                    return message
+                else:
+                    raise ValueError("Only chat mode is supported for Llama-2")
+            else:
+                raise ValueError(
+                    f"Huggingface models do not support model_tag {self.lm_config.gen_config['model_tag']}"
+                )
         else:
             raise NotImplementedError(
                 f"Provider {self.lm_config.provider} not implemented"
@@ -102,6 +132,9 @@ class PromptConstructor(object):
         for i, j in URL_MAPPINGS.items():
             if j in url:
                 url = url.replace(j, i)
+            # https
+            if j.replace("http", "https") in url:
+                url = url.replace(j.replace("http", "https"), i)
         return url
 
     def _extract_action(self, response: str) -> str:
@@ -120,7 +153,7 @@ class DirectPromptConstructor(PromptConstructor):
         self,
         instruction_path: str | Path,
         lm_config: lm_config.LMConfig,
-        tokenizer: tiktoken.core.Encoding,
+        tokenizer: Tokenizer,
     ):
         super().__init__(instruction_path, lm_config, tokenizer)
 
@@ -161,10 +194,10 @@ class DirectPromptConstructor(PromptConstructor):
 
     def _extract_action(self, response: str) -> str:
         action_splitter = self.instruction["meta_data"]["action_splitter"]
-        pattern = rf"{action_splitter}(.*?){action_splitter}"
+        pattern = rf"{action_splitter}((.|\n)*?){action_splitter}"
         match = re.search(pattern, response)
         if match:
-            return match.group(1)
+            return match.group(1).strip()
         else:
             raise ActionParsingError(
                 f"Cannot parse action from response {response}"
@@ -178,7 +211,7 @@ class CoTPromptConstructor(PromptConstructor):
         self,
         instruction_path: str | Path,
         lm_config: lm_config.LMConfig,
-        tokenizer: tiktoken.core.Encoding,
+        tokenizer: Tokenizer,
     ):
         super().__init__(instruction_path, lm_config, tokenizer)
         self.answer_phrase = self.instruction["meta_data"]["answer_phrase"]
@@ -218,10 +251,10 @@ class CoTPromptConstructor(PromptConstructor):
     def _extract_action(self, response: str) -> str:
         # find the first occurence of action
         action_splitter = self.instruction["meta_data"]["action_splitter"]
-        pattern = rf"{action_splitter}(.*?){action_splitter}"
+        pattern = rf"{action_splitter}((.|\n)*?){action_splitter}"
         match = re.search(pattern, response)
         if match:
-            return match.group(1)
+            return match.group(1).strip()
         else:
             raise ActionParsingError(
                 f'Cannot find the answer phrase "{self.answer_phrase}" in "{response}"'

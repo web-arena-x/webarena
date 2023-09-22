@@ -16,10 +16,12 @@ from browser_env.actions import (
 )
 from browser_env.utils import Observation, StateInfo
 from llms import lm_config
+from llms.providers.hf_utils import generate_from_huggingface_completion
 from llms.providers.openai_utils import (
     generate_from_openai_chat_completion,
     generate_from_openai_completion,
 )
+from llms.tokenizers import Tokenizer
 
 
 class Agent:
@@ -144,6 +146,15 @@ class PromptAgent(Agent):
                 raise ValueError(
                     f"OpenAI models do not support mode {lm_config.mode}"
                 )
+        elif lm_config.provider == "huggingface":
+            response = generate_from_huggingface_completion(
+                prompt=prompt,
+                model_endpoint=lm_config.gen_config["model_endpoint"],
+                temperature=lm_config.gen_config["temperature"],
+                top_p=lm_config.gen_config["top_p"],
+                stop_sequences=lm_config.gen_config["stop_sequences"],
+                max_new_tokens=lm_config.gen_config["max_new_tokens"],
+            )
         else:
             raise NotImplementedError(
                 f"Provider {lm_config.provider} not implemented"
@@ -181,6 +192,15 @@ def construct_llm_config(args: argparse.Namespace) -> lm_config.LMConfig:
         llm_config.gen_config["max_tokens"] = args.max_tokens
         llm_config.gen_config["stop_token"] = args.stop_token
         llm_config.gen_config["max_obs_length"] = args.max_obs_length
+    elif args.provider == "huggingface":
+        llm_config.gen_config["temperature"] = args.temperature
+        llm_config.gen_config["top_p"] = args.top_p
+        llm_config.gen_config["max_new_tokens"] = args.max_tokens
+        llm_config.gen_config["stop_sequences"] = (
+            [args.stop_token] if args.stop_token else None
+        )
+        llm_config.gen_config["max_obs_length"] = args.max_obs_length
+        llm_config.gen_config["model_endpoint"] = args.model_endpoint
     else:
         raise NotImplementedError(f"provider {args.provider} not implemented")
     return llm_config
@@ -195,7 +215,7 @@ def construct_agent(args: argparse.Namespace) -> Agent:
     elif args.agent_type == "prompt":
         with open(args.instruction_path) as f:
             constructor_type = json.load(f)["meta_data"]["prompt_constructor"]
-        tokenizer = tiktoken.encoding_for_model(llm_config.model)
+        tokenizer = Tokenizer(args.provider, args.model)
         prompt_constructor = eval(constructor_type)(
             args.instruction_path, lm_config=llm_config, tokenizer=tokenizer
         )
