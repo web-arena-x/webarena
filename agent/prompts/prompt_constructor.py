@@ -8,8 +8,7 @@ from browser_env.env_config import URL_MAPPINGS
 from browser_env.utils import StateInfo
 from llms import lm_config
 from llms.tokenizers import Tokenizer
-
-APIInput = str | list[Any] | dict[str, Any]
+from llms.utils import APIInput
 
 
 class Instruction(TypedDict):

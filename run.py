@@ -120,6 +120,12 @@ def config() -> argparse.Namespace:
     parser.add_argument("--max_tokens", type=int, default=384)
     parser.add_argument("--stop_token", type=str, default=None)
     parser.add_argument(
+        "--max_retry",
+        type=int,
+        help="max retry times to perform generations when parsing fails",
+        default=1,
+    )
+    parser.add_argument(
         "--max_obs_length",
         type=int,
         help="when not zero, will truncate the observation to this length before feeding to the model",

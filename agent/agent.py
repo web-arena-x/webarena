@@ -15,11 +15,12 @@ from browser_env.actions import (
     create_playwright_action,
 )
 from browser_env.utils import Observation, StateInfo
-from llms import lm_config
-from llms.providers.hf_utils import generate_from_huggingface_completion
-from llms.providers.openai_utils import (
+from llms import (
+    call_llm,
+    generate_from_huggingface_completion,
     generate_from_openai_chat_completion,
     generate_from_openai_completion,
+    lm_config,
 )
 from llms.tokenizers import Tokenizer
 
@@ -122,58 +123,29 @@ class PromptAgent(Agent):
             trajectory, intent, meta_data
         )
         lm_config = self.lm_config
-        if lm_config.provider == "openai":
-            if lm_config.mode == "chat":
-                response = generate_from_openai_chat_completion(
-                    messages=prompt,
-                    model=lm_config.model,
-                    temperature=lm_config.gen_config["temperature"],
-                    top_p=lm_config.gen_config["top_p"],
-                    context_length=lm_config.gen_config["context_length"],
-                    max_tokens=lm_config.gen_config["max_tokens"],
-                    stop_token=None,
+        n = 0
+        while True:
+            response = call_llm(lm_config, prompt)
+            n += 1
+            try:
+                parsed_response = self.prompt_constructor.extract_action(
+                    response
                 )
-            elif lm_config.mode == "completion":
-                response = generate_from_openai_completion(
-                    prompt=prompt,
-                    engine=lm_config.model,
-                    temperature=lm_config.gen_config["temperature"],
-                    max_tokens=lm_config.gen_config["max_tokens"],
-                    top_p=lm_config.gen_config["top_p"],
-                    stop_token=lm_config.gen_config["stop_token"],
-                )
-            else:
-                raise ValueError(
-                    f"OpenAI models do not support mode {lm_config.mode}"
-                )
-        elif lm_config.provider == "huggingface":
-            response = generate_from_huggingface_completion(
-                prompt=prompt,
-                model_endpoint=lm_config.gen_config["model_endpoint"],
-                temperature=lm_config.gen_config["temperature"],
-                top_p=lm_config.gen_config["top_p"],
-                stop_sequences=lm_config.gen_config["stop_sequences"],
-                max_new_tokens=lm_config.gen_config["max_new_tokens"],
-            )
-        else:
-            raise NotImplementedError(
-                f"Provider {lm_config.provider} not implemented"
-            )
-
-        try:
-            parsed_response = self.prompt_constructor.extract_action(response)
-            if self.action_set_tag == "id_accessibility_tree":
-                action = create_id_based_action(parsed_response)
-            elif self.action_set_tag == "playwright":
-                action = create_playwright_action(parsed_response)
-            else:
-                raise ValueError(f"Unknown action type {self.action_set_tag}")
-
-            action["raw_prediction"] = response
-
-        except ActionParsingError as e:
-            action = create_none_action()
-            action["raw_prediction"] = response
+                if self.action_set_tag == "id_accessibility_tree":
+                    action = create_id_based_action(parsed_response)
+                elif self.action_set_tag == "playwright":
+                    action = create_playwright_action(parsed_response)
+                else:
+                    raise ValueError(
+                        f"Unknown action type {self.action_set_tag}"
+                    )
+                action["raw_prediction"] = response
+                break
+            except ActionParsingError as e:
+                if n >= lm_config.gen_config["max_retry"]:
+                    action = create_none_action()
+                    action["raw_prediction"] = response
+                    break
 
         return action
 
@@ -181,33 +153,8 @@ class PromptAgent(Agent):
         pass
 
 
-def construct_llm_config(args: argparse.Namespace) -> lm_config.LMConfig:
-    llm_config = lm_config.LMConfig(
-        provider=args.provider, model=args.model, mode=args.mode
-    )
-    if args.provider == "openai":
-        llm_config.gen_config["temperature"] = args.temperature
-        llm_config.gen_config["top_p"] = args.top_p
-        llm_config.gen_config["context_length"] = args.context_length
-        llm_config.gen_config["max_tokens"] = args.max_tokens
-        llm_config.gen_config["stop_token"] = args.stop_token
-        llm_config.gen_config["max_obs_length"] = args.max_obs_length
-    elif args.provider == "huggingface":
-        llm_config.gen_config["temperature"] = args.temperature
-        llm_config.gen_config["top_p"] = args.top_p
-        llm_config.gen_config["max_new_tokens"] = args.max_tokens
-        llm_config.gen_config["stop_sequences"] = (
-            [args.stop_token] if args.stop_token else None
-        )
-        llm_config.gen_config["max_obs_length"] = args.max_obs_length
-        llm_config.gen_config["model_endpoint"] = args.model_endpoint
-    else:
-        raise NotImplementedError(f"provider {args.provider} not implemented")
-    return llm_config
-
-
 def construct_agent(args: argparse.Namespace) -> Agent:
-    llm_config = construct_llm_config(args)
+    llm_config = lm_config.construct_llm_config(args)
 
     agent: Agent
     if args.agent_type == "teacher_forcing":
