@@ -48,6 +48,7 @@ class PromptConstructor(object):
         **kwargs
     ) -> str:
         prompt = template.format(**kwargs)
+        print('-----prompt-----', prompt, '-----prompt-----', sep='\n')
         prompt = self.get_lm_api_input(intro, examples, prompt)
         response = llm(prompt)
 
@@ -285,6 +286,7 @@ class RCIPromptConstructor(PromptConstructor):
         page = state_info["info"]["page"]
         url = self.map_url_to_real(page.url)
         history_actions = ', '.join(meta_data["action_history"])
+        previous_action_str = meta_data["action_history"][-1]
 
         obs = state_info["observation"][self.obs_modality]
         max_obs_length = self.lm_config.gen_config["max_obs_length"]
@@ -370,7 +372,7 @@ class RCIPromptConstructor(PromptConstructor):
             observation=obs,
             url=url,
             objective=intent,
-            history_actions=history_actions,
+            previous_action=previous_action_str,
             plan=self.plan,
         )
         print('meta next step')
@@ -387,7 +389,7 @@ class RCIPromptConstructor(PromptConstructor):
             llm,
             observation=obs,
             url=url,
-            history_actions=history_actions,
+            previous_action=previous_action_str,
             meta_next_action=meta_next_action,
         )
         print('draft_next_action')
@@ -404,7 +406,7 @@ class RCIPromptConstructor(PromptConstructor):
             llm,
             observation=obs,
             url=url,
-            history_actions=history_actions,
+            previous_action=previous_action_str,
             meta_next_action=meta_next_action,
             draft_next_action=draft_next_action
         )
@@ -432,6 +434,7 @@ class RCIPromptConstructor(PromptConstructor):
         print('=====================')
         print(response)
         print()
+
 
         return response
 
