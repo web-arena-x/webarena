@@ -27,10 +27,10 @@ class PromptConstructor(object):
         lm_config: lm_config.LMConfig,
         tokenizer: Tokenizer,
     ):
-        self.instrction_path = Path(instruction_path)
+        self.instruction_path = Path(instruction_path)
         self.obs_modality = "text"
         self.lm_config = lm_config
-        instruction = json.load(open(self.instrction_path))
+        instruction = json.load(open(self.instruction_path))
         instruction["examples"] = [tuple(e) for e in instruction["examples"]]
         self.instruction: Instruction = instruction
         self.tokenizer = tokenizer
