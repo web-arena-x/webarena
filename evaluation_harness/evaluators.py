@@ -27,11 +27,11 @@ from evaluation_harness.helper_functions import (
 Trajectory = list[Union[Action, StateInfo]]
 
 
-@beartype
 class Evaluator(object):
     def __init__(self, eval_tag: str = "") -> None:
         self.eval_tag = eval_tag
 
+    @beartype
     def __call__(
         self,
         trajectory: Trajectory,
@@ -44,7 +44,7 @@ class Evaluator(object):
     @staticmethod
     def get_last_action(trajectory: Trajectory) -> Action:
         try:
-            is_bearable(trajectory[-1], Action)
+            # is_bearable(trajectory[-1], Action)
             last_action = trajectory[-1]
         except Exception:
             raise ValueError(
@@ -56,7 +56,7 @@ class Evaluator(object):
     @staticmethod
     def get_last_state(trajectory: Trajectory) -> StateInfo:
         try:
-            is_bearable(trajectory[-2], StateInfo)
+            # is_bearable(trajectory[-2], StateInfo)
             last_state = trajectory[-2]
         except Exception:
             raise ValueError(
@@ -66,7 +66,6 @@ class Evaluator(object):
         return last_state  # type: ignore[return-value]
 
 
-@beartype
 class StringEvaluator(Evaluator):
     """Check whether the answer is correct with:
     exact match: the answer is exactly the same as the reference answer
@@ -141,10 +140,10 @@ class StringEvaluator(Evaluator):
         return score
 
 
-@beartype
 class StringSoftEvaluator(Evaluator):
     """Use text generation metrics such as BLEU, ROUGE, etc. to evaluate the answer"""
 
+    @beartype
     def __call__(
         self,
         trajectory: Trajectory,
@@ -164,10 +163,10 @@ class StringSoftEvaluator(Evaluator):
         return float(rouge["rouge1"])
 
 
-@beartype
 class URLExactEvaluator(Evaluator):
     """Check whether the URL is exactly the same as of the reference URLs"""
 
+    @beartype
     def __call__(
         self,
         trajectory: Trajectory,
@@ -202,10 +201,10 @@ class URLExactEvaluator(Evaluator):
             raise ValueError(f"Unknown matching rule: {matching_rule}")
 
 
-@beartype
 class HTMLContentExactEvaluator(Evaluator):
     """Check whether the contents appear in the page"""
 
+    @beartype
     def __call__(
         self,
         trajectory: Trajectory,
@@ -288,7 +287,6 @@ class HTMLContentExactEvaluator(Evaluator):
 ######
 
 
-@beartype
 class EvaluatorPartial(Evaluator):
     def __init__(self) -> None:
         raise NotImplementedError
@@ -303,7 +301,6 @@ class EvaluatorPartial(Evaluator):
         raise NotImplementedError
 
 
-@beartype
 class URLSoftEvaluator(EvaluatorPartial):
     """Parse the URL and compare the domain and parameters"""
 
@@ -353,6 +350,7 @@ class EvaluatorComb:
     def __init__(self, evaluators: list[Evaluator]) -> None:
         self.evaluators = evaluators
 
+    @beartype
     def __call__(
         self,
         trajectory: Trajectory,

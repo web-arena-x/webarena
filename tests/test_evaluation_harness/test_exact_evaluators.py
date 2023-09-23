@@ -6,7 +6,6 @@ from pathlib import Path
 from typing import Any
 
 import pytest
-from beartype import beartype
 from py import test
 
 from agent import Agent, TeacherForcingAgent
@@ -249,7 +248,6 @@ def test_html_content_url_comb_success(
     assert score == 1.0
 
 
-@beartype
 @pytest.mark.skipif(
     IN_GITHUB_ACTIONS, reason="Won't work using the demo sites"
 )
@@ -273,7 +271,6 @@ def test_func_success(
     assert score == 1.0
 
 
-@beartype
 @pytest.mark.skipif(
     IN_GITHUB_ACTIONS, reason="Won't work using the demo sites"
 )
@@ -297,7 +294,6 @@ def test_func_fail(
     assert score == 0.0
 
 
-@beartype
 def test_func_url_func_last_success(
     script_browser_env: ScriptBrowserEnv,
 ) -> None:
@@ -319,7 +315,6 @@ def test_func_url_func_last_success(
     assert score == 1.0
 
 
-@beartype
 def test_func_url_func_page_success(
     script_browser_env: ScriptBrowserEnv,
 ) -> None:

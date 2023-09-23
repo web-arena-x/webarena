@@ -6,7 +6,6 @@ import time
 from typing import Dict, Optional, Tuple, Type, Union, cast
 
 import pytest
-from beartype import beartype
 from playwright.sync_api import Page, expect
 
 from browser_env import (
@@ -21,13 +20,11 @@ from browser_env.env_config import *
 HEADLESS = False
 
 
-@beartype
 def gen_tmp_storage_state() -> None:
     with open(f"scripts/tmp_storage_state.json", "w") as f:
-        json.dump({"storage_state": ".auth/reddit_state.json"}, f)
+        json.dump({"storage_state": ".auth/gitlab_state.json"}, f)
 
 
-@beartype
 def get_observation(
     observation_type: str, current_viewport_only: bool
 ) -> None:
@@ -37,7 +34,8 @@ def get_observation(
         headless=HEADLESS,
     )
     env.reset(options={"config_file": f"scripts/tmp_storage_state.json"})
-    s = f"""page.goto("{GITLAB}")
+    s = f"""page.goto("{GITLAB}/byteblaze/a11y-syntax-highlighting")
+    page.scroll(down)
     page.scroll(down)"""
     action_seq = s.split("\n")
 

@@ -5,7 +5,6 @@ from pathlib import Path
 
 import numpy as np
 import numpy.typing as npt
-from beartype import beartype
 from gymnasium import Env
 from gymnasium.spaces import Box, Text
 from playwright.async_api import Page, ViewportSize, async_playwright
@@ -23,7 +22,6 @@ class AsyncScriptBrowserEnv(Env[npt.NDArray[np.uint8], Action]):
     and observation space is the html content of the page.
     """
 
-    @beartype
     def __init__(
         self,
         max_page_length: int = 2048,
@@ -46,7 +44,6 @@ class AsyncScriptBrowserEnv(Env[npt.NDArray[np.uint8], Action]):
         self.timeout = timeout
         self.viewport_size = viewport_size
 
-    @beartype
     async def setup(self, config_file: Path | None = None) -> None:
         self.context_manager = async_playwright()
         self.playwright = await self.context_manager.__aenter__()
@@ -73,7 +70,6 @@ class AsyncScriptBrowserEnv(Env[npt.NDArray[np.uint8], Action]):
         if start_url:
             await self.page.goto(start_url)
 
-    @beartype
     async def areset(
         self,
         *,
@@ -104,7 +100,6 @@ class AsyncScriptBrowserEnv(Env[npt.NDArray[np.uint8], Action]):
             {"page": DetachedPage(self.page.url, content)},
         )
 
-    @beartype
     def reset(
         self,
         *,
@@ -120,7 +115,6 @@ class AsyncScriptBrowserEnv(Env[npt.NDArray[np.uint8], Action]):
     def close(self) -> None:
         asyncio.run(self.aclose())
 
-    @beartype
     async def astep(
         self, action: Action
     ) -> tuple[npt.NDArray[np.uint8], float, bool, bool, dict[str, object]]:
@@ -153,7 +147,6 @@ class AsyncScriptBrowserEnv(Env[npt.NDArray[np.uint8], Action]):
             },
         )
 
-    @beartype
     def step(
         self, action: Action
     ) -> tuple[npt.NDArray[np.uint8], float, bool, bool, dict[str, object]]:
