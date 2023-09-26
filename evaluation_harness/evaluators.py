@@ -152,7 +152,7 @@ class StringEvaluator(Evaluator):
         return score
 
 
-class URLExactEvaluator(Evaluator):
+class URLEvaluator(Evaluator):
     """Check URL matching"""
 
     @beartype
@@ -223,7 +223,7 @@ class URLExactEvaluator(Evaluator):
         return score
 
 
-class HTMLContentExactEvaluator(Evaluator):
+class HTMLContentEvaluator(Evaluator):
     """Check whether the contents appear in the page"""
 
     @beartype
@@ -334,15 +334,15 @@ def evaluator_router(config_file: Path | str) -> EvaluatorComb:
         configs = json.load(f)
 
     eval_types = configs["eval"]["eval_types"]
-    evaluators: list[Evaluator | EvaluatorPartial] = []
+    evaluators: list[Evaluator] = []
     for eval_type in eval_types:
         match eval_type:
             case "string_match":
                 evaluators.append(StringEvaluator())
             case "url_match":
-                evaluators.append(URLExactEvaluator())
+                evaluators.append(URLEvaluator())
             case "program_html":
-                evaluators.append(HTMLContentExactEvaluator())
+                evaluators.append(HTMLContentEvaluator())
             case _:
                 raise ValueError(f"eval_type {eval_type} is not supported")
 
