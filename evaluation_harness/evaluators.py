@@ -152,29 +152,6 @@ class StringEvaluator(Evaluator):
         return score
 
 
-class StringSoftEvaluator(Evaluator):
-    """Use text generation metrics such as BLEU, ROUGE, etc. to evaluate the answer"""
-
-    @beartype
-    def __call__(
-        self,
-        trajectory: Trajectory,
-        config_file: Path | str,
-        page: Page | PseudoPage | None = None,
-        client: CDPSession | None = None,
-    ) -> float:
-        with open(config_file, "r") as f:
-            configs = json.load(f)
-
-        last_action = self.get_last_action(trajectory)
-        pred = last_action["answer"]
-        ref = configs["eval"]["reference_answers"]
-        # rouge
-        m = evaluate.load("rouge")
-        rouge = m.compute(predictions=[pred], references=[ref])
-        return float(rouge["rouge1"])
-
-
 class URLExactEvaluator(Evaluator):
     """Check URL matching"""
 
@@ -327,73 +304,6 @@ class HTMLContentExactEvaluator(Evaluator):
                 raise ValueError(
                     f"Unknown required_contents: {target['required_contents'].keys()}"
                 )
-        return score
-
-
-######
-# soft matches.
-# mainly for partial scores
-# !!under development!!
-# TODO[shuyanzh]
-######
-
-
-class EvaluatorPartial(Evaluator):
-    def __init__(self) -> None:
-        raise NotImplementedError
-
-    def __call__(
-        self,
-        trajectory: Trajectory,
-        config_file: Path | str,
-        page: Page | PseudoPage,
-        client: CDPSession,
-    ) -> float:
-        raise NotImplementedError
-
-
-class URLSoftEvaluator(EvaluatorPartial):
-    """Parse the URL and compare the domain and parameters"""
-
-    def __call__(
-        self,
-        trajectory: Trajectory,
-        config_file: Path | str,
-        page: Page | PseudoPage,
-        client: CDPSession,
-    ) -> float:
-        with open(config_file, "r") as f:
-            configs = json.load(f)
-
-        last_state = self.get_last_state(trajectory)
-        pred = last_state["info"]["page"].url
-        ref = configs["eval"]["reference_url"]
-
-        # parse url to get domain, parameters, etc.
-        parsed_pred = urllib.parse.urlparse(pred)
-        parsed_ref = urllib.parse.urlparse(ref)
-
-        # check domain
-        domain_match = int(parsed_pred.netloc == parsed_ref.netloc)
-
-        def get_param_set(query: dict[str, list[str]]) -> set[str]:
-            param_set = set()
-            for k, v in query.items():
-                for vv in v:
-                    param_set.add(f"{k}={vv}")
-            return param_set
-
-        # calculate parameter f1
-        param_set_ref = get_param_set(urllib.parse.parse_qs(parsed_ref.query))
-        param_set_pred = get_param_set(
-            urllib.parse.parse_qs(parsed_pred.query)
-        )
-        r = len(param_set_ref & param_set_pred) / len(param_set_ref)
-        p = len(param_set_ref & param_set_pred) / len(param_set_pred)
-        f1 = 2 * r * p / (r + p) if r + p > 0 else 1.0
-
-        score = domain_match * f1  # domain match is a must
-
         return score
 
 
