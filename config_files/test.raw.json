@@ -12646,8 +12646,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/f/books/new",
-          "locator": "document.querySelectorAll('div.submission__vote')[0].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/books/124260/adults-reading-to-each-other-out-loud",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -12681,8 +12681,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/f/diy/new",
-          "locator": "document.querySelectorAll('div.submission__vote')[0].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/DIY/119019/how-can-i-bring-an-hdmi-cable-from-my-pc-downstairs-to-my-tv",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -12716,8 +12716,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/f/futurology/new",
-          "locator": "document.querySelectorAll('div.submission__vote')[0].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/Futurology/119517/openai-ceo-it-s-not-funny-that-i-m-afraid-of-the-ai-we-re",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -12751,8 +12751,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/f/deeplearning",
-          "locator": "document.querySelectorAll('div.submission__vote')[0].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/deeplearning/124993/meta-s-llama-weights-leaked-on-torrent-and-the-best-thing",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -12786,8 +12786,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/f/explainlikeimfive",
-          "locator": "document.querySelectorAll('div.submission__vote')[0].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/explainlikeimfive/39244/eli5-how-does-pinching-a-ribbon-and-sliding-your-finger",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -15641,7 +15641,9 @@
       "eval_types": [
         "program_html"
       ],
-      "reference_answers": {"exact_match": "N/A"},
+      "reference_answers": {
+        "exact_match": "N/A"
+      },
       "reference_url": "",
       "program_html": [],
       "string_note": "System message: We cannot add order history."
@@ -25071,8 +25073,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/f/gadgets/top?t=all",
-          "locator": "document.querySelectorAll('div.submission__vote')[0].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/gadgets/19459/a-custom-gaming-pc-built-inside-a-vintage-1940s-motorola",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25107,8 +25109,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/f/history/top?t=all",
-          "locator": "document.querySelectorAll('div.submission__vote')[0].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/history/84338/the-scientist-who-discovered-sperm-was-so-grossed-out-he",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25116,8 +25118,8 @@
           }
         },
         {
-          "url": "__REDDIT__/f/history/top?t=all",
-          "locator": "document.querySelectorAll('div.submission__vote')[1].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/history/105990/4-500-year-old-sumerian-temple-dedicated-to-mighty-thunder",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25152,8 +25154,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/f/books/top?t=all",
-          "locator": "document.querySelectorAll('div.submission__vote')[0].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/books/81371/the-letters-of-t-s-eliot-to-emily-hale-that-were-kept-sealed",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25161,8 +25163,8 @@
           }
         },
         {
-          "url": "__REDDIT__/f/books/top?t=all",
-          "locator": "document.querySelectorAll('div.submission__vote')[1].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/books/59421/friendly-reminder-bookshop-org-exists",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25170,8 +25172,8 @@
           }
         },
         {
-          "url": "__REDDIT__/f/books/top?t=all",
-          "locator": "document.querySelectorAll('div.submission__vote')[2].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/books/59447/appalachian-prison-book-project-seeks-notebook-donations-the",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25206,8 +25208,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/f/movies/top?t=all",
-          "locator": "document.querySelectorAll('div.submission__vote')[0].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/movies/86174/who-will-win-the-oscar-for-actress-in-a-supporting-role",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25215,8 +25217,8 @@
           }
         },
         {
-          "url": "__REDDIT__/f/movies/top?t=all",
-          "locator": "document.querySelectorAll('div.submission__vote')[1].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/movies/86029/who-will-win-the-oscar-for-film-editing",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25224,8 +25226,8 @@
           }
         },
         {
-          "url": "__REDDIT__/f/movies/top?t=all",
-          "locator": "document.querySelectorAll('div.submission__vote')[2].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/movies/86055/cindy-williams-dies-laverne-amp-shirley-star-who-appeared-in",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25233,8 +25235,8 @@
           }
         },
         {
-          "url": "__REDDIT__/f/movies/top?t=all",
-          "locator": "document.querySelectorAll('div.submission__vote')[3].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/movies/42682/michelle-yeoh-to-receive-palm-springs-film-festival-s",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25269,8 +25271,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/f/technology/top?t=all",
-          "locator": "document.querySelectorAll('div.submission__vote')[0].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/technology/48670/brain-cancer-vaccine-succeeds-at-prolonging-survival-in",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25278,8 +25280,8 @@
           }
         },
         {
-          "url": "__REDDIT__/f/technology/top?t=all",
-          "locator": "document.querySelectorAll('div.submission__vote')[1].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/technology/134696/india-cuts-internet-for-27-million-people-amid-search-for",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25287,8 +25289,8 @@
           }
         },
         {
-          "url": "__REDDIT__/f/technology/top?t=all",
-          "locator": "document.querySelectorAll('div.submission__vote')[2].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/technology/48785/us-judge-orders-amazon-to-cease-and-desist-anti-union",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25296,8 +25298,8 @@
           }
         },
         {
-          "url": "__REDDIT__/f/technology/top?t=all",
-          "locator": "document.querySelectorAll('div.submission__vote')[3].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/technology/70354/activision-s-boston-studio-workers-announce-unionization",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25305,8 +25307,8 @@
           }
         },
         {
-          "url": "__REDDIT__/f/technology/top?t=all",
-          "locator": "document.querySelectorAll('div.submission__vote')[4].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/technology/70233/social-media-influencers-are-charged-with-feeding-followers",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25341,8 +25343,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/user/ThetaGang_wsb/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[0].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/wallstreetbets/29478/how-will-airbnb-close-following-their-earnings-report-on",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25350,8 +25352,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/ThetaGang_wsb/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[1].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/wallstreetbets/29458/how-much-will-the-federal-reserve-raise-interest-rates-in",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25386,8 +25388,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/user/CameronKelsey/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[0].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/EarthPorn/98332/my-favorite-place-on-the-planet-henry-s-fork-of-the-snake",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25395,8 +25397,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/CameronKelsey/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[1].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/EarthPorn/98297/2-years-later-this-is-still-one-of-the-most-incredible",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25404,8 +25406,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/CameronKelsey/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[2].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/EarthPorn/98256/i-can-t-wait-for-all-this-green-to-start-coming-back-little",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25440,8 +25442,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/user/UniversityofBath/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[0].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/IAmA/119742/hi-i-m-vienne-a-doctoral-student-at-the-university-of-bath-i",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25449,8 +25451,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/UniversityofBath/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[1].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/IAmA/119719/hello-reddit-i-m-nazia-mehrban-a-lecturer-in-biotechnology",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25458,8 +25460,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/UniversityofBath/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[2].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/IAmA/119714/i-m-ellie-jarvis-she-her-a-2nd-year-phd-student-in-the",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25467,8 +25469,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/UniversityofBath/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[3].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/IAmA/55155/hi-i-m-dr-lucy-maddox-from-bath-university-uk-i-m-a-clinical",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25476,8 +25478,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/UniversityofBath/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[4].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/IAmA/55142/we-re-sadeka-nujhat-hannah-leese-and-sandhya-moise-from-the",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25485,8 +25487,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/UniversityofBath/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[5].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/IAmA/34032/we-re-sandhya-moise-david-phillips-and-chan-lee-from-the",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25494,8 +25496,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/UniversityofBath/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[6].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/IAmA/13175/hi-i-m-kit-yates-i-m-a-mathematical-biologist-at-the",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25503,8 +25505,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/UniversityofBath/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[7].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/IAmA/13170/hello-i-m-dr-sara-fontani-from-the-university-of",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25539,8 +25541,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/user/Don_Gato1/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[1].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/nyc/44650/fox-news-hosts-cast-new-york-as-crime-ridden-and-chaotic",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25606,8 +25608,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[0].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/129816/gov-whitmer-signs-bills-to-repeal-right-to-work-restore",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25615,8 +25617,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[1].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/129808/disney-world-deal-with-union-will-raise-minimum-wage-to-18",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25624,8 +25626,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[2].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/129794/judge-halts-wyoming-abortion-ban-days-after-it-took-effect",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25633,8 +25635,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[3].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/129783/don-t-say-gay-lawmaker-pleads-guilty-to-covid-relief-fraud",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25642,8 +25644,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[4].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/129594/arizona-gov-katie-hobbs-refuses-to-proceed-with-execution",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25651,8 +25653,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[5].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/129508/tennessee-governor-oks-bill-to-cut-nashville-council-in-half",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25660,8 +25662,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[7].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/43839/philadelphia-da-larry-krasner-impeached-by-pa-house",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25669,8 +25671,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[8].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/43781/crypto-giant-ftx-to-file-for-bankruptcy-ceo-sam-bankman",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25678,8 +25680,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[9].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/43572/sec-doj-investigating-crypto-platform-ftx",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25687,8 +25689,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[10].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/43558/kansas-gov-laura-kelly-wins-re-election-defeating-gop",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25723,8 +25725,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/user/RickyDontLoseThat/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[0].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/massachusetts/84954/the-last-of-lincoln",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25789,8 +25791,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/user/PatientBuilder499/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[7].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/videos/115139/hundreds-of-civilian-turkish-volunteers-waiting-to-be-sent",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25825,8 +25827,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/user/sirbarani/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[3].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/sports/48303/iran-football-legend-daei-will-not-attend-world-cup-amid",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25861,8 +25863,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/user/AdamCannon/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[7].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/UpliftingNews/16087/same-sex-marriage-is-now-legal-in-all-of-mexico-s-states",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25897,8 +25899,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[0].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/129816/gov-whitmer-signs-bills-to-repeal-right-to-work-restore",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25906,8 +25908,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[1].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/129808/disney-world-deal-with-union-will-raise-minimum-wage-to-18",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25915,8 +25917,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[2].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/129794/judge-halts-wyoming-abortion-ban-days-after-it-took-effect",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25924,8 +25926,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[3].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/129783/don-t-say-gay-lawmaker-pleads-guilty-to-covid-relief-fraud",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25933,8 +25935,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[4].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/129594/arizona-gov-katie-hobbs-refuses-to-proceed-with-execution",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25942,8 +25944,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[5].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/129508/tennessee-governor-oks-bill-to-cut-nashville-council-in-half",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25951,8 +25953,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[7].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/43839/philadelphia-da-larry-krasner-impeached-by-pa-house",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25960,8 +25962,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[8].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/43781/crypto-giant-ftx-to-file-for-bankruptcy-ceo-sam-bankman",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25969,8 +25971,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[9].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/43572/sec-doj-investigating-crypto-platform-ftx",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25978,8 +25980,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[10].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/43558/kansas-gov-laura-kelly-wins-re-election-defeating-gop",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
