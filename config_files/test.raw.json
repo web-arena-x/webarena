@@ -11649,7 +11649,7 @@
         "url_match"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING_ADMIN__/admin/system_design_theme/edit/id/1/key/",
+      "reference_url": "__SHOPPING_ADMIN__/admin/system_design_theme/edit/id/1",
       "program_html": [],
       "url_note": "GOLD in PRED"
     },
@@ -12482,7 +12482,7 @@
       "program_html": [
         {
           "url": "__REDDIT__/user/MarvelsGrantMan136",
-          "locator": "document.querySelector(\".profile-user-bio\").outerText",
+          "locator": "document.querySelector(\".user-bio__biography\").outerText",
           "required_contents": {
             "exact_match": "I am a robot"
           }
@@ -12515,7 +12515,7 @@
       "program_html": [
         {
           "url": "__REDDIT__/user/MarvelsGrantMan136",
-          "locator": "document.querySelector(\".profile-user-bio\").outerText",
+          "locator": "document.querySelector(\".user-bio__biography\").outerText",
           "required_contents": {
             "exact_match": "Pro Python Developer with 20 years of Experience"
           }
@@ -12548,7 +12548,7 @@
       "program_html": [
         {
           "url": "__REDDIT__/user/MarvelsGrantMan136",
-          "locator": "document.querySelector(\".profile-user-bio\").outerText",
+          "locator": "document.querySelector(\".user-bio__biography\").outerText",
           "required_contents": {
             "exact_match": "Seeking SDE positions"
           }
@@ -12581,7 +12581,7 @@
       "program_html": [
         {
           "url": "__REDDIT__/user/MarvelsGrantMan136",
-          "locator": "document.querySelector(\".profile-user-bio\").outerText",
+          "locator": "document.querySelector(\".user-bio__biography\").outerText",
           "required_contents": {
             "exact_match": "Freelance Web Developer"
           }
@@ -12614,7 +12614,7 @@
       "program_html": [
         {
           "url": "__REDDIT__/user/MarvelsGrantMan136",
-          "locator": "document.querySelector(\".profile-user-bio\").outerText",
+          "locator": "document.querySelector(\".user-bio__biography\").outerText",
           "required_contents": {
             "exact_match": "Awesome Prompt Artist"
           }
@@ -12751,7 +12751,7 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/f/books/deeplearning",
+          "url": "__REDDIT__/f/deeplearning",
           "locator": "document.querySelectorAll('div.submission__vote')[0].querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
@@ -12786,7 +12786,7 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/f/books/explainlikeimfive",
+          "url": "__REDDIT__/f/explainlikeimfive",
           "locator": "document.querySelectorAll('div.submission__vote')[0].querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
@@ -13135,7 +13135,7 @@
       "program_html": [
         {
           "url": "__GITLAB__/byteblaze",
-          "locator": "document.querySelector('.profile-user-bio').outerText",
+          "locator": "document.querySelector('.cover-status').outerText",
           "required_contents": {
             "exact_match": "Busy"
           }
@@ -13168,7 +13168,7 @@
       "program_html": [
         {
           "url": "__GITLAB__/byteblaze",
-          "locator": "document.querySelector('.profile-user-bio').outerText",
+          "locator": "document.querySelector('.cover-status').outerText",
           "required_contents": {
             "exact_match": "Enjoying life"
           }
@@ -13201,7 +13201,7 @@
       "program_html": [
         {
           "url": "__GITLAB__/byteblaze",
-          "locator": "document.querySelector('.profile-user-bio').outerText",
+          "locator": "document.querySelector('.cover-status').outerText",
           "required_contents": {
             "exact_match": "Playing Badminton"
           }
@@ -13234,7 +13234,7 @@
       "program_html": [
         {
           "url": "__GITLAB__/byteblaze",
-          "locator": "document.querySelector('.profile-user-bio').outerText",
+          "locator": "document.querySelector('.cover-status').outerText",
           "required_contents": {
             "exact_match": "Resting due to leg injury"
           }
@@ -13267,7 +13267,7 @@
       "program_html": [
         {
           "url": "__GITLAB__/byteblaze",
-          "locator": "document.querySelector('.profile-user-bio').outerText",
+          "locator": "document.querySelector('.cover-status').outerText",
           "required_contents": {
             "exact_match": "Out of Office"
           }
@@ -14560,7 +14560,7 @@
     "task_id": 460,
     "require_login": true,
     "storage_state": "./.auth/shopping_admin_state.json",
-    "start_url": "__SHOPPING_ADMIN__/catalog/product/edit/id/237/",
+    "start_url": "__SHOPPING_ADMIN__/catalog/product/edit/id/418/",
     "geolocation": null,
     "intent_template": "{{action}} the price of this product by {{amount}}",
     "instantiation_dict": {
@@ -14577,10 +14577,10 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/237/",
+          "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/418/",
           "locator": "document.querySelector('[name=\"product[price]\"').value",
           "required_contents": {
-            "exact_match": "58.65"
+            "exact_match": "38.25"
           }
         }
       ]
@@ -14594,7 +14594,7 @@
     "task_id": 461,
     "require_login": true,
     "storage_state": "./.auth/shopping_admin_state.json",
-    "start_url": "__SHOPPING_ADMIN__/catalog/product/edit/id/1481/",
+    "start_url": "__SHOPPING_ADMIN__/catalog/product/edit/id/721/",
     "geolocation": null,
     "intent_template": "{{action}} the price of this product by {{amount}}",
     "instantiation_dict": {
@@ -14611,10 +14611,10 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/1481/",
+          "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/721/",
           "locator": "document.querySelector('[name=\"product[price]\"').value",
           "required_contents": {
-            "exact_match": "43.50"
+            "exact_match": "29.50"
           }
         }
       ]
@@ -14628,7 +14628,7 @@
     "task_id": 462,
     "require_login": true,
     "storage_state": "./.auth/shopping_admin_state.json",
-    "start_url": "__SHOPPING_ADMIN__/catalog/product/edit/id/237/",
+    "start_url": "__SHOPPING_ADMIN__/catalog/product/edit/id/710/",
     "geolocation": null,
     "intent_template": "{{action}} the price of this product by {{amount}}",
     "instantiation_dict": {
@@ -14645,10 +14645,10 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/237/",
+          "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/710/",
           "locator": "document.querySelector('[name=\"product[price]\"').value",
           "required_contents": {
-            "exact_match": "75.90"
+            "exact_match": "19.80"
           }
         }
       ]
@@ -14662,7 +14662,7 @@
     "task_id": 463,
     "require_login": true,
     "storage_state": "./.auth/shopping_admin_state.json",
-    "start_url": "__SHOPPING_ADMIN__/catalog/product/edit/id/237/",
+    "start_url": "__SHOPPING_ADMIN__/catalog/product/edit/id/996/",
     "geolocation": null,
     "intent_template": "{{action}} the price of this product by {{amount}}",
     "instantiation_dict": {
@@ -14679,10 +14679,10 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/237/",
+          "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/996/",
           "locator": "document.querySelector('[name=\"product[price]\"').value",
           "required_contents": {
-            "exact_match": "79.35"
+            "exact_match": "36.80"
           }
         }
       ]
@@ -14713,10 +14713,11 @@
       "program_html": [
         {
           "url": "__SHOPPING_ADMIN__/antonia-racer-tank.html",
-          "locator": "document.querySelector('.product.info.detailed').outerText",
+          "locator": "document.querySelector('.data.item.content').outerText + (document.querySelector('.product.attribute.overview [itemprop=\"description\"]')?.outerText || '')",
           "required_contents": {
             "must_include": [
-              "This is in regular rotation at the gym. Its colorful and looks kinda cute under my exercise tanks."
+              "This is in regular rotation at the gym",
+              "Its colorful and looks kinda cute under my exercise tanks"
             ]
           }
         }
@@ -15640,17 +15641,10 @@
       "eval_types": [
         "program_html"
       ],
-      "reference_answers": null,
+      "reference_answers": {"exact_match": "N/A"},
       "reference_url": "",
-      "program_html": [
-        {
-          "url": "__SHOPPING_ADMIN__/sales/order/view/order_id/299/",
-          "locator": "document.querySelector(\"#order_history_block\").querySelector(\".note-list\").firstElementChild.querySelector(\".note-list-comment\").outerText",
-          "required_contents": {
-            "exact_match": "the order is ready to be shipped soon!"
-          }
-        }
-      ]
+      "program_html": [],
+      "string_note": "System message: We cannot add order history."
     },
     "intent_template_id": 280
   },
@@ -16802,8 +16796,7 @@
               "AndroidAsync",
               "Pytorch-GAN",
               "administrate",
-              "keycloak",
-              "openapi-generator"
+              "keycloak"
             ]
           }
         }
@@ -17544,11 +17537,13 @@
       "program_html": [
         {
           "url": "__SHOPPING_ADMIN__/bella-tank.html",
-          "locator": "document.querySelector('.product.info.detailed').outerText",
+          "locator": "document.querySelector('.data.item.content').outerText + (document.querySelector('.product.attribute.overview [itemprop=\"description\"]')?.outerText || '')",
           "required_contents": {
             "must_include": [
-              "Good choice for working out and stylin' enough to wear when I'm hanging with friends on hot days. Also washes really well!",
-              "Always a sweet n sporty look for the gym! Keeps me cool and the seams don't rub up against me like some of my other tanks."
+              "Good choice for working out and stylin' enough to wear when I'm hanging with friends on hot days",
+              "Also washes really well",
+              "Always a sweet n sporty look for the gym",
+              "Keeps me cool and the seams don't rub up against me like some of my other tanks"
             ]
           }
         }
@@ -19105,7 +19100,7 @@
       "program_html": [
         {
           "url": "__REDDIT__/f/sci_fi/edit",
-          "locator": "document.querySelector(\"#forum_description\").outerText",
+          "locator": "document.querySelector(\"#forum_description\").value",
           "required_contents": {
             "must_include": [
               "A wild place for sci-fi enthusiasts"
@@ -19114,7 +19109,7 @@
         },
         {
           "url": "__REDDIT__/f/sci_fi/edit",
-          "locator": "document.querySelector(\"#forum_sidebar\").outerText",
+          "locator": "document.querySelector(\"#forum_sidebar\").value",
           "required_contents": {
             "must_include": [
               "New",
@@ -19159,7 +19154,7 @@
       "program_html": [
         {
           "url": "__REDDIT__/f/cmu_lti/edit",
-          "locator": "document.querySelector(\"#forum_description\").outerText",
+          "locator": "document.querySelector(\"#forum_description\").value",
           "required_contents": {
             "must_include": [
               "Language Technologies Institute at Carnegie Mellon University"
@@ -19168,7 +19163,7 @@
         },
         {
           "url": "__REDDIT__/f/cmu_lti/edit",
-          "locator": "document.querySelector(\"#forum_sidebar\").outerText",
+          "locator": "document.querySelector(\"#forum_sidebar\").value",
           "required_contents": {
             "must_include": [
               "announcement",
@@ -19212,7 +19207,7 @@
       "program_html": [
         {
           "url": "__REDDIT__/f/Cyberpunk/edit",
-          "locator": "document.querySelector(\"#forum_description\").outerText",
+          "locator": "document.querySelector(\"#forum_description\").value",
           "required_contents": {
             "must_include": [
               "Welcome to the future"
@@ -19221,7 +19216,7 @@
         },
         {
           "url": "__REDDIT__/f/Cyberpunk/edit",
-          "locator": "document.querySelector(\"#forum_sidebar\").outerText",
+          "locator": "document.querySelector(\"#forum_sidebar\").value",
           "required_contents": {
             "must_include": [
               "Games",
@@ -19266,7 +19261,7 @@
       "program_html": [
         {
           "url": "__REDDIT__/f/PlantsForCatParents/edit",
-          "locator": "document.querySelector(\"#forum_description\").outerText",
+          "locator": "document.querySelector(\"#forum_description\").value",
           "required_contents": {
             "must_include": [
               "Cat parents & plan lovers"
@@ -19275,7 +19270,7 @@
         },
         {
           "url": "__REDDIT__/f/PlantsForCatParents/edit",
-          "locator": "document.querySelector(\"#forum_sidebar\").outerText",
+          "locator": "document.querySelector(\"#forum_sidebar\").value",
           "required_contents": {
             "must_include": [
               "Cat friendly",
@@ -19318,7 +19313,7 @@
       "program_html": [
         {
           "url": "__REDDIT__/f/Karaoke",
-          "locator": "document.querySelector(\"#forum_description\").outerText",
+          "locator": "document.querySelector(\"#forum_description\").value",
           "required_contents": {
             "must_include": [
               "Place for Karaoke lovers"
@@ -19327,7 +19322,7 @@
         },
         {
           "url": "__REDDIT__/f/Karaoke",
-          "locator": "document.querySelector(\"#forum_sidebar\").outerText",
+          "locator": "document.querySelector(\"#forum_sidebar\").value",
           "required_contents": {
             "must_include": [
               "devices",
@@ -20030,7 +20025,7 @@
           "locator": "document.querySelector(\"#sidebar > section\").outerText",
           "required_contents": {
             "must_include": [
-              "machine learning"
+              "MachineLearning"
             ]
           }
         }
@@ -21679,11 +21674,11 @@
     "geolocation": null,
     "intent_template": "Post a notice on a virtual meetup for {{interest}} enthusiasts on {{date}} in the {{subreddit}} subreddit",
     "instantiation_dict": {
-      "interest": "Harry Poter",
+      "interest": "Harry Potter",
       "date": "July 8th",
       "subreddit": "books"
     },
-    "intent": "Post a notice on a virtual meetup for Harry Poter enthusiasts on July 8th in the books subreddit",
+    "intent": "Post a notice on a virtual meetup for Harry Potter enthusiasts on July 8th in the books subreddit",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -21698,7 +21693,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "Harry Poter",
+              "Harry Potter",
               "July 8th",
               "virtual meetup"
             ]
@@ -22152,7 +22147,7 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING__/contact/",
+      "reference_url": "__SHOPPING__/contact",
       "program_html": [
         {
           "url": "last",
@@ -22167,7 +22162,7 @@
           }
         }
       ],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 153
   },
@@ -22193,7 +22188,7 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING__/contact/",
+      "reference_url": "__SHOPPING__/contact",
       "program_html": [
         {
           "url": "last",
@@ -22208,7 +22203,7 @@
           }
         }
       ],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 153
   },
@@ -22234,7 +22229,7 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING__/contact/",
+      "reference_url": "__SHOPPING__/contact",
       "program_html": [
         {
           "url": "last",
@@ -22249,7 +22244,7 @@
           }
         }
       ],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 153
   },
@@ -22275,7 +22270,7 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING__/contact/",
+      "reference_url": "__SHOPPING__/contact",
       "program_html": [
         {
           "url": "last",
@@ -22290,7 +22285,7 @@
           }
         }
       ],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 153
   },
@@ -22316,7 +22311,7 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING__/contact/",
+      "reference_url": "__SHOPPING__/contact",
       "program_html": [
         {
           "url": "last",
@@ -22331,7 +22326,7 @@
           }
         }
       ],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 153
   },
@@ -23066,9 +23061,10 @@
           "required_contents": {
             "must_include": [
               "Unable to set neutral steering",
-              "Doesn\u2019t work with PC.",
-              "Crazy problems in automatic mode; then pedals stopped working",
-              "Only works with certain games."
+              "Doesn\u2019t work with PC",
+              "Crazy problems in automatic mode",
+              "pedals stopped working",
+              "Only works with certain games"
             ]
           }
         }
@@ -23696,7 +23692,7 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING__/contact/",
+      "reference_url": "__SHOPPING__/contact",
       "program_html": [
         {
           "url": "last",
@@ -23709,7 +23705,7 @@
           }
         }
       ],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 163
   },
@@ -23734,7 +23730,7 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING__/contact/",
+      "reference_url": "__SHOPPING__/contact",
       "program_html": [
         {
           "url": "last",
@@ -23747,7 +23743,7 @@
           }
         }
       ],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 163
   },
@@ -23772,7 +23768,7 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING__/contact/",
+      "reference_url": "__SHOPPING__/contact",
       "program_html": [
         {
           "url": "last",
@@ -23785,7 +23781,7 @@
           }
         }
       ],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 163
   },
@@ -23810,7 +23806,7 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING__/contact/",
+      "reference_url": "__SHOPPING__/contact",
       "program_html": [
         {
           "url": "last",
@@ -23823,7 +23819,7 @@
           }
         }
       ],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 163
   },
@@ -23848,7 +23844,7 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING__/contact/",
+      "reference_url": "__SHOPPING__/contact",
       "program_html": [
         {
           "url": "last",
@@ -23861,7 +23857,7 @@
           }
         }
       ],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 163
   },
@@ -24644,14 +24640,14 @@
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_from\"').value",
           "required_contents": {
-            "exact_match": "02/1/2023"
+            "exact_match": "2/1/2023"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_to\"').value",
           "required_contents": {
-            "exact_match": "02/28/2023"
+            "exact_match": "2/28/2023"
           }
         }
       ],
@@ -24687,14 +24683,14 @@
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_from\"').value",
           "required_contents": {
-            "exact_match": "01/29/2023"
+            "exact_match": "1/29/2023"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_to\"').value",
           "required_contents": {
-            "exact_match": "03/15/2023"
+            "exact_match": "3/15/2023"
           }
         }
       ],
@@ -24724,20 +24720,20 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING_ADMIN__/reports/report_sales/refunded/",
+      "reference_url": "__SHOPPING_ADMIN__/reports/report_sales/refunded",
       "program_html": [
         {
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_from\"').value",
           "required_contents": {
-            "exact_match": "01/1/2023"
+            "exact_match": "1/1/2023"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_to\"').value",
           "required_contents": {
-            "exact_match": "03/31/2023"
+            "exact_match": "3/31/2023"
           }
         }
       ],
@@ -24773,7 +24769,7 @@
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_from\"').value",
           "required_contents": {
-            "exact_match": "01/1/2022"
+            "exact_match": "1/1/2022"
           }
         },
         {
@@ -24816,7 +24812,7 @@
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_from\"').value",
           "required_contents": {
-            "exact_match": "01/1/2023"
+            "exact_match": "1/1/2023"
           }
         },
         {
@@ -24860,14 +24856,14 @@
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_from\"').value",
           "required_contents": {
-            "exact_match": "05/1/2021"
+            "exact_match": "5/1/2021"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_to\"').value",
           "required_contents": {
-            "exact_match": "03/31/2022"
+            "exact_match": "3/31/2022"
           }
         }
       ],
@@ -24904,14 +24900,14 @@
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_from\"').value",
           "required_contents": {
-            "exact_match": "08/5/2022"
+            "exact_match": "8/5/2022"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_to\"').value",
           "required_contents": {
-            "exact_match": "03/1/2023"
+            "exact_match": "3/1/2023"
           }
         }
       ],
@@ -24948,14 +24944,14 @@
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_from\"').value",
           "required_contents": {
-            "exact_match": "07/5/2021"
+            "exact_match": "7/5/2021"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_to\"').value",
           "required_contents": {
-            "exact_match": "05/31/2023"
+            "exact_match": "5/31/2023"
           }
         }
       ],
@@ -24992,14 +24988,14 @@
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_from\"').value",
           "required_contents": {
-            "exact_match": "05/1/2021"
+            "exact_match": "5/1/2021"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_to\"').value",
           "required_contents": {
-            "exact_match": "05/15/2023"
+            "exact_match": "5/15/2023"
           }
         }
       ],
@@ -25036,14 +25032,14 @@
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_from\"').value",
           "required_contents": {
-            "exact_match": "05/1/2022"
+            "exact_match": "5/1/2022"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_to\"').value",
           "required_contents": {
-            "exact_match": "05/31/2023"
+            "exact_match": "5/31/2023"
           }
         }
       ],
@@ -25865,7 +25861,7 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
+          "url": "__REDDIT__/user/AdamCannon/submissions",
           "locator": "document.querySelectorAll('div.submission__vote')[7].querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
@@ -26479,7 +26475,7 @@
           "locator": "document.querySelector('[name=\"route_to\"').value",
           "required_contents": {
             "must_include": [
-              "150, Causeway Street",
+              "TD Garden",
               "Boston",
               "Massachusetts"
             ]
@@ -27538,7 +27534,7 @@
           "required_contents": {
             "must_include": [
               "Carnegie Hall",
-              "West 56th Street",
+              "West 57th Street",
               "Manhattan",
               "New York"
             ]
@@ -28273,7 +28269,7 @@
           "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/123/",
           "locator": "document.querySelector('[name=\"product[price]\"').value",
           "required_contents": {
-            "exact_match": "47"
+            "exact_match": "47.00"
           }
         }
       ]
