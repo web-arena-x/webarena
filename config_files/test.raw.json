@@ -1182,7 +1182,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "Yes"
+        "must_include": ["Yes"]
       },
       "reference_url": "",
       "program_html": [],
@@ -1212,7 +1212,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "Yes"
+        "must_include": ["Yes"]
       },
       "reference_url": "",
       "program_html": [],
@@ -1242,7 +1242,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "Yes"
+        "must_include": ["Yes"]
       },
       "reference_url": "",
       "program_html": [],
@@ -1272,7 +1272,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "Yes"
+        "must_include": ["Yes"]
       },
       "reference_url": "",
       "program_html": [],
@@ -1302,7 +1302,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "Yes"
+        "must_include": ["Yes"]
       },
       "reference_url": "",
       "program_html": [],
@@ -2859,14 +2859,13 @@
         "must_include": [
           "Rhode Island",
           "Massachusetts",
-          "New York",
-          "New Jersey"
+          "New York"
         ]
       },
       "reference_url": "",
       "program_html": [],
       "string_note": "",
-      "reference_answer_raw_annotation": "Rhode Island, Massachusetts, New York, New Jersey"
+      "reference_answer_raw_annotation": "Rhode Island, Massachusetts, New York"
     },
     "intent_template_id": 67
   },
@@ -2894,13 +2893,15 @@
           "Ohio",
           "Maryland",
           "New York",
-          "Virginia"
+          "New Jersey",
+          "Delaware",
+          "West Virginia"
         ]
       },
       "reference_url": "",
       "program_html": [],
       "string_note": "",
-      "reference_answer_raw_annotation": "Ohio, Maryland, New York, Virginia"
+      "reference_answer_raw_annotation": "Ohio, Maryland, New York, New Jersey, Delaware, West Virginia"
     },
     "intent_template_id": 67
   },
@@ -5537,7 +5538,7 @@
         "url_match"
       ],
       "reference_answers": {
-        "exact_match": "No"
+        "fuzzy_match": ["No, it is open"]
       },
       "reference_url": "__GITLAB__/byteblaze/empathy-prompts/-/issues/8",
       "program_html": [],
@@ -5568,7 +5569,7 @@
         "url_match"
       ],
       "reference_answers": {
-        "exact_match": "No"
+        "fuzzy_match": ["No, it is open"]
       },
       "reference_url": "__GITLAB__/byteblaze/a11y-webring.club/-/issues/71",
       "program_html": [],
@@ -5598,7 +5599,7 @@
         "url_match"
       ],
       "reference_answers": {
-        "exact_match": "No"
+        "fuzzy_match": ["No, it is open"]
       },
       "reference_url": "__GITLAB__/byteblaze/empathy-prompts/-/issues/18",
       "program_html": [],
@@ -5628,7 +5629,7 @@
         "url_match"
       ],
       "reference_answers": {
-        "exact_match": "No"
+        "fuzzy_match": ["No, it is open"]
       },
       "reference_url": "__GITLAB__/byteblaze/a11y-syntax-highlighting/-/issues/1",
       "program_html": [],
@@ -5658,7 +5659,7 @@
         "url_match"
       ],
       "reference_answers": {
-        "exact_match": "Yes"
+        "fuzzy_match": ["Yes, it is closed"]
       },
       "reference_url": "__GITLAB__/a11yproject/a11yproject.com/-/issues/719",
       "program_html": [],
@@ -7856,8 +7857,8 @@
       ],
       "reference_answers": {
         "must_include": [
-          "40.4424191",
-          "-79.9397388"
+          "40.442",
+          "-79.939"
         ]
       },
       "reference_url": "",
@@ -7888,8 +7889,8 @@
       ],
       "reference_answers": {
         "must_include": [
-          "40.46076",
-          "-79.94666"
+          "40.460",
+          "-79.946"
         ]
       },
       "reference_url": "",
@@ -7920,8 +7921,8 @@
       ],
       "reference_answers": {
         "must_include": [
-          "40.4511693",
-          "-79.9334241"
+          "40.451",
+          "-79.933"
         ]
       },
       "reference_url": "",
@@ -7952,8 +7953,8 @@
       ],
       "reference_answers": {
         "must_include": [
-          "40.4443",
-          "-79.94889"
+          "40.444",
+          "-79.948"
         ]
       },
       "reference_url": "",
@@ -7984,8 +7985,8 @@
       ],
       "reference_answers": {
         "must_include": [
-          "40.45761",
-          "-79.92934"
+          "40.457",
+          "-79.929"
         ]
       },
       "reference_url": "",
@@ -26794,11 +26795,11 @@
     "geolocation": null,
     "intent_template": "Start a private project {{project_name}} with {{template}} template and add {{account_list}} as members",
     "instantiation_dict": {
-      "project_name": "web_agent_android",
+      "project_name": "web_agent_android_xl",
       "template": "Android",
       "account_list": "primer, convexegg, abishek"
     },
-    "intent": "Start a private project web_agent_android with Android template and add primer, convexegg, abishek as members",
+    "intent": "Start a private project web_agent_android_xl with Android template and add primer, convexegg, abishek as members",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -26808,7 +26809,7 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__GITLAB__/byteblaze/web_agent_android",
+          "url": "__GITLAB__/byteblaze/web_agent_android_xl",
           "locator": "document.querySelector('.visibility-icon').getAttribute('title')",
           "required_contents": {
             "must_include": [
@@ -26817,7 +26818,7 @@
           }
         },
         {
-          "url": "__GITLAB__/byteblaze/web_agent_android/-/commits",
+          "url": "__GITLAB__/byteblaze/web_agent_android_xl/-/commits",
           "locator": "",
           "required_contents": {
             "must_include": [
@@ -26826,7 +26827,7 @@
           }
         },
         {
-          "url": "__GITLAB__/byteblaze/web_agent_android/-/project_members",
+          "url": "__GITLAB__/byteblaze/web_agent_android_xl/-/project_members",
           "locator": "",
           "required_contents": {
             "must_include": [
@@ -26931,7 +26932,7 @@
           }
         },
         {
-          "url": "__GITLAB__/byteblaze/agi_index/-/commits",
+          "url": "__GITLAB__/byteblaze/agi_index",
           "locator": "document.querySelector('.home-panel-description-markdown').outerText",
           "required_contents": {
             "must_include": [
@@ -26986,7 +26987,7 @@
           }
         },
         {
-          "url": "__GITLAB__/byteblaze/AGISite/-/commits",
+          "url": "__GITLAB__/byteblaze/AGISite",
           "locator": "document.querySelector('.home-panel-description-markdown').outerText",
           "required_contents": {
             "must_include": [
@@ -27064,10 +27065,10 @@
     "geolocation": null,
     "intent_template": "Create a private {{template}} repository called \"{{project_name}}\" using the right template to speed up development.",
     "instantiation_dict": {
-      "project_name": "web_agent_android",
+      "project_name": "web_agent_android_xs",
       "template": "Android"
     },
-    "intent": "Create a private Android repository called \"web_agent_android\" using the right template to speed up development.",
+    "intent": "Create a private Android repository called \"web_agent_android_xs\" using the right template to speed up development.",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -27077,7 +27078,7 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__GITLAB__/byteblaze/web_agent_android",
+          "url": "__GITLAB__/byteblaze/web_agent_android_xs",
           "locator": "document.querySelector('.visibility-icon').getAttribute('title')",
           "required_contents": {
             "must_include": [
@@ -27086,7 +27087,7 @@
           }
         },
         {
-          "url": "__GITLAB__/byteblaze/web_agent_android/-/commits",
+          "url": "__GITLAB__/byteblaze/web_agent_android_xs/-/commits",
           "locator": "",
           "required_contents": {
             "must_include": [
@@ -27176,7 +27177,7 @@
           }
         },
         {
-          "url": "__GITLAB__/byteblaze/agi_index/-/commits",
+          "url": "__GITLAB__/byteblaze/web_agent_index",
           "locator": "document.querySelector('.home-panel-description-markdown').outerText",
           "required_contents": {
             "must_include": [
@@ -27221,7 +27222,7 @@
           }
         },
         {
-          "url": "__GITLAB__/byteblaze/AGISite/-/commits",
+          "url": "__GITLAB__/byteblaze/11711_gitlab",
           "locator": "document.querySelector('.home-panel-description-markdown').outerText",
           "required_contents": {
             "must_include": [
