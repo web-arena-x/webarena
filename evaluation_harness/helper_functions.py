@@ -146,30 +146,29 @@ def gitlab_get_project_memeber_role(page: Page, account_name: str) -> str:
 def llm_fuzzy_match(pred: str, reference: str, question: str) -> float:
     """Check whether the prediction matches the reference with GPT-3.5"""
     messages: list[dict[str, Any]] = []
-    messages.append(
-        {"role": "system", "content": "You are a helpful assistant"}
-    )
-
-    messages.append(
-        {
-            "role": "user",
-            "content": f'Given the statement "{pred}", would it be correct to infer "{reference}"? Yes or No',
-        }
-    )
+    # construct the question to ask
+    message = "Help a teacher to grade the answer of a student given a question. Keep in mind that the student may use different phrasing or wording to answer the question. The goal is to evaluate whether the answer is semantically equivalent to the reference answer.\n"
+    message += f"question: {question}\n"
+    message += f"reference answer: {reference}\n"
+    message += "all the string 'N/A' that you see is a special sequence that means 'not achievable'\n"
+    message += f"student answer: {pred}\n"
+    message += "Conclude the judgement by correct/incorrect/partially correct."
+    messages = [
+        {"role": "system", "content": "You are a helpful assistant"},
+        {"role": "user", "content": message},
+    ]
 
     response = generate_from_openai_chat_completion(
+        model="gpt-4",
         messages=messages,
-        model="gpt-3.5-turbo",
         temperature=0,
-        top_p=1,
-        context_length=0,
-        max_tokens=16,
-        stop_token=None,
-    )
-    if "Yes" in response:
-        return 1.0
-    else:
+        max_tokens=768,
+    ).lower()
+    if "partially correct" in response or "incorrect" in response:
         return 0.0
+    else:
+        assert "correct" in response
+        return 1.0
 
 
 class PseudoPage:
