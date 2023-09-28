@@ -433,6 +433,10 @@ class RCIPromptConstructor(PromptConstructor):
         print('agent grounding')
         print('=====================')
         print(response)
+        fix = input(f'fix response="{response}"?').strip()
+        if fix != '':
+            response = fix
+            print(f'fixed response="{response}"')
         print()
 
 
