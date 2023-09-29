@@ -84,15 +84,15 @@ To be successful, it is very important to follow the following rules:
 3. You should follow the examples to reason step by step and then issue the next action.
 4. Issue stop action when you think you have achieved the objective. Don't generate anything after stop.
 
-Remember, if you think the answer is empty or the task is impossible to complete, provide answer "N/A" in the bracket e.g. $stop [N/A]$.
+Remember, if you think the answer is empty or the task is impossible to complete, provide answer "N/A" in the bracket e.g. ```stop [N/A]```.
 
-Now, with the meta and draft next action, we can generate the final single action that fits the format specified in the introduction. Ensure that the action is wrapped inside a pair of $ and enclose arguments within [] as follows: $[action] [arg] ...$. For example, $type [123] [abc def] [0]$ or $click [135]$ or $scroll [down]$".""",
+Now, with the meta and draft next action, we can generate the final single action that fits the format specified in the introduction. Ensure that the action is wrapped inside a pair of ``` and enclose arguments within [] as follows: ```[action] [arg] ...```. For example, ```type [123] [abc def] [0]``` or ```click [135]``` or ```scroll [down]```".""",
 	"meta_data": {
 		"observation": "accessibility_tree",
 		"action_type": "id_accessibility_tree",
 		"keywords": ["url", "objective", "observation", "previous_action"],
 		"prompt_constructor": "RCIPromptConstructor",
 		"answer_phrase": "In summary, the next action I will perform is",
-		"action_splitter": "\$"
+		"action_splitter": "```"
 	},
 }

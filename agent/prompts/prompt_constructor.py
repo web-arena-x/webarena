@@ -48,7 +48,6 @@ class PromptConstructor(object):
         **kwargs
     ) -> str:
         prompt = template.format(**kwargs)
-        print('-----prompt-----', prompt, '-----prompt-----', sep='\n')
         prompt = self.get_lm_api_input(intro, examples, prompt)
         response = llm(prompt)
 
@@ -243,8 +242,6 @@ class CoTPromptConstructor(PromptConstructor):
             previous_action=previous_action_str,
         )
 
-        print('CoT', response)
-        
         return response
 
     @beartype
@@ -293,24 +290,8 @@ class RCIPromptConstructor(PromptConstructor):
         if max_obs_length:
             obs = self.tokenizer.decode(self.tokenizer.encode(obs)[:max_obs_length])  # type: ignore[arg-type]
 
-        print('observation')
-        print('=====================')
-        print(obs)
-        print()
-
-        print('history actions')
-        print('=====================')
-        print(history_actions)
-        print()
-
-        print('url')
-        print('=====================')
-        print(url)
-        print()
-
         # Get plan
         if self.plan is None:
-            print('generating plan')
             plan = self._get_llm_output(
                 intro,
                 [],
@@ -320,13 +301,8 @@ class RCIPromptConstructor(PromptConstructor):
                 url=url,
                 objective=intent,
             )
-            print('plan')
-            print('=====================')
-            print(plan)
-            print()
 
             # Get critique
-            print('generating critique')
             critique = self._get_llm_output(
                 intro,
                 [],
@@ -337,13 +313,8 @@ class RCIPromptConstructor(PromptConstructor):
                 objective=intent,
                 plan=plan,
             )
-            print('critique')
-            print('=====================')
-            print(critique)
-            print()
 
             # Get improved plan
-            print('generating improved plan')
             plan = self._get_llm_output(
                 intro,
                 [],
@@ -355,15 +326,10 @@ class RCIPromptConstructor(PromptConstructor):
                 plan=plan,
                 critique=critique,
             )
-            print('improved plan')
-            print('=====================')
-            print(plan)
-            print()
 
             self.plan = plan
 
         # Get next step
-        print('generating next step')
         meta_next_action = self._get_llm_output(
             intro,
             [],
@@ -375,13 +341,8 @@ class RCIPromptConstructor(PromptConstructor):
             previous_action=previous_action_str,
             plan=self.plan,
         )
-        print('meta next step')
-        print('=====================')
-        print(meta_next_action)
-        print()
 
         # Get state grounding
-        print('generating state grounding')
         draft_next_action = self._get_llm_output(
             intro,
             [],
@@ -392,13 +353,8 @@ class RCIPromptConstructor(PromptConstructor):
             previous_action=previous_action_str,
             meta_next_action=meta_next_action,
         )
-        print('draft_next_action')
-        print('=====================')
-        print(draft_next_action)
-        print()
 
         # Get agent grounding
-        print('generating agent grounding')
         response = self._get_llm_output(
             intro,
             [],
@@ -410,35 +366,12 @@ class RCIPromptConstructor(PromptConstructor):
             meta_next_action=meta_next_action,
             draft_next_action=draft_next_action
         )
-        # agent_grounding = agent_grounding.split()
-        # skip = False
-        # for i in range(1, len(agent_grounding)):
-        #     if agent_grounding[i][-1] == '"':
-        #         skip = False
 
-        #     if skip:
-        #         continue
-
-        #     if agent_grounding[i][0] == '"':
-        #         skip = True
-        #     if not agent_grounding[i].startswith('['):
-        #         agent_grounding[i] = '[' + agent_grounding[i]
-        #         if agent_grounding[i][1] == '"':
-        #             skip = True
-        #     if not agent_grounding[i].endswith(']'):
-        #         agent_grounding[i] = agent_grounding[i] + ']'
-        #         if agent_grounding[i][1] == '"':
-        #             skip = False
-        # agent_grounding = ' '.join(agent_grounding)
-        print('agent grounding')
-        print('=====================')
-        print(response)
-        fix = input(f'fix response="{response}"?').strip()
-        if fix != '':
-            response = fix
-            print(f'fixed response="{response}"')
-        print()
-
+        # XXX: hacky fix
+        # fix = input(f'fix response="{response}"?').strip()
+        # if fix != '':
+        #     response = fix
+        #     print(f'fixed response="{response}"')
 
         return response
 

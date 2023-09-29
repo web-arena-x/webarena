@@ -31,8 +31,6 @@ from browser_env.helper_functions import (
     RenderHelper,
     get_action_description,
 )
-
-
 from evaluation_harness import evaluator_router
 
 LOG_FOLDER = "log_files"
@@ -281,8 +279,6 @@ def test(
                 render_helper.render(
                     action, state_info, meta_data, args.render_screenshot
                 )
-
-                print('action :::::', action_str)
                 meta_data["action_history"].append(action_str)
 
                 if action["action_type"] == ActionTypes.STOP:
@@ -290,7 +286,6 @@ def test(
 
                 obs, _, terminated, _, info = env.step(action)
                 state_info = {"observation": obs, "info": info}
-                input('continue?')
                 trajectory.append(state_info)
 
                 if terminated:
