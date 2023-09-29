@@ -116,40 +116,43 @@ class PromptAgent(Agent):
     def next_action(
         self, trajectory: Trajectory, intent: str, meta_data: dict[str, Any]
     ) -> Action:
-        prompt = self.prompt_constructor.construct(
-            trajectory, intent, meta_data
-        )
         lm_config = self.lm_config
-        if lm_config.provider == "openai":
-            if lm_config.mode == "chat":
-                response = generate_from_openai_chat_completion(
-                    messages=prompt,
-                    model=lm_config.model,
-                    temperature=lm_config.gen_config["temperature"],
-                    top_p=lm_config.gen_config["top_p"],
-                    context_length=lm_config.gen_config["context_length"],
-                    max_tokens=lm_config.gen_config["max_tokens"],
-                    stop_token=None,
-                )
-            elif lm_config.mode == "completion":
-                response = generate_from_openai_completion(
-                    prompt=prompt,
-                    engine=lm_config.model,
-                    temperature=lm_config.gen_config["temperature"],
-                    max_tokens=lm_config.gen_config["max_tokens"],
-                    top_p=lm_config.gen_config["top_p"],
-                    stop_token=lm_config.gen_config["stop_token"],
-                )
+        def llm(prompt):
+            if lm_config.provider == "openai":
+                if lm_config.mode == "chat":
+                    response = generate_from_openai_chat_completion(
+                        messages=prompt,
+                        model=lm_config.model,
+                        temperature=lm_config.gen_config["temperature"],
+                        top_p=lm_config.gen_config["top_p"],
+                        context_length=lm_config.gen_config["context_length"],
+                        max_tokens=lm_config.gen_config["max_tokens"],
+                        stop_token=None,
+                    )
+                elif lm_config.mode == "completion":
+                    response = generate_from_openai_completion(
+                        prompt=prompt,
+                        engine=lm_config.model,
+                        temperature=lm_config.gen_config["temperature"],
+                        max_tokens=lm_config.gen_config["max_tokens"],
+                        top_p=lm_config.gen_config["top_p"],
+                        stop_token=lm_config.gen_config["stop_token"],
+                    )
+                else:
+                    raise ValueError(
+                        f"OpenAI models do not support mode {lm_config.mode}"
+                    )
             else:
-                raise ValueError(
-                    f"OpenAI models do not support mode {lm_config.mode}"
+                raise NotImplementedError(
+                    f"Provider {lm_config.provider} not implemented"
                 )
-        else:
-            raise NotImplementedError(
-                f"Provider {lm_config.provider} not implemented"
-            )
-
+            
+            return response
+        
         try:
+            response = self.prompt_constructor.construct(
+                trajectory, intent, meta_data, llm
+            )
             parsed_response = self.prompt_constructor.extract_action(response)
             if self.action_set_tag == "id_accessibility_tree":
                 action = create_id_based_action(parsed_response)
