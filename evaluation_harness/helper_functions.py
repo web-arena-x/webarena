@@ -4,7 +4,6 @@ from typing import Any
 from urllib.parse import urlparse
 
 import requests
-from beartype import beartype
 from playwright.sync_api import CDPSession, Page
 
 from browser_env.env_config import (
@@ -21,7 +20,6 @@ from llms.providers.openai_utils import (
 )
 
 
-@beartype
 def shopping_get_auth_token() -> str:
     response = requests.post(
         url=f"{SHOPPING}/rest/default/V1/integration/admin/token",
@@ -37,7 +35,6 @@ def shopping_get_auth_token() -> str:
     return token
 
 
-@beartype
 def shopping_get_latest_order_url() -> str:
     """Get the latest order url from the shopping website."""
 
@@ -62,7 +59,6 @@ def shopping_get_latest_order_url() -> str:
     return order_url
 
 
-@beartype
 def shopping_get_sku_latest_review_author(sku: str) -> str:
     """Get the latest review for shopping admin."""
     header = {
@@ -80,7 +76,6 @@ def shopping_get_sku_latest_review_author(sku: str) -> str:
     return author
 
 
-@beartype
 def shopping_get_sku_latest_review_rating(sku: str) -> str:
     """Get the latest review for shopping admin."""
     header = {
@@ -99,7 +94,6 @@ def shopping_get_sku_latest_review_rating(sku: str) -> str:
     return rating
 
 
-@beartype
 def reddit_get_post_url(url: str) -> str:
     """Get the post url"""
     # Url is http://domain/f/subreddit/post_id/...
@@ -118,7 +112,6 @@ def reddit_get_post_url(url: str) -> str:
     return post_url
 
 
-@beartype
 def gitlab_get_project_memeber_role(page: Page, account_name: str) -> str:
     # get the account index
     try:
@@ -150,7 +143,6 @@ def gitlab_get_project_memeber_role(page: Page, account_name: str) -> str:
     return role
 
 
-@beartype
 def llm_fuzzy_match(pred: str, reference: str, question: str) -> float:
     """Check whether the prediction matches the reference with GPT-3.5"""
     messages: list[dict[str, Any]] = []

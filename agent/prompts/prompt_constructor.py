@@ -4,7 +4,6 @@ from pathlib import Path
 from typing import Any, TypedDict, Callable, Optional
 
 import tiktoken
-from beartype import beartype
 
 from browser_env import Action, ActionParsingError, Trajectory
 from browser_env.env_config import URL_MAPPINGS
@@ -99,7 +98,6 @@ class PromptConstructor(object):
                 f"Provider {self.lm_config.provider} not implemented"
             )
 
-    @beartype
     def construct(
         self,
         trajectory: Trajectory,
@@ -108,7 +106,6 @@ class PromptConstructor(object):
     ) -> APIInput:
         raise NotImplementedError
 
-    @beartype
     def map_url_to_real(self, url: str) -> str:
         """Map the urls to their real world counterparts"""
         for i, j in URL_MAPPINGS.items():
@@ -116,7 +113,6 @@ class PromptConstructor(object):
                 url = url.replace(i, j)
         return url
 
-    @beartype
     def map_url_to_local(self, url: str) -> str:
         """Map the urls to their local counterparts"""
         for i, j in URL_MAPPINGS.items():
@@ -124,11 +120,9 @@ class PromptConstructor(object):
                 url = url.replace(j, i)
         return url
 
-    @beartype
     def _extract_action(self, response: str) -> str:
         raise NotImplementedError
 
-    @beartype
     def extract_action(self, response: str) -> str:
         response = self._extract_action(response)
         response = self.map_url_to_local(response)
@@ -146,7 +140,6 @@ class DirectPromptConstructor(PromptConstructor):
     ):
         super().__init__(instruction_path, lm_config, tokenizer)
 
-    @beartype
     def construct(
         self,
         trajectory: Trajectory,
@@ -183,7 +176,6 @@ class DirectPromptConstructor(PromptConstructor):
 
         return response
 
-    @beartype
     def _extract_action(self, response: str) -> str:
         action_splitter = self.instruction["meta_data"]["action_splitter"]
         pattern = rf"{action_splitter}(.*?){action_splitter}"
@@ -208,7 +200,6 @@ class CoTPromptConstructor(PromptConstructor):
         super().__init__(instruction_path, lm_config, tokenizer)
         self.answer_phrase = self.instruction["meta_data"]["answer_phrase"]
 
-    @beartype
     def construct(
         self,
         trajectory: Trajectory,
@@ -375,7 +366,6 @@ class RCIPromptConstructor(PromptConstructor):
 
         return response
 
-    @beartype
     def _extract_action(self, response: str) -> str:
         # find the first occurence of action
         action_splitter = self.instruction["meta_data"]["action_splitter"]

@@ -21,12 +21,12 @@
             {
                 "url": "__GITLAB__/primer/design/-/project_members",
                 "locator": "func:gitlab_get_project_memeber_role(__page__, 'byteblaze')",
-                "required_contents": "Developer"
+                "required_contents": {"must_include": ["Developer"]}
             },
             {
                 "url": "__GITLAB__/primer/design/-/project_members",
                 "locator": "func:gitlab_get_project_memeber_role(__page__, 'primer')",
-                "required_contents": "Owner"
+                "required_contents": {"must_include": ["Owner"]}
             }
         ]
     }

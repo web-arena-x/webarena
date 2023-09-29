@@ -94,7 +94,9 @@ def test_xpath(script_browser_env: ScriptBrowserEnv) -> None:
         assert success
 
 
-def test_inter_page_actions(script_browser_env: ScriptBrowserEnv) -> None:
+def test_inter_page_actions(
+    script_browser_env: ScriptBrowserEnv,
+) -> None:
     env = script_browser_env
     seq = """page.goto("https://demo.playwright.dev/todomvc/")
     browser.new_tab()
@@ -113,7 +115,9 @@ def test_inter_page_actions(script_browser_env: ScriptBrowserEnv) -> None:
     assert "https://demo.playwright.dev/todomvc" in info["page"].url
 
 
-def test_scroll(current_viewport_script_browser_env: ScriptBrowserEnv) -> None:
+def test_scroll(
+    current_viewport_script_browser_env: ScriptBrowserEnv,
+) -> None:
     env = current_viewport_script_browser_env
     env.reset()
     _, success, _, _, _ = env.step(create_scroll_action("down"))
@@ -212,6 +216,15 @@ def test_key_press(
 
     assert success
     expect(env.page.get_by_label("Full name")).to_be_focused()
+    expect(env.page.get_by_label("Full name")).to_have_value(s)
+
+    obs, success, _, _, info = env.step(
+        create_id_based_action("press [meta+a]")
+    )
+    assert success
+
+    env.page.get_by_label("Full name").type(s)
+    expect(env.page.get_by_label("Full name")).to_have_value(s)
 
     obs, success, _, _, info = env.step(create_key_press_action("Enter"))
     assert success
@@ -271,3 +284,48 @@ def test_e2e_id_based_actions(
         x[-1]["page"].url
         == "https://russmaxdesign.github.io/exercise/#link-one"
     )
+
+
+def test_id_delete_input(
+    accessibility_tree_current_viewport_script_browser_env: ScriptBrowserEnv,
+) -> None:
+    env = accessibility_tree_current_viewport_script_browser_env
+    env.reset()
+    obs, success, _, _, info = env.step(
+        create_playwright_action(
+            'page.goto("https://russmaxdesign.github.io/exercise/")'
+        )
+    )
+    assert success
+    assert "textbox 'Full name'" in obs["text"]
+    s = "My Name IS XYZ"
+    element_id = re.search(r"\[(\d+)\] textbox 'Full name'", obs["text"]).group(1)  # type: ignore
+
+    obs, success, _, _, info = env.step(
+        create_id_based_action(f"type [{element_id}] [{s}]")
+    )
+    assert success
+    locator = env.page.get_by_label("Full name")
+    expect(locator).to_have_value(s)
+
+    obs, success, _, _, info = env.step(
+        create_id_based_action(f"click [{element_id}]")
+    )
+    assert success
+
+    obs, success, _, _, info = env.step(
+        create_id_based_action(f"press [Meta+a]")
+    )
+    assert success
+
+    obs, success, _, _, info = env.step(
+        create_id_based_action("press [backspace]")
+    )
+    assert success
+
+    new_s = "NEW"
+    obs, success, _, _, info = env.step(
+        create_id_based_action(f"type [{element_id}] [{new_s}]")
+    )
+    locator = env.page.get_by_label("Full name")
+    expect(locator).to_have_value(new_s)
