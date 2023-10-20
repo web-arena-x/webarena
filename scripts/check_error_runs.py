@@ -28,6 +28,7 @@ def merge_logs(result_folder: str, args: argparse.Namespace) -> str:
                     cur_log
                     and index
                     and os.path.exists(f"{result_folder}/render_{index}.html")
+                    and len(cur_log) >= 3
                 ):
                     merged_results[index] = cur_log
                 # update index and log
@@ -36,7 +37,13 @@ def merge_logs(result_folder: str, args: argparse.Namespace) -> str:
             else:
                 cur_log.append(line)
 
-        if os.path.exists(f"{result_folder}/render_{index}.html"):
+        if (
+            cur_log
+            and index
+            and os.path.exists(f"{result_folder}/render_{index}.html")
+            and len(cur_log) >= 3
+        ):
+
             merged_results[index] = cur_log
 
     # sort by the key
@@ -67,6 +74,12 @@ def merge_logs(result_folder: str, args: argparse.Namespace) -> str:
     ):
         for idx in unlog_examples:
             os.remove(f"{args.result_folder}/render_{idx}.html")
+
+    unifinished_examples = [
+        i for i in range(0, 812) if str(i) not in merged_results
+    ]
+    print(f"Number of unfinished examples: {len(unifinished_examples)}")
+    print(unifinished_examples)
 
     return merged_log_path
 
