@@ -9416,7 +9416,9 @@
       "eval_types": [
         "string_match"
       ],
-      "reference_answers": "N/A",
+      "reference_answers": {
+        "exact_match": "N/A"
+      },
       "reference_url": "",
       "program_html": [],
       "string_note": "There is no order in the processing status",
@@ -9443,7 +9445,9 @@
       "eval_types": [
         "string_match"
       ],
-      "reference_answers": "N/A",
+      "reference_answers": {
+        "exact_match": "N/A"
+      },
       "reference_url": "",
       "program_html": [],
       "string_note": "There is no order out of delivery",
