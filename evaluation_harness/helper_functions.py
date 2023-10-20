@@ -163,6 +163,8 @@ def llm_fuzzy_match(pred: str, reference: str, question: str) -> float:
         messages=messages,
         temperature=0,
         max_tokens=768,
+        top_p=1.0,
+        context_length=0,
     ).lower()
     if "partially correct" in response or "incorrect" in response:
         return 0.0

@@ -423,13 +423,17 @@ if __name__ == "__main__":
         test_file_list.append(f"config_files/{i}.json")
     if "debug" not in args.result_dir:
         test_file_list = get_unfinished(test_file_list, args.result_dir)
-    print(f"Total {len(test_file_list)} tasks left")
-    args.render = False
-    args.render_screenshot = True
-    args.save_trace_enabled = True
 
-    args.current_viewport_only = True
-    dump_config(args)
+    if len(test_file_list) == 0:
+        logger.info("No task left to run")
+    else:
+        print(f"Total {len(test_file_list)} tasks left")
+        args.render = False
+        args.render_screenshot = True
+        args.save_trace_enabled = True
 
-    agent = construct_agent(args)
-    test(args, agent, test_file_list)
+        args.current_viewport_only = True
+        dump_config(args)
+
+        agent = construct_agent(args)
+        test(args, agent, test_file_list)
