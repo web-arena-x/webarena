@@ -2,6 +2,7 @@
 import argparse
 import glob
 import os
+import time
 from concurrent.futures import ThreadPoolExecutor
 from itertools import combinations
 from pathlib import Path
@@ -40,10 +41,11 @@ def is_expired(
 
     context_manager = sync_playwright()
     playwright = context_manager.__enter__()
-    browser = playwright.chromium.launch(headless=HEADLESS, slow_mo=SLOW_MO)
+    browser = playwright.chromium.launch(headless=True, slow_mo=SLOW_MO)
     context = browser.new_context(storage_state=storage_state)
     page = context.new_page()
     page.goto(url)
+    time.sleep(1)
     d_url = page.url
     content = page.content()
     context_manager.__exit__()
@@ -151,4 +153,7 @@ if __name__ == "__main__":
     if not args.site_list:
         main()
     else:
-        renew_comb(args.site_list, auth_folder=args.auth_folder)
+        if "all" in args.site_list:
+            main(auth_folder=args.auth_folder)
+        else:
+            renew_comb(args.site_list, auth_folder=args.auth_folder)
