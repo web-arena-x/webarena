@@ -23891,7 +23891,7 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING_ADMIN__/catalog/product/edit/id",
+      "reference_url": "__SHOPPING_ADMIN__/catalog/product",
       "program_html": [
         {
           "url": "last",
@@ -23902,7 +23902,7 @@
         },
         {
           "url": "last",
-          "locator": "document.querySelector('[name=\"product[name]\"').outerText",
+          "locator": "document.querySelector('[name=\"product[name]\"').value",
           "required_contents": {
             "must_include": [
               "Energy-Bulk Women Shirt"
@@ -23978,7 +23978,7 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING_ADMIN__/catalog/product/edit/id",
+      "reference_url": "__SHOPPING_ADMIN__/catalog/product",
       "program_html": [
         {
           "url": "last",
@@ -23989,7 +23989,7 @@
         },
         {
           "url": "last",
-          "locator": "document.querySelector('[name=\"product[name]\"').outerText",
+          "locator": "document.querySelector('[name=\"product[name]\"').value",
           "required_contents": {
             "must_include": [
               "Energy-Bulk Man Yoga Pant"
@@ -24065,11 +24065,11 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING_ADMIN__/catalog/product/edit/id",
+      "reference_url": "__SHOPPING_ADMIN__/catalog/product",
       "program_html": [
         {
           "url": "last",
-          "locator": "document.querySelector('[name=\"product[name]\"').outerText",
+          "locator": "document.querySelector('[name=\"product[name]\"').value",
           "required_contents": {
             "must_include": [
               "FancyBoy Man Causal Jeans"
@@ -24152,11 +24152,11 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING_ADMIN__/catalog/product/edit/id",
+      "reference_url": "__SHOPPING_ADMIN__/catalog/product",
       "program_html": [
         {
           "url": "last",
-          "locator": "document.querySelector('[name=\"product[name]\"').outerText",
+          "locator": "document.querySelector('[name=\"product[name]\"').value",
           "required_contents": {
             "must_include": [
               "Swaatch Smart Watch"
@@ -24232,11 +24232,11 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING_ADMIN__/catalog/product/edit/id",
+      "reference_url": "__SHOPPING_ADMIN__/catalog/product",
       "program_html": [
         {
           "url": "last",
-          "locator": "document.querySelector('[name=\"product[name]\"').outerText",
+          "locator": "document.querySelector('[name=\"product[name]\"').value",
           "required_contents": {
             "must_include": [
               "Lelelumon Yoga Mat"
@@ -24337,6 +24337,7 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"simple_action\"').value",
+          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
           "required_contents": {
             "exact_match": "by_percent"
           }
@@ -24344,6 +24345,7 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"discount_amount\"').value",
+          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
           "required_contents": {
             "exact_match": "20"
           }
@@ -24403,6 +24405,7 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"simple_action\"').value",
+          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
           "required_contents": {
             "exact_match": "cart_fixed"
           }
@@ -24410,6 +24413,7 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"discount_amount\"').value",
+          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
           "required_contents": {
             "exact_match": "10"
           }
@@ -24469,6 +24473,7 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"simple_action\"').value",
+          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
           "required_contents": {
             "exact_match": "cart_fixed"
           }
@@ -24476,6 +24481,7 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"discount_amount\"').value",
+          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
           "required_contents": {
             "exact_match": "15"
           }
@@ -24535,6 +24541,7 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"simple_action\"').value",
+          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
           "required_contents": {
             "exact_match": "by_percent"
           }
@@ -24542,6 +24549,7 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"discount_amount\"').value",
+          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
           "required_contents": {
             "exact_match": "45"
           }
@@ -24601,6 +24609,7 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"simple_action\"').value",
+          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
           "required_contents": {
             "exact_match": "cart_fixed"
           }
@@ -24608,6 +24617,7 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"discount_amount\"').value",
+          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
           "required_contents": {
             "exact_match": "40"
           }
