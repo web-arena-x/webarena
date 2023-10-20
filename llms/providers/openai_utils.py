@@ -19,8 +19,8 @@ def retry_with_exponential_backoff(  # type: ignore
     initial_delay: float = 1,
     exponential_base: float = 2,
     jitter: bool = True,
-    max_retries: int = 10,
-    errors: tuple[Any] = (openai.error.RateLimitError,),
+    max_retries: int = 3,
+    errors: tuple[Any] = (openai.error.RateLimitError),
 ):
     """Retry a function with exponential backoff."""
 
@@ -32,9 +32,7 @@ def retry_with_exponential_backoff(  # type: ignore
         # Loop until a successful response or max_retries is hit or an exception is raised
         while True:
             try:
-
                 return func(*args, **kwargs)
-
             # Retry on specified errors
             except errors as e:
                 # Increment retries
@@ -48,7 +46,7 @@ def retry_with_exponential_backoff(  # type: ignore
 
                 # Increment the delay
                 delay *= exponential_base * (1 + jitter * random.random())
-
+                print(f"Retrying in {delay} seconds.")
                 # Sleep for the delay
                 time.sleep(delay)
 
