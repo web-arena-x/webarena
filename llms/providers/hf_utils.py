@@ -1,4 +1,4 @@
-from text_generation import Client
+from text_generation import Client  # type: ignore
 
 
 def generate_from_huggingface_completion(
@@ -10,7 +10,7 @@ def generate_from_huggingface_completion(
     stop_sequences: list[str] | None = None,
 ) -> str:
     client = Client(model_endpoint, timeout=60)
-    generation = client.generate(
+    generation: str = client.generate(
         prompt=prompt,
         temperature=temperature,
         top_p=top_p,

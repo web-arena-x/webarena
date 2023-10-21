@@ -20,7 +20,7 @@ def merge_logs(result_folder: str, args: argparse.Namespace) -> str:
         with open(file.strip(), "r") as f:
             lines = f.readlines()
 
-        cur_log = []
+        cur_log: list[str] = []
         index = None
         for line in lines:
             if "[Config file]" in line:

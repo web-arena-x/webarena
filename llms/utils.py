@@ -13,10 +13,12 @@ APIInput = str | list[Any] | dict[str, Any]
 
 def call_llm(
     lm_config: lm_config.LMConfig,
-    prompt: list[Any] | str,
-) -> APIInput:
+    prompt: APIInput,
+) -> str:
+    response: str
     if lm_config.provider == "openai":
         if lm_config.mode == "chat":
+            assert isinstance(prompt, list)
             response = generate_from_openai_chat_completion(
                 messages=prompt,
                 model=lm_config.model,
@@ -27,6 +29,7 @@ def call_llm(
                 stop_token=None,
             )
         elif lm_config.mode == "completion":
+            assert isinstance(prompt, str)
             response = generate_from_openai_completion(
                 prompt=prompt,
                 engine=lm_config.model,
@@ -40,6 +43,7 @@ def call_llm(
                 f"OpenAI models do not support mode {lm_config.mode}"
             )
     elif lm_config.provider == "huggingface":
+        assert isinstance(prompt, str)
         response = generate_from_huggingface_completion(
             prompt=prompt,
             model_endpoint=lm_config.gen_config["model_endpoint"],

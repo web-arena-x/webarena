@@ -9,9 +9,7 @@ import urllib
 from pathlib import Path
 from typing import Any, Tuple, Union
 
-import evaluate  # type: ignore[import]
 from beartype import beartype
-from beartype.door import is_bearable
 from nltk.tokenize import word_tokenize  # type: ignore
 from playwright.sync_api import CDPSession, Page
 
@@ -96,7 +94,7 @@ class StringEvaluator(Evaluator):
 
     @staticmethod
     @beartype
-    def must_include(ref: str, pred: str, tokenize=False) -> float:
+    def must_include(ref: str, pred: str, tokenize: bool = False) -> float:
         clean_ref = StringEvaluator.clean_answer(ref)
         clean_pred = StringEvaluator.clean_answer(pred)
         # tokenize the answer if the ref is a single word
@@ -180,7 +178,7 @@ class URLEvaluator(Evaluator):
 
         def parse_urls(
             urls: list[str],
-        ) -> tuple[list[str], list[str], dict[str, set[str]]]:
+        ) -> tuple[list[str], dict[str, set[str]]]:
             """Parse a list of URLs."""
             base_paths = []
             queries = collections.defaultdict(set)
@@ -324,8 +322,8 @@ class EvaluatorComb:
         self,
         trajectory: Trajectory,
         config_file: Path | str,
-        page: Page | PseudoPage | None = None,
-        client: CDPSession | None = None,
+        page: Page | PseudoPage,
+        client: CDPSession,
     ) -> float:
 
         score = 1.0

@@ -178,7 +178,7 @@ class PseudoPage:
         self.url = url
         self.original_page = original_page
 
-    def __getattr__(self, attr: str) -> any:
+    def __getattr__(self, attr: str) -> Any:
         # Delegate attribute access to the original page object
         if attr not in ["url"]:
             return getattr(self.original_page, attr)

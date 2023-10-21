@@ -1,7 +1,7 @@
 from typing import Any
 
 import tiktoken
-from transformers import LlamaTokenizer
+from transformers import LlamaTokenizer  # type: ignore
 
 
 class Tokenizer(object):
@@ -11,9 +11,9 @@ class Tokenizer(object):
         elif provider == "huggingface":
             self.tokenizer = LlamaTokenizer.from_pretrained(model_name)
             # turn off adding special tokens automatically
-            self.tokenizer.add_special_tokens = False
-            self.tokenizer.add_bos_token = False
-            self.tokenizer.add_eos_token = False
+            self.tokenizer.add_special_tokens = False  # type: ignore[attr-defined]
+            self.tokenizer.add_bos_token = False  # type: ignore[attr-defined]
+            self.tokenizer.add_eos_token = False  # type: ignore[attr-defined]
         else:
             raise NotImplementedError
 
