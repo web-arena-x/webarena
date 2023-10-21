@@ -16,7 +16,7 @@
 
 <p align="center">
 <a href="https://webarena.dev/">Website</a> •
-<a href="https://arxiv.org/2307.13854">Paper</a>
+<a href="https://arxiv.org/abs/2307.13854">Paper</a>
 </p>
 
 ![Overview](media/overview.png)
