@@ -187,7 +187,6 @@ class TextObervationProcessor(ObservationProcessor):
         # make a dom tree that is easier to navigate
         dom_tree: DOMTree = []
         graph = defaultdict(list)
-        todo_nodes = {}
         for node_idx in range(len(nodes["nodeName"])):
             cur_node: DOMNode = {
                 "nodeId": "",
@@ -253,12 +252,6 @@ class TextObervationProcessor(ObservationProcessor):
                     cur_node["union_bound"] = [x, y, width, height]
 
             dom_tree.append(cur_node)
-
-        # update the nodes whose bounds are their parents
-        for cursor, parent_cursor in todo_nodes.items():
-            dom_tree[cursor]["union_bound"] = dom_tree[parent_cursor][
-                "union_bound"
-            ]
 
         # add parent children index to the node
         for parent_id, child_ids in graph.items():
@@ -386,7 +379,6 @@ class TextObervationProcessor(ObservationProcessor):
                 seen_ids.add(node["nodeId"])
         accessibility_tree = _accessibility_tree
 
-        todo_nodes = {}
         nodeid_to_cursor = {}
         for cursor, node in enumerate(accessibility_tree):
             nodeid_to_cursor[node["nodeId"]] = cursor
@@ -410,12 +402,6 @@ class TextObervationProcessor(ObservationProcessor):
                     width = response["result"]["value"]["width"]
                     height = response["result"]["value"]["height"]
                     node["union_bound"] = [x, y, width, height]
-        # update the nodes whose bounds are their parents
-        for cursor, parent_id in todo_nodes.items():
-            parent_cursor = nodeid_to_cursor[parent_id]
-            accessibility_tree[cursor]["union_bound"] = accessibility_tree[
-                parent_cursor
-            ]["union_bound"]
 
         # filter nodes that are not in the current viewport
         if current_viewport_only:
