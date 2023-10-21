@@ -146,14 +146,14 @@ cache/*
 # TMP IGNORE
 agent/prompts/jsons/*
 log_files/
-config_files/*0.json
-config_files/*1.json
-config_files/*2.json
-config_files/*3.json
-config_files/*4.json
-config_files/*5.json
-config_files/*6.json
-config_files/*7.json
-config_files/*8.json
-config_files/*9.json
-config_files/test.json
+config_files*/*0.json
+config_files*/*1.json
+config_files*/*2.json
+config_files*/*3.json
+config_files*/*4.json
+config_files*/*5.json
+config_files*/*6.json
+config_files*/*7.json
+config_files*/*8.json
+config_files*/*9.json
+config_files*/test.json
