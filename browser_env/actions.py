@@ -125,6 +125,7 @@ def action2str(
                 action_str = f"click [{element_id}] where [{element_id}] is {semantic_element}"
             case ActionTypes.TYPE:
                 text = "".join([_id2key[i] for i in action["text"]])
+                text = text.replace("\n", " ")
                 action_str = f"type [{element_id}] [{text}] where [{element_id}] is {semantic_element}"
             case ActionTypes.HOVER:
                 action_str = f"hover [{element_id}] where [{element_id}] is {semantic_element}"

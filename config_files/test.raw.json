@@ -1077,7 +1077,7 @@
       "reference_answers": {
         "must_include": [
           "DoubleTree by Hilton Hotel Pittsburgh Airport",
-          "2.0km"
+          "1.4km"
         ]
       },
       "reference_url": "",
@@ -1182,7 +1182,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "Yes"
+        "must_include": ["Yes"]
       },
       "reference_url": "",
       "program_html": [],
@@ -1212,7 +1212,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "Yes"
+        "must_include": ["Yes"]
       },
       "reference_url": "",
       "program_html": [],
@@ -1242,7 +1242,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "Yes"
+        "must_include": ["Yes"]
       },
       "reference_url": "",
       "program_html": [],
@@ -1272,7 +1272,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "Yes"
+        "must_include": ["Yes"]
       },
       "reference_url": "",
       "program_html": [],
@@ -1302,7 +1302,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "Yes"
+        "must_include": ["Yes"]
       },
       "reference_url": "",
       "program_html": [],
@@ -1395,7 +1395,7 @@
         "must_include": [
           "hollister",
           "Joust Bag",
-          "Antonia Race Tank"
+          "Antonia Racer Tank"
         ]
       },
       "reference_url": "",
@@ -1425,7 +1425,7 @@
       "reference_answers": null,
       "reference_url": "__GITLAB__/dashboard/todos",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 303
   },
@@ -1449,7 +1449,7 @@
       "reference_answers": null,
       "reference_url": "__GITLAB__/a11yproject/a11yproject.com/-/issues/?sort=created_asc&state=opened",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 300
   },
@@ -1473,7 +1473,7 @@
       "reference_answers": null,
       "reference_url": "__GITLAB__/primer/design/-/issues/?sort=created_date&state=opened",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 300
   },
@@ -2859,14 +2859,13 @@
         "must_include": [
           "Rhode Island",
           "Massachusetts",
-          "New York",
-          "New Jersey"
+          "New York"
         ]
       },
       "reference_url": "",
       "program_html": [],
       "string_note": "",
-      "reference_answer_raw_annotation": "Rhode Island, Massachusetts, New York, New Jersey"
+      "reference_answer_raw_annotation": "Rhode Island, Massachusetts, New York"
     },
     "intent_template_id": 67
   },
@@ -2894,13 +2893,15 @@
           "Ohio",
           "Maryland",
           "New York",
-          "Virginia"
+          "New Jersey",
+          "Delaware",
+          "West Virginia"
         ]
       },
       "reference_url": "",
       "program_html": [],
       "string_note": "",
-      "reference_answer_raw_annotation": "Ohio, Maryland, New York, Virginia"
+      "reference_answer_raw_annotation": "Ohio, Maryland, New York, New Jersey, Delaware, West Virginia"
     },
     "intent_template_id": 67
   },
@@ -3288,7 +3289,7 @@
         "url_match"
       ],
       "reference_answers": null,
-      "reference_url": "__GITLAB__/byteblaze/a11y-syntax-highlighting/-/issues/?sort=priority_desc&state=opened&label_name%5B%5D=help%20wanted",
+      "reference_url": "__GITLAB__/byteblaze/a11y-syntax-highlighting/-/issues/?label_name%5B%5D=help%20wanted",
       "program_html": [],
       "url_note": "GOLD in PRED"
     },
@@ -3315,7 +3316,7 @@
         "url_match"
       ],
       "reference_answers": null,
-      "reference_url": "__GITLAB__/kkroening/ffmpeg-python/-/issues/?sort=priority_desc&state=opened&label_name%5B%5D=question",
+      "reference_url": "__GITLAB__/kkroening/ffmpeg-python/-/issues/?label_name%5B%5D=question",
       "program_html": [],
       "url_note": "GOLD in PRED"
     },
@@ -3342,7 +3343,7 @@
         "url_match"
       ],
       "reference_answers": null,
-      "reference_url": "__GITLAB__/keycloak/keycloak/-/issues/?sort=priority_desc&state=opened&label_name%5B%5D=flaky-test",
+      "reference_url": "__GITLAB__/keycloak/keycloak/-/issues/?label_name%5B%5D=flaky-test",
       "program_html": [],
       "url_note": "GOLD in PRED"
     },
@@ -3369,7 +3370,7 @@
         "url_match"
       ],
       "reference_answers": null,
-      "reference_url": "__GITLAB__/OpenAPITools/openapi-generator/-/issues/?sort=priority_desc&state=opened&label_name%5B%5D=OpenAPI%20Generator%20CLI",
+      "reference_url": "__GITLAB__/OpenAPITools/openapi-generator/-/issues/?label_name%5B%5D=OpenAPI%20Generator%20CLI",
       "program_html": [],
       "url_note": "GOLD in PRED"
     },
@@ -3396,7 +3397,7 @@
         "url_match"
       ],
       "reference_answers": null,
-      "reference_url": "__GITLAB__/umano/AndroidSlidingUpPanel/-/issues/?sort=priority_desc&state=opened&label_name%5B%5D=BUG",
+      "reference_url": "__GITLAB__/umano/AndroidSlidingUpPanel/-/issues/?label_name%5B%5D=BUG",
       "program_html": [],
       "url_note": "GOLD in PRED"
     },
@@ -3711,12 +3712,12 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "Teofila"
+        "exact_match": "N/A"
       },
       "reference_url": "",
       "program_html": [],
-      "string_note": "",
-      "reference_answer_raw_annotation": "Teofila"
+      "string_note": "There is no negative review for Chloe tank",
+      "reference_answer_raw_annotation": ""
     },
     "intent_template_id": 245
   },
@@ -5026,7 +5027,7 @@
       "reference_answers": null,
       "reference_url": "__GITLAB__/dashboard/merge_requests?assignee_username=byteblaze",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 290
   },
@@ -5076,7 +5077,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/heiying-game-card-case-for-nintendo-switch-switch-oled-game-card-or-micro-sd-memory-cards-portable-switch-game-memory-card-storage-with-24-game-card-slots-and-24-micro-sd-card-slots-black.html",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 171
   },
@@ -5102,7 +5103,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/game-card-holder-storage-case-for-nintendo-switch-games-or-ps-vita-game-case-or-sd-memory-cards-black.html",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 171
   },
@@ -5128,7 +5129,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/heiying-game-card-case-for-nintendo-switch-switch-oled-game-card-or-micro-sd-memory-cards-portable-switch-game-memory-card-storage-with-24-game-card-slots-and-24-micro-sd-card-slots-black.html",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 171
   },
@@ -5154,7 +5155,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/heiying-game-card-case-for-nintendo-switch-switch-oled-game-card-or-micro-sd-memory-cards-portable-switch-game-memory-card-storage-with-24-game-card-slots-and-24-micro-sd-card-slots-black.html",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 171
   },
@@ -5180,7 +5181,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/game-card-holder-storage-case-for-nintendo-switch-games-or-ps-vita-game-case-or-sd-memory-cards-black.html",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 171
   },
@@ -5537,12 +5538,13 @@
         "url_match"
       ],
       "reference_answers": {
-        "exact_match": "No"
+        "fuzzy_match": ["No, it is open"]
       },
       "reference_url": "__GITLAB__/byteblaze/empathy-prompts/-/issues/8",
       "program_html": [],
       "reference_answer_raw_annotation": "Not closed",
-      "string_note": ""
+      "string_note": "",
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 310
   },
@@ -5567,7 +5569,7 @@
         "url_match"
       ],
       "reference_answers": {
-        "exact_match": "No"
+        "fuzzy_match": ["No, it is open"]
       },
       "reference_url": "__GITLAB__/byteblaze/a11y-webring.club/-/issues/71",
       "program_html": [],
@@ -5597,7 +5599,7 @@
         "url_match"
       ],
       "reference_answers": {
-        "exact_match": "No"
+        "fuzzy_match": ["No, it is open"]
       },
       "reference_url": "__GITLAB__/byteblaze/empathy-prompts/-/issues/18",
       "program_html": [],
@@ -5627,7 +5629,7 @@
         "url_match"
       ],
       "reference_answers": {
-        "exact_match": "No"
+        "fuzzy_match": ["No, it is open"]
       },
       "reference_url": "__GITLAB__/byteblaze/a11y-syntax-highlighting/-/issues/1",
       "program_html": [],
@@ -5657,7 +5659,7 @@
         "url_match"
       ],
       "reference_answers": {
-        "exact_match": "Yes"
+        "fuzzy_match": ["Yes, it is closed"]
       },
       "reference_url": "__GITLAB__/a11yproject/a11yproject.com/-/issues/719",
       "program_html": [],
@@ -7463,23 +7465,21 @@
     "geolocation": null,
     "intent_template": "Get the order number of my most recent {{status}} order ",
     "instantiation_dict": {
-      "status": ""
+      "status": "under delivery"
     },
-    "intent": "Get the order number of my most recent  order ",
+    "intent": "Get the order number of my most recent under delivery order ",
     "require_reset": false,
     "eval": {
       "eval_types": [
         "string_match"
       ],
       "reference_answers": {
-        "must_include": [
-          "136"
-        ]
+        "exact_match": "N/A"
       },
       "reference_url": "",
       "program_html": [],
       "string_note": "",
-      "reference_answer_raw_annotation": "000000136"
+      "reference_answer_raw_annotation": "There is no under delivery order"
     },
     "intent_template_id": 213
   },
@@ -7578,7 +7578,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/astro-gaming-a50-wireless-headset-base-station-gen-4-compatible-with-ps5-ps4-pc-mac-black-silver.html",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 138
   },
@@ -7604,7 +7604,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/kellogg-s-special-k-protein-meal-bars-chocolate-caramel-12-7oz-6-count.html",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 138
   },
@@ -7630,7 +7630,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/women-cross-flower-beachwear-tankini-bandeau-bandage-bikini-set-push-up-swimwear-bathing-suit-two-pieces-swimsuits.html",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 138
   },
@@ -7656,7 +7656,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/professional-medi-spa-scar-stretch-mark-reduction-system.html",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 138
   },
@@ -7682,7 +7682,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/lynx-battery-12v-200ah-lithium-iron-phosphate-lifepo4-prismatic-deep-cell-battery-set-of-4-3-2v-cells-with-3-bus-bars-and-8-lug-nuts-for-rv-solar-marine-off-grid-applications.html",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 138
   },
@@ -7857,8 +7857,8 @@
       ],
       "reference_answers": {
         "must_include": [
-          "40.4424191",
-          "-79.9397388"
+          "40.442",
+          "-79.939"
         ]
       },
       "reference_url": "",
@@ -7889,8 +7889,8 @@
       ],
       "reference_answers": {
         "must_include": [
-          "40.46076",
-          "-79.94666"
+          "40.460",
+          "-79.946"
         ]
       },
       "reference_url": "",
@@ -7921,8 +7921,8 @@
       ],
       "reference_answers": {
         "must_include": [
-          "40.4511693",
-          "-79.9334241"
+          "40.451",
+          "-79.933"
         ]
       },
       "reference_url": "",
@@ -7953,8 +7953,8 @@
       ],
       "reference_answers": {
         "must_include": [
-          "40.4443",
-          "-79.94889"
+          "40.444",
+          "-79.948"
         ]
       },
       "reference_url": "",
@@ -7985,8 +7985,8 @@
       ],
       "reference_answers": {
         "must_include": [
-          "40.45761",
-          "-79.92934"
+          "40.457",
+          "-79.929"
         ]
       },
       "reference_url": "",
@@ -8168,7 +8168,7 @@
       "reference_answers": null,
       "reference_url": "__GITLAB__/explore",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 325
   },
@@ -8221,7 +8221,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/video-games.html",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 211
   },
@@ -8247,7 +8247,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/electronics/headphones.html",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 211
   },
@@ -8273,7 +8273,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/clothing-shoes-jewelry/men/shoes.html",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 211
   },
@@ -8299,7 +8299,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/clothing-shoes-jewelry/women/clothing.html",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 211
   },
@@ -8325,7 +8325,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/office-products/office-furniture-lighting/cabinets-racks-shelves.html",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 211
   },
@@ -8485,7 +8485,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/clothing-shoes-jewelry/women/shoes.html?price=0-25",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 139
   },
@@ -8512,7 +8512,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/clothing-shoes-jewelry/men/shoes.html?price=0-30",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 139
   },
@@ -8539,7 +8539,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/beauty-personal-care/makeup/makeup-remover.html?price=0-46.99",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 139
   },
@@ -8566,7 +8566,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/beauty-personal-care/oral-care/children-s-dental-care.html?price=0-78",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 139
   },
@@ -8593,7 +8593,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/home-kitchen/furniture/accent-furniture.html?price=0-199",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 139
   },
@@ -8619,7 +8619,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/catalogsearch/result/?q=usb+wifi",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 212
   },
@@ -8645,7 +8645,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/catalogsearch/result/?q=xbox",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 212
   },
@@ -8671,7 +8671,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/catalogsearch/result/?q=switch+accessories",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 212
   },
@@ -8697,7 +8697,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/catalogsearch/result/?q=iphone+13",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 212
   },
@@ -8723,7 +8723,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/catalogsearch/result/?q=green+tea+bag+for+weight+loss",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 212
   },
@@ -8902,7 +8902,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/microsoft-xbox-controller-carbon-black-for-series-x-series-s-xbox-one-windows-10-android-ios-bundled-with-dual-port-charging-dock-xbox-controller-skin-voucher-premgear-cloth.html",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 210
   },
@@ -8929,7 +8929,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/onlyeasy-over-the-door-shoe-storage-organizer-hanging-shoe-rack-holder-with-24-large-fabric-pockets-22-1-x-61-4-herringbone-grey-mxrodsb1p.html",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 207
   },
@@ -8956,7 +8956,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/game-card-holder-storage-case-for-nintendo-switch-games-or-ps-vita-game-case-or-sd-memory-cards-black.html",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 207
   },
@@ -8983,7 +8983,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/external-hard-drive-2tb-ultra-thin-external-hard-drive-2000gb-ultra-high-speed-portable-3-1-type-c-storage-drive-compatible-with-pc-laptop-and-mac-2tb-a1.html",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 207
   },
@@ -9341,7 +9341,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/sales/order/view/order_id/180/",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 180
   },
@@ -9367,7 +9367,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/sales/order/view/order_id/170/",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 180
   },
@@ -9393,7 +9393,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/sales/order/view/order_id/189/",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 180
   },
@@ -9415,12 +9415,12 @@
     "eval": {
       "eval_types": [
         "string_match"
+        "string_match"
       ],
-      "reference_answers": "N/A",
+      "reference_answers": {"exact_match": "N/A"},
       "reference_url": "",
       "program_html": [],
-      "string_note": "There is no order in the processing status",
-      "reference_answer_raw_annotation": "N/A"
+      "string_note": "there is no order in processing"
     },
     "intent_template_id": 180
   },
@@ -9442,12 +9442,12 @@
     "eval": {
       "eval_types": [
         "string_match"
+        "string_match"
       ],
-      "reference_answers": "N/A",
+      "reference_answers": {"exact_match": "N/A"},
       "reference_url": "",
       "program_html": [],
-      "string_note": "There is no order out of delivery",
-      "reference_answer_raw_annotation": "N/A"
+      "string_note": "there is no order in processing"
     },
     "intent_template_id": 180
   },
@@ -10131,7 +10131,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/catalogsearch/result/index/?product_list_order=price&q=chairs&product_list_dir=asc",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 208
   },
@@ -10158,7 +10158,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/catalogsearch/result/index/?q=mouth%20night%20guard%20&product_list_order=price",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 208
   },
@@ -10185,7 +10185,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/catalogsearch/result/?q=Canon+photo+printer",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 208
   },
@@ -10212,7 +10212,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/catalogsearch/result/index/?q=%20iphone%2012%20phone%20case&product_list_order=name",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 208
   },
@@ -10239,7 +10239,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/catalogsearch/result/index/?product_list_order=price&q=%20iphone%2012%20phone%20case",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 208
   },
@@ -10577,7 +10577,7 @@
       "reference_answers": null,
       "reference_url": "__GITLAB__/a11yproject/a11yproject.com/-/issues/?label_name%5B%5D=bug",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 299
   },
@@ -10603,7 +10603,7 @@
       "reference_answers": null,
       "reference_url": "__GITLAB__/primer/design/-/issues/?label_name%5B%5D=type%3A%20bug%20%F0%9F%90%9E",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 299
   },
@@ -10629,7 +10629,7 @@
       "reference_answers": null,
       "reference_url": "__GITLAB__/root/metaseq/-/issues/?label_name%5B%5D=enhancement",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 299
   },
@@ -10653,9 +10653,9 @@
         "url_match"
       ],
       "reference_answers": null,
-      "reference_url": "__GITLAB__/root/metaseq/-/issues/?search=OPT&sort=priority_desc&state=opened&label_name%5B%5D=question&first_page_size=20",
+      "reference_url": "__GITLAB__/root/metaseq/-/issues/?search=OPT&label_name%5B%5D=question",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 299
   },
@@ -10679,9 +10679,9 @@
         "url_match"
       ],
       "reference_answers": null,
-      "reference_url": "__GITLAB__/root/metaseq/-/issues/?sort=priority_desc&state=opened&label_name%5B%5D=None&first_page_size=20",
+      "reference_url": "__GITLAB__/root/metaseq/-/issues/?label_name%5B%5D=None",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 299
   },
@@ -10923,7 +10923,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/video-games/playstation-4/accessories.html?product_list_order=price",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 137
   },
@@ -10950,7 +10950,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/health-household/diet-sports-nutrition/nutrition-bars-drinks.html?product_list_order=price",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 137
   },
@@ -10977,7 +10977,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/clothing-shoes-jewelry/sport-specific-clothing/competitive-swimwear.html?product_list_order=price",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 137
   },
@@ -11004,7 +11004,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/home-kitchen/furniture/living-room-furniture.html?product_list_order=price&product_list_dir=desc",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 137
   },
@@ -11031,7 +11031,7 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/home-kitchen/bedding/kids-bedding.html?product_list_dir=desc",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 137
   },
@@ -11106,7 +11106,7 @@
       "reference_answers": null,
       "reference_url": "__GITLAB__/dashboard/merge_requests?reviewer_username=byteblaze",
       "program_html": [],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 291
   },
@@ -11651,7 +11651,7 @@
         "url_match"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING_ADMIN__/admin/system_design_theme/edit/id/1/key/",
+      "reference_url": "__SHOPPING_ADMIN__/admin/system_design_theme/edit/id/1",
       "program_html": [],
       "url_note": "GOLD in PRED"
     },
@@ -11733,7 +11733,7 @@
         "url_match"
       ],
       "reference_answers": null,
-      "reference_url": "__MAP__search?query=restaurants%20near%20CMU%20ArtPark%20Lab",
+      "reference_url": "__MAP__/search?query=restaurants%20near%20CMU%20ArtPark%20Lab",
       "program_html": [],
       "url_note": "GOLD in PRED"
     },
@@ -11760,7 +11760,7 @@
         "url_match"
       ],
       "reference_answers": null,
-      "reference_url": "__MAP__search?query=parking%20near%20carnegie%20mellon%20university",
+      "reference_url": "__MAP__/search?query=parking%20near%20carnegie%20mellon%20university",
       "program_html": [],
       "url_note": "GOLD in PRED"
     },
@@ -11787,7 +11787,7 @@
         "url_match"
       ],
       "reference_answers": null,
-      "reference_url": "__MAP__search?query=hotels%20near%20carnegie%20mellon%20university",
+      "reference_url": "__MAP__/search?query=hotels%20near%20carnegie%20mellon%20university",
       "program_html": [],
       "url_note": "GOLD in PRED"
     },
@@ -11814,7 +11814,7 @@
         "url_match"
       ],
       "reference_answers": null,
-      "reference_url": "__MAP__search?query=bars%20near%20Carnegie%20Music%20Hall",
+      "reference_url": "__MAP__/search?query=bars%20near%20Carnegie%20Music%20Hall",
       "program_html": [],
       "url_note": "GOLD in PRED"
     },
@@ -11841,7 +11841,7 @@
         "url_match"
       ],
       "reference_answers": null,
-      "reference_url": "__MAP__search?query=hotels%20near%20Carnegie%20Music%20Hall",
+      "reference_url": "__MAP__/search?query=hotels%20near%20Carnegie%20Music%20Hall",
       "program_html": [],
       "url_note": "GOLD in PRED"
     },
@@ -11994,7 +11994,7 @@
       ],
       "reference_answers": {
         "must_include": [
-          "3"
+          "65 |OR| 3"
         ]
       },
       "reference_url": "",
@@ -12484,7 +12484,7 @@
       "program_html": [
         {
           "url": "__REDDIT__/user/MarvelsGrantMan136",
-          "locator": "document.querySelector(\".profile-user-bio\").outerText",
+          "locator": "document.querySelector(\".user-bio__biography\").outerText",
           "required_contents": {
             "exact_match": "I am a robot"
           }
@@ -12517,7 +12517,7 @@
       "program_html": [
         {
           "url": "__REDDIT__/user/MarvelsGrantMan136",
-          "locator": "document.querySelector(\".profile-user-bio\").outerText",
+          "locator": "document.querySelector(\".user-bio__biography\").outerText",
           "required_contents": {
             "exact_match": "Pro Python Developer with 20 years of Experience"
           }
@@ -12550,7 +12550,7 @@
       "program_html": [
         {
           "url": "__REDDIT__/user/MarvelsGrantMan136",
-          "locator": "document.querySelector(\".profile-user-bio\").outerText",
+          "locator": "document.querySelector(\".user-bio__biography\").outerText",
           "required_contents": {
             "exact_match": "Seeking SDE positions"
           }
@@ -12583,7 +12583,7 @@
       "program_html": [
         {
           "url": "__REDDIT__/user/MarvelsGrantMan136",
-          "locator": "document.querySelector(\".profile-user-bio\").outerText",
+          "locator": "document.querySelector(\".user-bio__biography\").outerText",
           "required_contents": {
             "exact_match": "Freelance Web Developer"
           }
@@ -12616,7 +12616,7 @@
       "program_html": [
         {
           "url": "__REDDIT__/user/MarvelsGrantMan136",
-          "locator": "document.querySelector(\".profile-user-bio\").outerText",
+          "locator": "document.querySelector(\".user-bio__biography\").outerText",
           "required_contents": {
             "exact_match": "Awesome Prompt Artist"
           }
@@ -12648,8 +12648,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/f/books/new",
-          "locator": "document.querySelectorAll('div.submission__vote')[0].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/books/124260/adults-reading-to-each-other-out-loud",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -12683,8 +12683,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/f/diy/new",
-          "locator": "document.querySelectorAll('div.submission__vote')[0].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/DIY/119019/how-can-i-bring-an-hdmi-cable-from-my-pc-downstairs-to-my-tv",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -12718,8 +12718,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/f/futurology/new",
-          "locator": "document.querySelectorAll('div.submission__vote')[0].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/Futurology/119517/openai-ceo-it-s-not-funny-that-i-m-afraid-of-the-ai-we-re",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -12753,8 +12753,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/f/books/deeplearning",
-          "locator": "document.querySelectorAll('div.submission__vote')[0].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/deeplearning/124993/meta-s-llama-weights-leaked-on-torrent-and-the-best-thing",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -12788,8 +12788,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/f/books/explainlikeimfive",
-          "locator": "document.querySelectorAll('div.submission__vote')[0].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/explainlikeimfive/39244/eli5-how-does-pinching-a-ribbon-and-sliding-your-finger",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -13137,7 +13137,7 @@
       "program_html": [
         {
           "url": "__GITLAB__/byteblaze",
-          "locator": "document.querySelector('.profile-user-bio').outerText",
+          "locator": "document.querySelector('.cover-status').lastChild.textContent",
           "required_contents": {
             "exact_match": "Busy"
           }
@@ -13170,7 +13170,7 @@
       "program_html": [
         {
           "url": "__GITLAB__/byteblaze",
-          "locator": "document.querySelector('.profile-user-bio').outerText",
+          "locator": "document.querySelector('.cover-status').lastChild.textContent",
           "required_contents": {
             "exact_match": "Enjoying life"
           }
@@ -13203,7 +13203,7 @@
       "program_html": [
         {
           "url": "__GITLAB__/byteblaze",
-          "locator": "document.querySelector('.profile-user-bio').outerText",
+          "locator": "document.querySelector('.cover-status').lastChild.textContent",
           "required_contents": {
             "exact_match": "Playing Badminton"
           }
@@ -13236,7 +13236,7 @@
       "program_html": [
         {
           "url": "__GITLAB__/byteblaze",
-          "locator": "document.querySelector('.profile-user-bio').outerText",
+          "locator": "document.querySelector('.cover-status').lastChild.textContent",
           "required_contents": {
             "exact_match": "Resting due to leg injury"
           }
@@ -13269,7 +13269,7 @@
       "program_html": [
         {
           "url": "__GITLAB__/byteblaze",
-          "locator": "document.querySelector('.profile-user-bio').outerText",
+          "locator": "document.querySelector('.cover-status').lastChild.textContent",
           "required_contents": {
             "exact_match": "Out of Office"
           }
@@ -14562,7 +14562,7 @@
     "task_id": 460,
     "require_login": true,
     "storage_state": "./.auth/shopping_admin_state.json",
-    "start_url": "__SHOPPING_ADMIN__/catalog/product/edit/id/237/",
+    "start_url": "__SHOPPING_ADMIN__/catalog/product/edit/id/418/",
     "geolocation": null,
     "intent_template": "{{action}} the price of this product by {{amount}}",
     "instantiation_dict": {
@@ -14579,10 +14579,10 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/237/",
+          "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/418/",
           "locator": "document.querySelector('[name=\"product[price]\"').value",
           "required_contents": {
-            "exact_match": "58.65"
+            "exact_match": "38.25"
           }
         }
       ]
@@ -14596,7 +14596,7 @@
     "task_id": 461,
     "require_login": true,
     "storage_state": "./.auth/shopping_admin_state.json",
-    "start_url": "__SHOPPING_ADMIN__/catalog/product/edit/id/1481/",
+    "start_url": "__SHOPPING_ADMIN__/catalog/product/edit/id/721/",
     "geolocation": null,
     "intent_template": "{{action}} the price of this product by {{amount}}",
     "instantiation_dict": {
@@ -14613,10 +14613,10 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/1481/",
+          "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/721/",
           "locator": "document.querySelector('[name=\"product[price]\"').value",
           "required_contents": {
-            "exact_match": "43.50"
+            "exact_match": "29.50"
           }
         }
       ]
@@ -14630,7 +14630,7 @@
     "task_id": 462,
     "require_login": true,
     "storage_state": "./.auth/shopping_admin_state.json",
-    "start_url": "__SHOPPING_ADMIN__/catalog/product/edit/id/237/",
+    "start_url": "__SHOPPING_ADMIN__/catalog/product/edit/id/710/",
     "geolocation": null,
     "intent_template": "{{action}} the price of this product by {{amount}}",
     "instantiation_dict": {
@@ -14647,10 +14647,10 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/237/",
+          "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/710/",
           "locator": "document.querySelector('[name=\"product[price]\"').value",
           "required_contents": {
-            "exact_match": "75.90"
+            "exact_match": "19.80"
           }
         }
       ]
@@ -14664,7 +14664,7 @@
     "task_id": 463,
     "require_login": true,
     "storage_state": "./.auth/shopping_admin_state.json",
-    "start_url": "__SHOPPING_ADMIN__/catalog/product/edit/id/237/",
+    "start_url": "__SHOPPING_ADMIN__/catalog/product/edit/id/996/",
     "geolocation": null,
     "intent_template": "{{action}} the price of this product by {{amount}}",
     "instantiation_dict": {
@@ -14681,10 +14681,10 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/237/",
+          "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/996/",
           "locator": "document.querySelector('[name=\"product[price]\"').value",
           "required_contents": {
-            "exact_match": "79.35"
+            "exact_match": "36.80"
           }
         }
       ]
@@ -14714,11 +14714,13 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__SHOPPING_ADMIN__/antonia-racer-tank.html",
-          "locator": "document.querySelector('.product.info.detailed').outerText",
+          "url": "__SHOPPING_ADMIN__/../antonia-racer-tank.html",
+          "locator": "document.querySelector('.data.item.content').outerText + (document.querySelector('.product.attribute.overview [itemprop=\"description\"]')?.outerText || '')",
           "required_contents": {
             "must_include": [
-              "This is in regular rotation at the gym. Its colorful and looks kinda cute under my exercise tanks."
+              "This is in regular rotation at the gym",
+              "Its colorful and looks kinda cute under my exercise tanks",
+              "it's very stylish for yoga or something else low impact"
             ]
           }
         }
@@ -15640,19 +15642,14 @@
     "require_reset": false,
     "eval": {
       "eval_types": [
-        "program_html"
+        "string_match"
       ],
-      "reference_answers": null,
+      "reference_answers": {
+        "exact_match": "N/A"
+      },
       "reference_url": "",
-      "program_html": [
-        {
-          "url": "__SHOPPING_ADMIN__/sales/order/view/order_id/299/",
-          "locator": "document.querySelector(\"#order_history_block\").querySelector(\".note-list\").firstElementChild.querySelector(\".note-list-comment\").outerText",
-          "required_contents": {
-            "exact_match": "the order is ready to be shipped soon!"
-          }
-        }
-      ]
+      "program_html": [],
+      "string_note": "System message: We cannot add order history."
     },
     "intent_template_id": 280
   },
@@ -16804,8 +16801,7 @@
               "AndroidAsync",
               "Pytorch-GAN",
               "administrate",
-              "keycloak",
-              "openapi-generator"
+              "keycloak"
             ]
           }
         }
@@ -17545,12 +17541,14 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__SHOPPING_ADMIN__/bella-tank.html",
-          "locator": "document.querySelector('.product.info.detailed').outerText",
+          "url": "__SHOPPING_ADMIN__/../bella-tank.html",
+          "locator": "document.querySelector('.data.item.content').outerText + (document.querySelector('.product.attribute.overview [itemprop=\"description\"]')?.outerText || '')",
           "required_contents": {
             "must_include": [
-              "Good choice for working out and stylin' enough to wear when I'm hanging with friends on hot days. Also washes really well!",
-              "Always a sweet n sporty look for the gym! Keeps me cool and the seams don't rub up against me like some of my other tanks."
+              "Good choice for working out and stylin' enough to wear when I'm hanging with friends on hot days",
+              "Also washes really well",
+              "Always a sweet n sporty look for the gym",
+              "Keeps me cool and the seams don't rub up against me like some of my other tanks"
             ]
           }
         }
@@ -17581,14 +17579,15 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__SHOPPING_ADMIN__/selene-yoga-hoodie.html",
-          "locator": "document.querySelector('.product.info.detailed').outerText",
+          "url": "__SHOPPING_ADMIN__/../selene-yoga-hoodie.html",
+          "locator": "document.querySelector('.data.item.content').outerText + (document.querySelector('.product.attribute.overview [itemprop=\"description\"]')?.outerText || '')",
           "required_contents": {
             "must_include": [
               "I was super cold and it did the job.",
               "The sleeves are definitely thicker than you realize, which is a good thing",
               "really quite substantial",
-              "m planning on buying another one of these in another color. the best hoodie ive ever owned."
+              "planning on buying another one of these in another color",
+              "the best hoodie ive ever owned"
             ]
           }
         }
@@ -17619,15 +17618,16 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__SHOPPING_ADMIN__/radiant-tee.html",
-          "locator": "document.querySelector('.product.info.detailed').outerText",
+          "url": "__SHOPPING_ADMIN__/../radiant-tee.html",
+          "locator": "document.querySelector('.data.item.content').outerText + (document.querySelector('.product.attribute.overview [itemprop=\"description\"]')?.outerText || '')",
           "required_contents": {
             "must_include": [
               "What I rally love here is that it does the job of keeping me cool and dry",
-              "I'm a big guy and sweat A LOT! Even after a day of gulf, I'm still dry and comfortable",
-              "What a versatile shirt!",
-              "Not only does it feel very soft compared to my old worn out polos, but it also does the job promised.",
-              "I like going out after my game for drinks so I look good then too and don't need to change into something fresh."
+              "I'm a big guy and sweat A LOT",
+              "Even after a day of gulf, I'm still dry and comfortable",
+              "What a versatile shirt",
+              "Not only does it feel very soft compared to my old worn out polos, but it also does the job promised",
+              "I like going out after my game for drinks so I look good then too and don't need to change into something fresh"
             ]
           }
         }
@@ -17658,11 +17658,11 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__SHOPPING_ADMIN__/affirm-water-bottle.html",
-          "locator": "document.querySelector('.product.info.detailed').outerText",
+          "url": "__SHOPPING_ADMIN__/../affirm-water-bottle.html",
+          "locator": "document.querySelector('.data.item.content').outerText + (document.querySelector('.product.attribute.overview [itemprop=\"description\"]')?.outerText || '')",
           "required_contents": {
             "must_include": [
-              "Wide mouth opening makes it easy to clean!"
+              "Wide mouth opening makes it easy to clean"
             ]
           }
         }
@@ -19107,7 +19107,7 @@
       "program_html": [
         {
           "url": "__REDDIT__/f/sci_fi/edit",
-          "locator": "document.querySelector(\"#forum_description\").outerText",
+          "locator": "document.querySelector(\"#forum_description\").value",
           "required_contents": {
             "must_include": [
               "A wild place for sci-fi enthusiasts"
@@ -19116,7 +19116,7 @@
         },
         {
           "url": "__REDDIT__/f/sci_fi/edit",
-          "locator": "document.querySelector(\"#forum_sidebar\").outerText",
+          "locator": "document.querySelector(\"#forum_sidebar\").value",
           "required_contents": {
             "must_include": [
               "New",
@@ -19161,7 +19161,7 @@
       "program_html": [
         {
           "url": "__REDDIT__/f/cmu_lti/edit",
-          "locator": "document.querySelector(\"#forum_description\").outerText",
+          "locator": "document.querySelector(\"#forum_description\").value",
           "required_contents": {
             "must_include": [
               "Language Technologies Institute at Carnegie Mellon University"
@@ -19170,7 +19170,7 @@
         },
         {
           "url": "__REDDIT__/f/cmu_lti/edit",
-          "locator": "document.querySelector(\"#forum_sidebar\").outerText",
+          "locator": "document.querySelector(\"#forum_sidebar\").value",
           "required_contents": {
             "must_include": [
               "announcement",
@@ -19214,7 +19214,7 @@
       "program_html": [
         {
           "url": "__REDDIT__/f/Cyberpunk/edit",
-          "locator": "document.querySelector(\"#forum_description\").outerText",
+          "locator": "document.querySelector(\"#forum_description\").value",
           "required_contents": {
             "must_include": [
               "Welcome to the future"
@@ -19223,7 +19223,7 @@
         },
         {
           "url": "__REDDIT__/f/Cyberpunk/edit",
-          "locator": "document.querySelector(\"#forum_sidebar\").outerText",
+          "locator": "document.querySelector(\"#forum_sidebar\").value",
           "required_contents": {
             "must_include": [
               "Games",
@@ -19268,7 +19268,7 @@
       "program_html": [
         {
           "url": "__REDDIT__/f/PlantsForCatParents/edit",
-          "locator": "document.querySelector(\"#forum_description\").outerText",
+          "locator": "document.querySelector(\"#forum_description\").value",
           "required_contents": {
             "must_include": [
               "Cat parents & plan lovers"
@@ -19277,7 +19277,7 @@
         },
         {
           "url": "__REDDIT__/f/PlantsForCatParents/edit",
-          "locator": "document.querySelector(\"#forum_sidebar\").outerText",
+          "locator": "document.querySelector(\"#forum_sidebar\").value",
           "required_contents": {
             "must_include": [
               "Cat friendly",
@@ -19320,7 +19320,7 @@
       "program_html": [
         {
           "url": "__REDDIT__/f/Karaoke",
-          "locator": "document.querySelector(\"#forum_description\").outerText",
+          "locator": "document.querySelector(\"#forum_description\").value",
           "required_contents": {
             "must_include": [
               "Place for Karaoke lovers"
@@ -19329,7 +19329,7 @@
         },
         {
           "url": "__REDDIT__/f/Karaoke",
-          "locator": "document.querySelector(\"#forum_sidebar\").outerText",
+          "locator": "document.querySelector(\"#forum_sidebar\").value",
           "required_contents": {
             "must_include": [
               "devices",
@@ -20032,7 +20032,7 @@
           "locator": "document.querySelector(\"#sidebar > section\").outerText",
           "required_contents": {
             "must_include": [
-              "machine learning"
+              "MachineLearning"
             ]
           }
         }
@@ -21681,11 +21681,11 @@
     "geolocation": null,
     "intent_template": "Post a notice on a virtual meetup for {{interest}} enthusiasts on {{date}} in the {{subreddit}} subreddit",
     "instantiation_dict": {
-      "interest": "Harry Poter",
+      "interest": "Harry Potter",
       "date": "July 8th",
       "subreddit": "books"
     },
-    "intent": "Post a notice on a virtual meetup for Harry Poter enthusiasts on July 8th in the books subreddit",
+    "intent": "Post a notice on a virtual meetup for Harry Potter enthusiasts on July 8th in the books subreddit",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -21700,7 +21700,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "Harry Poter",
+              "Harry Potter",
               "July 8th",
               "virtual meetup"
             ]
@@ -22154,7 +22154,7 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING__/contact/",
+      "reference_url": "__SHOPPING__/contact",
       "program_html": [
         {
           "url": "last",
@@ -22169,7 +22169,7 @@
           }
         }
       ],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 153
   },
@@ -22195,7 +22195,7 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING__/contact/",
+      "reference_url": "__SHOPPING__/contact",
       "program_html": [
         {
           "url": "last",
@@ -22210,7 +22210,7 @@
           }
         }
       ],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 153
   },
@@ -22236,7 +22236,7 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING__/contact/",
+      "reference_url": "__SHOPPING__/contact",
       "program_html": [
         {
           "url": "last",
@@ -22251,7 +22251,7 @@
           }
         }
       ],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 153
   },
@@ -22277,7 +22277,7 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING__/contact/",
+      "reference_url": "__SHOPPING__/contact",
       "program_html": [
         {
           "url": "last",
@@ -22292,7 +22292,7 @@
           }
         }
       ],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 153
   },
@@ -22318,7 +22318,7 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING__/contact/",
+      "reference_url": "__SHOPPING__/contact",
       "program_html": [
         {
           "url": "last",
@@ -22333,7 +22333,7 @@
           }
         }
       ],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 153
   },
@@ -23068,9 +23068,10 @@
           "required_contents": {
             "must_include": [
               "Unable to set neutral steering",
-              "Doesn\u2019t work with PC.",
-              "Crazy problems in automatic mode; then pedals stopped working",
-              "Only works with certain games."
+              "Doesn\u2019t work with PC",
+              "Crazy problems in automatic mode",
+              "pedals stopped working",
+              "Only works with certain games"
             ]
           }
         }
@@ -23698,7 +23699,7 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING__/contact/",
+      "reference_url": "__SHOPPING__/contact",
       "program_html": [
         {
           "url": "last",
@@ -23711,7 +23712,7 @@
           }
         }
       ],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 163
   },
@@ -23736,7 +23737,7 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING__/contact/",
+      "reference_url": "__SHOPPING__/contact",
       "program_html": [
         {
           "url": "last",
@@ -23749,7 +23750,7 @@
           }
         }
       ],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 163
   },
@@ -23774,7 +23775,7 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING__/contact/",
+      "reference_url": "__SHOPPING__/contact",
       "program_html": [
         {
           "url": "last",
@@ -23787,7 +23788,7 @@
           }
         }
       ],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 163
   },
@@ -23812,7 +23813,7 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING__/contact/",
+      "reference_url": "__SHOPPING__/contact",
       "program_html": [
         {
           "url": "last",
@@ -23825,7 +23826,7 @@
           }
         }
       ],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 163
   },
@@ -23850,7 +23851,7 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING__/contact/",
+      "reference_url": "__SHOPPING__/contact",
       "program_html": [
         {
           "url": "last",
@@ -23863,7 +23864,7 @@
           }
         }
       ],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 163
   },
@@ -23892,7 +23893,7 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING_ADMIN__/catalog/product/edit/id",
+      "reference_url": "__SHOPPING_ADMIN__/catalog/product",
       "program_html": [
         {
           "url": "last",
@@ -23903,7 +23904,7 @@
         },
         {
           "url": "last",
-          "locator": "document.querySelector('[name=\"product[name]\"').outerText",
+          "locator": "document.querySelector('[name=\"product[name]\"').value",
           "required_contents": {
             "must_include": [
               "Energy-Bulk Women Shirt"
@@ -23979,7 +23980,7 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING_ADMIN__/catalog/product/edit/id",
+      "reference_url": "__SHOPPING_ADMIN__/catalog/product",
       "program_html": [
         {
           "url": "last",
@@ -23990,7 +23991,7 @@
         },
         {
           "url": "last",
-          "locator": "document.querySelector('[name=\"product[name]\"').outerText",
+          "locator": "document.querySelector('[name=\"product[name]\"').value",
           "required_contents": {
             "must_include": [
               "Energy-Bulk Man Yoga Pant"
@@ -24066,11 +24067,11 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING_ADMIN__/catalog/product/edit/id",
+      "reference_url": "__SHOPPING_ADMIN__/catalog/product",
       "program_html": [
         {
           "url": "last",
-          "locator": "document.querySelector('[name=\"product[name]\"').outerText",
+          "locator": "document.querySelector('[name=\"product[name]\"').value",
           "required_contents": {
             "must_include": [
               "FancyBoy Man Causal Jeans"
@@ -24153,11 +24154,11 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING_ADMIN__/catalog/product/edit/id",
+      "reference_url": "__SHOPPING_ADMIN__/catalog/product",
       "program_html": [
         {
           "url": "last",
-          "locator": "document.querySelector('[name=\"product[name]\"').outerText",
+          "locator": "document.querySelector('[name=\"product[name]\"').value",
           "required_contents": {
             "must_include": [
               "Swaatch Smart Watch"
@@ -24233,11 +24234,11 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING_ADMIN__/catalog/product/edit/id",
+      "reference_url": "__SHOPPING_ADMIN__/catalog/product",
       "program_html": [
         {
           "url": "last",
-          "locator": "document.querySelector('[name=\"product[name]\"').outerText",
+          "locator": "document.querySelector('[name=\"product[name]\"').value",
           "required_contents": {
             "must_include": [
               "Lelelumon Yoga Mat"
@@ -24310,7 +24311,7 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING_ADMIN__/sales_rule/promo_quote/new/",
+      "reference_url": "__SHOPPING_ADMIN__/sales_rule/promo_quote",
       "program_html": [
         {
           "url": "last",
@@ -24338,6 +24339,7 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"simple_action\"').value",
+          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
           "required_contents": {
             "exact_match": "by_percent"
           }
@@ -24345,12 +24347,13 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"discount_amount\"').value",
+          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
           "required_contents": {
             "exact_match": "20"
           }
         }
       ],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 258
   },
@@ -24376,7 +24379,7 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING_ADMIN__/sales_rule/promo_quote/new/",
+      "reference_url": "__SHOPPING_ADMIN__/sales_rule/promo_quote",
       "program_html": [
         {
           "url": "last",
@@ -24404,6 +24407,7 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"simple_action\"').value",
+          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
           "required_contents": {
             "exact_match": "cart_fixed"
           }
@@ -24411,12 +24415,13 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"discount_amount\"').value",
+          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
           "required_contents": {
             "exact_match": "10"
           }
         }
       ],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 258
   },
@@ -24442,7 +24447,7 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING_ADMIN__/sales_rule/promo_quote/new/",
+      "reference_url": "__SHOPPING_ADMIN__/sales_rule/promo_quote",
       "program_html": [
         {
           "url": "last",
@@ -24470,6 +24475,7 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"simple_action\"').value",
+          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
           "required_contents": {
             "exact_match": "cart_fixed"
           }
@@ -24477,12 +24483,13 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"discount_amount\"').value",
+          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
           "required_contents": {
             "exact_match": "15"
           }
         }
       ],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 258
   },
@@ -24508,7 +24515,7 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING_ADMIN__/sales_rule/promo_quote/new/",
+      "reference_url": "__SHOPPING_ADMIN__/sales_rule/promo_quote",
       "program_html": [
         {
           "url": "last",
@@ -24536,6 +24543,7 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"simple_action\"').value",
+          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
           "required_contents": {
             "exact_match": "by_percent"
           }
@@ -24543,12 +24551,13 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"discount_amount\"').value",
+          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
           "required_contents": {
             "exact_match": "45"
           }
         }
       ],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 258
   },
@@ -24574,7 +24583,7 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING_ADMIN__/sales_rule/promo_quote/new/",
+      "reference_url": "__SHOPPING_ADMIN__/sales_rule/promo_quote",
       "program_html": [
         {
           "url": "last",
@@ -24602,6 +24611,7 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"simple_action\"').value",
+          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
           "required_contents": {
             "exact_match": "cart_fixed"
           }
@@ -24609,12 +24619,13 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"discount_amount\"').value",
+          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
           "required_contents": {
             "exact_match": "40"
           }
         }
       ],
-      "url_note": "EXACT"
+      "url_note": "GOLD in PRED"
     },
     "intent_template_id": 258
   },
@@ -24646,14 +24657,14 @@
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_from\"').value",
           "required_contents": {
-            "exact_match": "02/1/2023"
+            "exact_match": "2/1/23"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_to\"').value",
           "required_contents": {
-            "exact_match": "02/28/2023"
+            "exact_match": "2/28/23"
           }
         }
       ],
@@ -24689,14 +24700,14 @@
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_from\"').value",
           "required_contents": {
-            "exact_match": "01/29/2023"
+            "exact_match": "1/29/23"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_to\"').value",
           "required_contents": {
-            "exact_match": "03/15/2023"
+            "exact_match": "3/15/23"
           }
         }
       ],
@@ -24726,20 +24737,20 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__SHOPPING_ADMIN__/reports/report_sales/refunded/",
+      "reference_url": "__SHOPPING_ADMIN__/reports/report_sales/refunded",
       "program_html": [
         {
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_from\"').value",
           "required_contents": {
-            "exact_match": "01/1/2023"
+            "exact_match": "1/1/23"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_to\"').value",
           "required_contents": {
-            "exact_match": "03/31/2023"
+            "exact_match": "3/31/23"
           }
         }
       ],
@@ -24775,7 +24786,7 @@
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_from\"').value",
           "required_contents": {
-            "exact_match": "01/1/2022"
+            "exact_match": "1/1/2022"
           }
         },
         {
@@ -24818,7 +24829,7 @@
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_from\"').value",
           "required_contents": {
-            "exact_match": "01/1/2023"
+            "exact_match": "1/1/2023"
           }
         },
         {
@@ -24862,14 +24873,14 @@
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_from\"').value",
           "required_contents": {
-            "exact_match": "05/1/2021"
+            "exact_match": "5/1/2021"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_to\"').value",
           "required_contents": {
-            "exact_match": "03/31/2022"
+            "exact_match": "3/31/2022"
           }
         }
       ],
@@ -24906,14 +24917,14 @@
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_from\"').value",
           "required_contents": {
-            "exact_match": "08/5/2022"
+            "exact_match": "8/5/22"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_to\"').value",
           "required_contents": {
-            "exact_match": "03/1/2023"
+            "exact_match": "3/1/23"
           }
         }
       ],
@@ -24950,14 +24961,14 @@
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_from\"').value",
           "required_contents": {
-            "exact_match": "07/5/2021"
+            "exact_match": "7/5/21"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_to\"').value",
           "required_contents": {
-            "exact_match": "05/31/2023"
+            "exact_match": "5/31/23"
           }
         }
       ],
@@ -24994,14 +25005,14 @@
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_from\"').value",
           "required_contents": {
-            "exact_match": "05/1/2021"
+            "exact_match": "5/1/21"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_to\"').value",
           "required_contents": {
-            "exact_match": "05/15/2023"
+            "exact_match": "5/15/23"
           }
         }
       ],
@@ -25038,14 +25049,14 @@
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_from\"').value",
           "required_contents": {
-            "exact_match": "05/1/2022"
+            "exact_match": "5/1/22"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_to\"').value",
           "required_contents": {
-            "exact_match": "05/31/2023"
+            "exact_match": "5/31/23"
           }
         }
       ],
@@ -25077,8 +25088,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/f/gadgets/top?t=all",
-          "locator": "document.querySelectorAll('div.submission__vote')[0].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/gadgets/19459/a-custom-gaming-pc-built-inside-a-vintage-1940s-motorola",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25113,8 +25124,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/f/history/top?t=all",
-          "locator": "document.querySelectorAll('div.submission__vote')[0].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/history/84338/the-scientist-who-discovered-sperm-was-so-grossed-out-he",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25122,8 +25133,8 @@
           }
         },
         {
-          "url": "__REDDIT__/f/history/top?t=all",
-          "locator": "document.querySelectorAll('div.submission__vote')[1].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/history/105990/4-500-year-old-sumerian-temple-dedicated-to-mighty-thunder",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25158,8 +25169,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/f/books/top?t=all",
-          "locator": "document.querySelectorAll('div.submission__vote')[0].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/books/81371/the-letters-of-t-s-eliot-to-emily-hale-that-were-kept-sealed",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25167,8 +25178,8 @@
           }
         },
         {
-          "url": "__REDDIT__/f/books/top?t=all",
-          "locator": "document.querySelectorAll('div.submission__vote')[1].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/books/59421/friendly-reminder-bookshop-org-exists",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25176,8 +25187,8 @@
           }
         },
         {
-          "url": "__REDDIT__/f/books/top?t=all",
-          "locator": "document.querySelectorAll('div.submission__vote')[2].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/books/59447/appalachian-prison-book-project-seeks-notebook-donations-the",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25212,8 +25223,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/f/movies/top?t=all",
-          "locator": "document.querySelectorAll('div.submission__vote')[0].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/movies/86174/who-will-win-the-oscar-for-actress-in-a-supporting-role",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25221,8 +25232,8 @@
           }
         },
         {
-          "url": "__REDDIT__/f/movies/top?t=all",
-          "locator": "document.querySelectorAll('div.submission__vote')[1].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/movies/86029/who-will-win-the-oscar-for-film-editing",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25230,8 +25241,8 @@
           }
         },
         {
-          "url": "__REDDIT__/f/movies/top?t=all",
-          "locator": "document.querySelectorAll('div.submission__vote')[2].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/movies/86055/cindy-williams-dies-laverne-amp-shirley-star-who-appeared-in",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25239,8 +25250,8 @@
           }
         },
         {
-          "url": "__REDDIT__/f/movies/top?t=all",
-          "locator": "document.querySelectorAll('div.submission__vote')[3].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/movies/42682/michelle-yeoh-to-receive-palm-springs-film-festival-s",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25275,8 +25286,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/f/technology/top?t=all",
-          "locator": "document.querySelectorAll('div.submission__vote')[0].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/technology/48670/brain-cancer-vaccine-succeeds-at-prolonging-survival-in",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25284,8 +25295,8 @@
           }
         },
         {
-          "url": "__REDDIT__/f/technology/top?t=all",
-          "locator": "document.querySelectorAll('div.submission__vote')[1].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/technology/134696/india-cuts-internet-for-27-million-people-amid-search-for",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25293,8 +25304,8 @@
           }
         },
         {
-          "url": "__REDDIT__/f/technology/top?t=all",
-          "locator": "document.querySelectorAll('div.submission__vote')[2].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/technology/48785/us-judge-orders-amazon-to-cease-and-desist-anti-union",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25302,8 +25313,8 @@
           }
         },
         {
-          "url": "__REDDIT__/f/technology/top?t=all",
-          "locator": "document.querySelectorAll('div.submission__vote')[3].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/technology/70354/activision-s-boston-studio-workers-announce-unionization",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25311,8 +25322,8 @@
           }
         },
         {
-          "url": "__REDDIT__/f/technology/top?t=all",
-          "locator": "document.querySelectorAll('div.submission__vote')[4].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/technology/70233/social-media-influencers-are-charged-with-feeding-followers",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25347,8 +25358,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/user/ThetaGang_wsb/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[0].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/wallstreetbets/29478/how-will-airbnb-close-following-their-earnings-report-on",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25356,8 +25367,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/ThetaGang_wsb/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[1].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/wallstreetbets/29458/how-much-will-the-federal-reserve-raise-interest-rates-in",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25392,8 +25403,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/user/CameronKelsey/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[0].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/EarthPorn/98332/my-favorite-place-on-the-planet-henry-s-fork-of-the-snake",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25401,8 +25412,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/CameronKelsey/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[1].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/EarthPorn/98297/2-years-later-this-is-still-one-of-the-most-incredible",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25410,8 +25421,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/CameronKelsey/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[2].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/EarthPorn/98256/i-can-t-wait-for-all-this-green-to-start-coming-back-little",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25446,8 +25457,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/user/UniversityofBath/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[0].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/IAmA/119742/hi-i-m-vienne-a-doctoral-student-at-the-university-of-bath-i",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25455,8 +25466,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/UniversityofBath/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[1].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/IAmA/119719/hello-reddit-i-m-nazia-mehrban-a-lecturer-in-biotechnology",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25464,8 +25475,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/UniversityofBath/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[2].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/IAmA/119714/i-m-ellie-jarvis-she-her-a-2nd-year-phd-student-in-the",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25473,8 +25484,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/UniversityofBath/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[3].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/IAmA/55155/hi-i-m-dr-lucy-maddox-from-bath-university-uk-i-m-a-clinical",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25482,8 +25493,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/UniversityofBath/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[4].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/IAmA/55142/we-re-sadeka-nujhat-hannah-leese-and-sandhya-moise-from-the",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25491,8 +25502,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/UniversityofBath/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[5].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/IAmA/34032/we-re-sandhya-moise-david-phillips-and-chan-lee-from-the",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25500,8 +25511,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/UniversityofBath/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[6].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/IAmA/13175/hi-i-m-kit-yates-i-m-a-mathematical-biologist-at-the",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25509,8 +25520,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/UniversityofBath/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[7].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/IAmA/13170/hello-i-m-dr-sara-fontani-from-the-university-of",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25545,8 +25556,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/user/Don_Gato1/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[1].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/nyc/44650/fox-news-hosts-cast-new-york-as-crime-ridden-and-chaotic",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25612,8 +25623,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[0].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/129816/gov-whitmer-signs-bills-to-repeal-right-to-work-restore",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25621,8 +25632,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[1].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/129808/disney-world-deal-with-union-will-raise-minimum-wage-to-18",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25630,8 +25641,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[2].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/129794/judge-halts-wyoming-abortion-ban-days-after-it-took-effect",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25639,8 +25650,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[3].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/129783/don-t-say-gay-lawmaker-pleads-guilty-to-covid-relief-fraud",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25648,8 +25659,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[4].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/129594/arizona-gov-katie-hobbs-refuses-to-proceed-with-execution",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25657,8 +25668,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[5].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/129508/tennessee-governor-oks-bill-to-cut-nashville-council-in-half",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25666,8 +25677,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[7].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/43839/philadelphia-da-larry-krasner-impeached-by-pa-house",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25675,8 +25686,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[8].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/43781/crypto-giant-ftx-to-file-for-bankruptcy-ceo-sam-bankman",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25684,8 +25695,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[9].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/43572/sec-doj-investigating-crypto-platform-ftx",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25693,8 +25704,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[10].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/43558/kansas-gov-laura-kelly-wins-re-election-defeating-gop",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-upvoted"
@@ -25729,8 +25740,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/user/RickyDontLoseThat/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[0].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/massachusetts/84954/the-last-of-lincoln",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25795,8 +25806,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/user/PatientBuilder499/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[7].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/videos/115139/hundreds-of-civilian-turkish-volunteers-waiting-to-be-sent",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25831,8 +25842,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/user/sirbarani/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[3].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/sports/48303/iran-football-legend-daei-will-not-attend-world-cup-amid",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25867,8 +25878,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[7].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/UpliftingNews/16087/same-sex-marriage-is-now-legal-in-all-of-mexico-s-states",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25903,8 +25914,8 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[0].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/129816/gov-whitmer-signs-bills-to-repeal-right-to-work-restore",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25912,8 +25923,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[1].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/129808/disney-world-deal-with-union-will-raise-minimum-wage-to-18",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25921,8 +25932,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[2].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/129794/judge-halts-wyoming-abortion-ban-days-after-it-took-effect",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25930,8 +25941,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[3].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/129783/don-t-say-gay-lawmaker-pleads-guilty-to-covid-relief-fraud",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25939,8 +25950,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[4].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/129594/arizona-gov-katie-hobbs-refuses-to-proceed-with-execution",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25948,8 +25959,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[5].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/129508/tennessee-governor-oks-bill-to-cut-nashville-council-in-half",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25957,8 +25968,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[7].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/43839/philadelphia-da-larry-krasner-impeached-by-pa-house",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25966,8 +25977,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[8].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/43781/crypto-giant-ftx-to-file-for-bankruptcy-ceo-sam-bankman",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25975,8 +25986,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[9].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/43572/sec-doj-investigating-crypto-platform-ftx",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -25984,8 +25995,8 @@
           }
         },
         {
-          "url": "__REDDIT__/user/Hrekires/submissions",
-          "locator": "document.querySelectorAll('div.submission__vote')[10].querySelector('form').getAttribute('class')",
+          "url": "__REDDIT__/f/news/43558/kansas-gov-laura-kelly-wins-re-election-defeating-gop",
+          "locator": "document.querySelector('div.submission__vote').querySelector('form').getAttribute('class')",
           "required_contents": {
             "must_include": [
               "vote vote--user-downvoted"
@@ -26481,7 +26492,7 @@
           "locator": "document.querySelector('[name=\"route_to\"').value",
           "required_contents": {
             "must_include": [
-              "150, Causeway Street",
+              "TD Garden",
               "Boston",
               "Massachusetts"
             ]
@@ -26796,11 +26807,11 @@
     "geolocation": null,
     "intent_template": "Start a private project {{project_name}} with {{template}} template and add {{account_list}} as members",
     "instantiation_dict": {
-      "project_name": "web_agent_android",
+      "project_name": "web_agent_android_xl",
       "template": "Android",
       "account_list": "primer, convexegg, abishek"
     },
-    "intent": "Start a private project web_agent_android with Android template and add primer, convexegg, abishek as members",
+    "intent": "Start a private project web_agent_android_xl with Android template and add primer, convexegg, abishek as members",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -26810,7 +26821,7 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__GITLAB__/byteblaze/web_agent_android",
+          "url": "__GITLAB__/byteblaze/web_agent_android_xl",
           "locator": "document.querySelector('.visibility-icon').getAttribute('title')",
           "required_contents": {
             "must_include": [
@@ -26819,7 +26830,7 @@
           }
         },
         {
-          "url": "__GITLAB__/byteblaze/web_agent_android/-/commits",
+          "url": "__GITLAB__/byteblaze/web_agent_android_xl/-/commits",
           "locator": "",
           "required_contents": {
             "must_include": [
@@ -26828,7 +26839,7 @@
           }
         },
         {
-          "url": "__GITLAB__/byteblaze/web_agent_android/-/project_members",
+          "url": "__GITLAB__/byteblaze/web_agent_android_xl/-/project_members",
           "locator": "",
           "required_contents": {
             "must_include": [
@@ -26933,7 +26944,7 @@
           }
         },
         {
-          "url": "__GITLAB__/byteblaze/agi_index/-/commits",
+          "url": "__GITLAB__/byteblaze/agi_index",
           "locator": "document.querySelector('.home-panel-description-markdown').outerText",
           "required_contents": {
             "must_include": [
@@ -26988,7 +26999,7 @@
           }
         },
         {
-          "url": "__GITLAB__/byteblaze/AGISite/-/commits",
+          "url": "__GITLAB__/byteblaze/AGISite",
           "locator": "document.querySelector('.home-panel-description-markdown').outerText",
           "required_contents": {
             "must_include": [
@@ -27066,10 +27077,10 @@
     "geolocation": null,
     "intent_template": "Create a private {{template}} repository called \"{{project_name}}\" using the right template to speed up development.",
     "instantiation_dict": {
-      "project_name": "web_agent_android",
+      "project_name": "web_agent_android_xs",
       "template": "Android"
     },
-    "intent": "Create a private Android repository called \"web_agent_android\" using the right template to speed up development.",
+    "intent": "Create a private Android repository called \"web_agent_android_xs\" using the right template to speed up development.",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -27079,7 +27090,7 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__GITLAB__/byteblaze/web_agent_android",
+          "url": "__GITLAB__/byteblaze/web_agent_android_xs",
           "locator": "document.querySelector('.visibility-icon').getAttribute('title')",
           "required_contents": {
             "must_include": [
@@ -27088,7 +27099,7 @@
           }
         },
         {
-          "url": "__GITLAB__/byteblaze/web_agent_android/-/commits",
+          "url": "__GITLAB__/byteblaze/web_agent_android_xs/-/commits",
           "locator": "",
           "required_contents": {
             "must_include": [
@@ -27178,7 +27189,7 @@
           }
         },
         {
-          "url": "__GITLAB__/byteblaze/agi_index/-/commits",
+          "url": "__GITLAB__/byteblaze/web_agent_index",
           "locator": "document.querySelector('.home-panel-description-markdown').outerText",
           "required_contents": {
             "must_include": [
@@ -27223,7 +27234,7 @@
           }
         },
         {
-          "url": "__GITLAB__/byteblaze/AGISite/-/commits",
+          "url": "__GITLAB__/byteblaze/11711_gitlab",
           "locator": "document.querySelector('.home-panel-description-markdown').outerText",
           "required_contents": {
             "must_include": [
@@ -27540,7 +27551,7 @@
           "required_contents": {
             "must_include": [
               "Carnegie Hall",
-              "West 56th Street",
+              "West 57th Street",
               "Manhattan",
               "New York"
             ]
@@ -28275,7 +28286,7 @@
           "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/123/",
           "locator": "document.querySelector('[name=\"product[price]\"').value",
           "required_contents": {
-            "exact_match": "47"
+            "exact_match": "47.00"
           }
         }
       ]

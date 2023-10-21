@@ -1,5 +1,9 @@
 """Script to automatically login each website"""
+import argparse
 import glob
+import os
+import time
+from concurrent.futures import ThreadPoolExecutor
 from itertools import combinations
 from pathlib import Path
 
@@ -17,6 +21,17 @@ HEADLESS = True
 SLOW_MO = 0
 
 
+SITES = ["gitlab", "shopping", "shopping_admin", "reddit"]
+URLS = [
+    f"{GITLAB}/-/profile",
+    f"{SHOPPING}/wishlist/",
+    f"{SHOPPING_ADMIN}/dashboard",
+    f"{REDDIT}/user/{ACCOUNTS['reddit']['username']}/account",
+]
+EXACT_MATCH = [True, True, True, True]
+KEYWORDS = ["", "", "Dashboard", "Delete"]
+
+
 def is_expired(
     storage_state: Path, url: str, keyword: str, url_exact: bool = True
 ) -> bool:
@@ -26,10 +41,11 @@ def is_expired(
 
     context_manager = sync_playwright()
     playwright = context_manager.__enter__()
-    browser = playwright.chromium.launch(headless=HEADLESS, slow_mo=SLOW_MO)
+    browser = playwright.chromium.launch(headless=True, slow_mo=SLOW_MO)
     context = browser.new_context(storage_state=storage_state)
     page = context.new_page()
     page.goto(url)
+    time.sleep(1)
     d_url = page.url
     content = page.content()
     context_manager.__exit__()
@@ -42,7 +58,7 @@ def is_expired(
             return url not in d_url
 
 
-def renew_comb(comb: list[str]) -> None:
+def renew_comb(comb: list[str], auth_folder: str = "./.auth") -> None:
     context_manager = sync_playwright()
     playwright = context_manager.__enter__()
     browser = playwright.chromium.launch(headless=HEADLESS)
@@ -83,42 +99,61 @@ def renew_comb(comb: list[str]) -> None:
         page.get_by_test_id("password-field").fill(password)
         page.get_by_test_id("sign-in-button").click()
 
-    context.storage_state(path=f"./.auth/{'.'.join(comb)}_state.json")
+    context.storage_state(path=f"{auth_folder}/{'.'.join(comb)}_state.json")
 
     context_manager.__exit__()
 
 
-def main() -> None:
-    sites = ["gitlab", "shopping", "shopping_admin", "reddit"]
-    urls = [
-        f"{GITLAB}/-/profile",
-        f"{SHOPPING}/wishlist/",
-        f"{SHOPPING_ADMIN}/dashboard",
-        f"{REDDIT}/user/{ACCOUNTS['reddit']['username']}/account",
-    ]
-    exact_match = [True, True, True, True]
-    keywords = ["", "", "Dashboard", "Delete"]
+def get_site_comb_from_filepath(file_path: str) -> list[str]:
+    comb = os.path.basename(file_path).rsplit("_", 1)[0].split(".")
+    return comb
 
-    pairs = list(combinations(sites, 2))
-    for pair in pairs:
-        # TODO[shuyanzh] auth don't work on these two sites
-        if "reddit" in pair and (
-            "shopping" in pair or "shopping_admin" in pair
-        ):
-            continue
-        renew_comb(list(sorted(pair)))
 
-    for site in sites:
-        renew_comb([site])
+def main(auth_folder: str = "./.auth") -> None:
+    pairs = list(combinations(SITES, 2))
 
-    for c_file in glob.glob("./.auth/*.json"):
-        comb = c_file.split("/")[-1].rsplit("_", 1)[0].split(".")
-        for cur_site in comb:
-            url = urls[sites.index(cur_site)]
-            keyword = keywords[sites.index(cur_site)]
-            match = exact_match[sites.index(cur_site)]
-            assert not is_expired(Path(c_file), url, keyword, match)
+    max_workers = 8
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        for pair in pairs:
+            # TODO[shuyanzh] auth don't work on these two sites
+            if "reddit" in pair and (
+                "shopping" in pair or "shopping_admin" in pair
+            ):
+                continue
+            executor.submit(
+                renew_comb, list(sorted(pair)), auth_folder=auth_folder
+            )
+
+        for site in SITES:
+            executor.submit(renew_comb, [site], auth_folder=auth_folder)
+
+    futures = []
+    cookie_files = list(glob.glob(f"{auth_folder}/*.json"))
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        for c_file in cookie_files:
+            comb = get_site_comb_from_filepath(c_file)
+            for cur_site in comb:
+                url = URLS[SITES.index(cur_site)]
+                keyword = KEYWORDS[SITES.index(cur_site)]
+                match = EXACT_MATCH[SITES.index(cur_site)]
+                future = executor.submit(
+                    is_expired, Path(c_file), url, keyword, match
+                )
+                futures.append(future)
+
+    for i, future in enumerate(futures):
+        assert not future.result(), f"Cookie {cookie_files[i]} expired."
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--site_list", nargs="+", default=[])
+    parser.add_argument("--auth_folder", type=str, default="./.auth")
+    args = parser.parse_args()
+    if not args.site_list:
+        main()
+    else:
+        if "all" in args.site_list:
+            main(auth_folder=args.auth_folder)
+        else:
+            renew_comb(args.site_list, auth_folder=args.auth_folder)

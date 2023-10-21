@@ -17,7 +17,7 @@
             {
                 "url": "func:reddit_get_post_url('__last_url__')",
                 "locator": "document.querySelector('.submission__inner').outerText",
-                "required_contents": {"must_include": ["&#x200B;"]}
+                "required_contents": {"must_include": ["How will SPY close on Monday 11/28"]}
             }
         ]
     }
