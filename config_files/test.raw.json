@@ -9415,7 +9415,6 @@
     "eval": {
       "eval_types": [
         "string_match"
-        "string_match"
       ],
       "reference_answers": {"exact_match": "N/A"},
       "reference_url": "",
@@ -9441,7 +9440,6 @@
     "require_reset": false,
     "eval": {
       "eval_types": [
-        "string_match"
         "string_match"
       ],
       "reference_answers": {"exact_match": "N/A"},
