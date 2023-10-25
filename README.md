@@ -22,10 +22,11 @@
 ![Overview](media/overview.png)
 
 ## Roadmap
-- [ ] In-house end-to-end evaluation. We are working on an API that accepts predicted actions from any interface and then returns the subsequent observation.
+- [ ] AMI support
 - [ ] Support more agents with different prompting mechanisms such as [ASH](https://arxiv.org/pdf/2305.14257.pdf).
 
 ## News
+* [10/24/2023] We re-examined the whole dataset and fixed the spotted annotation bugs. The current version ([v0.2.0](https://github.com/web-arena-x/webarena/releases/tag/v0.2.0)) is relatively stable and we don't expect major updates on the annotation in the future. The new results with better prompts and the comparison with human performance can be found in our [paper](https://arxiv.org/abs/2307.13854)
 * [8/4/2023] Added the instructions and the docker resources to host your own WebArena Environment. Check out [this page](environment_docker/README.md) for details.
 * [7/29/2023] Added [a well commented script](minimal_example.py) to walk through the environment setup.
 ## Install
