@@ -1,10 +1,10 @@
 # WebArena: A Realistic Web Environment for Building Autonomous Agents
+
 <p align="center">
     <img src="media/logo.png" alt="Logo" width="80px">
     <br>
     <b>WebArena is a standalone, self-hostable web environment for building autonomous agents</b>
 </p>
-
 
 <p align="center">
 <a href="https://www.python.org/downloads/release/python-3109/"><img src="https://img.shields.io/badge/python-3.10-blue.svg" alt="Python 3.10"></a>
@@ -22,14 +22,18 @@
 ![Overview](media/overview.png)
 
 ## Roadmap
+
 - [ ] AMI support
 - [ ] Support more agents with different prompting mechanisms such as [ASH](https://arxiv.org/pdf/2305.14257.pdf).
 
 ## News
-* [10/24/2023] We re-examined the whole dataset and fixed the spotted annotation bugs. The current version ([v0.2.0](https://github.com/web-arena-x/webarena/releases/tag/v0.2.0)) is relatively stable and we don't expect major updates on the annotation in the future. The new results with better prompts and the comparison with human performance can be found in our [paper](https://arxiv.org/abs/2307.13854)
-* [8/4/2023] Added the instructions and the docker resources to host your own WebArena Environment. Check out [this page](environment_docker/README.md) for details.
-* [7/29/2023] Added [a well commented script](minimal_example.py) to walk through the environment setup.
+
+- [10/24/2023] We re-examined the whole dataset and fixed the spotted annotation bugs. The current version ([v0.2.0](https://github.com/web-arena-x/webarena/releases/tag/v0.2.0)) is relatively stable and we don't expect major updates on the annotation in the future. The new results with better prompts and the comparison with human performance can be found in our [paper](https://arxiv.org/abs/2307.13854)
+- [8/4/2023] Added the instructions and the docker resources to host your own WebArena Environment. Check out [this page](environment_docker/README.md) for details.
+- [7/29/2023] Added [a well commented script](minimal_example.py) to walk through the environment setup.
+
 ## Install
+
 ```bash
 # Python 3.10+
 conda create -n webarena python=3.10; conda activate webarena
@@ -43,8 +47,11 @@ mypy --install-types --non-interactive browser_env agents evaluation_harness
 pip install pre-commit
 pre-commit install
 ```
+
 ## Quick Walkthrough
-Check out [this script](minimal_example.py) for a quick walkthrough on how to set up the browser environment and interact with it using the demo sites we hosted. This script is only for education purpose, to perform *reproducible* experiments, please check out the next section. In the nutshell, using WebArena is very similar to using OpenAI Gym. The following code snippet shows how to interact with the environment.
+
+Check out [this script](minimal_example.py) for a quick walkthrough on how to set up the browser environment and interact with it using the demo sites we hosted. This script is only for education purpose, to perform _reproducible_ experiments, please check out the next section. In the nutshell, using WebArena is very similar to using OpenAI Gym. The following code snippet shows how to interact with the environment.
+
 ```python
 from browser_env import ScriptBrowserEnv, create_id_based_action
 # init the environment
@@ -66,11 +73,14 @@ action = create_id_based_action(f"click [id]")
 # take the action
 obs, _, terminated, _, info = env.step(action)
 ```
+
 ## End-to-end Evaluation
+
 1. Setup the standalone environment.
-Please check out [this page](environment_docker/README.md) for details.
+   Please check out [this page](environment_docker/README.md) for details.
 
 2. Configurate the urls for each website.
+
 ```bash
 export SHOPPING="<your_shopping_site_domain>:7770"
 export SHOPPING_ADMIN="<your_e_commerce_cms_domain>:7780/admin"
@@ -84,19 +94,24 @@ export HOMEPAGE="<your_homepage_domain>:4399" # this is a placeholder
 > You are encouraged to update the environment variables in [github workflow](.github/workflows/tests.yml#L7) to ensure the correctness of unit tests
 
 3. Generate config file for each test example
+
 ```bash
 python scripts/generate_test_data.py
 ```
+
 You will see `*.json` files generated in [config_files](./config_files) folder. Each file contains the configuration for one test example.
 
 4. Obtain the auto-login cookies for all websites
+
 ```
 mkdir -p ./.auth
 python browser_env/auto_login.py
 ```
+
 5. export `OPENAI_API_KEY=your_key`, a valid OpenAI API key starts with `sk-`
 
 6. Launch the evaluation
+
 ```bash
 python run.py \
   --instruction_path agent/prompts/jsons/p_cot_id_actree_2s.json \ # this is the reasoning agent prompt we used in the paper
@@ -105,10 +120,17 @@ python run.py \
   --model gpt-3.5-turbo \
   --result_dir <your_result_dir>
 ```
+
 This script will run the first example with GPT-3.5 reasoning agent. The trajectory will be saved in `<your_result_dir>/0.html`
 
+### Visualizing Evaluation Results
+
+To visualize the results of the end-to-end visualization we can use the [Zeno](https://zenoml.com) evaluation platform. Check out the [`web-arena-zeno.ipynb`](scripts/web-arena-zeno.ipynb) notebook to convert your results and create a Zeno project!
+
 ## Develop Your Prompt-based Agent
+
 1. Define the prompts. We provide two baseline agents whose correrponding prompts are listed [here](./agent/prompts/raw). Each prompt is a dictionary with the following keys:
+
 ```python
 prompt = {
   "intro": <The overall guideline which includes the task description, available action, hint and others>,
@@ -135,11 +157,14 @@ prompt = {
 ```
 
 2. Implement the prompt constructor. An example prompt constructor using Chain-of-thought/ReAct style reasoning is [here](./agent/prompts/prompt_constructor.py#L184). The prompt constructor is a class with the following methods:
-* `construct`: construct the input feed to an LLM
-* `_extract_action`: given the generation from an LLM, how to extract the phrase that corresponds to the action
+
+- `construct`: construct the input feed to an LLM
+- `_extract_action`: given the generation from an LLM, how to extract the phrase that corresponds to the action
 
 ## Citation
+
 If you use our environment or data, please cite our paper:
+
 ```
 @article{zhou2023webarena,
   title={WebArena: A Realistic Web Environment for Building Autonomous Agents},
