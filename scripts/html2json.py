@@ -1,15 +1,17 @@
 import argparse
+import base64
 import glob
 import json
 import os
 from collections import defaultdict
+from typing import Any
 
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup  # type: ignore
 
 
-def main(result_folder: str, config_json: str):
+def main(result_folder: str, config_json: str) -> None:
     all_data = {}
-    template_to_id = defaultdict(lambda: len(template_to_id))
+    template_to_id: dict[str, Any] = defaultdict(lambda: len(template_to_id))
 
     with open(config_json, "r") as f:
         data_configs = json.load(f)
@@ -59,11 +61,13 @@ def main(result_folder: str, config_json: str):
                 ]
                 image_observations = []
                 # save image to file and change the value to be path
+                image_folder = f"images/{os.path.basename(result_folder)}"
+                os.makedirs(image_folder, exist_ok=True)
                 for i, image in enumerate(base64_images):
-                    #     image_data = base64.b64decode(image)
-                    filename = f"data/images/{os.path.basename(result_folder)}/image_{task_id}_{i}.png"
-                    #     with open(filename, "wb") as f:
-                    #         f.write(image_data)
+                    image_data = base64.b64decode(image)
+                    filename = f"{image_folder}/image_{task_id}_{i}.png"
+                    with open(filename, "wb") as f:  # type: ignore[assignment]
+                        f.write(image_data)  # type: ignore[arg-type]
                     image_observations.append(filename)
                 urls = [
                     url.get_text()
