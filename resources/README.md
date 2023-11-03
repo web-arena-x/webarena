@@ -1,10 +1,21 @@
 # WebArena Resources
+## [11/3/2023] Execution Traces from Our Experiments (v2)
+![v2 results](../media/v2_result.png)
+The results on the release v2 can be found in this [folder](https://drive.google.com/drive/folders/1H4wkzDkY2ufiC63DISMXllri0j-ipWcs?usp=sharing). It contains
+* text-bison-001 + CoT + UA Hint
+* GPT3.5-turbo-0613-16k + Direct + UA Hint
+* GPT3.5-turbo-0613-16k + Direct
+* GPT3.5-turbo-0613-16k + CoT + UA Hint
+* GPT3.5-turbo-0613-16k + CoT
+* GPT4-0613 + CoT
 
-## [8/7/2023] Execution Traces from Our Experiments
-You can download the execution traces:
-* [GPT-4-0613 reasoning agent](https://drive.google.com/file/d/1BM2pZcJwxvgRrDPlWcs2lfTPT_HpYHs8/view?usp=sharing)
-* [GPT-3.5-turbo-0613 reasoning agent](https://drive.google.com/file/d/1pErc8wT-qJ-tqVMsSViCZoO3VbVSpPS7/view?usp=sharing)
-* [GPT-3.5-turbo-0613 direct agent](https://drive.google.com/file/d/1-5Qn8Wd-ZPHctZLUvicAXAmVeuamwQwP/view?usp=sharing)
+## [8/7/2023] Execution Traces from Our Experiments (v1)
+![v1 results](../media/v1_result.png)
+The results on the release v1 can be found in this [folder](https://drive.google.com/drive/folders/18Oww0fAgwhuSjSzxUNgzBUlC6M9IZZB2?usp=sharing). It contains
+* GPT4-0613 + CoT
+* GPT3.5-turbo-0613 + CoT
+* GPT3.5-turbo-0613 + Direct
+
 
 Once you unzip the file with `unzip <file_name>.zip`, you will see a list of `render_*.html`, a log file `merge_log.txt` recording whether an example failed or passed and a `trace` folder containing the `playwright` recording of the executions.
 
