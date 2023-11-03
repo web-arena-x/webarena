@@ -28,7 +28,7 @@
 * [11/3/2023] Multiple features!
   * Uploaded newest [execution trajectories](./resources/README.md#1132023-execution-traces-from-our-experiments-v2)
   * Added [Amazon Machine Image](./environment_docker/README.md#pre-installed-amazon-machine-image) that pre-installed all websites so that you don't have to!
-  * [Zeno](https://zenoml.com/) x WebArena which allows you to analyze your agents on WebArena without pain. Checkout this [notebook](./scripts/webarena-zeno.ipynb)
+  * [Zeno](https://zenoml.com/) x WebArena which allows you to analyze your agents on WebArena without pain. Check out this [notebook](./scripts/webarena-zeno.ipynb) to upload your own data to Zeno, and [this](https://hub.zenoml.com/project/convexeggtart/WebArena%20Tester/explore) page for browsing our existing results!
 * [10/24/2023] We re-examined the whole dataset and fixed the spotted annotation bugs. The current version ([v0.2.0](https://github.com/web-arena-x/webarena/releases/tag/v0.2.0)) is relatively stable and we don't expect major updates on the annotation in the future. The new results with better prompts and the comparison with human performance can be found in our [paper](https://arxiv.org/abs/2307.13854)
 * [8/4/2023] Added the instructions and the docker resources to host your own WebArena Environment. Check out [this page](environment_docker/README.md) for details.
 * [7/29/2023] Added [a well commented script](minimal_example.py) to walk through the environment setup.
