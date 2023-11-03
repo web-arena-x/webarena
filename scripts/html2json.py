@@ -6,7 +6,7 @@ import os
 from collections import defaultdict
 from typing import Any
 
-from bs4 import BeautifulSoup  # type: ignore
+from bs4 import BeautifulSoup
 
 
 def main(result_folder: str, config_json: str) -> None:
