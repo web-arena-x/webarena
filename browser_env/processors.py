@@ -562,14 +562,15 @@ class TextObervationProcessor(ObservationProcessor):
         """further clean accesibility tree"""
         clean_lines: list[str] = []
         for line in tree_str.split("\n"):
+            # remove statictext if the content already appears in the previous line
             if "statictext" in line.lower():
                 prev_lines = clean_lines[-3:]
-                pattern = r"\[\d+\] StaticText '([^']+)'"
+                pattern = r"\[\d+\] StaticText (.+)"
 
-                match = re.search(pattern, line)
+                match = re.search(pattern, line, re.DOTALL)
                 if match:
-                    static_text = match.group(1)
-                    if all(
+                    static_text = match.group(1)[1:-1]  # remove the quotes
+                    if static_text and all(
                         static_text not in prev_line
                         for prev_line in prev_lines
                     ):
