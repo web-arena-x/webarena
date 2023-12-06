@@ -117,7 +117,7 @@ def action2str(
     sementic_element: the semantic information of the element
     such as a line in an accessibility tree
     """
-    if action_set_tag == "id_accessibility_tree":
+    if action_set_tag in ["id_accessibility_tree", "id_html"]:
         element_id = action["element_id"]
         match action["action_type"]:
             case ActionTypes.CLICK:

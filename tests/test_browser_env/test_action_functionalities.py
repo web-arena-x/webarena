@@ -12,7 +12,7 @@ from browser_env import (
     create_scroll_action,
 )
 
-HEADLESS = True
+HEADLESS = False
 SLOW_MO = 0
 
 
@@ -126,7 +126,7 @@ def test_scroll(
     assert success
 
 
-def test_id_click(
+def test_id_click_axtree(
     accessibility_tree_current_viewport_script_browser_env: ScriptBrowserEnv,
 ) -> None:
     env = accessibility_tree_current_viewport_script_browser_env
@@ -170,10 +170,57 @@ def test_id_click(
         create_id_based_action(f"click [{element_id}]")
     )
     assert success
-    assert "radio 'Weekly'" in obs["text"]
+    expect(env.page.get_by_label("Weekly")).to_be_checked()
 
 
-def test_id_hover(
+def test_id_click_html(
+    html_current_viewport_script_browser_env: ScriptBrowserEnv,
+) -> None:
+    env = html_current_viewport_script_browser_env
+    env.reset()
+
+    obs, success, _, _, info = env.step(
+        create_playwright_action(
+            'page.goto("https://russmaxdesign.github.io/exercise/")'
+        )
+    )
+    assert success
+    assert "McKenna/Bell" in obs["text"]
+    # get the id of the link
+    element_id = re.search(r'\[(\d+)\] <a href="#link-four">', obs["text"]).group(1)  # type: ignore
+
+    obs, success, _, _, info = env.step(
+        create_id_based_action(f"click [{element_id}]")
+    )
+    assert success
+    assert (
+        info["page"].url
+        == "https://russmaxdesign.github.io/exercise/#link-four"
+    )
+
+    obs, success, _, _, info = env.step(create_scroll_action("down"))
+    assert "Classification" in obs["text"]
+    element_id = re.search(r'\[(\d+)\] <a href="#link-two">', obs["text"]).group(1)  # type: ignore
+
+    obs, success, _, _, info = env.step(
+        create_id_based_action(f"click [{element_id}]")
+    )
+    assert success
+    assert (
+        info["page"].url
+        == "https://russmaxdesign.github.io/exercise/#link-two"
+    )
+    assert "Weekly" in obs["text"]
+    element_id = re.search(r'\[(\d+)\] <input class="input-radio" id="weekly" type="radio" name="fruit">', obs["text"]).group(1)  # type: ignore
+
+    obs, success, _, _, info = env.step(
+        create_id_based_action(f"click [{element_id}]")
+    )
+    assert success
+    expect(env.page.get_by_label("Weekly")).to_be_checked()
+
+
+def test_id_hover_axtree(
     accessibility_tree_current_viewport_script_browser_env: ScriptBrowserEnv,
 ) -> None:
     env = accessibility_tree_current_viewport_script_browser_env
@@ -187,6 +234,27 @@ def test_id_hover(
     assert success
     assert "link 'Download on GitHub'" in obs["text"]
     element_id = re.search(r"\[(\d+)\] link 'Download on GitHub'", obs["text"]).group(1)  # type: ignore
+
+    obs, success, _, _, info = env.step(
+        create_id_based_action(f"hover [{element_id}]")
+    )
+    assert success
+
+
+def test_id_hover_html(
+    html_current_viewport_script_browser_env: ScriptBrowserEnv,
+) -> None:
+    env = html_current_viewport_script_browser_env
+    env.reset()
+
+    obs, success, _, _, info = env.step(
+        create_playwright_action(
+            'page.goto("https://ianlunn.github.io/Hover/")'
+        )
+    )
+    assert success
+    assert "Download on GitHub" in obs["text"]
+    element_id = re.search(r'\[(\d+)\] <a class="button cta hvr-float-shadow" href="https://github.com/IanLunn/Hover">', obs["text"]).group(1)  # type: ignore
 
     obs, success, _, _, info = env.step(
         create_id_based_action(f"hover [{element_id}]")
@@ -231,7 +299,7 @@ def test_key_press(
     expect(env.page.get_by_label("Email")).to_be_focused()
 
 
-def test_id_type(
+def test_id_type_axtree(
     accessibility_tree_current_viewport_script_browser_env: ScriptBrowserEnv,
 ) -> None:
     env = accessibility_tree_current_viewport_script_browser_env
@@ -246,6 +314,28 @@ def test_id_type(
     s = "My Name IS XYZ"
     element_id = re.search(r"\[(\d+)\] textbox 'Full name'", obs["text"]).group(1)  # type: ignore
 
+    obs, success, _, _, info = env.step(
+        create_id_based_action(f"type [{element_id}] [{s}]")
+    )
+    assert success
+    locator = env.page.get_by_label("Full name")
+    expect(locator).to_have_value(s)
+
+
+def test_id_type_html(
+    html_current_viewport_script_browser_env: ScriptBrowserEnv,
+) -> None:
+    env = html_current_viewport_script_browser_env
+    env.reset()
+    obs, success, _, _, info = env.step(
+        create_playwright_action(
+            'page.goto("https://russmaxdesign.github.io/exercise/")'
+        )
+    )
+    assert success
+    assert "Full name" in obs["text"]
+    s = "My Name IS XYZ"
+    element_id = re.search(r'\[(\d+)\] <input class="input" id="form-name" type="text">', obs["text"]).group(1)  # type: ignore
     obs, success, _, _, info = env.step(
         create_id_based_action(f"type [{element_id}] [{s}]")
     )
@@ -286,7 +376,7 @@ def test_e2e_id_based_actions(
     )
 
 
-def test_id_delete_input(
+def test_id_delete_input_axtree(
     accessibility_tree_current_viewport_script_browser_env: ScriptBrowserEnv,
 ) -> None:
     env = accessibility_tree_current_viewport_script_browser_env

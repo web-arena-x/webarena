@@ -150,6 +150,8 @@ def config() -> argparse.Namespace:
     if (
         args.action_set_tag == "id_accessibility_tree"
         and args.observation_type != "accessibility_tree"
+        or args.action_set_tag == "id_html"
+        and args.observation_type != "html"
     ):
         raise ValueError(
             f"Action type {args.action_set_tag} is incompatible with the observation type {args.observation_type}"
@@ -347,7 +349,7 @@ def test(
                     Path(args.result_dir) / "traces" / f"{task_id}.zip"
                 )
 
-        except openai.error.OpenAIError as e:
+        except openai.OpenAIError as e:
             logger.info(f"[OpenAI Error] {repr(e)}")
         except Exception as e:
             logger.info(f"[Unhandled Error] {repr(e)}]")

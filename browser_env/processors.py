@@ -332,7 +332,7 @@ class TextObervationProcessor(ObservationProcessor):
             indent = "\t" * depth
             valid_node = True
             try:
-                node_str = f"[{node_cursor}] <{node['nodeName']}"
+                node_str = f"[{node_cursor}] <{node['nodeName'].lower()}"
                 if node["attributes"]:
                     node_str += f" {node['attributes']}"
                 node_str += f"> {node['nodeValue']}"
@@ -624,7 +624,7 @@ class TextObervationProcessor(ObservationProcessor):
             content, obs_nodes_info = self.parse_accessibility_tree(
                 accessibility_tree
             )
-            content = self.clean_accesibility_tree(content)
+            # content = self.clean_accesibility_tree(content)
             self.obs_nodes_info = obs_nodes_info
             self.meta_data["obs_nodes_info"] = obs_nodes_info
 

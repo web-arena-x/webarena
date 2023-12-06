@@ -63,6 +63,20 @@ def accessibility_tree_current_viewport_script_browser_env() -> Generator[
     env.close()
 
 
+@pytest.fixture(scope="function")
+def html_current_viewport_script_browser_env() -> Generator[
+    ScriptBrowserEnv, None, None
+]:
+    env = ScriptBrowserEnv(
+        headless=HEADLESS,
+        slow_mo=SLOW_MO,
+        observation_type="html",
+        current_viewport_only=True,
+    )
+    yield env
+    env.close()
+
+
 @pytest_asyncio.fixture(scope="function", autouse=True)
 async def async_script_browser_env() -> AsyncGenerator[
     AsyncScriptBrowserEnv, None

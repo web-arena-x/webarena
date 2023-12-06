@@ -41,7 +41,7 @@ def get_render_action(
 ) -> str:
     """Parse the predicted actions for rendering purpose. More comprehensive information"""
     match action_set_tag:
-        case "id_accessibility_tree":
+        case "id_accessibility_tree" | "id_html":
             text_meta_data = observation_metadata["text"]
             if action["element_id"] in text_meta_data["obs_nodes_info"]:
                 node_content = text_meta_data["obs_nodes_info"][
@@ -71,7 +71,7 @@ def get_action_description(
     May contain hint information to recover from the failures"""
 
     match action_set_tag:
-        case "id_accessibility_tree":
+        case "id_accessibility_tree" | "id_html":
             text_meta_data = observation_metadata["text"]
             if action["action_type"] in [
                 ActionTypes.CLICK,
@@ -149,6 +149,7 @@ class RenderHelper(object):
         info = state_info["info"]
         new_content = f"<h2>New Page</h2>\n"
         new_content += f"<h3 class='url'><a href={state_info['info']['page'].url}>URL: {state_info['info']['page'].url}</a></h3>\n"
+        text_obs = text_obs.replace("<", "&lt;").replace(">", "&gt;")
         new_content += f"<div class='state_obv'><pre>{text_obs}</pre><div>\n"
 
         if render_screenshot:
