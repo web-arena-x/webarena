@@ -72,7 +72,6 @@ obs, _, terminated, _, info = env.step(action)
 ## End-to-end Evaluation
 1. Setup the standalone environment.
 Please check out [this page](environment_docker/README.md) for details.
-
 2. Configurate the urls for each website.
 ```bash
 export SHOPPING="<your_shopping_site_domain>:7770"
@@ -109,6 +108,12 @@ python run.py \
   --result_dir <your_result_dir>
 ```
 This script will run the first example with GPT-3.5 reasoning agent. The trajectory will be saved in `<your_result_dir>/0.html`
+
+⚠️ 7. Reset the environment to its initial states
+Since each evaluation will change the underlying states of the environment (e.g., a post was deleted), make sure you **restart** all environments and reset to their initial states.
+```bash
+# stop the dockers and delete the docker containers
+docker stop shopping_admin forum gitlab shopping; docker remove shopping_admin forum gitlab shopping;
 
 ## Develop Your Prompt-based Agent
 1. Define the prompts. We provide two baseline agents whose correrponding prompts are listed [here](./agent/prompts/raw). Each prompt is a dictionary with the following keys:
