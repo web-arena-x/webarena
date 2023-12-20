@@ -195,12 +195,12 @@ class URLEvaluator(Evaluator):
         matching_rule = configs["eval"].get("url_note", "GOLD in PRED")
         if matching_rule == "GOLD in PRED":
             ref_base_paths, ref_queries = parse_urls(ref_urls)
-            pred_base_paths, pred_query = parse_url(pred)
+            pred_base_path, pred_query = parse_url(pred)
 
             base_score = float(
                 any(
                     [
-                        ref_base_path in pred_base_paths
+                        ref_base_path == pred_base_path
                         for ref_base_path in ref_base_paths
                     ]
                 )
