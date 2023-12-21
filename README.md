@@ -21,10 +21,9 @@
 
 ![Overview](media/overview.png)
 
-## Roadmap
-- [ ] Support more agents with different prompting mechanisms such as [ASH](https://arxiv.org/pdf/2305.14257.pdf).
 
 ## News
+* [12/21/2023] We release the recording of trajectories performed by human annotators on ~170 tasks. Check out the [resource page](./resources/README.md#12212023-human-trajectories) for more details.
 * [11/3/2023] Multiple features!
   * Uploaded newest [execution trajectories](./resources/README.md#1132023-execution-traces-from-our-experiments-v2)
   * Added [Amazon Machine Image](./environment_docker/README.md#pre-installed-amazon-machine-image) that pre-installed all websites so that you don't have to!
