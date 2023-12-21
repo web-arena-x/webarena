@@ -1,4 +1,12 @@
 # WebArena Resources
+## [12/21/2023] Human Trajectories
+We collected human trajectories on 179 tasks and the recording files are [here](https://drive.google.com/drive/folders/1NrN_sawtYK2V_uHnmmS8ugmGIKUAsPgt?usp=sharing).
+
+We sample one task from each template or templates that share similar task semantic. Each file is named as `<task_id>.zip`, and the corresponding template id can be found in the [task config file](../config_files/test.raw.json). The trajectories are presented as playwright trace files. You can view the concrete HTML, network traffic etc by `playwright show-trace <example_idx>.zip`.
+
+Human task success rate: 78.24%
+
+
 ## [11/3/2023] Execution Traces from Our Experiments (v2)
 ![v2 results](../media/v2_result.png)
 The results on the release v2 can be found in this [folder](https://drive.google.com/drive/folders/1H4wkzDkY2ufiC63DISMXllri0j-ipWcs?usp=sharing). It contains
