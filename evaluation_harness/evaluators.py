@@ -19,6 +19,7 @@ from evaluation_harness.helper_functions import (
     PseudoPage,
     gitlab_get_project_memeber_role,
     llm_fuzzy_match,
+    llm_ua_match,
     reddit_get_post_url,
     shopping_get_latest_order_url,
     shopping_get_sku_latest_review_author,
@@ -113,6 +114,11 @@ class StringEvaluator(Evaluator):
     @beartype
     def fuzzy_match(ref: str, pred: str, intent: str) -> float:
         return llm_fuzzy_match(pred, ref, intent)
+    
+    @staticmethod
+    @beartype
+    def ua_match(ref: str, pred: str, intent:str) -> float:
+        return llm_ua_match(pred, ref, intent)
 
     def __call__(
         self,
@@ -131,7 +137,10 @@ class StringEvaluator(Evaluator):
         for approach, value in configs["eval"]["reference_answers"].items():
             match approach:
                 case "exact_match":
-                    score *= self.exact_match(ref=value, pred=pred)
+                    if value == "N/A":
+                        score *= self.ua_match(intent = configs["intent"], ref=configs["eval"]["string_note"], pred = pred)
+                    else:
+                        score *= self.exact_match(ref=value, pred=pred)
                 case "must_include":
                     assert isinstance(value, list)
                     for must_value in value:
@@ -322,8 +331,8 @@ class EvaluatorComb:
         self,
         trajectory: Trajectory,
         config_file: Path | str,
-        page: Page | PseudoPage,
-        client: CDPSession,
+        page: Page | PseudoPage | None,
+        client: CDPSession | None,
     ) -> float:
 
         score = 1.0

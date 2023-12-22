@@ -144,7 +144,7 @@ def gitlab_get_project_memeber_role(page: Page, account_name: str) -> str:
 
 
 def llm_fuzzy_match(pred: str, reference: str, question: str) -> float:
-    """Check whether the prediction matches the reference with GPT-3.5"""
+    """Check whether the prediction matches the reference with GPT4-turbo"""
     messages: list[dict[str, Any]] = []
     # construct the question to ask
     message = "Help a teacher to grade the answer of a student given a question. Keep in mind that the student may use different phrasing or wording to answer the question. The goal is to evaluate whether the answer is semantically equivalent to the reference answer.\n"
@@ -159,7 +159,7 @@ def llm_fuzzy_match(pred: str, reference: str, question: str) -> float:
     ]
 
     response = generate_from_openai_chat_completion(
-        model="gpt-4",
+        model="gpt-4-1106-preview",
         messages=messages,
         temperature=0,
         max_tokens=768,
@@ -170,6 +170,34 @@ def llm_fuzzy_match(pred: str, reference: str, question: str) -> float:
         return 0.0
     else:
         assert "correct" in response
+        return 1.0
+    
+def llm_ua_match(pred: str, reference: str, question: str) -> float:
+    """Check whether the prediction matches the reference with GPT-turbo"""
+    messages: list[dict[str, Any]] = []
+    # construct the question to ask
+    message = "A task described in Task_1 cannot be completed for reason listed in Reason_1. A person tried to complete the task and failed, he reported his attempt in Report_1, check if Report_1 is refering to Reason_1, even implicitly. If match, return same, else, return different\n"
+    message += f"Task_1 = {question}\n"
+    message += f"Reason_1 = {reference}\n"
+    message += f"Report_1 = {pred}\n"
+    message += "return [same] or [different]"
+    messages = [
+        {"role": "system", "content": "You are a helpful assistant"},
+        {"role": "user", "content": message},
+    ]
+
+    response = generate_from_openai_chat_completion(
+        model="gpt-4-1106-preview",
+        messages=messages,
+        temperature=0,
+        max_tokens=768,
+        top_p=1.0,
+        context_length=0,
+    ).lower()
+    if "different" in response:
+        return 0.0
+    else:
+        assert "same" in response
         return 1.0
 
 
