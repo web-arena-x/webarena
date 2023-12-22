@@ -150,7 +150,11 @@ class StringEvaluator(Evaluator):
                 case "fuzzy_match":
                     intent = configs["intent"]
                     if value == "N/A":
+                        # if the instruction only asks the model to generate N/A when encountering an unachievable task
+                        # without more concrete reasons
                         score *= self.exact_match(ref=value, pred=pred)
+                        # if the instruction also asks the model to generate the reason why the task is unachievable
+                        # this should be the default as it will prevent false positive N/A`
                         if score != 1:
                             score = 1.0 * self.ua_match(
                                 intent=configs["intent"],
