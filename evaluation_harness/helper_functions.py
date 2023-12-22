@@ -112,7 +112,9 @@ def reddit_get_post_url(url: str) -> str:
     return post_url
 
 
-def gitlab_get_project_memeber_role(page: Page, account_name: str) -> str:
+def gitlab_get_project_memeber_role(
+    page: Page, account_name: str
+) -> str:
     # get the account index
     try:
         account_idx = page.evaluate(
@@ -152,7 +154,9 @@ def llm_fuzzy_match(pred: str, reference: str, question: str) -> float:
     message += f"reference answer: {reference}\n"
     message += "all the string 'N/A' that you see is a special sequence that means 'not achievable'\n"
     message += f"student answer: {pred}\n"
-    message += "Conclude the judgement by correct/incorrect/partially correct."
+    message += (
+        "Conclude the judgement by correct/incorrect/partially correct."
+    )
     messages = [
         {"role": "system", "content": "You are a helpful assistant"},
         {"role": "user", "content": message},
