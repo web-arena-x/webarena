@@ -95,7 +95,9 @@ class StringEvaluator(Evaluator):
 
     @staticmethod
     @beartype
-    def must_include(ref: str, pred: str, tokenize: bool = False) -> float:
+    def must_include(
+        ref: str, pred: str, tokenize: bool = False
+    ) -> float:
         clean_ref = StringEvaluator.clean_answer(ref)
         clean_pred = StringEvaluator.clean_answer(pred)
         # tokenize the answer if the ref is a single word
@@ -114,10 +116,10 @@ class StringEvaluator(Evaluator):
     @beartype
     def fuzzy_match(ref: str, pred: str, intent: str) -> float:
         return llm_fuzzy_match(pred, ref, intent)
-    
+
     @staticmethod
     @beartype
-    def ua_match(ref: str, pred: str, intent:str) -> float:
+    def ua_match(ref: str, pred: str, intent: str) -> float:
         return llm_ua_match(pred, ref, intent)
 
     def __call__(
@@ -134,11 +136,17 @@ class StringEvaluator(Evaluator):
         pred = self.clean_answer(last_action["answer"])
 
         score = 1.0
-        for approach, value in configs["eval"]["reference_answers"].items():
+        for approach, value in configs["eval"][
+            "reference_answers"
+        ].items():
             match approach:
                 case "exact_match":
                     if value == "N/A":
-                        score *= self.ua_match(intent = configs["intent"], ref=configs["eval"]["string_note"], pred = pred)
+                        score *= self.ua_match(
+                            intent=configs["intent"],
+                            ref=configs["eval"]["string_note"],
+                            pred=pred,
+                        )
                     else:
                         score *= self.exact_match(ref=value, pred=pred)
                 case "must_include":
@@ -259,7 +267,9 @@ class HTMLContentEvaluator(Evaluator):
             # navigate to that url
             if target_url != "last":
                 page.goto(target_url)
-                time.sleep(3)  # TODO [shuyanzh]: fix this hard-coded sleep
+                time.sleep(
+                    3
+                )  # TODO [shuyanzh]: fix this hard-coded sleep
 
             # empty, use the full page
             if not locator.strip():
@@ -275,7 +285,9 @@ class HTMLContentEvaluator(Evaluator):
                     except Exception:
                         pass
                 try:
-                    selected_element = str(page.evaluate(f"() => {locator}"))
+                    selected_element = str(
+                        page.evaluate(f"() => {locator}")
+                    )
                     if not selected_element:
                         selected_element = ""
                 except Exception:
@@ -292,14 +304,18 @@ class HTMLContentEvaluator(Evaluator):
             selected_element = html.unescape(selected_element)
 
             if "exact_match" in target["required_contents"]:
-                required_contents = target["required_contents"]["exact_match"]
+                required_contents = target["required_contents"][
+                    "exact_match"
+                ]
                 cur_score = StringEvaluator.exact_match(
                     ref=required_contents, pred=selected_element
                 )
                 score *= float(cur_score)
                 # print(f"[exact match] {cur_score}, selected element: {selected_element}, required contents: {required_contents}")
             elif "must_include" in target["required_contents"]:
-                required_contents = target["required_contents"]["must_include"]
+                required_contents = target["required_contents"][
+                    "must_include"
+                ]
                 assert isinstance(required_contents, list)
                 for content in required_contents:
                     content_or = content.split(" |OR| ")
@@ -331,10 +347,9 @@ class EvaluatorComb:
         self,
         trajectory: Trajectory,
         config_file: Path | str,
-        page: Page | PseudoPage | None,
-        client: CDPSession | None,
+        page: Page | PseudoPage,
+        client: CDPSession,
     ) -> float:
-
         score = 1.0
         for evaluator in self.evaluators:
             cur_score = evaluator(trajectory, config_file, page, client)
@@ -359,6 +374,8 @@ def evaluator_router(config_file: Path | str) -> EvaluatorComb:
             case "program_html":
                 evaluators.append(HTMLContentEvaluator())
             case _:
-                raise ValueError(f"eval_type {eval_type} is not supported")
+                raise ValueError(
+                    f"eval_type {eval_type} is not supported"
+                )
 
     return EvaluatorComb(evaluators)
