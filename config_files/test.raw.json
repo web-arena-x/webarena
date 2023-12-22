@@ -728,7 +728,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "N/A"
+        "fuzzy_match": "N/A"
       },
       "reference_url": "",
       "program_html": [],
@@ -789,7 +789,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "N/A"
+        "fuzzy_match": "N/A"
       },
       "reference_url": "",
       "program_html": [],
@@ -3259,7 +3259,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "N/A"
+        "fuzzy_match": "N/A"
       },
       "reference_url": "",
       "program_html": [],
@@ -3712,7 +3712,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "N/A"
+        "fuzzy_match": "N/A"
       },
       "reference_url": "",
       "program_html": [],
@@ -5301,11 +5301,11 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "N/A"
+        "fuzzy_match": "N/A"
       },
       "reference_url": "",
       "program_html": [],
-      "string_note": "",
+      "string_note": "there is no existing criticism",
       "reference_answer_raw_annotation": "N/A"
     },
     "intent_template_id": 136
@@ -5364,7 +5364,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "N/A"
+        "fuzzy_match": "N/A"
       },
       "reference_url": "",
       "program_html": [],
@@ -5839,7 +5839,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "N/A"
+        "fuzzy_match": "N/A"
       },
       "reference_url": "",
       "program_html": [],
@@ -6090,7 +6090,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "N/A"
+        "fuzzy_match": "N/A"
       },
       "reference_url": "",
       "program_html": [],
@@ -6405,7 +6405,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "N/A"
+        "fuzzy_match": "N/A"
       },
       "reference_url": "",
       "program_html": [],
@@ -6945,7 +6945,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "N/A"
+        "fuzzy_match": "N/A"
       },
       "reference_url": "",
       "program_html": [],
@@ -6975,7 +6975,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "N/A"
+        "fuzzy_match": "N/A"
       },
       "reference_url": "",
       "program_html": [],
@@ -7164,7 +7164,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "N/A"
+        "fuzzy_match": "N/A"
       },
       "reference_url": "",
       "program_html": [],
@@ -7445,7 +7445,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "N/A"
+        "fuzzy_match": "N/A"
       },
       "reference_url": "",
       "program_html": [],
@@ -7474,12 +7474,12 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "N/A"
+        "fuzzy_match": "N/A"
       },
       "reference_url": "",
       "program_html": [],
-      "string_note": "",
-      "reference_answer_raw_annotation": "There is no under delivery order"
+      "string_note": "There is no under delivery order",
+      "reference_answer_raw_annotation": "N/A"
     },
     "intent_template_id": 213
   },
@@ -7827,7 +7827,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "N/A"
+        "fuzzy_match": "N/A"
       },
       "reference_url": "Valorie doesn't have a email in the system",
       "program_html": [],
@@ -8017,7 +8017,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "N/A"
+        "fuzzy_match": "N/A"
       },
       "reference_url": "",
       "program_html": [],
@@ -9416,7 +9416,7 @@
       "eval_types": [
         "string_match"
       ],
-      "reference_answers": {"exact_match": "N/A"},
+      "reference_answers": {"fuzzy_match": "N/A"},
       "reference_url": "",
       "program_html": [],
       "string_note": "there is no order in processing"
@@ -9442,7 +9442,7 @@
       "eval_types": [
         "string_match"
       ],
-      "reference_answers": {"exact_match": "N/A"},
+      "reference_answers": {"fuzzy_match": "N/A"},
       "reference_url": "",
       "program_html": [],
       "string_note": "there is no order in processing"
@@ -9772,7 +9772,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "N/A"
+        "fuzzy_match": "N/A"
       },
       "reference_url": "",
       "program_html": [],
@@ -11442,7 +11442,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "N/A"
+        "fuzzy_match": "N/A"
       },
       "reference_url": "",
       "program_html": [],
@@ -11701,7 +11701,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "N/A"
+        "fuzzy_match": "N/A"
       },
       "reference_url": "",
       "program_html": [],
@@ -11863,7 +11863,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "N/A"
+        "fuzzy_match": "N/A"
       },
       "reference_url": "",
       "program_html": [],
@@ -15643,7 +15643,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "N/A"
+        "fuzzy_match": "N/A"
       },
       "reference_url": "",
       "program_html": [],
@@ -25587,7 +25587,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "N/A"
+        "fuzzy_match": "N/A"
       },
       "reference_url": "",
       "program_html": [],
@@ -25771,7 +25771,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "N/A"
+        "fuzzy_match": "N/A"
       },
       "reference_url": "",
       "program_html": [],
@@ -28547,7 +28547,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "N/A"
+        "fuzzy_match": "N/A"
       },
       "reference_url": "",
       "program_html": [],
@@ -28740,7 +28740,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "N/A"
+        "fuzzy_match": "N/A"
       },
       "reference_url": "",
       "program_html": [],
@@ -28769,7 +28769,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "N/A"
+        "fuzzy_match": "N/A"
       },
       "reference_url": "",
       "program_html": [],
@@ -28801,7 +28801,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "N/A"
+        "fuzzy_match": "N/A"
       },
       "reference_url": "",
       "program_html": [],
@@ -28831,7 +28831,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "N/A"
+        "fuzzy_match": "N/A"
       },
       "reference_url": "",
       "program_html": [],
@@ -28861,7 +28861,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "N/A"
+        "fuzzy_match": "N/A"
       },
       "reference_url": "",
       "program_html": [],
@@ -28890,7 +28890,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "N/A"
+        "fuzzy_match": "N/A"
       },
       "reference_url": "",
       "program_html": [],
@@ -28919,7 +28919,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "N/A"
+        "fuzzy_match": "N/A"
       },
       "reference_url": "",
       "program_html": [],
@@ -28948,7 +28948,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "N/A"
+        "fuzzy_match": "N/A"
       },
       "reference_url": "",
       "program_html": [],
@@ -28977,7 +28977,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "N/A"
+        "fuzzy_match": "N/A"
       },
       "reference_url": "",
       "program_html": [],
@@ -29006,7 +29006,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "N/A"
+        "fuzzy_match": "N/A"
       },
       "reference_url": "",
       "program_html": [],

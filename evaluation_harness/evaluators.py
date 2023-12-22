@@ -19,6 +19,7 @@ from evaluation_harness.helper_functions import (
     PseudoPage,
     gitlab_get_project_memeber_role,
     llm_fuzzy_match,
+    llm_ua_match,
     reddit_get_post_url,
     shopping_get_latest_order_url,
     shopping_get_sku_latest_review_author,
@@ -114,6 +115,11 @@ class StringEvaluator(Evaluator):
     def fuzzy_match(ref: str, pred: str, intent: str) -> float:
         return llm_fuzzy_match(pred, ref, intent)
 
+    @staticmethod
+    @beartype
+    def ua_match(ref: str, pred: str, intent: str) -> float:
+        return llm_ua_match(pred, ref, intent)
+
     def __call__(
         self,
         trajectory: Trajectory,
@@ -132,6 +138,7 @@ class StringEvaluator(Evaluator):
             match approach:
                 case "exact_match":
                     score *= self.exact_match(ref=value, pred=pred)
+
                 case "must_include":
                     assert isinstance(value, list)
                     for must_value in value:
@@ -142,11 +149,24 @@ class StringEvaluator(Evaluator):
                         )
                 case "fuzzy_match":
                     intent = configs["intent"]
-                    assert isinstance(value, list)
-                    for reference in value:
-                        score *= self.fuzzy_match(
-                            ref=reference, pred=pred, intent=intent
-                        )
+                    if value == "N/A":
+                        # if the instruction only asks the model to generate N/A when encountering an unachievable task
+                        # without more concrete reasons
+                        score *= self.exact_match(ref=value, pred=pred)
+                        # if the instruction also asks the model to generate the reason why the task is unachievable
+                        # this should be the default as it will prevent false positive N/A`
+                        if score != 1:
+                            score = 1.0 * self.ua_match(
+                                intent=configs["intent"],
+                                ref=configs["eval"]["string_note"],
+                                pred=pred,
+                            )
+                    else:
+                        assert isinstance(value, list)
+                        for reference in value:
+                            score *= self.fuzzy_match(
+                                ref=reference, pred=pred, intent=intent
+                            )
         return score
 
 
@@ -325,7 +345,6 @@ class EvaluatorComb:
         page: Page | PseudoPage,
         client: CDPSession,
     ) -> float:
-
         score = 1.0
         for evaluator in self.evaluators:
             cur_score = evaluator(trajectory, config_file, page, client)
