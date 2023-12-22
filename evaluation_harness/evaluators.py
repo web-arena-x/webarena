@@ -138,12 +138,6 @@ class StringEvaluator(Evaluator):
             match approach:
                 case "exact_match":
                     score *= self.exact_match(ref=value, pred=pred)
-                    if value == "N/A" and score != 1:
-                        score = 1.0 * self.ua_match(
-                            intent=configs["intent"],
-                            ref=configs["eval"]["string_note"],
-                            pred=pred,
-                        )
 
                 case "must_include":
                     assert isinstance(value, list)
@@ -155,11 +149,18 @@ class StringEvaluator(Evaluator):
                         )
                 case "fuzzy_match":
                     intent = configs["intent"]
-                    assert isinstance(value, list)
-                    for reference in value:
-                        score *= self.fuzzy_match(
-                            ref=reference, pred=pred, intent=intent
+                    if value == "N/A":
+                        score *= self.ua_match(
+                            intent=configs["intent"],
+                            ref=configs["eval"]["string_note"],
+                            pred=pred,
                         )
+                    else:
+                        assert isinstance(value, list)
+                        for reference in value:
+                            score *= self.fuzzy_match(
+                                ref=reference, pred=pred, intent=intent
+                            )
         return score
 
 

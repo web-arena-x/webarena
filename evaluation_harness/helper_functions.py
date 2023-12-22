@@ -177,11 +177,17 @@ def llm_ua_match(pred: str, reference: str, question: str) -> float:
     """Check whether the prediction matches the reference with GPT-turbo"""
     messages: list[dict[str, Any]] = []
     # construct the question to ask
-    message = "A task described in Task_1 cannot be completed for reason listed in Reason_1. A person tried to complete the task and failed, he reported his attempt in Report_1, check if Report_1 is refering to Reason_1, even implicitly. If match, return same, else, return different\n"
-    message += f"Task_1 = {question}\n"
-    message += f"Reason_1 = {reference}\n"
-    message += f"Report_1 = {pred}\n"
-    message += "return [same] or [different]"
+    message = ""
+    message += f"task: {question}\n"
+    message += f"actual unachievable reason: {reference}\n"
+    message += f"reported unachievable reason: {pred}\n"
+    message += (
+        "The task described above is inherently unachievable due to the reason specified under 'actual unachievable reason'. "
+        "An individual previously attempted this task and was unable to complete it. They provided a reason for their failure, "
+        "which is listed under 'reported unachievable reason'. Your role is to review both the actual and reported reasons. "
+        "Determine if the reported reason aligns with the actual reason, even if implicitly. "
+        "If the stated reason is in line with the actual reason, respond with 'same'. Otherwise, respond with 'different'."
+    )
     messages = [
         {"role": "system", "content": "You are a helpful assistant"},
         {"role": "user", "content": message},
