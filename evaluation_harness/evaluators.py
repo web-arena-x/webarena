@@ -137,14 +137,14 @@ class StringEvaluator(Evaluator):
         for approach, value in configs["eval"]["reference_answers"].items():
             match approach:
                 case "exact_match":
-                    if value == "N/A":
-                        score *= self.ua_match(
+                    score *= self.exact_match(ref=value, pred=pred)
+                    if value == "N/A" and score != 1:
+                        score = 1.0 * self.ua_match(
                             intent=configs["intent"],
                             ref=configs["eval"]["string_note"],
                             pred=pred,
                         )
-                    else:
-                        score *= self.exact_match(ref=value, pred=pred)
+
                 case "must_include":
                     assert isinstance(value, list)
                     for must_value in value:
