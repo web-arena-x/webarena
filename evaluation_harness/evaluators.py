@@ -150,11 +150,13 @@ class StringEvaluator(Evaluator):
                 case "fuzzy_match":
                     intent = configs["intent"]
                     if value == "N/A":
-                        score *= self.ua_match(
-                            intent=configs["intent"],
-                            ref=configs["eval"]["string_note"],
-                            pred=pred,
-                        )
+                        score *= self.exact_match(ref=value, pred=pred)
+                        if score != 1:
+                            score = 1.0 * self.ua_match(
+                                intent=configs["intent"],
+                                ref=configs["eval"]["string_note"],
+                                pred=pred,
+                            )
                     else:
                         assert isinstance(value, list)
                         for reference in value:
