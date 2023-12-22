@@ -171,7 +171,8 @@ def llm_fuzzy_match(pred: str, reference: str, question: str) -> float:
     else:
         assert "correct" in response
         return 1.0
-    
+
+
 def llm_ua_match(pred: str, reference: str, question: str) -> float:
     """Check whether the prediction matches the reference with GPT-turbo"""
     messages: list[dict[str, Any]] = []

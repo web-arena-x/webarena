@@ -114,10 +114,10 @@ class StringEvaluator(Evaluator):
     @beartype
     def fuzzy_match(ref: str, pred: str, intent: str) -> float:
         return llm_fuzzy_match(pred, ref, intent)
-    
+
     @staticmethod
     @beartype
-    def ua_match(ref: str, pred: str, intent:str) -> float:
+    def ua_match(ref: str, pred: str, intent: str) -> float:
         return llm_ua_match(pred, ref, intent)
 
     def __call__(
@@ -138,7 +138,11 @@ class StringEvaluator(Evaluator):
             match approach:
                 case "exact_match":
                     if value == "N/A":
-                        score *= self.ua_match(intent = configs["intent"], ref=configs["eval"]["string_note"], pred = pred)
+                        score *= self.ua_match(
+                            intent=configs["intent"],
+                            ref=configs["eval"]["string_note"],
+                            pred=pred,
+                        )
                     else:
                         score *= self.exact_match(ref=value, pred=pred)
                 case "must_include":
@@ -331,10 +335,9 @@ class EvaluatorComb:
         self,
         trajectory: Trajectory,
         config_file: Path | str,
-        page: Page | PseudoPage | None,
-        client: CDPSession | None,
+        page: Page | PseudoPage,
+        client: CDPSession,
     ) -> float:
-
         score = 1.0
         for evaluator in self.evaluators:
             cur_score = evaluator(trajectory, config_file, page, client)
