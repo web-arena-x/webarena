@@ -7478,8 +7478,8 @@
       },
       "reference_url": "",
       "program_html": [],
-      "string_note": "",
-      "reference_answer_raw_annotation": "There is no under delivery order"
+      "string_note": "There is no under delivery order",
+      "reference_answer_raw_annotation": "N/A"
     },
     "intent_template_id": 213
   },
