@@ -157,7 +157,7 @@ perl -pi -e "s|<your-server-hostname>|${YOUR_ACTUAL_HOSTNAME}|g" webarena-homepa
 
 Then run
 ```
-cd webarena_homepage
+cd webarena-homepage
 flask run --host=0.0.0.0 --port=4399
 ```
 The homepage will be available at `http://<your-server-hostname>:4399`.
