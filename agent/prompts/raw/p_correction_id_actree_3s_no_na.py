@@ -32,7 +32,6 @@ Completion Action:
 
 Homepage:
 If you want to visit other websites, check out the homepage at http://homepage.com. It has a list of websites you can visit.
-http://homepage.com/password.html lists all the account name and password for the websites. You can use them to log in to the websites.
 
 To be successful, it is very important to follow the following rules:
 1. You should only issue an action that is valid given the current observation
