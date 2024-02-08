@@ -19,7 +19,6 @@ def main() -> None:
     # split to multiple files
     data = json.loads(raw)
     for idx, item in enumerate(data):
-        print(idx)
         with open(f"config_files/{idx}.json", "w") as f:
             json.dump(item, f, indent=2)
 

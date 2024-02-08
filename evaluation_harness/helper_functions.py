@@ -169,7 +169,7 @@ def llm_fuzzy_match(pred: str, reference: str, question: str) -> float:
     if "partially correct" in response or "incorrect" in response:
         return 0.0
     else:
-        assert "correct" in response
+        assert "correct" in response, response
         return 1.0
 
 

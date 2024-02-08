@@ -6,8 +6,10 @@ import os
 import re
 import subprocess
 import time
+import browser_env.actions as actions
 
 SLEEP = 1.5
+
 # set the URLs of each website, we use the demo sites as an example
 os.environ[
     "SHOPPING"
@@ -52,7 +54,7 @@ print("Done generating config files with the correct URLs")
 
 # run bash prepare.sh to save all account cookies, this only needs to be done once
 subprocess.run(["bash", "prepare.sh"])
-print("Done saving account cookies")
+# print("Done saving account cookies")
 
 # Init an environment
 from browser_env import (
@@ -70,7 +72,7 @@ from evaluation_harness.evaluators import evaluator_router
 
 # Init the environment
 env = ScriptBrowserEnv(
-    headless=False,
+    headless=True,
     slow_mo=100,
     observation_type="accessibility_tree",
     current_viewport_only=True,
@@ -85,7 +87,7 @@ trajectory: Trajectory = []
 # set the environment for the current example
 obs, info = env.reset(options={"config_file": config_file})
 actree_obs = obs["text"]
-print(actree_obs)
+# print(actree_obs)
 
 # You should see some output like this:
 """
@@ -117,7 +119,7 @@ trajectory.append(click_action)
 obs, _, terminated, _, info = env.step(click_action)
 # New observation
 actree_obs = obs["text"]
-print(actree_obs)
+# print(actree_obs)
 time.sleep(SLEEP)
 
 state_info = {"observation": obs, "info": info}
@@ -130,7 +132,7 @@ trajectory.append(click_action)
 
 obs, _, terminated, _, info = env.step(click_action)
 actree_obs = obs["text"]
-print(actree_obs)
+# print(actree_obs)
 time.sleep(SLEEP)
 state_info = {"observation": obs, "info": info}
 trajectory.append(state_info)
@@ -150,3 +152,9 @@ score = evaluator(
 
 # as we manually perform the task, the task should be judged as correct
 assert score == 1.0
+print('success')
+
+for i in range(1, len(trajectory), 2):
+    print(trajectory[i])
+    print(actions.action2str(trajectory[i]))
+

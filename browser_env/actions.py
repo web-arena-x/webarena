@@ -110,7 +110,7 @@ class Action(TypedDict):
 
 @beartype
 def action2str(
-    action: Action, action_set_tag: str, semantic_element: str = ""
+    action: Action, action_set_tag: str = "id_accessibility_tree", semantic_element: str = ""
 ) -> str:
     """Return the string representation of an action
 

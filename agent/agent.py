@@ -17,9 +17,6 @@ from browser_env.actions import (
 from browser_env.utils import Observation, StateInfo
 from llms import (
     call_llm,
-    generate_from_huggingface_completion,
-    generate_from_openai_chat_completion,
-    generate_from_openai_completion,
     lm_config,
 )
 from llms.tokenizers import Tokenizer
