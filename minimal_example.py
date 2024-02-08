@@ -6,7 +6,7 @@ import os
 import re
 import subprocess
 import time
-import browser_env.actions as actions
+import webarena.browser_env.actions as actions
 
 SLEEP = 1.5
 

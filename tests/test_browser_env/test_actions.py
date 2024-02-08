@@ -1,6 +1,6 @@
 import numpy as np
 
-from browser_env import *
+from webarena.browser_env import *
 
 
 def test_is_equivalent() -> None:

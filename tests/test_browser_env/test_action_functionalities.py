@@ -4,7 +4,7 @@ from typing import Dict, Optional, Tuple, Type, Union, cast
 import pytest
 from playwright.sync_api import Page, expect
 
-from browser_env import (
+from webarena.browser_env import (
     ScriptBrowserEnv,
     create_id_based_action,
     create_key_press_action,

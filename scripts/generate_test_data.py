@@ -2,7 +2,7 @@
 Generate the test data"""
 import json
 
-from browser_env.env_config import *
+from webarena.browser_env.env_config import *
 
 
 def main() -> None:

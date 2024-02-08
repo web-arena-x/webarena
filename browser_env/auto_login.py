@@ -9,7 +9,7 @@ from pathlib import Path
 
 from playwright.sync_api import sync_playwright
 
-from browser_env.env_config import (
+from webarena.browser_env.env_config import (
     ACCOUNTS,
     GITLAB,
     REDDIT,

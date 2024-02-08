@@ -1,7 +1,7 @@
 import argparse
 from typing import Any
 
-from llms import (
+from webarena.llms import (
     generate_from_huggingface_completion,
     generate_from_openai_chat_completion,
     generate_from_openai_completion,

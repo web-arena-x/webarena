@@ -12,14 +12,14 @@ from pathlib import Path
 
 import openai
 
-from agent import (
+from webarena.agent import (
     Agent,
     PromptAgent,
     TeacherForcingAgent,
     construct_agent,
 )
-from agent.prompts import *
-from browser_env import (
+from webarena.agent.prompts import *
+from webarena.browser_env import (
     Action,
     ActionTypes,
     ScriptBrowserEnv,
@@ -27,13 +27,13 @@ from browser_env import (
     Trajectory,
     create_stop_action,
 )
-from browser_env.actions import is_equivalent
-from browser_env.auto_login import get_site_comb_from_filepath
-from browser_env.helper_functions import (
+from webarena.browser_env.actions import is_equivalent
+from webarena.browser_env.auto_login import get_site_comb_from_filepath
+from webarena.browser_env.helper_functions import (
     RenderHelper,
     get_action_description,
 )
-from evaluation_harness import evaluator_router
+from webarena.evaluation_harness import evaluator_router
 
 LOG_FOLDER = "log_files"
 Path(LOG_FOLDER).mkdir(parents=True, exist_ok=True)

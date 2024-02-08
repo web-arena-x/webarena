@@ -3,12 +3,12 @@ import re
 from pathlib import Path
 from typing import Any, TypedDict
 
-from browser_env import Action, ActionParsingError, Trajectory
-from browser_env.env_config import URL_MAPPINGS
-from browser_env.utils import StateInfo
-from llms import lm_config
-from llms.tokenizers import Tokenizer
-from llms.utils import APIInput
+from webarena.browser_env import Action, ActionParsingError, Trajectory
+from webarena.browser_env.env_config import URL_MAPPINGS
+from webarena.browser_env.utils import StateInfo
+from webarena.llms import lm_config
+from webarena.llms.tokenizers import Tokenizer
+from webarena.llms.utils import APIInput
 
 
 class Instruction(TypedDict):

@@ -2,9 +2,9 @@ import json
 import os
 from pathlib import Path
 
-from browser_env import ScriptBrowserEnv
-from browser_env.env_config import *
-from evaluation_harness.helper_functions import (
+from webarena.browser_env import ScriptBrowserEnv
+from webarena.browser_env.env_config import *
+from webarena.evaluation_harness.helper_functions import (
     gitlab_get_project_memeber_role,
 )
 

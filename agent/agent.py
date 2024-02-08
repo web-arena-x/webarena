@@ -5,21 +5,21 @@ from typing import Any
 import tiktoken
 from beartype import beartype
 
-from agent.prompts import *
-from browser_env import Trajectory
-from browser_env.actions import (
+from webarena.agent.prompts import *
+from webarena.browser_env import Trajectory
+from webarena.browser_env.actions import (
     Action,
     ActionParsingError,
     create_id_based_action,
     create_none_action,
     create_playwright_action,
 )
-from browser_env.utils import Observation, StateInfo
-from llms import (
+from webarena.browser_env.utils import Observation, StateInfo
+from webarena.llms import (
     call_llm,
     lm_config,
 )
-from llms.tokenizers import Tokenizer
+from webarena.llms.tokenizers import Tokenizer
 
 
 class Agent:

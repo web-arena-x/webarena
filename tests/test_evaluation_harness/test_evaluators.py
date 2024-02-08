@@ -8,15 +8,15 @@ from typing import Any
 import pytest
 from py import test
 
-from agent import Agent, TeacherForcingAgent
-from browser_env import ActionTypes, ScriptBrowserEnv
-from browser_env.env_config import *
-from evaluation_harness import (
+from webarena.agent import Agent, TeacherForcingAgent
+from webarena.browser_env import ActionTypes, ScriptBrowserEnv
+from webarena.browser_env.env_config import *
+from webarena.evaluation_harness import (
     HTMLContentEvaluator,
     StringEvaluator,
     URLEvaluator,
 )
-from evaluation_harness.evaluators import EvaluatorComb
+from webarena.evaluation_harness.evaluators import EvaluatorComb
 
 IN_GITHUB_ACTIONS = os.getenv("GITHUB_ACTIONS") == "true"
 HEADLESS = True

@@ -8,14 +8,14 @@ from typing import Dict, Optional, Tuple, Type, Union, cast
 import pytest
 from playwright.sync_api import Page, expect
 
-from browser_env import (
+from webarena.browser_env import (
     ScriptBrowserEnv,
     create_id_based_action,
     create_key_press_action,
     create_playwright_action,
     create_scroll_action,
 )
-from browser_env.env_config import *
+from webarena.browser_env.env_config import *
 
 HEADLESS = False
 

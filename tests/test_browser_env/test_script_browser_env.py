@@ -8,7 +8,7 @@ import pytest
 from gymnasium.vector import AsyncVectorEnv
 from playwright.sync_api import Page
 
-from browser_env import (
+from webarena.browser_env import (
     Action,
     AsyncScriptBrowserEnv,
     DetachedPage,
@@ -19,8 +19,8 @@ from browser_env import (
     create_playwright_action,
     create_scroll_action,
 )
-from browser_env.actions import create_id_based_action
-from browser_env.env_config import (
+from webarena.browser_env.actions import create_id_based_action
+from webarena.browser_env.env_config import (
     ACCOUNTS,
     GITLAB,
     REDDIT,

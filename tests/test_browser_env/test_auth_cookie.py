@@ -1,7 +1,7 @@
 import asyncio
 import json
 
-from browser_env import *
+from webarena.browser_env import *
 
 auth_json = {
     "cookies": [
