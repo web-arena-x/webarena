@@ -367,9 +367,9 @@ def test(
 
 def prepare(args: argparse.Namespace) -> None:
     # convert prompt python files to json
-    from agent.prompts import to_json
+    # from agent.prompts import to_json
 
-    to_json.run()
+    # to_json.run()
 
     # prepare result dir
     result_dir = args.result_dir

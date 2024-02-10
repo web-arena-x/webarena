@@ -88,8 +88,6 @@ class StringEvaluator(Evaluator):
     @staticmethod
     @beartype
     def exact_match(ref: str, pred: str) -> float:
-        print(f'exact match {ref=}')
-        print(f'exact match {pred=}')
         return float(
             StringEvaluator.clean_answer(pred)
             == StringEvaluator.clean_answer(ref)
@@ -142,11 +140,9 @@ class StringEvaluator(Evaluator):
         for approach, value in configs["eval"]["reference_answers"].items():
             match approach:
                 case "exact_match":
-                    print('exact match')
                     score *= self.exact_match(ref=value, pred=pred)
 
                 case "must_include":
-                    print('must include')
                     assert isinstance(value, list)
                     for must_value in value:
                         score *= self.must_include(
@@ -154,9 +150,7 @@ class StringEvaluator(Evaluator):
                             pred=pred,
                             tokenize=(len(value) == 1),
                         )
-                        print(f'{score=}')
                 case "fuzzy_match":
-                    print('fuzzy match')
                     intent = configs["intent"]
                     if value == "N/A":
                         # if the instruction only asks the model to generate N/A when encountering an unachievable task
@@ -219,10 +213,8 @@ class URLEvaluator(Evaluator):
             return base_paths, queries
 
         pred = clean_url(page.url)
-        print(f'{pred=}')
         ref_urls = configs["eval"]["reference_url"].split(" |OR| ")
         ref_urls = [clean_url(url) for url in ref_urls]
-        print(f'{ref_urls=}')
         matching_rule = configs["eval"].get("url_note", "GOLD in PRED")
         if matching_rule == "GOLD in PRED":
             ref_base_paths, ref_queries = parse_urls(ref_urls)
@@ -319,7 +311,6 @@ class HTMLContentEvaluator(Evaluator):
                     ref=required_contents, pred=selected_element
                 )
                 score *= float(cur_score)
-                # print(f"[exact match] {cur_score}, selected element: {selected_element}, required contents: {required_contents}")
             elif "must_include" in target["required_contents"]:
                 required_contents = target["required_contents"]["must_include"]
                 assert isinstance(required_contents, list)
@@ -336,7 +327,6 @@ class HTMLContentEvaluator(Evaluator):
                         ]
                     )
                     score *= float(cur_score)
-                    # print(f"[must include] {cur_score}, selected element: {selected_element}, required contents: {content_or}")
             else:
                 raise ValueError(
                     f"Unknown required_contents: {target['required_contents'].keys()}"
@@ -359,7 +349,6 @@ class EvaluatorComb:
         score = 1.0
         for evaluator in self.evaluators:
             cur_score = evaluator(trajectory, config_file, page, client)
-            print(f'{cur_score=}', 'just evaluated evaluator of type', type(evaluator))
             score *= cur_score
         return score
 
