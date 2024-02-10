@@ -144,6 +144,8 @@ def gitlab_get_project_memeber_role(page: Page, account_name: str) -> str:
 
 
 def llm_fuzzy_match(pred: str, reference: str, question: str) -> float:
+    print(f'{pred=}')
+    print(f'{reference=}')
     """Check whether the prediction matches the reference with GPT4-turbo"""
     messages: list[dict[str, Any]] = []
     # construct the question to ask
@@ -166,6 +168,7 @@ def llm_fuzzy_match(pred: str, reference: str, question: str) -> float:
         top_p=1.0,
         context_length=0,
     ).lower()
+    print(f'{response=}')
     if "partially correct" in response or "incorrect" in response:
         return 0.0
     else:

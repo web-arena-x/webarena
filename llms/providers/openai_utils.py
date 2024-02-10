@@ -12,7 +12,7 @@ import aiolimiter
 import openai
 # import openai.error
 from tqdm.asyncio import tqdm_asyncio
-# from llm import sample_completions
+from llm import sample_completions
 
 def retry_with_exponential_backoff(  # type: ignore
     func,
@@ -131,34 +131,6 @@ async def _throttled_openai_completion_acreate(
 #     return [x["choices"][0]["text"] for x in responses]
 
 
-@retry_with_exponential_backoff
-def generate_from_openai_completion(
-    prompt: str,
-    engine: str,
-    temperature: float,
-    max_tokens: int,
-    top_p: float,
-    context_length: int,
-    stop_token: str | None = None,
-) -> str:
-    if "OPENAI_API_KEY" not in os.environ:
-        raise ValueError(
-            "OPENAI_API_KEY environment variable must be set when using OpenAI API."
-        )
-    openai.api_key = os.environ["OPENAI_API_KEY"]
-    openai.organization = os.environ.get("OPENAI_ORGANIZATION", "")
-    response = openai.Completion.create(  # type: ignore
-        prompt=prompt,
-        engine=engine,
-        temperature=temperature,
-        max_tokens=max_tokens,
-        top_p=top_p,
-        stop=[stop_token],
-    )
-    answer: str = response["choices"][0]["text"]
-    return answer
-
-# cached version
 # @retry_with_exponential_backoff
 # def generate_from_openai_completion(
 #     prompt: str,
@@ -169,22 +141,50 @@ def generate_from_openai_completion(
 #     context_length: int,
 #     stop_token: str | None = None,
 # ) -> str:
-#     if top_p != 1.0:
-#         raise ValueError("Caching only supported for top_p=1.0 so far")
-#     if context_length != 0:
-#         raise ValueError("Context length not supported yet")
-
-#     completions = sample_completions(
+#     if "OPENAI_API_KEY" not in os.environ:
+#         raise ValueError(
+#             "OPENAI_API_KEY environment variable must be set when using OpenAI API."
+#         )
+#     openai.api_key = os.environ["OPENAI_API_KEY"]
+#     openai.organization = os.environ.get("OPENAI_ORGANIZATION", "")
+#     response = openai.Completion.create(  # type: ignore
 #         prompt=prompt,
-#         n=1,
-#         temperature=temperature,
-#         stop=[stop_token] if stop_token else None,
-#         max_tokens=max_tokens,
 #         engine=engine,
+#         temperature=temperature,
+#         max_tokens=max_tokens,
+#         top_p=top_p,
+#         stop=[stop_token],
 #     )
+#     answer: str = response["choices"][0]["text"]
+#     return answer
 
-#     assert len(completions) == 1
-#     return completions[0]
+# cached version
+@retry_with_exponential_backoff
+def generate_from_openai_completion(
+    prompt: str,
+    engine: str,
+    temperature: float,
+    max_tokens: int,
+    top_p: float,
+    context_length: int,
+    stop_token: str | None = None,
+) -> str:
+    if top_p != 1.0:
+        raise ValueError("Caching only supported for top_p=1.0 so far")
+    if context_length != 0:
+        raise ValueError("Context length not supported yet")
+
+    completions = sample_completions(
+        prompt=prompt,
+        n=1,
+        temperature=temperature,
+        stop=[stop_token] if stop_token else None,
+        max_tokens=max_tokens,
+        engine=engine,
+    )
+
+    assert len(completions) == 1
+    return completions[0]
 
 
 async def _throttled_openai_chat_completion_acreate(
@@ -264,35 +264,6 @@ async def _throttled_openai_chat_completion_acreate(
 #     return [x["choices"][0]["message"]["content"] for x in responses]
 
 
-@retry_with_exponential_backoff
-def generate_from_openai_chat_completion(
-    messages: list[dict[str, str]],
-    model: str,
-    temperature: float,
-    max_tokens: int,
-    top_p: float,
-    context_length: int,
-    stop_token: str | None = None,
-) -> str:
-    if "OPENAI_API_KEY" not in os.environ:
-        raise ValueError(
-            "OPENAI_API_KEY environment variable must be set when using OpenAI API."
-        )
-    openai.api_key = os.environ["OPENAI_API_KEY"]
-    openai.organization = os.environ.get("OPENAI_ORGANIZATION", "")
-
-    response = openai.ChatCompletion.create(  # type: ignore
-        model=model,
-        messages=messages,
-        temperature=temperature,
-        max_tokens=max_tokens,
-        top_p=top_p,
-        stop=[stop_token] if stop_token else None,
-    )
-    answer: str = response["choices"][0]["message"]["content"]
-    return answer
-
-# # cached version
 # @retry_with_exponential_backoff
 # def generate_from_openai_chat_completion(
 #     messages: list[dict[str, str]],
@@ -303,36 +274,65 @@ def generate_from_openai_chat_completion(
 #     context_length: int,
 #     stop_token: str | None = None,
 # ) -> str:
-#     if top_p != 1.0:
-#         raise ValueError("Caching only supported for top_p=1.0 so far")
-#     if context_length != 0:
-#         raise ValueError("Context length not supported yet")
+#     if "OPENAI_API_KEY" not in os.environ:
+#         raise ValueError(
+#             "OPENAI_API_KEY environment variable must be set when using OpenAI API."
+#         )
+#     openai.api_key = os.environ["OPENAI_API_KEY"]
+#     openai.organization = os.environ.get("OPENAI_ORGANIZATION", "")
 
-#     # sample_completions expects a list of strings, and creates the dict of messages itself
-#     prompt = []
-#     for i, message in enumerate(messages):
-#         if i == 0:
-#             assert message["role"] == "system"
-#             assert message["content"] == "You are a helpful assistant", message
-#         elif i % 2 == 1:
-#             assert message['role'] == 'user'
-#             prompt.append(message["content"])
-#         else:
-#             assert message['role'] == 'assistant'
-#             prompt.append(message["content"])
-
-#     completions = sample_completions(
-#         prompt=prompt,
-#         n=1,
+#     response = openai.ChatCompletion.create(  # type: ignore
+#         model=model,
+#         messages=messages,
 #         temperature=temperature,
-#         stop=[stop_token] if stop_token else '\n',
 #         max_tokens=max_tokens,
-#         engine=model,
+#         top_p=top_p,
+#         stop=[stop_token] if stop_token else None,
 #     )
+#     answer: str = response["choices"][0]["message"]["content"]
+#     return answer
 
-#     assert len(completions) == 1
-#     # answer is a tuple, the first of which is the text
-#     return completions[0]
+# cached version
+@retry_with_exponential_backoff
+def generate_from_openai_chat_completion(
+    messages: list[dict[str, str]],
+    model: str,
+    temperature: float,
+    max_tokens: int,
+    top_p: float,
+    context_length: int,
+    stop_token: str | None = None,
+) -> str:
+    if top_p != 1.0:
+        raise ValueError("Caching only supported for top_p=1.0 so far")
+    if context_length != 0:
+        raise ValueError("Context length not supported yet")
+
+    # sample_completions expects a list of strings, and creates the dict of messages itself
+    prompt = []
+    for i, message in enumerate(messages):
+        if i == 0:
+            assert message["role"] == "system"
+            assert message["content"] == "You are a helpful assistant", message
+        elif i % 2 == 1:
+            assert message['role'] == 'user'
+            prompt.append(message["content"])
+        else:
+            assert message['role'] == 'assistant'
+            prompt.append(message["content"])
+
+    completions = sample_completions(
+        prompt=prompt,
+        n=1,
+        temperature=temperature,
+        stop=[stop_token] if stop_token else '\n',
+        max_tokens=max_tokens,
+        engine=model,
+    )
+
+    assert len(completions) == 1
+    # answer is a tuple, the first of which is the text
+    return completions[0]
 
 
 @retry_with_exponential_backoff
