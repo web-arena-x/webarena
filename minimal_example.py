@@ -36,7 +36,7 @@ print("Done setting up URLs")
 
 # First, run `python scripts/generate_test_data.py` to generate the config files
 p = subprocess.run(
-    ["python", "scripts/generate_test_data.py"], capture_output=True
+    ["python", "webarena/scripts/generate_test_data.py"], capture_output=True
 )
 
 # It will generate individual config file for each test example in config_files
