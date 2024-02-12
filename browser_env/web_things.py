@@ -1,5 +1,9 @@
+from webarena.browser_env import create_id_based_action
+
 class WebThing():
-    #(role, name, int(obs_node_id), parent, children, property_names, property_values, env)
+    root = None # effectively a global variable that refers to the current state of the web page
+
+    
     def __init__(self, category: str, name: str, id: int, parent, children, property_names, property_values, original_env=None):
         self.name = name
         self.id = id
@@ -31,6 +35,25 @@ class WebThing():
 
     def __str__(self):
         return repr(self)    
+    
+    def find(self, category, name):
+        if self.category == category and self.name == name:
+            return self
+        for child in self.children:
+            result = child.find(category, name)
+            if result:
+                return result
+        return None
+    
+    def after(self, category, name):
+        """looks for everything after a certain child"""
+        for i, child in enumerate(self.children):
+            if child.category == category and child.name == name:
+                new_children = self.children[i+1:]
+                return WebThing(self.category, self.name, self.id, self.parent, new_children, self.property_names, self.property_values, self.original_env)
+        return None
+    
+
 
     # make it so that you can do like `thing.a_property`
     def __getattr__(self, name):
@@ -41,7 +64,7 @@ class WebThing():
     def serialize(self, indent=0):
         serialization = f"{'    '*indent}[{self.id}] {self.category} '{self.name}'"
         if self.properties:
-            serialization += " " + " ".join(f"{key}={self.properties[key]}" for key in self.property_names)
+            serialization += " " + " ".join(f"{key}={self.properties[key]}" for key in self.property_names)                
         serialization += "\n"
         for child in self.children:
             serialization += child.serialize(indent+1)
@@ -72,3 +95,8 @@ class WebThing():
             new_children.append(child.clean())
         self.children = new_children
         return self
+
+    def click(self):
+        self.original_env.step(create_id_based_action(f"click [{self.id}]"))
+
+    
