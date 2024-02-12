@@ -173,7 +173,7 @@ class ScriptBrowserEnv(Env[dict[str, Observation], Action]):
 
     def _get_obs(self) -> dict[str, Observation]:
         obs = self.observation_handler.get_observation(
-            self.page, self.get_page_client(self.page)
+            self.page, self.get_page_client(self.page), self
         )
         return obs
 

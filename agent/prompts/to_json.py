@@ -3,6 +3,8 @@ import importlib
 import json
 import os
 
+import utils
+utils.setup_urls()
 
 # use the current directory as the root
 def run() -> None:
@@ -10,14 +12,14 @@ def run() -> None:
 
     Python files are easiser to edit
     """
-    for p_file in glob.glob(f"agent/prompts/raw/*.py"):
+    for p_file in glob.glob(f"webarena/agent/prompts/raw/*.py"):
         # import the file as a module
         base_name = os.path.basename(p_file).replace(".py", "")
         module = importlib.import_module(f"agent.prompts.raw.{base_name}")
         prompt = module.prompt
         # save the prompt as a json file
-        os.makedirs("agent/prompts/jsons", exist_ok=True)
-        with open(f"agent/prompts/jsons/{base_name}.json", "w+") as f:
+        os.makedirs("webarena/agent/prompts/jsons", exist_ok=True)
+        with open(f"webarena/agent/prompts/jsons/{base_name}.json", "w+") as f:
             json.dump(prompt, f, indent=2)
     print(f"Done convert python files to json")
 

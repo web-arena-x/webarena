@@ -9,6 +9,8 @@ WIKIPEDIA = os.environ.get("WIKIPEDIA", "")
 MAP = os.environ.get("MAP", "")
 HOMEPAGE = os.environ.get("HOMEPAGE", "")
 
+
+
 assert (
     REDDIT
     and SHOPPING

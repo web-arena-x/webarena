@@ -3,78 +3,6 @@ import re
 from collections import defaultdict
 from typing import Any, TypedDict, Union
 
-class WebThing():
-    def __init__(self, category: str, name: str, id: int, children, property_names: list[str], property_values: list[Any]):
-        self.name = name
-        self.id = id
-        self.children = children
-        self.category = category
-        self.property_names = property_names
-        self.property_values = property_values
-        self.properties = dict(zip(property_names, property_values))
-
-    def __repr__(self):
-        representation = f"{self.category}('{self.name}', {self.id}"
-        if self.properties:
-            for property_name in self.property_names:
-                representation += f", {property_name}={self.properties[property_name]}"
-        if self.children:
-            representation += f", children={repr(self.children)}"
-        representation += ")"
-        return representation
-
-    def __str__(self):
-        return repr(self)    
-
-    # make it so that you can do like `thing.a_property`
-    def __getattr__(self, name):
-        if name in self.properties:
-            return self.properties[name]
-        raise AttributeError(f"'{self.category}' object has no attribute '{name}'")
-
-    def serialize(self, indent=0):
-        serialization = f"{'    '*indent}[{self.id}] {self.category} '{self.name}'"
-        if self.properties:
-            serialization += " " + " ".join(f"{key}={self.properties[key]}" for key in self.property_names)
-        serialization += "\n"
-        for child in self.children:
-            serialization += child.serialize(indent+1)
-        return serialization
-
-    def clean(self):
-        # analogous to clean_accessibility_tree
-        # clean_lines: list[str] = []
-        # for line in tree_str.split("\n"):
-        #     # remove statictext if the content already appears in the previous line
-        #     if "statictext" in line.lower():
-        #         prev_lines = clean_lines[-3:]
-        #         pattern = r"\[\d+\] StaticText (.+)"
-
-        #         match = re.search(pattern, line, re.DOTALL)
-        #         if match:
-        #             static_text = match.group(1)[1:-1]  # remove the quotes
-        #             if static_text and all(
-        #                 static_text not in prev_line
-        #                 for prev_line in prev_lines
-        #             ):
-        #                 clean_lines.append(line)
-        #     else:
-        #         clean_lines.append(line)
-
-        # return "\n".join(clean_lines)
-        new_children = []
-        for child in self.children:
-            if child.category.lower() == "statictext":
-                if child.name in self.name:
-                    continue
-            new_children.append(child.clean())
-        self.children = new_children
-        return self
-
-
-
-    
-
 import numpy as np
 import numpy.typing as npt
 from gymnasium import spaces
@@ -98,11 +26,13 @@ from webarena.browser_env.utils import (
     png_bytes_to_numpy,
 )
 
+from webarena.browser_env.web_things import WebThing
+
 IN_VIEWPORT_RATIO_THRESHOLD = 0.6
 
 
 class ObservationProcessor:
-    def process(self, page: Page, client: CDPSession) -> Observation:
+    def process(self, page: Page, client: CDPSession, env=None) -> Observation:
         raise NotImplementedError
 
 
@@ -544,7 +474,7 @@ class TextObervationProcessor(ObservationProcessor):
 
     @staticmethod
     def accessibility_tree_to_web_things(
-        accessibility_tree: AccessibilityTree,
+        accessibility_tree: AccessibilityTree, env=None
     ) -> WebThing:
         """Parse the accessibility tree into a recursive data structure"""
         node_id_to_idx = {}
@@ -553,10 +483,8 @@ class TextObervationProcessor(ObservationProcessor):
 
         obs_nodes_info = {}
 
-        def dfs(idx: int, obs_node_id: str, depth: int):
-            tree_str = ""
+        def dfs(idx: int, obs_node_id: str, parent):
             node = accessibility_tree[idx]
-            indent = "\t" * depth
             valid_node = True
             try:
                 role = node["role"]["value"]
@@ -579,7 +507,7 @@ class TextObervationProcessor(ObservationProcessor):
 
                 # empty generic node
                 if not name.strip():
-                    if not properties:
+                    if len(property_names) == 0:
                         if role in [
                             "generic",
                             "img",
@@ -597,35 +525,37 @@ class TextObervationProcessor(ObservationProcessor):
                     elif role in ["listitem"]:
                         valid_node = False
 
-                if valid_node:
-                    tree_str += f"{indent}{node_str}"
-
 
             except Exception as e:
                 valid_node = False
 
             children = []
+            if valid_node:
+                new_node = WebThing(role, name, int(obs_node_id), parent, children, property_names, property_values, env)
+                new_parent = new_node
+            else:
+                new_parent = parent
+
+            
             for _, child_node_id in enumerate(node["childIds"]):
 
                 if child_node_id not in node_id_to_idx:
                     continue
-                # mark this to save some tokens
-                child_depth = depth + 1 if valid_node else depth
 
                 child_nodes = dfs(
-                    node_id_to_idx[child_node_id], child_node_id, child_depth
+                    node_id_to_idx[child_node_id], child_node_id, new_parent
                 )
                 children.extend(child_nodes)
                 
             if valid_node:
-                node = WebThing(role, name, int(obs_node_id), children, property_names, property_values)
-                #named_tuple(role, ["name", "id"]+property_names+["children"])(name, obs_node_id, *property_values, children)
-                return [node]
+                new_node.children = children
+                return [new_node]
             else:
                 return children
 
-        nodes = dfs(0, accessibility_tree[0]["nodeId"], 0)
-        assert len(nodes) == 1
+        nodes = dfs(0, accessibility_tree[0]["nodeId"], None)
+        if len(nodes)!=1: assert False, f"{len(nodes)} nodes generated by call to root web_things, should be 1"      
+        
         return nodes[0]
 
     
@@ -739,7 +669,7 @@ class TextObervationProcessor(ObservationProcessor):
 
         return "\n".join(clean_lines)
 
-    def process(self, page: Page, client: CDPSession) -> str:
+    def process(self, page: Page, client: CDPSession, env=None) -> str:
         # get the tab info
         open_tabs = page.context.pages
         try:
@@ -784,7 +714,7 @@ class TextObervationProcessor(ObservationProcessor):
             content, obs_nodes_info = self.parse_accessibility_tree(
                 accessibility_tree
             )
-            web_things = self.accessibility_tree_to_web_things(accessibility_tree)            
+            web_things = self.accessibility_tree_to_web_things(accessibility_tree, env)            
             
             content = self.clean_accesibility_tree(content)
 
@@ -819,7 +749,7 @@ class ImageObservationProcessor(ObservationProcessor):
         self.observation_tag = "image"
         self.meta_data = create_empty_metadata()
 
-    def process(self, page: Page, client: CDPSession) -> npt.NDArray[np.uint8]:
+    def process(self, page: Page, client: CDPSession, env=None) -> npt.NDArray[np.uint8]:
         try:
             screenshot = png_bytes_to_numpy(page.screenshot())
         except:
@@ -872,7 +802,7 @@ class ObservationHandler:
         return spaces.Dict({"text": text_space, "image": image_space})
 
     def get_observation(
-        self, page: Page, client: CDPSession
+        self, page: Page, client: CDPSession, env=None
     ) -> dict[str, Observation]:
         text_obs = self.text_processor.process(page, client)
         image_obs = self.image_processor.process(page, client)
