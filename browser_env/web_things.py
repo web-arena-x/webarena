@@ -1,8 +1,49 @@
 from webarena.browser_env import create_id_based_action
 
+
+class WebApi():
+    def __init__(self, env):
+        self.env = env
+
+    def current_page(self):
+        return self.env.obs['text']
+
+    def find(self, *args):
+        return WebThing.root.find(*args)
+
+    def find_containing(self, *args):
+        return WebThing.root.find_containing(*args)
+
+    def new_tab(self):
+        return self.env.step(create_id_based_action("new_tab"))
+
+    def stop(self, text=""):
+        return self.env.step(create_id_based_action(f"stop [{text}]"))
+
+    def goto(self, link):
+        return self.env.step(create_id_based_action(f"goto [{link}]"))
+
+    def go_back(self):
+        return self.env.step(create_id_based_action(f"go_back"))
+
+    def scroll(self, direction):
+        return self.env.step(create_id_based_action(f"scroll [{direction}]"))
+
+    def press(self, key):
+        return self.env.step(create_id_based_action(f"press [{key}]"))
+
+    def go_forward(self):
+        return self.env.step(create_id_based_action("go_forward"))
+
+    def tab_focus(self, tab_number):
+        return self.env.step(create_id_based_action(f"tab_focus [{tab_number}]"))
+
+    def close_tab(self):
+        return self.env.step(create_id_based_action("close_tab"))
+
+
 class WebThing():
     root = None # effectively a global variable that refers to the current state of the web page
-
 
     def __init__(self, category: str, name: str, id: int, parent, children, property_names, property_values, original_env=None):
         self.name = name
@@ -45,6 +86,16 @@ class WebThing():
             if result:
                 return result
         return None
+
+    def find_containing(self, category, query):
+        if self.category == category and query in self.name:
+            return self
+        for child in self.children:
+            result = child.find_containing(category, query)
+            if result:
+                return result
+        return None
+
 
     def after(self, category, name):
         """looks for everything after a certain child"""
@@ -96,13 +147,13 @@ class WebThing():
         return self
 
     def click(self):
-        self.original_env.step(create_id_based_action(f"click [{self.id}]"))
+        return self.original_env.step(create_id_based_action(f"click [{self.id}]"))
 
     def type(self, text):
-        self.original_env.step(create_id_based_action(f"type [{self.id}] {text}"))
+        return self.original_env.step(create_id_based_action(f"type [{self.id}] [{text}]"))
 
     def hover(self):
-        self.original_env.step(create_id_based_action(f"hover [{self.id}]"))
+        return self.original_env.step(create_id_based_action(f"hover [{self.id}]"))
 
     def has_duplicate(self, category, name):
         all_things = self.all_things()
@@ -157,11 +208,11 @@ class WebThing():
         for child in self.children:
             child.mark_efficient_paths(path_to_node + [self])
 
-    def mark_efficient_paths_from_root():
-        WebThing.root.mark_ambiguous_children()
-        WebThing.root.efficient_path = []
-        for child in WebThing.root.children:
-            child.mark_efficient_paths([WebThing.root])
+    def mark_efficient_paths_from_root(root):
+        root.mark_ambiguous_children()
+        root.efficient_path = []
+        for child in root.children:
+            child.mark_efficient_paths([root])
 
     def get_find_path(self, efficient=True):
         if efficient:
@@ -184,4 +235,7 @@ class WebThing():
         for child in self.children:
             things += child.all_things()
         return things
+
+    def get_text(self):
+        return self.name
 

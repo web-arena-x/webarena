@@ -211,6 +211,7 @@ class ScriptBrowserEnv(Env[dict[str, Observation], Action]):
             time.sleep(self.sleep_after_execution)
 
         observation = self._get_obs()
+        self.obs = observation
         observation_metadata = self._get_obs_metadata()
         info = {
             "page": DetachedPage(self.page.url, ""),
@@ -253,6 +254,7 @@ class ScriptBrowserEnv(Env[dict[str, Observation], Action]):
 
         observation = self._get_obs()
         observation_metadata = self._get_obs_metadata()
+        self.obs = observation
 
         info = {
             "page": DetachedPage(self.page.url, self.page.content()),
