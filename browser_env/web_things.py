@@ -1,4 +1,4 @@
-from webarena.browser_env import create_id_based_action
+from webarena.browser_env import create_id_based_action, create_type_action
 
 
 class WebApi():
@@ -56,6 +56,13 @@ class WebThing():
         self.properties = dict(zip(property_names, property_values))
         self.original_env = original_env
         self.efficient_path = None # signal we havent yet found path to this node
+    
+    def get_all_children(self):
+        """Recursively extracts all children of this node"""
+        children = [self]
+        for child in self.children:
+            children += child.get_all_children()
+        return children
 
     def __repr__(self):
         representation = f"{self.category}('{self.name}', {self.id}"
@@ -120,6 +127,16 @@ class WebThing():
             serialization += child.serialize(indent+1)
         return serialization
 
+    def pretty(self, indent=0):
+        """pretty print it in a way that the llm (hopefully) understands"""
+        serialization = f"{'    '*indent}category='{self.category}', name='{self.name}'"
+        if self.properties:
+            serialization += ", " + " ".join(f"{key}={repr(self.properties[key])}" for key in self.property_names)
+        serialization += "\n"
+        for child in self.children:
+            serialization += child.pretty(indent+1)
+        return serialization
+
     def find_thing_by_id(self, id):
         if self.id == id:
             return self
@@ -150,7 +167,8 @@ class WebThing():
         return self.original_env.step(create_id_based_action(f"click [{self.id}]"))
 
     def type(self, text):
-        return self.original_env.step(create_id_based_action(f"type [{self.id}] [{text}]"))
+        action = create_type_action(text=text+"\n", element_id=str(self.id))
+        self.original_env.step(action)
 
     def hover(self):
         return self.original_env.step(create_id_based_action(f"hover [{self.id}]"))
@@ -238,4 +256,3 @@ class WebThing():
 
     def get_text(self):
         return self.name
-
