@@ -44,6 +44,7 @@ class WebApi():
 
 class WebThing():
     root = None # effectively a global variable that refers to the current state of the web page
+    trajectory = [] # effectively a global variable that refers to the current trajectory
 
     def __init__(self, category: str, name: str, id: int, parent, children, property_names, property_values, original_env=None):
         self.name = name
@@ -56,6 +57,14 @@ class WebThing():
         self.properties = dict(zip(property_names, property_values))
         self.original_env = original_env
         self.efficient_path = None # signal we havent yet found path to this node
+
+    def do_action(self, action):
+        """helper function that makes sure that states+actions are recorded in the trajectory. not used by the agent, what uses higher level functions like `click` and `type` instead."""
+        WebThing.trajectory.append(action)
+        obs, _, _, _, info = self.original_env.step(action)
+        state_info = {"observation": obs, "info": info}
+        WebThing.trajectory.append(state_info)
+        
     
     def get_all_children(self):
         """Recursively extracts all children of this node"""
@@ -152,26 +161,43 @@ class WebThing():
         return self.repr_no_children()
 
     def clean(self):
-        # analogous to clean_accessibility_tree
-        # removes statictext children that are substrings of the parent's name
+        # analogous to clean_accessibility_tree, but with extra cleaning heuristics
+        # 1. removes statictext children that are substrings of the parent's name (clean_accessibility_tree also does this)
+        # 2. remove image children with either empty names or same name as parent (they are meaningless because we are text only)
+        # 3. remove empty links (how could we ever refer to them or click on them?)
+        # 4. remove hidden say anything with hidden=True
+        # 5. merge adjacent statictext children if they are childless and have no properties
         new_children = []
         for child in self.children:
             if child.category.lower() == "statictext":
                 if child.name in self.name:
                     continue
+            if child.category.lower() == "image" and child.name.strip() in ["", self.name] and len(child.children) == 0:
+                continue
+            if child.category == "link" and child.name.strip() == "":
+                continue
+            if child.properties.get("hidden", False):
+                continue
             new_children.append(child.clean())
-        self.children = new_children
+        # merge adjacent statictext children if they are childless and have no properties
+        new_new_children = []
+        for child in new_children:
+            if child.category.lower() == "statictext" and len(new_new_children) > 0 and new_new_children[-1].category.lower() == "statictext" \
+                and len(child.children) == 0 and len(new_new_children[-1].children) == 0 and len(child.property_names) == 0 and len(new_new_children[-1].property_names) == 0:
+                new_new_children[-1].name += " " + child.name
+            else:
+                new_new_children.append(child)
+        self.children = new_new_children
         return self
 
     def click(self):
-        return self.original_env.step(create_id_based_action(f"click [{self.id}]"))
+        self.do_action(create_id_based_action(f"click [{self.id}]"))
 
     def type(self, text):
-        action = create_type_action(text=text+"\n", element_id=str(self.id))
-        self.original_env.step(action)
+        self.do_action(create_type_action(text=text+"\n", element_id=str(self.id)))        
 
     def hover(self):
-        return self.original_env.step(create_id_based_action(f"hover [{self.id}]"))
+        self.do_action(create_id_based_action(f"hover [{self.id}]"))
 
     def has_duplicate(self, category, name):
         all_things = self.all_things()
