@@ -13,7 +13,8 @@ from beartype import beartype
 from nltk.tokenize import word_tokenize  # type: ignore
 from playwright.sync_api import CDPSession, Page
 
-from webarena.browser_env.actions import Action
+from webarena.browser_env.web_things import WebThing
+from webarena.browser_env.actions import Action, create_stop_action
 from webarena.browser_env.utils import StateInfo
 from webarena.evaluation_harness.helper_functions import (
     PseudoPage,
@@ -373,3 +374,24 @@ def evaluator_router(config_file: Path | str) -> EvaluatorComb:
                 raise ValueError(f"eval_type {eval_type} is not supported")
 
     return EvaluatorComb(evaluators)
+
+@beartype
+def evaluator_closure(config_file: Path | str):
+    evaluator = evaluator_router(config_file)
+    
+    def eval():
+        env = WebThing.root.original_env
+        # the trajectory is supposed to end with an action
+        if not ("action_type" in str(WebThing.trajectory[-1])):
+            WebThing.trajectory.append(create_stop_action(""))
+            dummy_action = True
+        else:
+            dummy_action = False
+
+        evaluation_result = evaluator(WebThing.trajectory, config_file, env.page, env.get_page_client(env.page))
+
+        if dummy_action: WebThing.trajectory.pop()
+
+        return evaluation_result
+
+    return eval

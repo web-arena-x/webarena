@@ -491,6 +491,7 @@ class TextObervationProcessor(ObservationProcessor):
                 node_str = f"[{obs_node_id}] {role} {repr(name)}"
 
                 property_names, property_values = [], []
+                    
                 for property in node.get("properties", []):
                     if property["name"] in IGNORED_ACTREE_PROPERTIES:
                         continue
@@ -499,8 +500,20 @@ class TextObervationProcessor(ObservationProcessor):
                     property_names.append(property["name"])
                     property_values.append(property["value"]["value"])
 
+                if role=="link" and "sources" in node["name"]: # some links have extra descriptions that you get when you hover over them, add that here
+                    sources = node["name"]["sources"]
+                    for source in sources:
+                        if source.get("type", "") == "attribute" and source.get("value", {}).get("value", ""):
+                            hover_text = source["value"]["value"]
+                            if hover_text not in name:
+                                property_names.append("hover_text")
+                                property_values.append(hover_text)
+                            break
+
+
                 # check valid
                 if not node_str.strip():
+                    assert False, "this should be impossible"
                     valid_node = False
 
                 # empty generic node
@@ -509,7 +522,7 @@ class TextObervationProcessor(ObservationProcessor):
                         if role in [
                             "generic",
                             "img",
-                            "list",
+                            #"list",
                             "strong",
                             "paragraph",
                             "banner",
@@ -517,11 +530,11 @@ class TextObervationProcessor(ObservationProcessor):
                             "Section",
                             "LabelText",
                             "Legend",
-                            "listitem",
+                            #"listitem",
                         ]:
                             valid_node = False
-                    elif role in ["listitem"]:
-                        valid_node = False
+                    # elif role in ["listitem"]:
+                    #     valid_node = False
 
 
             except Exception as e:
