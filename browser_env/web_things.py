@@ -1,4 +1,4 @@
-from webarena.browser_env import create_id_based_action, create_type_action
+from webarena.browser_env import create_id_based_action, create_type_action, create_key_press_action
 
 
 class WebApi():
@@ -181,6 +181,7 @@ class WebThing():
         # 3. remove empty links (how could we ever refer to them or click on them?)
         # 4. remove hidden say anything with hidden=True
         # 5. merge adjacent statictext children if they are childless and have no properties
+        # 6. remove "article" elements, they are usually just bunch of boring words and links
         new_children = []
         for child in self.children:
             if child.category.lower() == "statictext":
@@ -191,6 +192,8 @@ class WebThing():
             if child.category == "link" and child.name.strip() == "":
                 continue
             if child.properties.get("hidden", False):
+                continue
+            if child.category.lower() == "article":
                 continue
             new_children.append(child.clean())
         # merge adjacent statictext children if they are childless and have no properties

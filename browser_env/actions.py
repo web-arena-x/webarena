@@ -886,6 +886,8 @@ async def aexecute_click_current(page: APage) -> None:
 def execute_type(keys: list[int], page: Page) -> None:
     """Send keystrokes to the focused element."""
     text = "".join([_id2key[key] for key in keys])
+    page.keyboard.press("Control+A")
+    page.keyboard.press("Backspace")
     page.keyboard.type(text)
 
 
