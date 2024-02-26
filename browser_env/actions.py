@@ -1126,7 +1126,11 @@ def execute_action(
             # TODO[shuyanzh]: order is temp now
             if action["element_id"]:
                 element_id = action["element_id"]
+
                 element_center = obseration_processor.get_element_center(element_id)  # type: ignore[attr-defined]
+                if element_center[1] > 1 or element_center[1] < 0:
+                    print("attempt to click element outside of viewport")
+                    assert False, "attempt to click an element outside of viewport"
                 execute_mouse_click(element_center[0], element_center[1], page)
             elif action["element_role"] and action["element_name"]:
                 element_role = int(action["element_role"])

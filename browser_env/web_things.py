@@ -58,13 +58,27 @@ class WebThing():
         self.original_env = original_env
         self.efficient_path = None # signal we havent yet found path to this node
 
-    def do_action(self, action):
+    def _do_action(self, action):
         """helper function that makes sure that states+actions are recorded in the trajectory. not used by the agent, what uses higher level functions like `click` and `type` instead."""
         WebThing.trajectory.append(action)
         obs, _, _, _, info = self.original_env.step(action)
         state_info = {"observation": obs, "info": info}
         WebThing.trajectory.append(state_info)
-        
+
+    def _center(self):
+        """normalized coordinates within the viewport of the center of this node"""
+        return self.original_env.observation_handler.action_processor.get_element_center(str(self.id))    
+    
+    def _make_in_viewport(self):
+        while True:
+            center = self._center()
+            y = center[1]
+            if y < 0:
+                self._do_action(create_id_based_action(f"scroll [up]"))
+            elif y > 1:
+                self._do_action(create_id_based_action(f"scroll [down]"))
+            else:
+                break
     
     def get_all_children(self):
         """Recursively extracts all children of this node"""
@@ -191,13 +205,16 @@ class WebThing():
         return self
 
     def click(self):
-        self.do_action(create_id_based_action(f"click [{self.id}]"))
+        self._make_in_viewport()
+        self._do_action(create_id_based_action(f"click [{self.id}]"))
 
     def type(self, text):
-        self.do_action(create_type_action(text=text+"\n", element_id=str(self.id)))        
+        self._make_in_viewport()
+        self._do_action(create_type_action(text=text+"\n", element_id=str(self.id)))        
 
     def hover(self):
-        self.do_action(create_id_based_action(f"hover [{self.id}]"))
+        self._make_in_viewport()
+        self._do_action(create_id_based_action(f"hover [{self.id}]"))
 
     def has_duplicate(self, category, name):
         all_things = self.all_things()
