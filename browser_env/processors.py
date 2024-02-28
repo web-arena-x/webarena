@@ -488,6 +488,7 @@ class TextObervationProcessor(ObservationProcessor):
             try:
                 role = node["role"]["value"]
                 name = node["name"]["value"]
+                name = "".join(character for character in name if ord(character) < 256).strip()
                 node_str = f"[{obs_node_id}] {role} {repr(name)}"
 
                 property_names, property_values = [], []
@@ -517,7 +518,7 @@ class TextObervationProcessor(ObservationProcessor):
                     valid_node = False
 
                 # empty generic node
-                if not name.strip():
+                if not name:
                     if len(property_names) == 0:
                         if role in [
                             "generic",

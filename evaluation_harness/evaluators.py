@@ -237,6 +237,7 @@ class URLEvaluator(Evaluator):
                         for possible_ref_value in possible_values
                     )
                 )
+            print("query score", query_score)
             score = base_score * query_score
 
         else:

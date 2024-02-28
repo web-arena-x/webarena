@@ -182,7 +182,7 @@ class WebThing():
         # 4. remove hidden say anything with hidden=True
         # 5. merge adjacent statictext children if they are childless and have no properties
         # 6. merge category='time', with singleton StaticText child, make the child a field called "relative"
-        # Last (optional): remove "article" elements, they are usually just bunch of boring words and links
+        # Last (optional): remove "article" and "contentinfo" elements, they are usually just bunch of boring words and links
         new_children = []
         for child in self.children:
             if child.category.lower() == "statictext":
@@ -199,7 +199,7 @@ class WebThing():
                 self.property_values.append(child.name)
                 self.properties["relative"] = child.name
                 continue
-            if child.category.lower() == "article":
+            if child.category.lower() in ["article", "contentinfo"]:
                 continue
             new_children.append(child.clean())
         # merge adjacent statictext children if they are childless and have no properties
