@@ -22,12 +22,13 @@ Name: webarena
 ID: ami-06290d70feea35450
 ```
 
+1. Create a security group that allows all inbound traffic.
 
-1. Create an instance (recommended type: t3a.xlarge, 1000GB EBS root volume) from the webarena AMI, and allow all inbound traffic in the security group, remember to select SSH key-pair.
+2. Create an instance (recommended type: t3a.xlarge, 1000GB EBS root volume) from the webarena AMI. Use the security group just created and remember to select SSH key-pair.
 
-2. Create an Elastic IP and bind to the instance to associate the instance with a static IP and hostname. Take note of the hostname, usually in the form of "ec2-xx-xx-xx-xx.us-east-2.compute.amazonaws.com". This will be used as "<your-server-hostname>" in the following commands.
+3. Create an Elastic IP and bind to the instance to associate the instance with a static IP and hostname. Take note of the hostname, usually in the form of "ec2-xx-xx-xx-xx.us-east-2.compute.amazonaws.com". This will be used as "<your-server-hostname>" in the following commands.
 
-3. Log into the server, start all dockers by:
+4. Log into the server, start all dockers by:
 ```bash
 docker start gitlab
 docker start shopping
@@ -40,7 +41,7 @@ docker compose start
 
 :clock1: wait ~1 min to wait all services to start
 
-4. Run
+5. Run
 ```bash
 docker exec shopping /var/www/magento2/bin/magento setup:store-config:set --base-url="http://<your-server-hostname>:7770" # no trailing /
 docker exec shopping mysql -u magentouser -pMyPassword magentodb -e  'UPDATE core_config_data SET value="http://<your-server-hostname>:7770/" WHERE path = "web/secure/base_url";'
