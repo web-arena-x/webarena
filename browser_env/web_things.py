@@ -108,20 +108,28 @@ class WebThing():
     def __str__(self):
         return repr(self)
 
-    def find(self, category, name):
-        if self.category == category and self.name == name:
+    def find(self, category, name=None, **kwargs):
+        if self.category == category and (name is None or self.name == name) and all(getattr(self, key, None) == value for key, value in kwargs.items()):
             return self
         for child in self.children:
-            result = child.find(category, name)
+            result = child.find(category, name, **kwargs)
             if result:
                 return result
         return None
+    
+    def find_all(self, category, name=None, **kwargs):
+        return_value = []
+        if self.category == category and (name is None or self.name == name) and all(getattr(self, key, None) == value for key, value in kwargs.items()):
+            return_value.append(self)
+        for child in self.children:
+            return_value.extend(child.find_all(category, name, **kwargs))
+        return return_value
 
-    def find_containing(self, category, query):
-        if self.category == category and query in self.name:
+    def find_containing(self, category, query, **kwargs):
+        if self.category == category and (query is None or query in self.name) and all(getattr(self, key, None) == value for key, value in kwargs.items()):
             return self
         for child in self.children:
-            result = child.find_containing(category, query)
+            result = child.find_containing(category, query, **kwargs)
             if result:
                 return result
         return None
@@ -182,7 +190,7 @@ class WebThing():
         # 4. remove hidden say anything with hidden=True
         # 5. merge adjacent statictext children if they are childless and have no properties
         # 6. merge category='time', with singleton StaticText child, make the child a field called "relative"
-        # Last (optional): remove "article" and "contentinfo" elements, they are usually just bunch of boring words and links
+        # Last (optional): remove "article", "SvgRoot" and "contentinfo" elements, they are usually just bunch of boring words and links
         new_children = []
         for child in self.children:
             if child.category.lower() == "statictext":
@@ -199,7 +207,7 @@ class WebThing():
                 self.property_values.append(child.name)
                 self.properties["relative"] = child.name
                 continue
-            if child.category.lower() in ["article", "contentinfo"]:
+            if child.category.lower() in ["article", "contentinfo", "svgroot"]:
                 continue
             new_children.append(child.clean())
         # merge adjacent statictext children if they are childless and have no properties
