@@ -57,6 +57,7 @@ class WebThing():
         self.properties = dict(zip(property_names, property_values))
         self.original_env = original_env
         self.efficient_path = None # signal we havent yet found path to this node
+        self.nth = 0
 
     def _do_action(self, action):
         """helper function that makes sure that states+actions are recorded in the trajectory. not used by the agent, what uses higher level functions like `click` and `type` instead."""
@@ -67,8 +68,8 @@ class WebThing():
 
     def _center(self):
         """normalized coordinates within the viewport of the center of this node"""
-        return self.original_env.observation_handler.action_processor.get_element_center(str(self.id))    
-    
+        return self.original_env.observation_handler.action_processor.get_element_center(str(self.id))
+
     def _make_in_viewport(self):
         while True:
             center = self._center()
@@ -79,7 +80,7 @@ class WebThing():
                 self._do_action(create_id_based_action(f"scroll [down]"))
             else:
                 break
-    
+
     def get_all_children(self):
         """Recursively extracts all children of this node"""
         children = [self]
@@ -108,20 +109,20 @@ class WebThing():
     def __str__(self):
         return repr(self)
 
-    def find(self, category, name):
-        if self.category == category and self.name == name:
+    def find(self, category, name, nth=0):
+        if self.category == category and self.name == name and self.nth == nth:
             return self
         for child in self.children:
-            result = child.find(category, name)
+            result = child.find(category, name, nth)
             if result:
                 return result
         return None
 
-    def find_containing(self, category, query):
-        if self.category == category and query in self.name:
+    def find_containing(self, category, query, nth=0):
+        if self.category == category and query in self.name and self.nth == nth:
             return self
         for child in self.children:
-            result = child.find_containing(category, query)
+            result = child.find_containing(category, query, nth)
             if result:
                 return result
         return None
@@ -152,7 +153,7 @@ class WebThing():
 
     def pretty(self, indent=0):
         """pretty print it in a way that the llm (hopefully) understands"""
-        serialization = f"{'    '*indent}category='{self.category}', name='{self.name}'"
+        serialization = f"{'    '*indent}category='{self.category}', name='{self.name}', nth={self.nth}'"
         if self.properties:
             serialization += ", " + " ".join(f"{key}={repr(self.properties[key])}" for key in self.property_names)
         serialization += "\n"
@@ -219,7 +220,7 @@ class WebThing():
 
     def type(self, text):
         self._make_in_viewport()
-        self._do_action(create_type_action(text=text+"\n", element_id=str(self.id)))        
+        self._do_action(create_type_action(text=text+"\n", element_id=str(self.id)))
 
     def hover(self):
         self._make_in_viewport()
@@ -228,6 +229,26 @@ class WebThing():
     def has_duplicate(self, category, name):
         all_things = self.all_things()
         return 1 < len([t for t in all_things if t[1] == category and t[2] == name])
+
+    def get_node_list(self):
+        nodes = [self]
+        for child in self.children:
+            nodes += child.get_node_list()
+
+        return nodes
+
+    def assign_nths(root):
+        global NODE_LIST
+        NODE_LIST = root.get_node_list()
+        # map (category, name) to how many times we've seen it
+        nth_dict = {}
+        for node in NODE_LIST:
+            key = (node.category, node.name)
+            if key not in nth_dict:
+                nth_dict[key] = 0
+            else:
+                nth_dict[key] += 1
+            node.nth = nth_dict[key]
 
     def mark_ambiguous_children(self):
         self.ambiguous_children = []
