@@ -46,7 +46,7 @@ class WebThing():
     root = None # effectively a global variable that refers to the current state of the web page
     trajectory = [] # effectively a global variable that refers to the current trajectory
 
-    def __init__(self, category: str, name: str, id: int, parent, children, property_names, property_values, original_env=None):
+    def __init__(self, category: str, name: str, id: int, parent, children, property_names, property_values, original_env=None, nth=0):
         self.name = name
         self.id = id
         self.children = children
@@ -57,7 +57,7 @@ class WebThing():
         self.properties = dict(zip(property_names, property_values))
         self.original_env = original_env
         self.efficient_path = None # signal we havent yet found path to this node
-        self.nth = 0
+        self.nth = nth
 
     def _do_action(self, action):
         """helper function that makes sure that states+actions are recorded in the trajectory. not used by the agent, what uses higher level functions like `click` and `type` instead."""
@@ -109,31 +109,39 @@ class WebThing():
     def __str__(self):
         return repr(self)
 
-    def find(self, category, name, nth=0):
-        if self.category == category and self.name == name and self.nth == nth:
+    def find(self, category, name=None, nth=0, **kwargs):
+        if self.category == category and (name is None or self.name == name) and self.nth == nth and all(getattr(self, key, None) == value for key, value in kwargs.items()):
             return self
         for child in self.children:
-            result = child.find(category, name, nth)
+            result = child.find(category, name, nth, **kwargs)
             if result:
                 return result
         return None
 
-    def find_containing(self, category, query, nth=0):
-        if self.category == category and query in self.name and self.nth == nth:
+    def find_all(self, category, name=None, nth=0, **kwargs):
+        return_value = []
+        if self.category == category and (name is None or self.name == name) and self.nth == nth and all(getattr(self, key, None) == value for key, value in kwargs.items()):
+            return_value.append(self)
+        for child in self.children:
+            return_value.extend(child.find_all(category, name, nth, **kwargs))
+        return return_value
+
+    def find_containing(self, category, query, nth=0, **kwargs):
+        if self.category == category and (query is None or query in self.name) and self.nth == nth and all(getattr(self, key, None) == value for key, value in kwargs.items()):
             return self
         for child in self.children:
-            result = child.find_containing(category, query, nth)
+            result = child.find_containing(category, query, nth **kwargs)
             if result:
                 return result
         return None
 
 
-    def after(self, category, name):
+    def after(self, category, name, nth=0):
         """looks for everything after a certain child"""
         for i, child in enumerate(self.children):
-            if child.category == category and child.name == name:
+            if child.category == category and child.name == name and self.nth == nth:
                 new_children = self.children[i+1:]
-                return WebThing(self.category, self.name, self.id, self.parent, new_children, self.property_names, self.property_values, self.original_env)
+                return WebThing(self.category, self.name, self.id, self.parent, new_children, self.property_names, self.property_values, self.original_env, self.nth)
         return None
 
     # make it so that you can do like `thing.a_property`
@@ -183,7 +191,7 @@ class WebThing():
         # 4. remove hidden say anything with hidden=True
         # 5. merge adjacent statictext children if they are childless and have no properties
         # 6. merge category='time', with singleton StaticText child, make the child a field called "relative"
-        # Last (optional): remove "article" and "contentinfo" elements, they are usually just bunch of boring words and links
+        # Last (optional): remove "article", "SvgRoot" and "contentinfo" elements, they are usually just bunch of boring words and links
         new_children = []
         for child in self.children:
             if child.category.lower() == "statictext":
@@ -200,7 +208,7 @@ class WebThing():
                 self.property_values.append(child.name)
                 self.properties["relative"] = child.name
                 continue
-            if child.category.lower() in ["article", "contentinfo"]:
+            if child.category.lower() in ["article", "contentinfo", "svgroot"]:
                 continue
             new_children.append(child.clean())
         # merge adjacent statictext children if they are childless and have no properties
