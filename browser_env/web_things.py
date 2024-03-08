@@ -1,5 +1,6 @@
 from webarena.browser_env import create_id_based_action, create_type_action, create_key_press_action
 
+import re
 
 class WebApi():
     def __init__(self, env):
@@ -109,17 +110,19 @@ class WebThing():
         return repr(self)
 
     def find(self, category, name=None, **kwargs):
-        if self.category == category and (name is None or self.name == name) and all(getattr(self, key, None) == value for key, value in kwargs.items()):
-            return self
-        for child in self.children:
-            result = child.find(category, name, **kwargs)
-            if result:
-                return result
+        all_results = self.find_all(category, name, **kwargs)
+        if all_results:
+            return all_results[0]
+        # if we didn't find it, try case insensitive match
+        if name:
+            all_results = self.find_all(category, re.compile(name, re.IGNORECASE), **kwargs)
+            if all_results:
+                return all_results[0]
         return None
     
     def find_all(self, category, name=None, **kwargs):
         return_value = []
-        if self.category == category and (name is None or self.name == name) and all(getattr(self, key, None) == value for key, value in kwargs.items()):
+        if self.category == category and (name is None or re.match(name, self.name)) and all(getattr(self, key, None) == value for key, value in kwargs.items()):
             return_value.append(self)
         for child in self.children:
             return_value.extend(child.find_all(category, name, **kwargs))
