@@ -110,14 +110,17 @@ class WebThing():
         return repr(self)
 
     def find(self, category, name=None, **kwargs):
+
         all_results = self.find_all(category, name, **kwargs)
         if all_results:
             return all_results[0]
-        # if we didn't find it, try case insensitive match
+        # if we didn't find it, try (1) literal match, (2) case insensitive match
         if name:
+            all_results = self.find_all(category, re.escape(name), **kwargs)
+            if all_results: return all_results[0]
+            
             all_results = self.find_all(category, re.compile(name, re.IGNORECASE), **kwargs)
-            if all_results:
-                return all_results[0]
+            if all_results: return all_results[0]
         return None
     
     def find_all(self, category, name=None, **kwargs):
