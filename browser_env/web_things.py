@@ -1,5 +1,6 @@
 from webarena.browser_env import create_id_based_action, create_type_action, create_key_press_action
 
+import re
 
 class WebApi():
     def __init__(self, env):
@@ -110,24 +111,38 @@ class WebThing():
         return repr(self)
 
     def find(self, category, name=None, nth=0, **kwargs):
-        if self.category == category and (name is None or self.name == name) and self.nth == nth and all(getattr(self, key, None) == value for key, value in kwargs.items()):
-            return self
-        for child in self.children:
-            result = child.find(category, name, nth, **kwargs)
-            if result:
-                return result
+        all_results = self.find_all(category, name, nth, **kwargs)
+        if all_results:
+            return all_results[0]
+        # if we didn't find it, try (1) literal match, (2) case insensitive match
+        if name:
+            all_results = self.find_all(category, re.escape(name), nth, **kwargs)
+            if all_results: return all_results[0]
+
+            all_results = self.find_all(category, re.compile(name, re.IGNORECASE), nth, **kwargs)
+            if all_results: return all_results[0]
         return None
 
     def find_all(self, category, name=None, nth=0, **kwargs):
         return_value = []
-        if self.category == category and (name is None or self.name == name) and self.nth == nth and all(getattr(self, key, None) == value for key, value in kwargs.items()):
+        if (self.category == category
+            and (name is None or self.name == name)
+            and self.nth == nth
+            and all(getattr(self, key, None) == value for key, value in kwargs.items())):
+
             return_value.append(self)
         for child in self.children:
             return_value.extend(child.find_all(category, name, nth, **kwargs))
         return return_value
 
     def find_containing(self, category, query, nth=0, **kwargs):
-        if self.category == category and (query is None or query in self.name) and self.nth == nth and all(getattr(self, key, None) == value for key, value in kwargs.items()):
+        if (self.category == category
+            and (query is None or query in self.name)
+            and self.nth == nth
+            and all(getattr(self, key, None) == value for key, value in kwargs.items())):
+
+
+
             return self
         for child in self.children:
             result = child.find_containing(category, query, nth **kwargs)
