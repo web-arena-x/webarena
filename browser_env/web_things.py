@@ -189,27 +189,37 @@ class WebThing():
             if len(self.children) == 1 and self.children[0].category.lower() == "statictext":
                 return f"[{self.category}: {self.name}],  {self.children[0].name}"
             assert 0, f"unexpected children for {self.category} {self.name}"
+
+        if self.category == "switch":
+            return f"[switch, checked={int(self.checked)}: {self.name}]"
         
         if self.category == "RootWebArea":
-            return "\n".join(child.markdown() for child in self.children)
+            everything = "\n".join(child.markdown() for child in self.children)
+            while "\n\n\n" in everything:
+                everything = everything.replace("\n\n\n", "\n\n")
+            return everything
         
         if self.category == "list":
             list_marker = ["*", "-", "+"][listdepth % 3]
             # check that all of the children are listitems
             assert all(child.category == "listitem" for child in self.children)
             children = [child.markdown(listdepth+1) for child in self.children]
+            # every single child has now been processed into a string
+            # the first line of each child should have "*\t" prepended
+            # the rest of the lines should have "\t" prepended
+
             marked_children = []
             for child in children:
-                if "\n" in child:
-                    lines = child.split("\n")
-                    later_lines = "\n\t".join(lines[1:]) # add an extra indentation level
-                    marked_children.append(f"{list_marker} {lines[0]}\nlater_lines")
-                else:
-                    marked_children.append(f"{list_marker} {child}")
-            return "\n" + "\n".join(marked_children) + "\n\n"
+                lines = child.split("\n")
+                for line_number, line in enumerate(lines):
+                    if line_number == 0:
+                        marked_children.append(f"{list_marker}\t{line}")
+                    else:
+                        marked_children.append(f"\t{line}")
+            return "\n" + "\n".join(marked_children) + "\n"
         
         if self.category == "listitem":
-            return " ".join(child.markdown() for child in self.children)
+            return join(child.markdown() for child in self.children)
 
         if self.category.lower() == "statictext":
             return self.name
@@ -224,9 +234,6 @@ class WebThing():
             assert not self.name
             return "\n" + join(child.markdown() for child in self.children) + "\n"
         
-        #if self.category.lower() == "navigation":
-            
-
         return f"UNDEFINED({self.category} {self.name})"
         
 
@@ -325,6 +332,8 @@ class WebThing():
         # 5. merge adjacent statictext children if they are childless and have no properties
         # 6. remove hover_text if it is identical to the name when stripped of whitespace and punctuation, and made lowercase
         # 7. merge category='time', with singleton StaticText child, make the child a field called "relative"
+        # 8. Remove children of buttons
+        # 9. Remove "status" if it has no name or children
         # Last (optional): remove "article", "SvgRoot" and "contentinfo" elements, they are usually just bunch of boring words and links
         new_children = []
         for child in self.children:
@@ -345,6 +354,10 @@ class WebThing():
                 continue
             if child.category.lower() in ["article", "contentinfo", "svgroot"]:
                 continue
+            if self.category == "button":
+                continue
+            if child.category == "status" and child.name.strip() == "" and len(child.children) == 0:
+                continue
             new_children.append(child.clean())
         # merge adjacent statictext children if they are childless and have no properties
         new_new_children = []
@@ -355,8 +368,10 @@ class WebThing():
             else:
                 new_new_children.append(child)
         self.children = new_new_children
-        if self.category == "link" and self.properties.get("hover_text", "").strip().replace(" ", "").replace("_", "").lower() == self.name.strip().replace(" ", "").replace("_", "").lower():
-            self.properties.pop("hover_text")
+        if "hover_text" in self.properties:
+            self.properties["hover_text"] = self.hover_text.strip().replace("\n", " ")
+            if self.hover_text.strip().replace(" ", "").replace("_", "").lower() == self.name.strip().replace(" ", "").replace("_", "").lower():
+                self.properties.pop("hover_text")
         return self
 
     def click(self):
