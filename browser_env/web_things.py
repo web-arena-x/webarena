@@ -110,7 +110,7 @@ class WebThing():
     def __str__(self):
         return repr(self)
 
-    def find(self, category, name=None, nth=0, **kwargs):
+    def find(self, category, name=None, nth=None, **kwargs):
         all_results = self.find_all(category, name, nth, **kwargs)
         if all_results:
             return all_results[0]
@@ -123,38 +123,39 @@ class WebThing():
             if all_results: return all_results[0]
         return None
 
-    def find_all(self, category, name=None, nth=0, **kwargs):
+    def find_all(self, category, name=None, nth=None, **kwargs):
         return_value = []
-        if (self.category == category
+        if (
+            self.category == category
             and (name is None or self.name == name)
-            and self.nth == nth
-            and all(getattr(self, key, None) == value for key, value in kwargs.items())):
-
+            and (nth is None or self.nth == nth)
+            and all(getattr(self, key, None) == value for key, value in kwargs.items())
+        ):
+            print('found ', self.category, self.name)
             return_value.append(self)
         for child in self.children:
             return_value.extend(child.find_all(category, name, nth, **kwargs))
         return return_value
 
-    def find_containing(self, category, query, nth=0, **kwargs):
-        if (self.category == category
+    def find_containing(self, category, query, nth=None, **kwargs):
+        if (
+            self.category == category
             and (query is None or query in self.name)
-            and self.nth == nth
-            and all(getattr(self, key, None) == value for key, value in kwargs.items())):
-
-
-
+            and (nth is None or self.nth == nth)
+            and all(getattr(self, key, None) == value for key, value in kwargs.items())
+        ):
             return self
         for child in self.children:
-            result = child.find_containing(category, query, nth **kwargs)
+            result = child.find_containing(category, query, nth, **kwargs)
             if result:
                 return result
         return None
 
 
-    def after(self, category, name, nth=0):
+    def after(self, category, name, nth=None):
         """looks for everything after a certain child"""
         for i, child in enumerate(self.children):
-            if child.category == category and child.name == name and self.nth == nth:
+            if child.category == category and child.name == name and (nth is None or self.nth == nth):
                 new_children = self.children[i+1:]
                 return WebThing(self.category, self.name, self.id, self.parent, new_children, self.property_names, self.property_values, self.original_env, self.nth)
         return None
