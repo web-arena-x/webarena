@@ -1,4 +1,4 @@
-from webarena.browser_env import create_id_based_action, create_type_action, create_key_press_action
+from webarena.browser_env import create_id_based_action, create_type_action, create_key_press_action, create_none_action
 
 import re
 
@@ -236,8 +236,6 @@ class WebThing():
 
         return f"UNDEFINED({self.category} {self.name})"
 
-
-
     def find(self, category, name=None, nth=None, **kwargs):
         all_results = self.find_all(category, name, nth, **kwargs)
         if all_results:
@@ -377,6 +375,10 @@ class WebThing():
             if self.hover_text.strip().replace(" ", "").replace("_", "").lower() == self.name.strip().replace(" ", "").replace("_", "").lower():
                 self.properties.pop("hover_text")
         return self
+
+    def do_nothing(self):
+        self._make_in_viewport()
+        self._do_action(create_none_action())
 
     def click(self):
         self._make_in_viewport()

@@ -138,7 +138,7 @@ class TextObervationProcessor(ObservationProcessor):
             return response
         except Exception as e:
             return {"result": {"subtype": "error"}}
-        
+
 
     @staticmethod
     def get_bounding_client_rect_batched(
@@ -276,6 +276,7 @@ class TextObervationProcessor(ObservationProcessor):
             if cur_node["parentId"] == "-1":
                 cur_node["union_bound"] = [0.0, 0.0, 10.0, 10.0]
             else:
+                cur_node['union_bound'] = [0.0, 0.0, 10.0, 10.0]
                 response = self.get_bounding_client_rect(
                     client, cur_node["backendNodeId"]
                 )
@@ -433,7 +434,7 @@ class TextObervationProcessor(ObservationProcessor):
             else:
                 backend_node_ids_to_query.append((backend_node_id, node))
 
-        # get the bounding client rect for the nodes, batched to be faster 
+        # get the bounding client rect for the nodes, batched to be faster
         responses = self.get_bounding_client_rect_batched(client, [i for i, _ in backend_node_ids_to_query])
         for (backend_node_id, node), response in zip(backend_node_ids_to_query, responses):
             if response.get("result", {}).get("subtype", "") == "error":
