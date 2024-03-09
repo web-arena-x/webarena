@@ -138,6 +138,43 @@ class TextObervationProcessor(ObservationProcessor):
             return response
         except Exception as e:
             return {"result": {"subtype": "error"}}
+        
+
+    @staticmethod
+    def get_bounding_client_rect_batched(
+        client: CDPSession, backend_node_ids: list[str]
+    ) -> list[dict[str, Any]]:
+        return_value = []
+        for backend_node_id in backend_node_ids:
+            try:
+                remote_object = client.send(
+                    "DOM.resolveNode", {"backendNodeId": int(backend_node_id)}
+                )
+                remote_object_id = remote_object["object"]["objectId"]
+                response = client.send(
+                    "Runtime.callFunctionOn",
+                    {
+                        "objectId": remote_object_id,
+                        "functionDeclaration": """
+                            function() {
+                                if (this.nodeType == 3) {
+                                    var range = document.createRange();
+                                    range.selectNode(this);
+                                    var rect = range.getBoundingClientRect().toJSON();
+                                    range.detach();
+                                    return rect;
+                                } else {
+                                    return this.getBoundingClientRect().toJSON();
+                                }
+                            }
+                        """,
+                        "returnByValue": True,
+                    },
+                )
+                return_value.append(response)
+            except Exception as e:
+                return_value.append({"result": {"subtype": "error"}})
+        return return_value
 
     @staticmethod
     def get_element_in_viewport_ratio(
@@ -366,6 +403,8 @@ class TextObervationProcessor(ObservationProcessor):
         client: CDPSession,
         current_viewport_only: bool,
     ) -> AccessibilityTree:
+        import time
+        start = time.time()
         accessibility_tree: AccessibilityTree = client.send(
             "Accessibility.getFullAXTree", {}
         )["nodes"]
@@ -379,6 +418,7 @@ class TextObervationProcessor(ObservationProcessor):
                 seen_ids.add(node["nodeId"])
         accessibility_tree = _accessibility_tree
 
+        backend_node_ids_to_query = []
         nodeid_to_cursor = {}
         for cursor, node in enumerate(accessibility_tree):
             nodeid_to_cursor[node["nodeId"]] = cursor
@@ -391,17 +431,31 @@ class TextObervationProcessor(ObservationProcessor):
                 # always inside the viewport
                 node["union_bound"] = [0.0, 0.0, 10.0, 10.0]
             else:
-                response = self.get_bounding_client_rect(
-                    client, backend_node_id
-                )
-                if response.get("result", {}).get("subtype", "") == "error":
-                    node["union_bound"] = None
-                else:
-                    x = response["result"]["value"]["x"]
-                    y = response["result"]["value"]["y"]
-                    width = response["result"]["value"]["width"]
-                    height = response["result"]["value"]["height"]
-                    node["union_bound"] = [x, y, width, height]
+                backend_node_ids_to_query.append((backend_node_id, node))
+
+        # get the bounding client rect for the nodes, batched to be faster 
+        responses = self.get_bounding_client_rect_batched(client, [i for i, _ in backend_node_ids_to_query])
+        for (backend_node_id, node), response in zip(backend_node_ids_to_query, responses):
+            if response.get("result", {}).get("subtype", "") == "error":
+                node["union_bound"] = None
+            else:
+                x = response["result"]["value"]["x"]
+                y = response["result"]["value"]["y"]
+                width = response["result"]["value"]["width"]
+                height = response["result"]["value"]["height"]
+                node["union_bound"] = [x, y, width, height]
+
+                # response = self.get_bounding_client_rect(
+                #     client, backend_node_id
+                # )
+                # if response.get("result", {}).get("subtype", "") == "error":
+                #     node["union_bound"] = None
+                # else:
+                #     x = response["result"]["value"]["x"]
+                #     y = response["result"]["value"]["y"]
+                #     width = response["result"]["value"]["width"]
+                #     height = response["result"]["value"]["height"]
+                #     node["union_bound"] = [x, y, width, height]
 
         # filter nodes that are not in the current viewport
         if current_viewport_only:
@@ -467,6 +521,8 @@ class TextObervationProcessor(ObservationProcessor):
                 for node in accessibility_tree
                 if node.get("parentId", "Root") != "[REMOVED]"
             ]
+
+        print("time to do everything else:", time.time()-start)
 
         return accessibility_tree
 
