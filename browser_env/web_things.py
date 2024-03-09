@@ -60,10 +60,18 @@ class WebThing():
         self.efficient_path = None # signal we havent yet found path to this node
         self.nth = nth
 
-    def _do_action(self, action):
+    def _do_action(self, action, pause=None):
         """helper function that makes sure that states+actions are recorded in the trajectory. not used by the agent, what uses higher level functions like `click` and `type` instead."""
         WebThing.trajectory.append(action)
+        if pause:
+            old_sleep = self.original_env.sleep_after_execution
+            self.original_env.sleep_after_execution = pause
+
         obs, _, _, _, info = self.original_env.step(action)
+
+        if pause:
+            self.original_env.sleep_after_execution = old_sleep
+        
         state_info = {"observation": obs, "info": info}
         WebThing.trajectory.append(state_info)
 
@@ -72,13 +80,22 @@ class WebThing():
         return self.original_env.observation_handler.action_processor.get_element_center(str(self.id))
 
     def _make_in_viewport(self):
+        target_height = 0.3
+        old_ys = []
         while True:
             center = self._center()
             y = center[1]
+            if y in old_ys: # can't scroll anymore, looping
+                break
+            old_ys.append(y)
             if y < 0:
-                self._do_action(create_id_based_action(f"scroll [up]"))
+                self._do_action(create_id_based_action(f"scroll [up]"), pause=0.2)
             elif y > 1:
-                self._do_action(create_id_based_action(f"scroll [down]"))
+                self._do_action(create_id_based_action(f"scroll [down]"), pause=0.2)
+            elif 0 <= y <= target_height:
+                self._do_action(create_id_based_action(f"press [arrowup]"), pause=0.2)
+            elif 0.5+target_height <= y <= 1:
+                self._do_action(create_id_based_action(f"press [arrowdown]"), pause=0.2)
             else:
                 break
 
@@ -109,8 +126,112 @@ class WebThing():
 
     def __str__(self):
         return repr(self)
+    
+    def markdown(self, listdepth=0):
 
-    def find(self, category, name=None, nth=0, **kwargs):
+        def join(things):
+            """joins together things with spaces if they don't have otherwise separating whitespace"""
+            the_join = ""
+            for thing in things:
+                if the_join and thing and not thing[0].isspace() and not the_join[-1].isspace():
+                    the_join += " "
+                the_join += thing
+            while "\n\n\n" in the_join:
+                the_join = the_join.replace("\n\n\n", "\n\n")
+            return the_join
+        
+        if self.category == "main":
+            child_markdown = join(child.markdown() for child in self.children)
+            return f"\n\n# {self.category} {self.name}\n\n{child_markdown}\n\n"
+        
+        if self.category == "complementary":
+            child_markdown = join(child.markdown() for child in self.children)
+            if self.name == "":
+                return f"# {self.category}\n{child_markdown}"
+            return f"\n\n# {self.name}\n\n{child_markdown}\n\n"            
+        
+        if self.category == "navigation":
+            child_markdown = join(child.markdown() for child in self.children)
+            return f"\n\n## {self.category} {self.name}\n{child_markdown}\n\n"
+
+        if self.category == "heading":
+            if len(self.children) == 0:
+                return f"\n## {self.name}\n"
+            else:
+                return join([f"[heading: {self.name}]"]+[child.markdown() for child in self.children])
+
+        if self.category=='table':
+            return join([f"[table: {self.name}]\n"] + [child.markdown()+"\n" for child in self.children])
+        if self.category == "row":
+            if any(child.category == "columnheader" for child in self.children):
+                assert all(child.category == "columnheader" for child in self.children)
+                return "| " + " | ".join(child.markdown() for child in self.children) + " |\n| " + " | ".join(":---:" for _ in self.children) + " |"
+            if any(child.category == "gridcell" for child in self.children):
+                assert all(child.category == "gridcell" for child in self.children)
+                return "| " + " | ".join(child.markdown() for child in self.children) + " |"
+            assert 0, f"unexpected children for {self.category} {self.name}"
+        if self.category in ["columnheader", "gridcell"]:
+            assert len(self.children) <= 1
+            if len(self.children) == 0:
+                return self.name
+            else:
+                return self.children[0].markdown()
+            
+        
+        if self.category == "link":
+            if "hover_text" in self.properties:
+                return f"[link: {self.name} {self.hover_text}]"
+            return f"[link: {self.name}]"
+        
+        if self.category in ["button", "time", "searchbox", "textbox"]:
+            if len(self.children) == 0:
+                return f"[{self.category}: {self.name}]"
+            if len(self.children) == 1 and self.children[0].category.lower() == "statictext":
+                return f"[{self.category}: {self.name}],  {self.children[0].name}"
+            assert 0, f"unexpected children for {self.category} {self.name}"
+        
+        if self.category == "RootWebArea":
+            return "\n".join(child.markdown() for child in self.children)
+        
+        if self.category == "list":
+            list_marker = ["*", "-", "+"][listdepth % 3]
+            # check that all of the children are listitems
+            assert all(child.category == "listitem" for child in self.children)
+            children = [child.markdown(listdepth+1) for child in self.children]
+            marked_children = []
+            for child in children:
+                if "\n" in child:
+                    lines = child.split("\n")
+                    later_lines = "\n\t".join(lines[1:]) # add an extra indentation level
+                    marked_children.append(f"{list_marker} {lines[0]}\nlater_lines")
+                else:
+                    marked_children.append(f"{list_marker} {child}")
+            return "\n" + "\n".join(marked_children) + "\n\n"
+        
+        if self.category == "listitem":
+            return " ".join(child.markdown() for child in self.children)
+
+        if self.category.lower() == "statictext":
+            return self.name
+        
+        if self.category.lower() == "image":
+            return f"[image: {self.name}]"
+        
+        if self.category.lower() == "generic":
+            return join([self.name]+[child.markdown() for child in self.children])
+        
+        if self.category.lower() == "group":
+            assert not self.name
+            return "\n" + join(child.markdown() for child in self.children) + "\n"
+        
+        #if self.category.lower() == "navigation":
+            
+
+        return f"UNDEFINED({self.category} {self.name})"
+        
+
+
+    def find(self, category, name=None, nth=None, **kwargs):
         all_results = self.find_all(category, name, nth, **kwargs)
         if all_results:
             return all_results[0]
@@ -123,11 +244,11 @@ class WebThing():
             if all_results: return all_results[0]
         return None
 
-    def find_all(self, category, name=None, nth=0, **kwargs):
+    def find_all(self, category, name=None, nth=None, **kwargs):
         return_value = []
         if (self.category == category
             and (name is None or self.name == name)
-            and self.nth == nth
+            and (nth is None or self.nth == nth)
             and all(getattr(self, key, None) == value for key, value in kwargs.items())):
 
             return_value.append(self)
@@ -140,12 +261,9 @@ class WebThing():
             and (query is None or query in self.name)
             and self.nth == nth
             and all(getattr(self, key, None) == value for key, value in kwargs.items())):
-
-
-
             return self
         for child in self.children:
-            result = child.find_containing(category, query, nth **kwargs)
+            result = child.find_containing(category, query, nth, **kwargs)
             if result:
                 return result
         return None
@@ -176,9 +294,9 @@ class WebThing():
 
     def pretty(self, indent=0):
         """pretty print it in a way that the llm (hopefully) understands"""
-        serialization = f"{'    '*indent}category='{self.category}', name='{self.name}', nth={self.nth}'"
+        serialization = f"{'    '*indent}category='{self.category}', name='{self.name}', nth={self.nth}"
         if self.properties:
-            serialization += ", " + " ".join(f"{key}={repr(self.properties[key])}" for key in self.property_names)
+            serialization += ", " + ", ".join(f"{key}={repr(self.properties[key])}" for key in self.property_names)
         serialization += "\n"
         for child in self.children:
             serialization += child.pretty(indent+1)
@@ -205,15 +323,17 @@ class WebThing():
         # 3. remove empty links (how could we ever refer to them or click on them?)
         # 4. remove hidden say anything with hidden=True
         # 5. merge adjacent statictext children if they are childless and have no properties
-        # 6. merge category='time', with singleton StaticText child, make the child a field called "relative"
+        # 6. remove hover_text if it is identical to the name when stripped of whitespace and punctuation, and made lowercase
+        # 7. merge category='time', with singleton StaticText child, make the child a field called "relative"
         # Last (optional): remove "article", "SvgRoot" and "contentinfo" elements, they are usually just bunch of boring words and links
         new_children = []
         for child in self.children:
             if child.category.lower() == "statictext":
                 if child.name in self.name:
                     continue
-            if child.category.lower() == "image" and child.name.strip() in ["", self.name] and len(child.children) == 0:
-                continue
+            if child.category.lower() == "image" and len(child.children) == 0:
+                if child.name.strip().replace(":", "").replace("_", " ") in ["", self.name]:
+                    continue
             if child.category == "link" and child.name.strip() == "":
                 continue
             if child.properties.get("hidden", False):
@@ -235,6 +355,8 @@ class WebThing():
             else:
                 new_new_children.append(child)
         self.children = new_new_children
+        if self.category == "link" and self.properties.get("hover_text", "").strip().replace(" ", "").replace("_", "").lower() == self.name.strip().replace(" ", "").replace("_", "").lower():
+            self.properties.pop("hover_text")
         return self
 
     def click(self):
