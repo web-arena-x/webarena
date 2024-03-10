@@ -259,7 +259,7 @@ class WebThing():
         return_value = []
         if (
             self.category == category
-            and (name is None or re.match(self.name, name))
+            and (name is None or re.match(name, self.name))
             and (nth is None or self.nth == nth)
             and all(getattr(self, key, None) == value for key, value in kwargs.items())
         ):
