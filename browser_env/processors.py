@@ -73,7 +73,6 @@ class TextObervationProcessor(ObservationProcessor):
 
         def force(self):
             if not self.already_forced:
-                print("forcing bounding box")
                 self.already_forced = True
 
                 # call the static method
