@@ -431,39 +431,10 @@ class TextObervationProcessor(ObservationProcessor):
                 # always inside the viewport
                 node["union_bound"] = TextObervationProcessor.BoundingBoxThunk.constant([0.0, 0.0, 10.0, 10.0])
             else:
-<<<<<<< HEAD
-                backend_node_ids_to_query.append((backend_node_id, node))
-
-        # get the bounding client rect for the nodes, batched to be faster
-        responses = self.get_bounding_client_rect_batched(client, [i for i, _ in backend_node_ids_to_query])
-        for (backend_node_id, node), response in zip(backend_node_ids_to_query, responses):
-            if response.get("result", {}).get("subtype", "") == "error":
-                node["union_bound"] = None
-            else:
-                x = response["result"]["value"]["x"]
-                y = response["result"]["value"]["y"]
-                width = response["result"]["value"]["width"]
-                height = response["result"]["value"]["height"]
-                node["union_bound"] = [x, y, width, height]
-
-                # response = self.get_bounding_client_rect(
-                #     client, backend_node_id
-                # )
-                # if response.get("result", {}).get("subtype", "") == "error":
-                #     node["union_bound"] = None
-                # else:
-                #     x = response["result"]["value"]["x"]
-                #     y = response["result"]["value"]["y"]
-                #     width = response["result"]["value"]["width"]
-                #     height = response["result"]["value"]["height"]
-                #     node["union_bound"] = [x, y, width, height]
-=======
                 # lazy evaluation
                 node["union_bound"] = TextObervationProcessor.BoundingBoxThunk(
                     client, backend_node_id
                 )
->>>>>>> lazy evaluation of bounding boxes, gives lightning fast browser environment (also progress on markdown representation but that's still experimental)
-
         # filter nodes that are not in the current viewport
         if current_viewport_only:
 
