@@ -61,7 +61,10 @@ class WebThing():
         self.nth = nth
 
     def _do_action(self, action, pause=None):
-        """helper function that makes sure that states+actions are recorded in the trajectory. not used by the agent, what uses higher level functions like `click` and `type` instead."""
+        """
+        helper function that makes sure that states+actions are recorded in the trajectory.
+        not used by the agent, which uses higher level functions like `click` and `type` instead.
+        """
         WebThing.trajectory.append(action)
         if pause:
             old_sleep = self.original_env.sleep_after_execution
@@ -202,7 +205,7 @@ class WebThing():
         if self.category == "list":
             list_marker = ["*", "-", "+"][listdepth % 3]
             # check that all of the children are listitems
-            assert all(child.category == "listitem" for child in self.children)
+            assert all(child.category == "listitem" for child in self.children), f"unexpected type of children for list {self.name}/{self.nth}"
             children = [child.markdown(listdepth+1) for child in self.children]
             # every single child has now been processed into a string
             # the first line of each child should have "*\t" prepended
@@ -231,10 +234,13 @@ class WebThing():
             return join([self.name]+[child.markdown() for child in self.children])
 
         if self.category.lower() == "group":
-            assert not self.name
-            return "\n" + join(child.markdown() for child in self.children) + "\n"
-
+            if self.name == "":
+                return join(child.markdown() for child in self.children)
+            else:
+                return join([f"[group: {self.name}]"]+[child.markdown() for child in self.children])
+        
         return f"UNDEFINED({self.category} {self.name})"
+        
 
     def find(self, category, name=None, nth=None, **kwargs):
         all_results = self.find_all(category, name, nth, **kwargs)
@@ -253,11 +259,10 @@ class WebThing():
         return_value = []
         if (
             self.category == category
-            and (name is None or self.name == name)
+            and (name is None or re.match(self.name, name))
             and (nth is None or self.nth == nth)
             and all(getattr(self, key, None) == value for key, value in kwargs.items())
         ):
-            print('found ', self.category, self.name)
             return_value.append(self)
         for child in self.children:
             return_value.extend(child.find_all(category, name, nth, **kwargs))

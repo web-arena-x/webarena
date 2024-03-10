@@ -59,6 +59,53 @@ class TextObervationProcessor(ObservationProcessor):
             create_empty_metadata()
         )  # use the store meta data of this observation type
 
+    class BoundingBoxThunk:
+        """
+        It is very expensive to compute all of the bounding boxes because it requires many javascript calls, but we only need bounding boxes for the thing we're going to click next
+        therefore we lazily evaluate them
+        """
+
+        def __init__(self, client: CDPSession, backend_node_id: str):
+            self.client = client
+            self.backend_node_id = backend_node_id
+            self.bounding_box = None
+            self.already_forced = False
+
+        def force(self):
+            if not self.already_forced:
+                print("forcing bounding box")
+                self.already_forced = True
+
+                # call the static method
+                response = TextObervationProcessor.get_bounding_client_rect(
+                    self.client, self.backend_node_id
+                )
+
+                if response.get("result", {}).get("subtype", "") == "error":
+                    self.bounding_box = None
+                else:
+                    x = response["result"]["value"]["x"]
+                    y = response["result"]["value"]["y"]
+                    width = response["result"]["value"]["width"]
+                    height = response["result"]["value"]["height"]
+                    self.bounding_box = [x, y, width, height]
+                    
+            return self.bounding_box
+        
+        def __str__(self):
+            return f"BoundingBoxThunk(backend_id={self.backend_node_id}, bb={self.bounding_box}, forced={self.already_forced})"
+        
+        def __repr__(self):
+            return str(self)
+        
+        @staticmethod
+        def constant(bounding_box):
+            bbth = TextObervationProcessor.BoundingBoxThunk(None, None)
+            bbth.bounding_box = bounding_box
+            bbth.already_forced = True
+            return bbth
+            
+
     def fetch_browser_info(
         self,
         page: Page,
@@ -138,43 +185,6 @@ class TextObervationProcessor(ObservationProcessor):
             return response
         except Exception as e:
             return {"result": {"subtype": "error"}}
-
-
-    @staticmethod
-    def get_bounding_client_rect_batched(
-        client: CDPSession, backend_node_ids: list[str]
-    ) -> list[dict[str, Any]]:
-        return_value = []
-        for backend_node_id in backend_node_ids:
-            try:
-                remote_object = client.send(
-                    "DOM.resolveNode", {"backendNodeId": int(backend_node_id)}
-                )
-                remote_object_id = remote_object["object"]["objectId"]
-                response = client.send(
-                    "Runtime.callFunctionOn",
-                    {
-                        "objectId": remote_object_id,
-                        "functionDeclaration": """
-                            function() {
-                                if (this.nodeType == 3) {
-                                    var range = document.createRange();
-                                    range.selectNode(this);
-                                    var rect = range.getBoundingClientRect().toJSON();
-                                    range.detach();
-                                    return rect;
-                                } else {
-                                    return this.getBoundingClientRect().toJSON();
-                                }
-                            }
-                        """,
-                        "returnByValue": True,
-                    },
-                )
-                return_value.append(response)
-            except Exception as e:
-                return_value.append({"result": {"subtype": "error"}})
-        return return_value
 
     @staticmethod
     def get_element_in_viewport_ratio(
@@ -274,20 +284,12 @@ class TextObervationProcessor(ObservationProcessor):
 
             # get the bound
             if cur_node["parentId"] == "-1":
-                cur_node["union_bound"] = [0.0, 0.0, 10.0, 10.0]
+                cur_node["union_bound"] = TextObervationProcessor.BoundingBoxThunk.constant([0.0, 0.0, 10.0, 10.0])
             else:
-                cur_node['union_bound'] = [0.0, 0.0, 10.0, 10.0]
-                response = self.get_bounding_client_rect(
+                # lazy evaluation
+                cur_node["union_bound"] = TextObervationProcessor.BoundingBoxThunk(
                     client, cur_node["backendNodeId"]
                 )
-                if response.get("result", {}).get("subtype", "") == "error":
-                    cur_node["union_bound"] = None
-                else:
-                    x = response["result"]["value"]["x"]
-                    y = response["result"]["value"]["y"]
-                    width = response["result"]["value"]["width"]
-                    height = response["result"]["value"]["height"]
-                    cur_node["union_bound"] = [x, y, width, height]
 
             dom_tree.append(cur_node)
 
@@ -325,11 +327,11 @@ class TextObervationProcessor(ObservationProcessor):
 
             config = info["config"]
             for cursor, node in enumerate(dom_tree):
-                if not node["union_bound"]:
+                if not node["union_bound"] or not node["union_bound"].force():
                     remove_node_in_graph(node)
                     continue
 
-                [x, y, width, height] = node["union_bound"]
+                [x, y, width, height] = node["union_bound"].force()
 
                 # invisible node
                 if width == 0.0 or height == 0.0:
@@ -404,8 +406,6 @@ class TextObervationProcessor(ObservationProcessor):
         client: CDPSession,
         current_viewport_only: bool,
     ) -> AccessibilityTree:
-        import time
-        start = time.time()
         accessibility_tree: AccessibilityTree = client.send(
             "Accessibility.getFullAXTree", {}
         )["nodes"]
@@ -419,7 +419,6 @@ class TextObervationProcessor(ObservationProcessor):
                 seen_ids.add(node["nodeId"])
         accessibility_tree = _accessibility_tree
 
-        backend_node_ids_to_query = []
         nodeid_to_cursor = {}
         for cursor, node in enumerate(accessibility_tree):
             nodeid_to_cursor[node["nodeId"]] = cursor
@@ -430,8 +429,9 @@ class TextObervationProcessor(ObservationProcessor):
             backend_node_id = str(node["backendDOMNodeId"])
             if node["role"]["value"] == "RootWebArea":
                 # always inside the viewport
-                node["union_bound"] = [0.0, 0.0, 10.0, 10.0]
+                node["union_bound"] = TextObervationProcessor.BoundingBoxThunk.constant([0.0, 0.0, 10.0, 10.0])
             else:
+<<<<<<< HEAD
                 backend_node_ids_to_query.append((backend_node_id, node))
 
         # get the bounding client rect for the nodes, batched to be faster
@@ -457,6 +457,12 @@ class TextObervationProcessor(ObservationProcessor):
                 #     width = response["result"]["value"]["width"]
                 #     height = response["result"]["value"]["height"]
                 #     node["union_bound"] = [x, y, width, height]
+=======
+                # lazy evaluation
+                node["union_bound"] = TextObervationProcessor.BoundingBoxThunk(
+                    client, backend_node_id
+                )
+>>>>>>> lazy evaluation of bounding boxes, gives lightning fast browser environment (also progress on markdown representation but that's still experimental)
 
         # filter nodes that are not in the current viewport
         if current_viewport_only:
@@ -495,11 +501,11 @@ class TextObervationProcessor(ObservationProcessor):
 
             config = info["config"]
             for node in accessibility_tree:
-                if not node["union_bound"]:
+                if not node["union_bound"] or not node["union_bound"].force():
                     remove_node_in_graph(node)
                     continue
 
-                [x, y, width, height] = node["union_bound"]
+                [x, y, width, height] = node["union_bound"].force()
 
                 # invisible node
                 if width == 0 or height == 0:
@@ -522,8 +528,6 @@ class TextObervationProcessor(ObservationProcessor):
                 for node in accessibility_tree
                 if node.get("parentId", "Root") != "[REMOVED]"
             ]
-
-        print("time to do everything else:", time.time()-start)
 
         return accessibility_tree
 
@@ -805,7 +809,7 @@ class TextObervationProcessor(ObservationProcessor):
 
     def get_element_center(self, element_id: str) -> tuple[float, float]:
         node_info = self.obs_nodes_info[element_id]
-        node_bound = node_info["union_bound"]
+        node_bound = node_info["union_bound"].force()
         x, y, width, height = node_bound
         center_x = x + width / 2
         center_y = y + height / 2

@@ -36,7 +36,7 @@ class AccessibilityTreeNode(TypedDict):
     backendDOMNodeId: str
     frameId: str
     bound: list[float] | None
-    union_bound: list[float] | None
+    union_bound: Any # actually a thunk of list[float] | None
     offsetrect_bound: list[float] | None
 
 
