@@ -2,45 +2,32 @@ from webarena.browser_env import create_id_based_action, create_type_action, cre
 
 import re
 
-class WebApi():
-    def __init__(self, env):
-        self.env = env
+def new_tab():
+    return WebThing.root.original_env.step(create_id_based_action("new_tab"))
 
-    def current_page(self):
-        return self.env.obs['text']
+def stop(text=""):
+    return WebThing.root.original_env.step(create_id_based_action(f"stop [{text}]"))
 
-    def find(self, *args):
-        return WebThing.root.find(*args)
+def goto(link):
+    return WebThing.root.original_env.step(create_id_based_action(f"goto [{link}]"))
 
-    def find_containing(self, *args):
-        return WebThing.root.find_containing(*args)
+def go_back():
+    return WebThing.root.original_env.step(create_id_based_action(f"go_back"))
 
-    def new_tab(self):
-        return self.env.step(create_id_based_action("new_tab"))
+def scroll(direction):
+    return WebThing.root.original_env.step(create_id_based_action(f"scroll [{direction}]"))
 
-    def stop(self, text=""):
-        return self.env.step(create_id_based_action(f"stop [{text}]"))
+def press(key):
+    return WebThing.root.original_env.step(create_id_based_action(f"press [{key}]"))
 
-    def goto(self, link):
-        return self.env.step(create_id_based_action(f"goto [{link}]"))
+def go_forward():
+    return WebThing.root.original_env.step(create_id_based_action("go_forward"))
 
-    def go_back(self):
-        return self.env.step(create_id_based_action(f"go_back"))
+def tab_focus(tab_number):
+    return WebThing.root.original_env.step(create_id_based_action(f"tab_focus [{tab_number}]"))
 
-    def scroll(self, direction):
-        return self.env.step(create_id_based_action(f"scroll [{direction}]"))
-
-    def press(self, key):
-        return self.env.step(create_id_based_action(f"press [{key}]"))
-
-    def go_forward(self):
-        return self.env.step(create_id_based_action("go_forward"))
-
-    def tab_focus(self, tab_number):
-        return self.env.step(create_id_based_action(f"tab_focus [{tab_number}]"))
-
-    def close_tab(self):
-        return self.env.step(create_id_based_action("close_tab"))
+def close_tab():
+    return WebThing.root.original_env.step(create_id_based_action("close_tab"))
 
 
 class WebThing():
@@ -238,9 +225,9 @@ class WebThing():
                 return join(child.markdown() for child in self.children)
             else:
                 return join([f"[group: {self.name}]"]+[child.markdown() for child in self.children])
-        
+
         return f"UNDEFINED({self.category} {self.name})"
-        
+
 
     def find(self, category, name=None, nth=None, **kwargs):
         all_results = self.find_all(category, name, nth, **kwargs)
