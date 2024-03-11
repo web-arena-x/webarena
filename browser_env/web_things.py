@@ -368,7 +368,8 @@ class WebThing():
                 self.properties.pop("hover_text")
         return self
 
-    def do_nothing(self):
+    def let_page_load(self):
+        # maybe this should have a way of waiting for longer, or detecting when the page is fully loaded
         self._make_in_viewport()
         self._do_action(create_none_action())
 
