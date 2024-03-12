@@ -198,7 +198,7 @@ class URLEvaluator(Evaluator):
             parsed_url = urllib.parse.urlparse(url)
             base_path = parsed_url.netloc + parsed_url.path
             query = urllib.parse.parse_qs(parsed_url.query)
-            return base_path, query
+            return clean_url(base_path), query
 
         def parse_urls(
             urls: list[str],
@@ -208,7 +208,7 @@ class URLEvaluator(Evaluator):
             queries = collections.defaultdict(set)
             for url in urls:
                 base_path, query = parse_url(url)
-                base_paths.append(base_path)
+                base_paths.append(clean_url(base_path))
                 for k, v in query.items():
                     queries[k].update(v)
             return base_paths, queries
@@ -216,6 +216,7 @@ class URLEvaluator(Evaluator):
         pred = clean_url(page.url)
         ref_urls = configs["eval"]["reference_url"].split(" |OR| ")
         ref_urls = [clean_url(url) for url in ref_urls]
+
         matching_rule = configs["eval"].get("url_note", "GOLD in PRED")
         if matching_rule == "GOLD in PRED":
             ref_base_paths, ref_queries = parse_urls(ref_urls)
@@ -237,7 +238,6 @@ class URLEvaluator(Evaluator):
                         for possible_ref_value in possible_values
                     )
                 )
-            print("query score", query_score)
             score = base_score * query_score
 
         else:
