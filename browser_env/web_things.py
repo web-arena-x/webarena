@@ -1,5 +1,6 @@
 from webarena.browser_env import create_id_based_action, create_type_action, create_key_press_action, create_none_action
 
+import dateparser
 import re
 
 def new_tab():
@@ -46,6 +47,10 @@ class WebThing():
         self.original_env = original_env
         self.efficient_path = None # signal we havent yet found path to this node
         self.nth = nth
+
+        # parse dates
+        if category == "time":
+            self.properties["datetime"] = dateparser.parse(self.name)
 
     def _do_action(self, action, pause=None):
         """
@@ -282,6 +287,9 @@ class WebThing():
     def __getattr__(self, name):
         if name in self.properties:
             return self.properties[name]
+        if "datetime" in self.properties:
+            try: return getattr(self.properties["datetime"], name)
+            except: pass
         raise AttributeError(f"'{self.category}' object has no attribute '{name}'")
 
     def serialize(self, indent=0):
