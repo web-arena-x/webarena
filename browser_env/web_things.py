@@ -233,6 +233,13 @@ class WebThing():
 
         return f"UNDEFINED({self.category} {self.name})"
 
+    def _match(self, category, name, nth=None, **kwargs):
+        return (
+            self.category == category
+            and (name is None or re.fullmatch(name, self.name))
+            and (nth is None or self.nth == nth)
+            and all(getattr(self, key, None) == value for key, value in kwargs.items())
+        )
 
     def find(self, category, name=None, nth=None, **kwargs):
         all_results = self.find_all(category, name, nth, **kwargs)
@@ -249,18 +256,14 @@ class WebThing():
 
     def find_all(self, category, name=None, nth=None, **kwargs):
         return_value = []
-        if (
-            self.category == category
-            and (name is None or re.fullmatch(name, self.name))
-            and (nth is None or self.nth == nth)
-            and all(getattr(self, key, None) == value for key, value in kwargs.items())
-        ):
+        if self._match(category, name, nth, **kwargs):
             return_value.append(self)
         for child in self.children:
             return_value.extend(child.find_all(category, name, nth, **kwargs))
         return return_value
 
     def find_containing(self, category, query, nth=None, **kwargs):
+        """potentially deprecated now that find support regular expressions"""
         if (
             self.category == category
             and (query is None or query in self.name)
@@ -273,6 +276,39 @@ class WebThing():
             if result:
                 return result
         return None
+    
+    def search_forward(self, category, name=None, nth=None, **kwargs):
+        """looks for a match that occurs after this node (NOT including this node!)"""
+        matches = []
+        for child in self.children: matches.extend(child.find_all(category, name, nth, **kwargs))
+        # now we have to go through our parents and search any of their children that come after us
+        parent, latest_child = self.parent, self
+        while parent:
+            # find the index of this node in the parent's children
+            index = parent.children.index(latest_child)
+            suffix = parent.children[index+1:]
+            for sibling in suffix: matches.extend(sibling.find_all(category, name, nth, **kwargs))
+
+            latest_child = parent
+            parent = parent.parent
+        return matches
+    
+    def search_backward(self, category, name=None, nth=None, **kwargs):
+        """looks for a match that occurs before this node (NOT including this node!)"""
+        matches = []
+        parent, latest_child = self.parent, self
+        while parent:
+            if parent._match(category, name, nth, **kwargs):
+                matches.append(parent)
+            
+            # find the index of this node in the parent's children
+            index = parent.children.index(latest_child)
+            prefix = parent.children[:index]
+            for sibling in reversed(prefix): matches.extend(sibling.find_all(category, name, nth, **kwargs))
+
+            latest_child = parent
+            parent = parent.parent
+        return matches
 
 
     def after(self, category, name, nth=None):
