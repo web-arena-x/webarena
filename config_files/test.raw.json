@@ -7619,9 +7619,9 @@
     "geolocation": null,
     "intent_template": "I am doing a market survey for one stop market, show me the most expensive product from {{product_category}} category",
     "instantiation_dict": {
-      "product_category": "competative swimwear"
+      "product_category": "competitive swimwear"
     },
-    "intent": "I am doing a market survey for one stop market, show me the most expensive product from competative swimwear category",
+    "intent": "I am doing a market survey for one stop market, show me the most expensive product from competitive swimwear category",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -10963,10 +10963,10 @@
     "geolocation": null,
     "intent_template": "List products from {{product_category}} category by {{order}} price",
     "instantiation_dict": {
-      "product_category": "competative swimwear",
+      "product_category": "competitive swimwear",
       "order": "ascending"
     },
-    "intent": "List products from competative swimwear category by ascending price",
+    "intent": "List products from competitive swimwear category by ascending price",
     "require_reset": false,
     "eval": {
       "eval_types": [
