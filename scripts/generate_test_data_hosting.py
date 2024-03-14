@@ -9,7 +9,9 @@ from webarena.browser_env.env_config import *
 def main() -> None:
     with open("webarena/config_files/test.raw.json", "r") as f:
         raw = f.read()
+    GITLABADDRESS =os.environ.get("GITLABADDRESS", "")
     raw = raw.replace("__GITLAB__", GITLAB)
+    raw = raw.replace("__GITLABADDRESS__", GITLABADDRESS)
     raw = raw.replace("__REDDIT__", REDDIT)
     raw = raw.replace("__SHOPPING__", SHOPPING)
     raw = raw.replace("__SHOPPING_ADMIN__", SHOPPING_ADMIN)
