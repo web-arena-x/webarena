@@ -1182,7 +1182,9 @@
         "string_match"
       ],
       "reference_answers": {
-        "must_include": ["Yes"]
+        "must_include": [
+          "Yes"
+        ]
       },
       "reference_url": "",
       "program_html": [],
@@ -1212,7 +1214,9 @@
         "string_match"
       ],
       "reference_answers": {
-        "must_include": ["Yes"]
+        "must_include": [
+          "Yes"
+        ]
       },
       "reference_url": "",
       "program_html": [],
@@ -1242,7 +1246,9 @@
         "string_match"
       ],
       "reference_answers": {
-        "must_include": ["Yes"]
+        "must_include": [
+          "Yes"
+        ]
       },
       "reference_url": "",
       "program_html": [],
@@ -1272,7 +1278,9 @@
         "string_match"
       ],
       "reference_answers": {
-        "must_include": ["Yes"]
+        "must_include": [
+          "Yes"
+        ]
       },
       "reference_url": "",
       "program_html": [],
@@ -1302,7 +1310,9 @@
         "string_match"
       ],
       "reference_answers": {
-        "must_include": ["Yes"]
+        "must_include": [
+          "Yes"
+        ]
       },
       "reference_url": "",
       "program_html": [],
@@ -5538,7 +5548,9 @@
         "url_match"
       ],
       "reference_answers": {
-        "fuzzy_match": ["No, it is open"]
+        "fuzzy_match": [
+          "No, it is open"
+        ]
       },
       "reference_url": "__GITLAB__/byteblaze/empathy-prompts/-/issues/8",
       "program_html": [],
@@ -5569,7 +5581,9 @@
         "url_match"
       ],
       "reference_answers": {
-        "fuzzy_match": ["No, it is open"]
+        "fuzzy_match": [
+          "No, it is open"
+        ]
       },
       "reference_url": "__GITLAB__/byteblaze/a11y-webring.club/-/issues/71",
       "program_html": [],
@@ -5599,7 +5613,9 @@
         "url_match"
       ],
       "reference_answers": {
-        "fuzzy_match": ["No, it is open"]
+        "fuzzy_match": [
+          "No, it is open"
+        ]
       },
       "reference_url": "__GITLAB__/byteblaze/empathy-prompts/-/issues/18",
       "program_html": [],
@@ -5629,7 +5645,9 @@
         "url_match"
       ],
       "reference_answers": {
-        "fuzzy_match": ["No, it is open"]
+        "fuzzy_match": [
+          "No, it is open"
+        ]
       },
       "reference_url": "__GITLAB__/byteblaze/a11y-syntax-highlighting/-/issues/1",
       "program_html": [],
@@ -5659,7 +5677,9 @@
         "url_match"
       ],
       "reference_answers": {
-        "fuzzy_match": ["Yes, it is closed"]
+        "fuzzy_match": [
+          "Yes, it is closed"
+        ]
       },
       "reference_url": "__GITLAB__/a11yproject/a11yproject.com/-/issues/719",
       "program_html": [],
@@ -9194,12 +9214,12 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "git clone ssh://git@metis.lti.cs.cmu.edu:2222/convexegg/super_awesome_robot.git"
+        "exact_match": "git clone ssh://git@__GITLABADDRESS__:2222/convexegg/super_awesome_robot.git"
       },
       "reference_url": "",
       "program_html": [],
       "string_note": "",
-      "reference_answer_raw_annotation": "git clone ssh://git@metis.lti.cs.cmu.edu:2222/convexegg/super_awesome_robot.git"
+      "reference_answer_raw_annotation": "git clone ssh://git@__GITLABADDRESS__:2222/convexegg/super_awesome_robot.git"
     },
     "intent_template_id": 329
   },
@@ -9223,12 +9243,12 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "git clone ssh://git@metis.lti.cs.cmu.edu:2222/convexegg/chatgpt.git"
+        "exact_match": "git clone ssh://git@__GITLABADDRESS__:2222/convexegg/chatgpt.git"
       },
       "reference_url": "",
       "program_html": [],
       "string_note": "",
-      "reference_answer_raw_annotation": "git clone ssh://git@metis.lti.cs.cmu.edu:2222/convexegg/chatgpt.git"
+      "reference_answer_raw_annotation": "git clone ssh://git@__GITLABADDRESS__:2222/convexegg/chatgpt.git"
     },
     "intent_template_id": 329
   },
@@ -9252,12 +9272,12 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "git clone ssh://git@metis.lti.cs.cmu.edu:2222/root/metaseq.git"
+        "exact_match": "git clone ssh://git@__GITLABADDRESS__:2222/root/metaseq.git"
       },
       "reference_url": "",
       "program_html": [],
       "string_note": "",
-      "reference_answer_raw_annotation": "git clone ssh://git@metis.lti.cs.cmu.edu:2222/root/metaseq.git"
+      "reference_answer_raw_annotation": "git clone ssh://git@__GITLABADDRESS__:2222/root/metaseq.git"
     },
     "intent_template_id": 329
   },
@@ -9281,12 +9301,12 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "ssh://git@metis.lti.cs.cmu.edu:2222/eriklindernoren/PyTorch-GAN.git"
+        "exact_match": "ssh://git@__GITLABADDRESS__:2222/eriklindernoren/PyTorch-GAN.git"
       },
       "reference_url": "",
       "program_html": [],
       "string_note": "",
-      "reference_answer_raw_annotation": "ssh://git@metis.lti.cs.cmu.edu:2222/eriklindernoren/PyTorch-GAN.git"
+      "reference_answer_raw_annotation": "ssh://git@__GITLABADDRESS__:2222/eriklindernoren/PyTorch-GAN.git"
     },
     "intent_template_id": 329
   },
@@ -9310,12 +9330,12 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "ssh://git@metis.lti.cs.cmu.edu:2222/yjlou/2019-nCov.git"
+        "exact_match": "ssh://git@__GITLABADDRESS__:2222/yjlou/2019-nCov.git"
       },
       "reference_url": "",
       "program_html": [],
       "string_note": "",
-      "reference_answer_raw_annotation": "ssh://git@metis.lti.cs.cmu.edu:2222/yjlou/2019-nCov.git"
+      "reference_answer_raw_annotation": "ssh://git@__GITLABADDRESS__:2222/yjlou/2019-nCov.git"
     },
     "intent_template_id": 329
   },
@@ -9416,7 +9436,9 @@
       "eval_types": [
         "string_match"
       ],
-      "reference_answers": {"fuzzy_match": "N/A"},
+      "reference_answers": {
+        "fuzzy_match": "N/A"
+      },
       "reference_url": "",
       "program_html": [],
       "string_note": "there is no order in processing"
@@ -9442,7 +9464,9 @@
       "eval_types": [
         "string_match"
       ],
-      "reference_answers": {"fuzzy_match": "N/A"},
+      "reference_answers": {
+        "fuzzy_match": "N/A"
+      },
       "reference_url": "",
       "program_html": [],
       "string_note": "there is no order in processing"
@@ -24337,7 +24361,9 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"simple_action\"').value",
-          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
+          "prep_actions": [
+            "document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"
+          ],
           "required_contents": {
             "exact_match": "by_percent"
           }
@@ -24345,7 +24371,9 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"discount_amount\"').value",
-          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
+          "prep_actions": [
+            "document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"
+          ],
           "required_contents": {
             "exact_match": "20"
           }
@@ -24405,7 +24433,9 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"simple_action\"').value",
-          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
+          "prep_actions": [
+            "document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"
+          ],
           "required_contents": {
             "exact_match": "cart_fixed"
           }
@@ -24413,7 +24443,9 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"discount_amount\"').value",
-          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
+          "prep_actions": [
+            "document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"
+          ],
           "required_contents": {
             "exact_match": "10"
           }
@@ -24473,7 +24505,9 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"simple_action\"').value",
-          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
+          "prep_actions": [
+            "document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"
+          ],
           "required_contents": {
             "exact_match": "cart_fixed"
           }
@@ -24481,7 +24515,9 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"discount_amount\"').value",
-          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
+          "prep_actions": [
+            "document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"
+          ],
           "required_contents": {
             "exact_match": "15"
           }
@@ -24541,7 +24577,9 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"simple_action\"').value",
-          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
+          "prep_actions": [
+            "document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"
+          ],
           "required_contents": {
             "exact_match": "by_percent"
           }
@@ -24549,7 +24587,9 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"discount_amount\"').value",
-          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
+          "prep_actions": [
+            "document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"
+          ],
           "required_contents": {
             "exact_match": "45"
           }
@@ -24609,7 +24649,9 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"simple_action\"').value",
-          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
+          "prep_actions": [
+            "document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"
+          ],
           "required_contents": {
             "exact_match": "cart_fixed"
           }
@@ -24617,7 +24659,9 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"discount_amount\"').value",
-          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
+          "prep_actions": [
+            "document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"
+          ],
           "required_contents": {
             "exact_match": "40"
           }
