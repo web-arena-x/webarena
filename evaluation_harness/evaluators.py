@@ -383,15 +383,15 @@ def evaluator_closure(config_file: Path | str):
     def eval():
         env = WebThing.root.original_env
         # the trajectory is supposed to end with an action
-        if not ("action_type" in str(WebThing.trajectory[-1])):
-            WebThing.trajectory.append(create_stop_action(""))
+        if not ("action_type" in str(WebThing.low_level_trajectory[-1])):
+            WebThing.low_level_trajectory.append(create_stop_action(""))
             dummy_action = True
         else:
             dummy_action = False
 
-        evaluation_result = evaluator(WebThing.trajectory, config_file, env.page, env.get_page_client(env.page))
+        evaluation_result = evaluator(WebThing.low_level_trajectory, config_file, env.page, env.get_page_client(env.page))
 
-        if dummy_action: WebThing.trajectory.pop()
+        if dummy_action: WebThing.low_level_trajectory.pop()
 
         return evaluation_result
 

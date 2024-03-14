@@ -1,4 +1,4 @@
-from webarena.browser_env import create_id_based_action, create_type_action, create_key_press_action, create_none_action
+from webarena.browser_env import create_id_based_action, create_type_action, create_stop_action, create_none_action
 
 import dateparser
 import re
@@ -33,7 +33,15 @@ def close_tab():
 
 class WebThing():
     root = None # effectively a global variable that refers to the current state of the web page
-    trajectory = [] # effectively a global variable that refers to the current trajectory
+
+    URL = None # global variable for the current URL
+
+    # effectively a global variable that refers to the current trajectory. in terms of backend actions, used for evaluation
+    low_level_trajectory = []
+
+    # trajectory in terms of high level WebThing actions, used for learning from demonstration
+    # each element of the trajectory is a tuple (pair), where the first element is an URL, and the second element is a WebThing API call (what we did at that URL)
+    high_level_trajectory = []
 
     def __init__(self, category: str, name: str, id: int, parent, children, property_names, property_values, original_env=None, nth=0):
         self.name = name
@@ -52,12 +60,26 @@ class WebThing():
         if category == "time":
             self.properties["datetime"] = dateparser.parse(self.name)
 
+    @staticmethod
+    def answer(text):
+        WebThing.high_level_trajectory.append((WebThing.URL, (None, "answer", (text,), {})))
+        WebThing.low_level_trajectory.append(create_stop_action(text))
+
+    def reset_trajectory():
+        WebThing.low_level_trajectory = list()
+        WebThing.high_level_trajectory = list()
+
+    def _record_high_level_action(self, method_name, *args, **kwargs):
+        # retrieve the current URL
+        url = WebThing.URL
+        WebThing.high_level_trajectory.append((WebThing.URL, (self, method_name, args, kwargs)))
+
     def _do_action(self, action, pause=None):
         """
         helper function that makes sure that states+actions are recorded in the trajectory.
         not used by the agent, which uses higher level functions like `click` and `type` instead.
         """
-        WebThing.trajectory.append(action)
+        WebThing.low_level_trajectory.append(action)
         if pause:
             old_sleep = self.original_env.sleep_after_execution
             self.original_env.sleep_after_execution = pause
@@ -68,7 +90,7 @@ class WebThing():
             self.original_env.sleep_after_execution = old_sleep
 
         state_info = {"observation": obs, "info": info}
-        WebThing.trajectory.append(state_info)
+        WebThing.low_level_trajectory.append(state_info)
 
     def _center(self):
         """normalized coordinates within the viewport of the center of this node"""
@@ -310,15 +332,6 @@ class WebThing():
             parent = parent.parent
         return matches
 
-
-    def after(self, category, name, nth=None):
-        """looks for everything after a certain child"""
-        for i, child in enumerate(self.children):
-            if child.category == category and child.name == name and (nth is None or self.nth == nth):
-                new_children = self.children[i+1:]
-                return WebThing(self.category, self.name, self.id, self.parent, new_children, self.property_names, self.property_values, self.original_env, self.nth)
-        return None
-
     # make it so that you can do like `thing.a_property`
     def __getattr__(self, name):
         if name in self.properties:
@@ -360,6 +373,23 @@ class WebThing():
         if self.parent:
             return self.parent.get_path() + " / " + self.repr_no_children()
         return self.repr_no_children()
+    
+    def pretty_path(self, is_target=True):
+        representation = f"{self.category}({repr(self.name)}"
+        if self.properties:
+            for property_name in self.property_names:
+                representation += f", {property_name}={self.properties[property_name]}"
+        representation += ")"
+
+        if is_target:
+            assert self.parent
+            return representation + ", under " + self.parent.pretty_path(is_target=False)
+        else:
+            if self.parent:
+                return self.parent.pretty_path(is_target=False) + " / " + representation
+            else:
+                return representation
+
 
     def clean(self):
         # analogous to clean_accessibility_tree, but with extra cleaning heuristics
@@ -410,6 +440,10 @@ class WebThing():
             self.properties["hover_text"] = self.hover_text.strip().replace("\n", " ")
             if self.hover_text.strip().replace(" ", "").replace("_", "").lower() == self.name.strip().replace(" ", "").replace("_", "").lower():
                 self.properties.pop("hover_text")
+        # remove focus property from RootWebArea
+        if "RootWebArea" == self.category:
+            if "focused" in self.properties:
+                self.properties.pop("focused")
         return self
 
     def let_page_load(self):
@@ -418,14 +452,17 @@ class WebThing():
         self._do_action(create_none_action())
 
     def click(self):
+        self._record_high_level_action("click")
         self._make_in_viewport()
         self._do_action(create_id_based_action(f"click [{self.id}]"))
 
     def type(self, text):
+        self._record_high_level_action("type", text)
         self._make_in_viewport()
         self._do_action(create_type_action(text=text+"\n", element_id=str(self.id)))
 
     def hover(self):
+        self._record_high_level_action("hover")
         self._make_in_viewport()
         self._do_action(create_id_based_action(f"hover [{self.id}]"))
 

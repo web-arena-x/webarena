@@ -601,6 +601,7 @@ class TextObervationProcessor(ObservationProcessor):
 
         WebThing.root = nodes[0].clean()
         WebThing.root.assign_nths()
+        WebThing.URL = env.page.url
 
         return WebThing.root
 
