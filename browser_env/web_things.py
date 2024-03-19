@@ -40,7 +40,10 @@ class WebThing():
     low_level_trajectory = []
 
     # trajectory in terms of high level WebThing actions, used for learning from demonstration
-    # each element of the trajectory is a tuple (pair), where the first element is an URL, and the second element is a WebThing API call (what we did at that URL)
+    # each element of the trajectory is a tuple (triple), where:
+    # the first element is an URL, 
+    # second element is WebThing object representing the entire webpage, 
+    # and the last element is a WebThing API call (what we did at that URL)
     high_level_trajectory = []
 
     def __init__(self, category: str, name: str, id: int, parent, children, property_names, property_values, original_env=None, nth=0):
@@ -62,7 +65,7 @@ class WebThing():
 
     @staticmethod
     def answer(text):
-        WebThing.high_level_trajectory.append((WebThing.URL, (None, "answer", (text,), {})))
+        WebThing.high_level_trajectory.append((WebThing.URL, WebThing._strip_root(), (None, "answer", (text,), {})))
         WebThing.low_level_trajectory.append(create_stop_action(text))
 
     def reset_trajectory():
@@ -70,9 +73,7 @@ class WebThing():
         WebThing.high_level_trajectory = list()
 
     def _record_high_level_action(self, method_name, *args, **kwargs):
-        # retrieve the current URL
-        url = WebThing.URL
-        WebThing.high_level_trajectory.append((WebThing.URL, (self, method_name, args, kwargs)))
+        WebThing.high_level_trajectory.append((WebThing.URL, WebThing._strip_root(), (self, method_name, args, kwargs)))
 
     def _do_action(self, action, pause=None):
         """
@@ -383,9 +384,11 @@ class WebThing():
 
         if is_target:
             assert self.parent
-            return representation + ", under " + self.parent.pretty_path(is_target=False)
+            return representation + f", nth={self.nth}, which is under " + self.parent.pretty_path(is_target=False)
         else:
             if self.parent:
+                if "list" in self.category and self.name == "":
+                    return self.parent.pretty_path(is_target=False)
                 return self.parent.pretty_path(is_target=False) + " / " + representation
             else:
                 return representation
@@ -569,3 +572,33 @@ class WebThing():
 
     def get_text(self):
         return self.name
+
+    # Removes all non-pickle-able things from the root, particularly which refer to the environment
+    # Returns a new root, but without updating the root pointer
+    @staticmethod
+    def _strip_root():
+        return WebThing.root._strip(memo=None)
+    
+    # Removes all non-pickle-able things from the tree, particularly which refer to the environment
+    # Has the invariant that the parent has always already been added to the memo table
+    def _strip(self, memo=None):
+
+        if memo is None:
+            memo = dict()
+        
+        if id(self) in memo:
+            return memo[id(self)]
+        
+        new_parent = memo[id(self.parent)] if self.parent else None
+        new_children = list() # cannot recurs on the children without breaking the invariant
+        new_thing = WebThing(self.category, self.name, self.id, new_parent, new_children,
+                             self.property_names, self.property_values, original_env=None, nth=self.nth)
+        
+        memo[id(self)] = new_thing
+
+        # now we can do the children
+        for child in self.children:
+            new_thing.children.append(child._strip(memo))
+
+        return new_thing
+        
