@@ -96,9 +96,9 @@ def renew_comb(comb: list[str], auth_folder: str = "./.auth") -> None:
         page.get_by_role("button", name="Sign in").click()
 
     if "gitlab" in comb:
-        print("doing", comb, username, password, auth_folder)
         username = ACCOUNTS["gitlab"]["username"]
         password = ACCOUNTS["gitlab"]["password"]
+        print("doing", comb, username, password, auth_folder)
         page.goto(f"{GITLAB}/users/sign_in")
         page.get_by_test_id("username-field").click()
         page.get_by_test_id("username-field").fill(username)
