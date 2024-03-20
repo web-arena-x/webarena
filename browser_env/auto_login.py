@@ -37,6 +37,7 @@ def is_expired(
 ) -> bool:
     """Test whether the cookie is expired"""
     if not storage_state.exists():
+        print("storage state does not exist", storage_state, url)
         return True
 
     context_manager = sync_playwright()
@@ -50,15 +51,20 @@ def is_expired(
     content = page.content()
     context_manager.__exit__()
     if keyword:
+        if keyword not in content:
+            print("keyword not in content", keyword, content)
         return keyword not in content
     else:
         if url_exact:
+            if d_url != url: print("expected", repr(url), "actual", repr(d_url))
             return d_url != url
         else:
+            print("inexact?")
             return url not in d_url
 
 
 def renew_comb(comb: list[str], auth_folder: str = "./.auth") -> None:
+    print("combo=", comb)
     context_manager = sync_playwright()
     playwright = context_manager.__enter__()
     browser = playwright.chromium.launch(headless=HEADLESS)
@@ -90,6 +96,7 @@ def renew_comb(comb: list[str], auth_folder: str = "./.auth") -> None:
         page.get_by_role("button", name="Sign in").click()
 
     if "gitlab" in comb:
+        print("doing", comb, username, password, auth_folder)
         username = ACCOUNTS["gitlab"]["username"]
         password = ACCOUNTS["gitlab"]["password"]
         page.goto(f"{GITLAB}/users/sign_in")
