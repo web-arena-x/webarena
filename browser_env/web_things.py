@@ -47,6 +47,10 @@ class WebThing():
     high_level_trajectory = []
 
     def __init__(self, category: str, name: str, id: int, parent, children, property_names, property_values, original_env=None, nth=0):
+
+        # WARNING: we have custom pickle methods, so if you add new fields, you need to update __getstate__ and __setstate__ as well
+        # This is this is super duper important!
+
         self.name = name
         self.id = id
         self.children = children
@@ -341,6 +345,17 @@ class WebThing():
             try: return getattr(self.properties["datetime"], name)
             except: pass
         raise AttributeError(f"'{self.category}' object has no attribute '{name}'")
+    
+    # __getattr__ interferes with pickle
+    # so we have to define custom __getstate__ and __setstate__ to handle the properties
+    # WARNING: if you add new fields, you need to update __getstate__ and __setstate__ as well
+    def __getstate__(self):
+        return (self.category, self.name, self.id, self.parent, self.children, self.property_names, self.property_values, self.properties, self.nth)
+    
+    def __setstate__(self, state):
+        self.category, self.name, self.id, self.parent, self.children, self.property_names, self.property_values, self.properties, self.nth = state
+        self.original_env = None
+        self.efficient_path = None    
 
     def serialize(self, indent=0):
         serialization = f"{'    '*indent}[{self.id}] {self.category} '{self.name}'"
