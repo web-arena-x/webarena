@@ -140,10 +140,6 @@ def config() -> argparse.Namespace:
       default="",
   )
 
-  # example config
-  parser.add_argument("--test_start_idx", type=int, default=0)
-  parser.add_argument("--test_end_idx", type=int, default=1000)
-
   # logging related
   parser.add_argument("--result_dir", type=str, default="")
   args = parser.parse_args()
@@ -397,11 +393,9 @@ if __name__ == "__main__":
   args.sleep_after_execution = 2.0
   prepare(args)
 
-  test_file_list = []
-  st_idx = args.test_start_idx
-  ed_idx = args.test_end_idx
-  for i in range(st_idx, ed_idx):
-    test_file_list.append(f"config_files/{i}.json")
+  with open("test-ids.json") as f:
+    ids = json.load(f)
+  test_file_list = [f"config_files/{i}.json" for i in ids]
   if "debug" not in args.result_dir:
     test_file_list = get_unfinished(test_file_list, args.result_dir)
 
