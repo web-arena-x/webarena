@@ -159,3 +159,4 @@ config_files*/*9.json
 config_files*/test.json
 
 .direnv
+results

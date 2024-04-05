@@ -87,14 +87,14 @@ export HOMEPAGE="<your_homepage_domain>:4399" # this is a placeholder
 
 3. Generate config file for each test example
 ```bash
-python scripts/generate_test_data.py
+poetry run python -m scripts.generate_test_data
 ```
 You will see `*.json` files generated in [config_files](./config_files) folder. Each file contains the configuration for one test example.
 
 4. Obtain the auto-login cookies for all websites
 ```
 mkdir -p ./.auth
-python browser_env/auto_login.py
+poetry run python -m browser_env.auto_login
 ```
 5. export `OPENAI_API_KEY=your_key`, a valid OpenAI API key starts with `sk-`
 
