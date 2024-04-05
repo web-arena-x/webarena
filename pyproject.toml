@@ -1,0 +1,40 @@
+[tool.poetry]
+name = "webarena"
+version = "0.1.0"
+description = ""
+authors = ["Chris Grimm <cgrimm1994@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+gymnasium = "^0.29.1"
+playwright = "1.32.1"
+pillow = "^10.3.0"
+evaluate = "^0.4.1"
+openai = "0.27.0"
+types-tqdm = "^4.66.0.20240106"
+tiktoken = "^0.6.0"
+aiolimiter = "^1.1.0"
+beartype = "0.12.0"
+flask = "^3.0.2"
+nltk = "^3.8.1"
+text-generation = "^0.7.0"
+transformers = "4.33.2"
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.3.0"
+pytest = "7.1.2"
+ipython = "^8.23.0"
+ipdb = "^0.13.13"
+pre-commit = "3.0.1"
+mypy = "0.991"
+nbmake = "^1.5.3"
+pytest-asyncio = "^0.23.6"
+types-requests = "^2.31.0.20240403"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
