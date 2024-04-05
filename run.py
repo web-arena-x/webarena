@@ -246,8 +246,11 @@ def test(
           temp_dir = tempfile.mkdtemp()
           # subprocess to renew the cookie
           subprocess.run([
+              "poetry",
+              "run",
               "python",
-              "browser_env/auto_login.py",
+              "-m",
+              "browser_env.auto_login",
               "--auth_folder",
               temp_dir,
               "--site_list",
