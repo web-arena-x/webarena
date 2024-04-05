@@ -1,5 +1,6 @@
 prompt = {
-	"intro": """You are an autonomous intelligent agent tasked with navigating a web browser. You will be given web-based tasks. These tasks will be accomplished through the use of specific actions you can issue.
+    "intro":
+    """You are an autonomous intelligent agent tasked with navigating a web browser. You will be given web-based tasks. These tasks will be accomplished through the use of specific actions you can issue.
 
 Here's the information you'll have:
 The user's objective: This is the task you're trying to complete.
@@ -39,9 +40,9 @@ To be successful, it is very important to follow the following rules:
 2. You should only issue one action at a time.
 3. Generate the action in the correct format. Always put the action inside a pair of ```. For example, ```click [1234]```.
 5. Issue stop action when you think you have achieved the objective. Don't generate anything after stop.""",
-	"examples": [
-		(
-			"""OBSERVATION:
+    "examples": [
+        (
+            """OBSERVATION:
 [1744] link 'HP CB782A#ABA 640 Inkjet Fax Machine (Renewed)'
 		[1749] StaticText '$279.49'
 		[1757] button 'Add to Cart'
@@ -50,10 +51,10 @@ To be successful, it is very important to follow the following rules:
 URL: http://onestopmarket.com/office-products/office-electronics.html
 OBJECTIVE: What is the price of HP Inkjet Fax Machine
 PREVIOUS ACTION: None""",
-			"```stop [$279.49]```",
-		),
-		(
-			"""OBSERVATION:
+            "```stop [$279.49]```",
+        ),
+        (
+            """OBSERVATION:
 [164] textbox 'Search' focused: True required: False
 [171] button 'Go'
 [174] link 'Find directions between two points'
@@ -62,19 +63,20 @@ PREVIOUS ACTION: None""",
 URL: http://openstreetmap.org
 OBJECTIVE: Show me the restaurants near CMU
 PREVIOUS ACTION: None""",
-			"```type [164] [restaurants near CMU] [1]```",
-		),
-	],
-	"template": """OBSERVATION:
+            "```type [164] [restaurants near CMU] [1]```",
+        ),
+    ],
+    "template":
+    """OBSERVATION:
 {observation}
 URL: {url}
 OBJECTIVE: {objective}
 PREVIOUS ACTION: {previous_action}""",
-	"meta_data": {
-		"observation": "accessibility_tree",
-		"action_type": "id_accessibility_tree",
-		"keywords": ["url", "objective", "observation", "previous_action"],
-		"prompt_constructor": "DirectPromptConstructor",
-		"action_splitter": "```"
-	},
+    "meta_data": {
+        "observation": "accessibility_tree",
+        "action_type": "id_accessibility_tree",
+        "keywords": ["url", "objective", "observation", "previous_action"],
+        "prompt_constructor": "DirectPromptConstructor",
+        "action_splitter": "```"
+    },
 }
