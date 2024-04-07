@@ -14,6 +14,7 @@ def main() -> None:
     raw = raw.replace("__SHOPPING_ADMIN__", SHOPPING_ADMIN)
     raw = raw.replace("__WIKIPEDIA__", WIKIPEDIA)
     raw = raw.replace("__MAP__", MAP)
+    raw = raw.replace("__MINIWOB_HOST__", MINIWOB)
     with open("config_files/test.json", "w") as f:
         f.write(raw)
     # split to multiple files

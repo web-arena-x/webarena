@@ -1182,7 +1182,9 @@
         "string_match"
       ],
       "reference_answers": {
-        "must_include": ["Yes"]
+        "must_include": [
+          "Yes"
+        ]
       },
       "reference_url": "",
       "program_html": [],
@@ -1212,7 +1214,9 @@
         "string_match"
       ],
       "reference_answers": {
-        "must_include": ["Yes"]
+        "must_include": [
+          "Yes"
+        ]
       },
       "reference_url": "",
       "program_html": [],
@@ -1242,7 +1246,9 @@
         "string_match"
       ],
       "reference_answers": {
-        "must_include": ["Yes"]
+        "must_include": [
+          "Yes"
+        ]
       },
       "reference_url": "",
       "program_html": [],
@@ -1272,7 +1278,9 @@
         "string_match"
       ],
       "reference_answers": {
-        "must_include": ["Yes"]
+        "must_include": [
+          "Yes"
+        ]
       },
       "reference_url": "",
       "program_html": [],
@@ -1302,7 +1310,9 @@
         "string_match"
       ],
       "reference_answers": {
-        "must_include": ["Yes"]
+        "must_include": [
+          "Yes"
+        ]
       },
       "reference_url": "",
       "program_html": [],
@@ -5538,7 +5548,9 @@
         "url_match"
       ],
       "reference_answers": {
-        "fuzzy_match": ["No, it is open"]
+        "fuzzy_match": [
+          "No, it is open"
+        ]
       },
       "reference_url": "__GITLAB__/byteblaze/empathy-prompts/-/issues/8",
       "program_html": [],
@@ -5569,7 +5581,9 @@
         "url_match"
       ],
       "reference_answers": {
-        "fuzzy_match": ["No, it is open"]
+        "fuzzy_match": [
+          "No, it is open"
+        ]
       },
       "reference_url": "__GITLAB__/byteblaze/a11y-webring.club/-/issues/71",
       "program_html": [],
@@ -5599,7 +5613,9 @@
         "url_match"
       ],
       "reference_answers": {
-        "fuzzy_match": ["No, it is open"]
+        "fuzzy_match": [
+          "No, it is open"
+        ]
       },
       "reference_url": "__GITLAB__/byteblaze/empathy-prompts/-/issues/18",
       "program_html": [],
@@ -5629,7 +5645,9 @@
         "url_match"
       ],
       "reference_answers": {
-        "fuzzy_match": ["No, it is open"]
+        "fuzzy_match": [
+          "No, it is open"
+        ]
       },
       "reference_url": "__GITLAB__/byteblaze/a11y-syntax-highlighting/-/issues/1",
       "program_html": [],
@@ -5659,7 +5677,9 @@
         "url_match"
       ],
       "reference_answers": {
-        "fuzzy_match": ["Yes, it is closed"]
+        "fuzzy_match": [
+          "Yes, it is closed"
+        ]
       },
       "reference_url": "__GITLAB__/a11yproject/a11yproject.com/-/issues/719",
       "program_html": [],
@@ -9416,7 +9436,9 @@
       "eval_types": [
         "string_match"
       ],
-      "reference_answers": {"fuzzy_match": "N/A"},
+      "reference_answers": {
+        "fuzzy_match": "N/A"
+      },
       "reference_url": "",
       "program_html": [],
       "string_note": "there is no order in processing"
@@ -9442,7 +9464,9 @@
       "eval_types": [
         "string_match"
       ],
-      "reference_answers": {"fuzzy_match": "N/A"},
+      "reference_answers": {
+        "fuzzy_match": "N/A"
+      },
       "reference_url": "",
       "program_html": [],
       "string_note": "there is no order in processing"
@@ -24337,7 +24361,9 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"simple_action\"').value",
-          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
+          "prep_actions": [
+            "document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"
+          ],
           "required_contents": {
             "exact_match": "by_percent"
           }
@@ -24345,7 +24371,9 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"discount_amount\"').value",
-          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
+          "prep_actions": [
+            "document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"
+          ],
           "required_contents": {
             "exact_match": "20"
           }
@@ -24405,7 +24433,9 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"simple_action\"').value",
-          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
+          "prep_actions": [
+            "document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"
+          ],
           "required_contents": {
             "exact_match": "cart_fixed"
           }
@@ -24413,7 +24443,9 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"discount_amount\"').value",
-          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
+          "prep_actions": [
+            "document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"
+          ],
           "required_contents": {
             "exact_match": "10"
           }
@@ -24473,7 +24505,9 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"simple_action\"').value",
-          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
+          "prep_actions": [
+            "document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"
+          ],
           "required_contents": {
             "exact_match": "cart_fixed"
           }
@@ -24481,7 +24515,9 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"discount_amount\"').value",
-          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
+          "prep_actions": [
+            "document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"
+          ],
           "required_contents": {
             "exact_match": "15"
           }
@@ -24541,7 +24577,9 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"simple_action\"').value",
-          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
+          "prep_actions": [
+            "document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"
+          ],
           "required_contents": {
             "exact_match": "by_percent"
           }
@@ -24549,7 +24587,9 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"discount_amount\"').value",
-          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
+          "prep_actions": [
+            "document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"
+          ],
           "required_contents": {
             "exact_match": "45"
           }
@@ -24609,7 +24649,9 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"simple_action\"').value",
-          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
+          "prep_actions": [
+            "document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"
+          ],
           "required_contents": {
             "exact_match": "cart_fixed"
           }
@@ -24617,7 +24659,9 @@
         {
           "url": "last",
           "locator": "document.querySelector('[name=\"discount_amount\"').value",
-          "prep_actions": ["document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"],
+          "prep_actions": [
+            "document.querySelector('[data-index=\"actions\"]').querySelector('.admin__collapsible-title').click()"
+          ],
           "required_contents": {
             "exact_match": "40"
           }
@@ -29600,5 +29644,2995 @@
       ]
     },
     "intent_template_id": 999
+  },
+  {
+    "sites": [],
+    "task_id": 1000,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/click-tab.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1001,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/chase-circle.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1002,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/find-word.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1003,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/grid-coordinate.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1004,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/click-shades.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1005,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/generate-number.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1006,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/scroll-text.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1007,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/use-autocomplete-nodelay.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1008,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/click-test-2.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1009,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/scroll-text-2.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1010,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/choose-date-nodelay.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1011,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/click-option.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1012,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/click-button-sequence.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1013,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/text-transform.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1014,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/login-user-popup.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1015,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/click-tab-2-medium.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1016,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/multi-layouts.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1017,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/hover-shape.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1018,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/drag-box.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1019,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/simon-says.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1020,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/drag-items.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1021,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/enter-time.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1022,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/highlight-text.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1023,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/choose-date-easy.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1024,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/drag-single-shape.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1025,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/click-tab-2-hard.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1026,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/form-sequence-3.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1027,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/choose-date.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1028,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/click-collapsible.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1029,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/identify-shape.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1030,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/simple-algebra.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1031,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/focus-text-2.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1032,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/sign-agreement.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1033,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/search-engine.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1034,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/find-greatest.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1035,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/social-media-some.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1036,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/daily-calendar.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1037,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/bisect-angle.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1038,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/form-sequence-2.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1039,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/drag-items-grid.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1040,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/tic-tac-toe.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1041,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/click-dialog-2.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1042,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/circle-center.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1043,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/click-widget.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1044,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/book-flight-nodelay.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1045,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/button-delay.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1046,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/email-inbox.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1047,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/social-media.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1048,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/click-test.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1049,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/click-button.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1050,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/draw-circle.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1051,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/read-table-2.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1052,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/click-collapsible-2.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1053,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/login-user.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1054,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/choose-list.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1055,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/navigate-tree.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1056,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/click-pie-nodelay.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1057,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/email-inbox-important.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1058,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/click-tab-2.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1059,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/click-menu-2.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1060,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/click-tab-2-easy.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1061,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/copy-paste.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1062,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/enter-text-2.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1063,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/click-color.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1064,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/click-pie.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1065,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/use-colorwheel.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1066,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/email-inbox-forward.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1067,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/text-editor.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1068,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/enter-date.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1069,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/phone-book.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1070,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/click-checkboxes-large.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1071,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/use-slider.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1072,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/number-checkboxes.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1073,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/enter-text-dynamic.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1074,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/email-inbox-nl-turk.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1075,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/use-spinner.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1076,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/highlight-text-2.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1077,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/click-shape.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1078,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/form-sequence.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1079,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/click-checkboxes-soft.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1080,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/count-sides.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1081,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/use-autocomplete.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1082,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/draw-line.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1083,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/email-inbox-forward-nl.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1084,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/stock-market.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1085,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/enter-password.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1086,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/multi-orderings.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1087,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/email-inbox-noscroll.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1088,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/drag-shapes.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1089,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/email-inbox-delete.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1090,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/click-test-transfer.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1091,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/social-media-all.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1092,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/simple-arithmetic.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1093,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/guess-number.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1094,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/drag-circle.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1095,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/click-checkboxes-transfer.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1096,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/visual-addition.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1097,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/terminal.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1098,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/click-link.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1099,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/resize-textarea.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1100,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/click-collapsible-nodelay.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1101,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/drag-sort-numbers.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1102,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/moving-items.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1103,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/order-food.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1104,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/drag-shapes-2.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1105,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/buy-ticket.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1106,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/email-inbox-forward-nl-turk.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1107,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/odd-or-even.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1108,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/count-shape.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1109,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/unicode-test.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1110,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/click-menu.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1111,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/read-table.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1112,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/focus-text.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1113,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/use-slider-2.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1114,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/use-colorwheel-2.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1115,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/email-inbox-reply.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1116,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/click-collapsible-2-nodelay.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1117,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/drag-cube.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1118,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/hot-cold.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1119,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/click-dialog.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1120,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/click-checkboxes.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1121,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/email-inbox-star-reply.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1122,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/click-scroll-list.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1123,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/ascending-numbers.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1124,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/choose-date-medium.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1125,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/copy-paste-2.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1126,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/find-midpoint.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1127,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/right-angle.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1128,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/book-flight.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [],
+    "task_id": 1129,
+    "require_login": false,
+    "storage_state": null,
+    "start_url": "__MINIWOB_HOST__/miniwob_customized/enter-text.html",
+    "geolocation": null,
+    "intent_template": "",
+    "instantiation_dict": {},
+    "intent": "",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [],
+      "reference_answers": {
+        "must_include": []
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 0
   }
 ]

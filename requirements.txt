@@ -11,3 +11,4 @@ flask
 nltk
 text-generation
 transformers==4.33.2
+beautifulsoup4

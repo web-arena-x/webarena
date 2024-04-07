@@ -9,6 +9,7 @@ import subprocess
 import tempfile
 import time
 from pathlib import Path
+from bs4 import BeautifulSoup
 
 import openai
 
@@ -33,6 +34,7 @@ from browser_env.helper_functions import (
     RenderHelper,
     get_action_description,
 )
+from browser_env.utils import DetachedPage
 from evaluation_harness import evaluator_router
 
 LOG_FOLDER = "log_files"
@@ -137,6 +139,12 @@ def config() -> argparse.Namespace:
         type=str,
         default="",
     )
+    parser.add_argument(
+        "--test_miniwob",
+        help="set to true if testing on miniwob++",
+        type=bool,
+        default=False,
+    )
 
     # example config
     parser.add_argument("--test_start_idx", type=int, default=0)
@@ -157,9 +165,25 @@ def config() -> argparse.Namespace:
 
     return args
 
+def is_reward_empty(page):
+    found = page.locator("xpath=//label[text()='Last reward:']/following-sibling::span[@id='reward-last' and text()='-' ]").count() > 0
+    val = None
+    if found:
+        print("The <span id='reward-last'>-</span> is immediately after <label>Last reward:</label>")
+    else:
+        print("The specific sequence is NOT found.")
+        val = page.inner_text("#reward-last")
+    return found, val
+
+def process_intent(dom_str):
+	soup = BeautifulSoup(dom_str, "html.parser")
+	for data in soup(['style', 'script']):
+		data.decompose()
+	return ' '.join(soup.stripped_strings)
+
 
 def early_stop(
-    trajectory: Trajectory, max_steps: int, thresholds: dict[str, int]
+    trajectory: Trajectory, max_steps: int, thresholds: dict[str, int], env
 ) -> tuple[bool, str]:
     """Check whether need to early stop"""
 
@@ -170,6 +194,11 @@ def early_stop(
 
     last_k_actions: list[Action]
     action_seq: list[Action]
+
+    # Case: reward not empty
+    reward_empty, reward_val = is_reward_empty(env.page)
+    if not reward_empty:
+        return True, f"Get a numeric reward {reward_val}, test ends"
 
     # Case: parsing failure for k times
     k = thresholds["parsing_failure"]
@@ -213,6 +242,17 @@ def early_stop(
 
     return False, ""
 
+def enter_start(env):
+    env.page.click("#sync-task-cover")
+    env.page.wait_for_timeout(1000)
+    
+    env.page.client = env.page.context.new_cdp_session(env.page)
+
+def extract_intent(env):
+    intent = env.page.inner_html("#query")
+    intent = process_intent(intent)
+    logger.info(f"[Intent]: {intent}")
+    return intent
 
 def test(
     args: argparse.Namespace,
@@ -280,13 +320,23 @@ def test(
             agent.reset(config_file)
             trajectory: Trajectory = []
             obs, info = env.reset(options={"config_file": config_file})
+            if args.test_miniwob:
+                enter_start(env)
+                obs = env._get_obs()
+                info = {
+                    "page": DetachedPage(env.page.url, ""),
+                    "fail_error": "",
+                    "observation_metadata": env._get_obs_metadata(),
+                }
+                intent = extract_intent(env)
+
             state_info: StateInfo = {"observation": obs, "info": info}
             trajectory.append(state_info)
 
             meta_data = {"action_history": ["None"]}
             while True:
                 early_stop_flag, stop_info = early_stop(
-                    trajectory, max_steps, early_stop_thresholds
+                    trajectory, max_steps, early_stop_thresholds, env
                 )
 
                 if early_stop_flag:
@@ -313,7 +363,8 @@ def test(
                 render_helper.render(
                     action, state_info, meta_data, args.render_screenshot
                 )
-                meta_data["action_history"].append(action_str)
+                if action_str is not None:
+                    meta_data["action_history"].append(action_str)
 
                 if action["action_type"] == ActionTypes.STOP:
                     break
@@ -326,26 +377,28 @@ def test(
                     # add a action place holder
                     trajectory.append(create_stop_action(""))
                     break
-
-            evaluator = evaluator_router(config_file)
-            score = evaluator(
-                trajectory=trajectory,
-                config_file=config_file,
-                page=env.page,
-                client=env.get_page_client(env.page),
-            )
-
-            scores.append(score)
-
-            if score == 1:
-                logger.info(f"[Result] (PASS) {config_file}")
-            else:
-                logger.info(f"[Result] (FAIL) {config_file}")
-
-            if args.save_trace_enabled:
-                env.save_trace(
-                    Path(args.result_dir) / "traces" / f"{task_id}.zip"
+            
+            if not args.test_miniwob:
+                evaluator = evaluator_router(config_file)
+                score = evaluator(
+                    trajectory=trajectory,
+                    config_file=config_file,
+                    page=env.page,
+                    client=env.get_page_client(env.page),
                 )
+
+                scores.append(score)
+
+                if score == 1:
+                    logger.info(f"[Result] (PASS) {config_file}")
+                else:
+                    logger.info(f"[Result] (FAIL) {config_file}")
+
+                if args.save_trace_enabled:
+                    env.save_trace(
+                        Path(args.result_dir) / "traces" / f"{task_id}.zip"
+                    )
+            
 
         except openai.error.OpenAIError as e:
             logger.info(f"[OpenAI Error] {repr(e)}")
@@ -419,6 +472,8 @@ if __name__ == "__main__":
     test_file_list = []
     st_idx = args.test_start_idx
     ed_idx = args.test_end_idx
+    if args.test_miniwob:
+        assert (st_idx >= 812 and ed_idx <= 941), ("MiniWoB config files are indexed from 812 to 941 inclusive")
     for i in range(st_idx, ed_idx):
         test_file_list.append(f"config_files/{i}.json")
     if "debug" not in args.result_dir:
