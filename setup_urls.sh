@@ -1,0 +1,8 @@
+export BASE="http://ec2-18-221-153-105.us-east-2.compute.amazonaws.com"
+export SHOPPING="$BASE:7770"
+export SHOPPING_ADMIN="$BASE:7780/admin"
+export REDDIT="$BASE:9999"
+export GITLAB="$BASE:8023"
+export MAP="$BASE:3000"
+export WIKIPEDIA="$BASE:8888/wikipedia_en_all_maxi_2022-05/A/User:The_other_Kiwix_guy/Landing"
+export HOMEPAGE="$BASE:4399"

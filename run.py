@@ -9,13 +9,15 @@ import subprocess
 import tempfile
 import time
 from pathlib import Path
-
+import pickle
 import openai
+import datetime
 
 from agent import (
     Agent,
     PromptAgent,
     TeacherForcingAgent,
+    chris_agent,
     construct_agent,
 )
 from agent.prompts import *
@@ -226,9 +228,9 @@ def test(
   )
 
   for config_file in config_file_list:
-    try:
-      render_helper = RenderHelper(config_file, args.result_dir,
+    render_helper = RenderHelper(config_file, args.result_dir,
                                    args.action_set_tag)
+    try:
 
       # get intent
       with open(config_file) as f:
@@ -266,6 +268,7 @@ def test(
       trajectory: Trajectory = []
       obs, info = env.reset(options={"config_file": config_file})
       state_info: StateInfo = {"observation": obs, "info": info}
+      # State is produced here. 
       trajectory.append(state_info)
 
       meta_data = {"action_history": ["None"]}
@@ -301,6 +304,7 @@ def test(
         obs, _, terminated, _, info = env.step(action)
         state_info = {"observation": obs, "info": info}
         trajectory.append(state_info)
+        
 
         if terminated:
           # add a action place holder
@@ -316,6 +320,13 @@ def test(
       )
 
       scores.append(score)
+
+      path = Path(args.result_dir) / f'{task_id}.pkl'
+      with open(path, 'rb') as f:
+        pickle_trajectory = pickle.load(f)
+      with open(path, 'wb') as f:
+        pickle.dump({'trajectory': pickle_trajectory, 'score': score}, f)
+      
 
       if score == 1:
         logger.info(f"[Result] (PASS) {config_file}")
@@ -403,12 +414,12 @@ if __name__ == "__main__":
     logger.info("No task left to run")
   else:
     print(f"Total {len(test_file_list)} tasks left")
-    args.render = False
+    args.render = True
     args.render_screenshot = True
     args.save_trace_enabled = True
 
     args.current_viewport_only = True
     dump_config(args)
-
-    agent = construct_agent(args)
+    agent = chris_agent.ChrisAgent(args.result_dir)
+    # agent = construct_agent(args)
     test(args, agent, test_file_list)

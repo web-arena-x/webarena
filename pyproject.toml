@@ -8,7 +8,6 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.10"
 gymnasium = "^0.29.1"
-playwright = "1.32.1"
 pillow = "^10.3.0"
 evaluate = "^0.4.1"
 openai = "0.27.0"
@@ -19,7 +18,9 @@ beartype = "0.12.0"
 flask = "^3.0.2"
 nltk = "^3.8.1"
 text-generation = "^0.7.0"
-transformers = "4.33.2"
+playwright = "^1.43.0"
+transformers = "^4.39.3"
+mistralai = "^0.1.8"
 
 [tool.poetry.group.dev.dependencies]
 black = "^24.3.0"

@@ -10,7 +10,6 @@ from llms import (
 
 APIInput = str | list[Any] | dict[str, Any]
 
-
 def call_llm(
     lm_config: lm_config.LMConfig,
     prompt: APIInput,

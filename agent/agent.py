@@ -16,7 +16,7 @@ from browser_env.actions import (
 )
 from browser_env.utils import Observation, StateInfo
 from llms import (
-    call_llm,
+    call_llm, 
     generate_from_huggingface_completion,
     generate_from_openai_chat_completion,
     generate_from_openai_completion,
@@ -118,6 +118,8 @@ class PromptAgent(Agent):
     lm_config = self.lm_config
     n = 0
     while True:
+      # intercept here
+      # prompt is either a string or a list of dictionaries.
       response = call_llm(lm_config, prompt)
       force_prefix = self.prompt_constructor.instruction["meta_data"].get(
           "force_prefix", "")
