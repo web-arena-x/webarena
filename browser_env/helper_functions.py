@@ -154,7 +154,7 @@ class RenderHelper(object):
         if render_screenshot:
             # image observation
             img_obs = observation["image"]
-            image = Image.fromarray(img_obs)
+            image = Image.fromarray(img_obs) # type:ignore
             byte_io = io.BytesIO()
             image.save(byte_io, format="PNG")
             byte_io.seek(0)
