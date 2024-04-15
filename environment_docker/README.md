@@ -57,7 +57,8 @@ docker exec gitlab sed -i "s|^external_url.*|external_url 'http://<your-server-h
 docker exec gitlab gitlab-ctl reconfigure
 ```
 
-If you are unable to use AWS AMI, read below to set up on your own machine.
+You should be able to access your environment websites now, and stop reading.
+However, if you are unable to use AWS AMI, read below to set up on your own machine.
 
 ## Shopping Website (OneStopShop)
 
