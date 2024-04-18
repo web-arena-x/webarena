@@ -29647,7 +29647,7 @@
   },
   {
     "sites": [],
-    "task_id": 1000,
+    "task_id": 812,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/click-tab.html",
@@ -29670,7 +29670,7 @@
   },
   {
     "sites": [],
-    "task_id": 1001,
+    "task_id": 813,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/chase-circle.html",
@@ -29693,7 +29693,7 @@
   },
   {
     "sites": [],
-    "task_id": 1002,
+    "task_id": 814,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/find-word.html",
@@ -29716,7 +29716,7 @@
   },
   {
     "sites": [],
-    "task_id": 1003,
+    "task_id": 815,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/grid-coordinate.html",
@@ -29739,7 +29739,7 @@
   },
   {
     "sites": [],
-    "task_id": 1004,
+    "task_id": 816,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/click-shades.html",
@@ -29762,7 +29762,7 @@
   },
   {
     "sites": [],
-    "task_id": 1005,
+    "task_id": 817,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/generate-number.html",
@@ -29785,7 +29785,7 @@
   },
   {
     "sites": [],
-    "task_id": 1006,
+    "task_id": 818,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/scroll-text.html",
@@ -29808,7 +29808,7 @@
   },
   {
     "sites": [],
-    "task_id": 1007,
+    "task_id": 819,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/use-autocomplete-nodelay.html",
@@ -29831,7 +29831,7 @@
   },
   {
     "sites": [],
-    "task_id": 1008,
+    "task_id": 820,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/click-test-2.html",
@@ -29854,7 +29854,7 @@
   },
   {
     "sites": [],
-    "task_id": 1009,
+    "task_id": 821,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/scroll-text-2.html",
@@ -29877,7 +29877,7 @@
   },
   {
     "sites": [],
-    "task_id": 1010,
+    "task_id": 822,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/choose-date-nodelay.html",
@@ -29900,7 +29900,7 @@
   },
   {
     "sites": [],
-    "task_id": 1011,
+    "task_id": 823,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/click-option.html",
@@ -29923,7 +29923,7 @@
   },
   {
     "sites": [],
-    "task_id": 1012,
+    "task_id": 824,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/click-button-sequence.html",
@@ -29946,7 +29946,7 @@
   },
   {
     "sites": [],
-    "task_id": 1013,
+    "task_id": 825,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/text-transform.html",
@@ -29969,7 +29969,7 @@
   },
   {
     "sites": [],
-    "task_id": 1014,
+    "task_id": 826,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/login-user-popup.html",
@@ -29992,7 +29992,7 @@
   },
   {
     "sites": [],
-    "task_id": 1015,
+    "task_id": 827,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/click-tab-2-medium.html",
@@ -30015,7 +30015,7 @@
   },
   {
     "sites": [],
-    "task_id": 1016,
+    "task_id": 828,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/multi-layouts.html",
@@ -30038,7 +30038,7 @@
   },
   {
     "sites": [],
-    "task_id": 1017,
+    "task_id": 829,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/hover-shape.html",
@@ -30061,7 +30061,7 @@
   },
   {
     "sites": [],
-    "task_id": 1018,
+    "task_id": 830,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/drag-box.html",
@@ -30084,7 +30084,7 @@
   },
   {
     "sites": [],
-    "task_id": 1019,
+    "task_id": 831,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/simon-says.html",
@@ -30107,7 +30107,7 @@
   },
   {
     "sites": [],
-    "task_id": 1020,
+    "task_id": 832,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/drag-items.html",
@@ -30130,7 +30130,7 @@
   },
   {
     "sites": [],
-    "task_id": 1021,
+    "task_id": 833,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/enter-time.html",
@@ -30153,7 +30153,7 @@
   },
   {
     "sites": [],
-    "task_id": 1022,
+    "task_id": 834,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/highlight-text.html",
@@ -30176,7 +30176,7 @@
   },
   {
     "sites": [],
-    "task_id": 1023,
+    "task_id": 835,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/choose-date-easy.html",
@@ -30199,7 +30199,7 @@
   },
   {
     "sites": [],
-    "task_id": 1024,
+    "task_id": 836,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/drag-single-shape.html",
@@ -30222,7 +30222,7 @@
   },
   {
     "sites": [],
-    "task_id": 1025,
+    "task_id": 837,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/click-tab-2-hard.html",
@@ -30245,7 +30245,7 @@
   },
   {
     "sites": [],
-    "task_id": 1026,
+    "task_id": 838,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/form-sequence-3.html",
@@ -30268,7 +30268,7 @@
   },
   {
     "sites": [],
-    "task_id": 1027,
+    "task_id": 839,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/choose-date.html",
@@ -30291,7 +30291,7 @@
   },
   {
     "sites": [],
-    "task_id": 1028,
+    "task_id": 840,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/click-collapsible.html",
@@ -30314,7 +30314,7 @@
   },
   {
     "sites": [],
-    "task_id": 1029,
+    "task_id": 841,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/identify-shape.html",
@@ -30337,7 +30337,7 @@
   },
   {
     "sites": [],
-    "task_id": 1030,
+    "task_id": 842,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/simple-algebra.html",
@@ -30360,7 +30360,7 @@
   },
   {
     "sites": [],
-    "task_id": 1031,
+    "task_id": 843,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/focus-text-2.html",
@@ -30383,7 +30383,7 @@
   },
   {
     "sites": [],
-    "task_id": 1032,
+    "task_id": 844,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/sign-agreement.html",
@@ -30406,7 +30406,7 @@
   },
   {
     "sites": [],
-    "task_id": 1033,
+    "task_id": 845,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/search-engine.html",
@@ -30429,7 +30429,7 @@
   },
   {
     "sites": [],
-    "task_id": 1034,
+    "task_id": 846,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/find-greatest.html",
@@ -30452,7 +30452,7 @@
   },
   {
     "sites": [],
-    "task_id": 1035,
+    "task_id": 847,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/social-media-some.html",
@@ -30475,7 +30475,7 @@
   },
   {
     "sites": [],
-    "task_id": 1036,
+    "task_id": 848,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/daily-calendar.html",
@@ -30498,7 +30498,7 @@
   },
   {
     "sites": [],
-    "task_id": 1037,
+    "task_id": 849,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/bisect-angle.html",
@@ -30521,7 +30521,7 @@
   },
   {
     "sites": [],
-    "task_id": 1038,
+    "task_id": 850,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/form-sequence-2.html",
@@ -30544,7 +30544,7 @@
   },
   {
     "sites": [],
-    "task_id": 1039,
+    "task_id": 851,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/drag-items-grid.html",
@@ -30567,7 +30567,7 @@
   },
   {
     "sites": [],
-    "task_id": 1040,
+    "task_id": 852,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/tic-tac-toe.html",
@@ -30590,7 +30590,7 @@
   },
   {
     "sites": [],
-    "task_id": 1041,
+    "task_id": 853,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/click-dialog-2.html",
@@ -30613,7 +30613,7 @@
   },
   {
     "sites": [],
-    "task_id": 1042,
+    "task_id": 854,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/circle-center.html",
@@ -30636,7 +30636,7 @@
   },
   {
     "sites": [],
-    "task_id": 1043,
+    "task_id": 855,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/click-widget.html",
@@ -30659,7 +30659,7 @@
   },
   {
     "sites": [],
-    "task_id": 1044,
+    "task_id": 856,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/book-flight-nodelay.html",
@@ -30682,7 +30682,7 @@
   },
   {
     "sites": [],
-    "task_id": 1045,
+    "task_id": 857,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/button-delay.html",
@@ -30705,7 +30705,7 @@
   },
   {
     "sites": [],
-    "task_id": 1046,
+    "task_id": 858,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/email-inbox.html",
@@ -30728,7 +30728,7 @@
   },
   {
     "sites": [],
-    "task_id": 1047,
+    "task_id": 859,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/social-media.html",
@@ -30751,7 +30751,7 @@
   },
   {
     "sites": [],
-    "task_id": 1048,
+    "task_id": 860,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/click-test.html",
@@ -30774,7 +30774,7 @@
   },
   {
     "sites": [],
-    "task_id": 1049,
+    "task_id": 861,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/click-button.html",
@@ -30797,7 +30797,7 @@
   },
   {
     "sites": [],
-    "task_id": 1050,
+    "task_id": 862,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/draw-circle.html",
@@ -30820,7 +30820,7 @@
   },
   {
     "sites": [],
-    "task_id": 1051,
+    "task_id": 863,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/read-table-2.html",
@@ -30843,7 +30843,7 @@
   },
   {
     "sites": [],
-    "task_id": 1052,
+    "task_id": 864,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/click-collapsible-2.html",
@@ -30866,7 +30866,7 @@
   },
   {
     "sites": [],
-    "task_id": 1053,
+    "task_id": 865,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/login-user.html",
@@ -30889,7 +30889,7 @@
   },
   {
     "sites": [],
-    "task_id": 1054,
+    "task_id": 866,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/choose-list.html",
@@ -30912,7 +30912,7 @@
   },
   {
     "sites": [],
-    "task_id": 1055,
+    "task_id": 867,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/navigate-tree.html",
@@ -30935,7 +30935,7 @@
   },
   {
     "sites": [],
-    "task_id": 1056,
+    "task_id": 868,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/click-pie-nodelay.html",
@@ -30958,7 +30958,7 @@
   },
   {
     "sites": [],
-    "task_id": 1057,
+    "task_id": 869,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/email-inbox-important.html",
@@ -30981,7 +30981,7 @@
   },
   {
     "sites": [],
-    "task_id": 1058,
+    "task_id": 870,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/click-tab-2.html",
@@ -31004,7 +31004,7 @@
   },
   {
     "sites": [],
-    "task_id": 1059,
+    "task_id": 871,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/click-menu-2.html",
@@ -31027,7 +31027,7 @@
   },
   {
     "sites": [],
-    "task_id": 1060,
+    "task_id": 872,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/click-tab-2-easy.html",
@@ -31050,7 +31050,7 @@
   },
   {
     "sites": [],
-    "task_id": 1061,
+    "task_id": 873,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/copy-paste.html",
@@ -31073,7 +31073,7 @@
   },
   {
     "sites": [],
-    "task_id": 1062,
+    "task_id": 874,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/enter-text-2.html",
@@ -31096,7 +31096,7 @@
   },
   {
     "sites": [],
-    "task_id": 1063,
+    "task_id": 875,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/click-color.html",
@@ -31119,7 +31119,7 @@
   },
   {
     "sites": [],
-    "task_id": 1064,
+    "task_id": 876,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/click-pie.html",
@@ -31142,7 +31142,7 @@
   },
   {
     "sites": [],
-    "task_id": 1065,
+    "task_id": 877,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/use-colorwheel.html",
@@ -31165,7 +31165,7 @@
   },
   {
     "sites": [],
-    "task_id": 1066,
+    "task_id": 878,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/email-inbox-forward.html",
@@ -31188,7 +31188,7 @@
   },
   {
     "sites": [],
-    "task_id": 1067,
+    "task_id": 879,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/text-editor.html",
@@ -31211,7 +31211,7 @@
   },
   {
     "sites": [],
-    "task_id": 1068,
+    "task_id": 880,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/enter-date.html",
@@ -31234,7 +31234,7 @@
   },
   {
     "sites": [],
-    "task_id": 1069,
+    "task_id": 881,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/phone-book.html",
@@ -31257,7 +31257,7 @@
   },
   {
     "sites": [],
-    "task_id": 1070,
+    "task_id": 882,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/click-checkboxes-large.html",
@@ -31280,7 +31280,7 @@
   },
   {
     "sites": [],
-    "task_id": 1071,
+    "task_id": 883,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/use-slider.html",
@@ -31303,7 +31303,7 @@
   },
   {
     "sites": [],
-    "task_id": 1072,
+    "task_id": 884,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/number-checkboxes.html",
@@ -31326,7 +31326,7 @@
   },
   {
     "sites": [],
-    "task_id": 1073,
+    "task_id": 885,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/enter-text-dynamic.html",
@@ -31349,7 +31349,7 @@
   },
   {
     "sites": [],
-    "task_id": 1074,
+    "task_id": 886,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/email-inbox-nl-turk.html",
@@ -31372,7 +31372,7 @@
   },
   {
     "sites": [],
-    "task_id": 1075,
+    "task_id": 887,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/use-spinner.html",
@@ -31395,7 +31395,7 @@
   },
   {
     "sites": [],
-    "task_id": 1076,
+    "task_id": 888,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/highlight-text-2.html",
@@ -31418,7 +31418,7 @@
   },
   {
     "sites": [],
-    "task_id": 1077,
+    "task_id": 889,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/click-shape.html",
@@ -31441,7 +31441,7 @@
   },
   {
     "sites": [],
-    "task_id": 1078,
+    "task_id": 890,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/form-sequence.html",
@@ -31464,7 +31464,7 @@
   },
   {
     "sites": [],
-    "task_id": 1079,
+    "task_id": 891,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/click-checkboxes-soft.html",
@@ -31487,7 +31487,7 @@
   },
   {
     "sites": [],
-    "task_id": 1080,
+    "task_id": 892,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/count-sides.html",
@@ -31510,7 +31510,7 @@
   },
   {
     "sites": [],
-    "task_id": 1081,
+    "task_id": 893,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/use-autocomplete.html",
@@ -31533,7 +31533,7 @@
   },
   {
     "sites": [],
-    "task_id": 1082,
+    "task_id": 894,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/draw-line.html",
@@ -31556,7 +31556,7 @@
   },
   {
     "sites": [],
-    "task_id": 1083,
+    "task_id": 895,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/email-inbox-forward-nl.html",
@@ -31579,7 +31579,7 @@
   },
   {
     "sites": [],
-    "task_id": 1084,
+    "task_id": 896,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/stock-market.html",
@@ -31602,7 +31602,7 @@
   },
   {
     "sites": [],
-    "task_id": 1085,
+    "task_id": 897,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/enter-password.html",
@@ -31625,7 +31625,7 @@
   },
   {
     "sites": [],
-    "task_id": 1086,
+    "task_id": 898,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/multi-orderings.html",
@@ -31648,7 +31648,7 @@
   },
   {
     "sites": [],
-    "task_id": 1087,
+    "task_id": 899,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/email-inbox-noscroll.html",
@@ -31671,7 +31671,7 @@
   },
   {
     "sites": [],
-    "task_id": 1088,
+    "task_id": 900,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/drag-shapes.html",
@@ -31694,7 +31694,7 @@
   },
   {
     "sites": [],
-    "task_id": 1089,
+    "task_id": 901,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/email-inbox-delete.html",
@@ -31717,7 +31717,7 @@
   },
   {
     "sites": [],
-    "task_id": 1090,
+    "task_id": 902,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/click-test-transfer.html",
@@ -31740,7 +31740,7 @@
   },
   {
     "sites": [],
-    "task_id": 1091,
+    "task_id": 903,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/social-media-all.html",
@@ -31763,7 +31763,7 @@
   },
   {
     "sites": [],
-    "task_id": 1092,
+    "task_id": 904,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/simple-arithmetic.html",
@@ -31786,7 +31786,7 @@
   },
   {
     "sites": [],
-    "task_id": 1093,
+    "task_id": 905,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/guess-number.html",
@@ -31809,7 +31809,7 @@
   },
   {
     "sites": [],
-    "task_id": 1094,
+    "task_id": 906,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/drag-circle.html",
@@ -31832,7 +31832,7 @@
   },
   {
     "sites": [],
-    "task_id": 1095,
+    "task_id": 907,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/click-checkboxes-transfer.html",
@@ -31855,7 +31855,7 @@
   },
   {
     "sites": [],
-    "task_id": 1096,
+    "task_id": 908,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/visual-addition.html",
@@ -31878,7 +31878,7 @@
   },
   {
     "sites": [],
-    "task_id": 1097,
+    "task_id": 909,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/terminal.html",
@@ -31901,7 +31901,7 @@
   },
   {
     "sites": [],
-    "task_id": 1098,
+    "task_id": 910,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/click-link.html",
@@ -31924,7 +31924,7 @@
   },
   {
     "sites": [],
-    "task_id": 1099,
+    "task_id": 911,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/resize-textarea.html",
@@ -31947,7 +31947,7 @@
   },
   {
     "sites": [],
-    "task_id": 1100,
+    "task_id": 912,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/click-collapsible-nodelay.html",
@@ -31970,7 +31970,7 @@
   },
   {
     "sites": [],
-    "task_id": 1101,
+    "task_id": 913,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/drag-sort-numbers.html",
@@ -31993,7 +31993,7 @@
   },
   {
     "sites": [],
-    "task_id": 1102,
+    "task_id": 914,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/moving-items.html",
@@ -32016,7 +32016,7 @@
   },
   {
     "sites": [],
-    "task_id": 1103,
+    "task_id": 915,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/order-food.html",
@@ -32039,7 +32039,7 @@
   },
   {
     "sites": [],
-    "task_id": 1104,
+    "task_id": 916,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/drag-shapes-2.html",
@@ -32062,7 +32062,7 @@
   },
   {
     "sites": [],
-    "task_id": 1105,
+    "task_id": 917,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/buy-ticket.html",
@@ -32085,7 +32085,7 @@
   },
   {
     "sites": [],
-    "task_id": 1106,
+    "task_id": 918,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/email-inbox-forward-nl-turk.html",
@@ -32108,7 +32108,7 @@
   },
   {
     "sites": [],
-    "task_id": 1107,
+    "task_id": 919,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/odd-or-even.html",
@@ -32131,7 +32131,7 @@
   },
   {
     "sites": [],
-    "task_id": 1108,
+    "task_id": 920,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/count-shape.html",
@@ -32154,7 +32154,7 @@
   },
   {
     "sites": [],
-    "task_id": 1109,
+    "task_id": 921,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/unicode-test.html",
@@ -32177,7 +32177,7 @@
   },
   {
     "sites": [],
-    "task_id": 1110,
+    "task_id": 922,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/click-menu.html",
@@ -32200,7 +32200,7 @@
   },
   {
     "sites": [],
-    "task_id": 1111,
+    "task_id": 923,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/read-table.html",
@@ -32223,7 +32223,7 @@
   },
   {
     "sites": [],
-    "task_id": 1112,
+    "task_id": 924,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/focus-text.html",
@@ -32246,7 +32246,7 @@
   },
   {
     "sites": [],
-    "task_id": 1113,
+    "task_id": 925,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/use-slider-2.html",
@@ -32269,7 +32269,7 @@
   },
   {
     "sites": [],
-    "task_id": 1114,
+    "task_id": 926,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/use-colorwheel-2.html",
@@ -32292,7 +32292,7 @@
   },
   {
     "sites": [],
-    "task_id": 1115,
+    "task_id": 927,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/email-inbox-reply.html",
@@ -32315,7 +32315,7 @@
   },
   {
     "sites": [],
-    "task_id": 1116,
+    "task_id": 928,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/click-collapsible-2-nodelay.html",
@@ -32338,7 +32338,7 @@
   },
   {
     "sites": [],
-    "task_id": 1117,
+    "task_id": 929,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/drag-cube.html",
@@ -32361,7 +32361,7 @@
   },
   {
     "sites": [],
-    "task_id": 1118,
+    "task_id": 930,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/hot-cold.html",
@@ -32384,7 +32384,7 @@
   },
   {
     "sites": [],
-    "task_id": 1119,
+    "task_id": 931,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/click-dialog.html",
@@ -32407,7 +32407,7 @@
   },
   {
     "sites": [],
-    "task_id": 1120,
+    "task_id": 932,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/click-checkboxes.html",
@@ -32430,7 +32430,7 @@
   },
   {
     "sites": [],
-    "task_id": 1121,
+    "task_id": 933,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/email-inbox-star-reply.html",
@@ -32453,7 +32453,7 @@
   },
   {
     "sites": [],
-    "task_id": 1122,
+    "task_id": 934,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/click-scroll-list.html",
@@ -32476,7 +32476,7 @@
   },
   {
     "sites": [],
-    "task_id": 1123,
+    "task_id": 935,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/ascending-numbers.html",
@@ -32499,7 +32499,7 @@
   },
   {
     "sites": [],
-    "task_id": 1124,
+    "task_id": 936,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/choose-date-medium.html",
@@ -32522,7 +32522,7 @@
   },
   {
     "sites": [],
-    "task_id": 1125,
+    "task_id": 937,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/copy-paste-2.html",
@@ -32545,7 +32545,7 @@
   },
   {
     "sites": [],
-    "task_id": 1126,
+    "task_id": 938,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/find-midpoint.html",
@@ -32568,7 +32568,7 @@
   },
   {
     "sites": [],
-    "task_id": 1127,
+    "task_id": 939,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/right-angle.html",
@@ -32591,7 +32591,7 @@
   },
   {
     "sites": [],
-    "task_id": 1128,
+    "task_id": 940,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/book-flight.html",
@@ -32614,7 +32614,7 @@
   },
   {
     "sites": [],
-    "task_id": 1129,
+    "task_id": 941,
     "require_login": false,
     "storage_state": null,
     "start_url": "__MINIWOB_HOST__/miniwob_customized/enter-text.html",

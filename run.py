@@ -145,6 +145,12 @@ def config() -> argparse.Namespace:
         type=bool,
         default=False,
     )
+    parser.add_argument(
+        "--miniwob_success_treshold",
+        help="reward treshold above(inclusive) which counts as pass",
+        type=float,
+        default=1.00,
+    )
 
     # example config
     parser.add_argument("--test_start_idx", type=int, default=0)
@@ -398,7 +404,19 @@ def test(
                     env.save_trace(
                         Path(args.result_dir) / "traces" / f"{task_id}.zip"
                     )
-            
+            else:
+                score = 0.0
+                if 'Get a numeric reward ' in stop_info:
+                    score = float(stop_info.lstrip('Get a numeric reward ').rstrip(', test ends'))
+                    scores.append(score)
+                if score >= args.miniwob_success_treshold:
+                    logger.info(f"[Result] (PASS) {config_file}")
+                else:
+                    logger.info(f"[Result] (FAIL) {config_file}")
+                if args.save_trace_enabled:
+                    env.save_trace(
+                        Path(args.result_dir) / "traces" / f"{task_id}.zip"
+                    )
 
         except openai.error.OpenAIError as e:
             logger.info(f"[OpenAI Error] {repr(e)}")
