@@ -16,7 +16,8 @@
 
 <p align="center">
 <a href="https://webarena.dev/">Website</a> •
-<a href="https://arxiv.org/abs/2307.13854">Paper</a>
+<a href="https://arxiv.org/abs/2307.13854">Paper</a> •
+<a href="https://docs.google.com/spreadsheets/d/1M801lEpBbKSNwP-vDBkC_pF7LdyGU1f_ufZb_NWNBZQ/edit?usp=sharing">Leaderboard</a>
 </p>
 
 ![Overview](media/overview.png)
@@ -110,7 +111,7 @@ python run.py \
 This script will run the first example with GPT-3.5 reasoning agent. The trajectory will be saved in `<your_result_dir>/0.html`
 
 ## Develop Your Prompt-based Agent
-1. Define the prompts. We provide two baseline agents whose correrponding prompts are listed [here](./agent/prompts/raw). Each prompt is a dictionary with the following keys:
+1. Define the prompts. We provide two baseline agents whose corresponding prompts are listed [here](./agent/prompts/raw). Each prompt is a dictionary with the following keys:
 ```python
 prompt = {
   "intro": <The overall guideline which includes the task description, available action, hint and others>,
