@@ -3,6 +3,7 @@ This REAME file host the instructions for our Docker images and quick start guid
 
 # Table of Content
 - [Pre-installed Amazon Machine Image](#pre-installed-amazon-machine-image)
+- [Environment Reset](#environment-reset)
 - [Shopping Website (OneStopShop)](#shopping-website--onestopshop-)
 - [E-commerce Content Management System (CMS)](#e-commerce-content-management-system--cms-)
 - [Social Forum Website (Reddit)](#social-forum-website--reddit-)
@@ -60,6 +61,20 @@ docker exec gitlab gitlab-ctl reconfigure
 
 You should be able to access your environment websites now, and stop reading.
 However, if you are unable to use AWS AMI, read below to set up on your own machine.
+
+## Environment Reset
+After evaluating the 812 examples, reset the environment to the initial state
+```bash
+# stop and remove the images
+docker stop shopping_admin forum gitlab shopping
+docker remove shopping_admin forum gitlab shopping
+# start the images
+docker start gitlab
+docker start shopping
+docker start shopping_admin
+docker start forum
+<repeat the commands in step 5 above>
+```
 
 ## Shopping Website (OneStopShop)
 

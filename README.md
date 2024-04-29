@@ -70,6 +70,9 @@ action = create_id_based_action(f"click [id]")
 obs, _, terminated, _, info = env.step(action)
 ```
 ## End-to-end Evaluation
+> [!IMPORTANT]
+> To ensure the correct evaluation, please setup your own WebArena websites following step 1 and step 2. The demo sites are only for browsing purpose to help you better understand the content. After evaluating the 812 examples, reset the environment to the initial state following the instructions [here](./environment_docker/README.md#environment-reset).
+
 1. Setup the standalone environment.
 Please check out [this page](environment_docker/README.md) for details.
 
@@ -109,6 +112,7 @@ python run.py \
   --result_dir <your_result_dir>
 ```
 This script will run the first example with GPT-3.5 reasoning agent. The trajectory will be saved in `<your_result_dir>/0.html`
+
 
 ## Develop Your Prompt-based Agent
 1. Define the prompts. We provide two baseline agents whose corresponding prompts are listed [here](./agent/prompts/raw). Each prompt is a dictionary with the following keys:
