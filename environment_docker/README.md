@@ -69,10 +69,10 @@ After evaluating the 812 examples, reset the environment to the initial state
 docker stop shopping_admin forum gitlab shopping
 docker remove shopping_admin forum gitlab shopping
 # start the images
-docker start gitlab
-docker start shopping
-docker start shopping_admin
-docker start forum
+docker run --name shopping -p 7770:80 -d shopping_final_0712
+docker run --name shopping_admin -p 7780:80 -d shopping_admin_final_0719
+docker run --name gitlab -d -p 8023:8023 gitlab-populated-final-port8023 /opt/gitlab/embedded/bin/runsvdir-start
+docker run --name forum -p 9999:80 -d postmill-populated-exposed-withimg
 <repeat the commands in step 5 above>
 ```
 
