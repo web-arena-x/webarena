@@ -185,7 +185,49 @@ flask run --host=0.0.0.0 --port=4399
 The homepage will be available at `http://<your-server-hostname>:4399`.
 
 ### Map
-Please refer to the AMI setup for the map.
+Please refer to the AMI setup for the map frontend setup. For most use cases this is enough.
+
+If you wish to also set up all map backends, namely tile server, geocoding server and routing server, read along and please be aware of very large downloads and disk space requirements.
+
+#### Tile Sever
+
+First download http://metis.lti.cs.cmu.edu/map_server_data/osm_tile_server.tar and extract the docker volumes to your docker volume directory (default to `/var/lib/docker/volumes/`). Make sure that you have `osm-data` volume copied.
+
+Then run the tile server:
+
+```bash
+docker run --volume=osm-data:/data/database/ --volume=osm-tiles:/data/tiles/ -p 8080:80 --detach=true overv/openstreetmap-tile-server run
+```
+
+Now you can point all occurrences to `ogma.lti.cs.cmu.edu:8080` in the frontend server directory to your own tile server.
+
+#### Geocoding Server
+First download http://metis.lti.cs.cmu.edu/map_server_data/nominatim_volumes.tar and extract the docker volumes to your docker volume directory (default to `/var/lib/docker/volumes/`). Make sure that you have `nominatim-data` and `nominatim-flatnode` volume copied.
+
+Also download http://metis.lti.cs.cmu.edu/map_server_data/osm_dump.tar and extract the OSM dump to a host directory `/path/to/osm_dump`, which will be used in the following command.
+
+
+Then run the geocoding server:
+```bash
+docker run --env=IMPORT_STYLE=extratags --env=PBF_PATH=/nominatim/data/us-northeast-latest.osm.pbf --env=IMPORT_WIKIPEDIA=/nominatim/data/wikimedia-importance.sql.gz --volume=/path/to/osm_dump:/nominatim/data --volume=nominatim-data:/var/lib/postgresql/14/main --volume=nominatim-flatnode:/nominatim/flatnode -p 8085:8080 mediagis/nominatim:4.2 /app/start.sh
+```
+
+Now you can point all occurrences to `metis.lti.cs.cmu.edu:8085` in the frontend server directory to your own geocoding server.
+
+#### Routing Server
+
+First download http://metis.lti.cs.cmu.edu/map_server_data/osrm_routing.tar and extract all the directories to your local path.
+Make sure to have `/routing/path/<foot, car, bike>`, which will be used in 3 different routing endpoints.
+
+Then run the 3 routing servers:
+```bash
+docker run --volume=/routing/path/foot/:/data -p 5002:5000 ghcr.io/project-osrm/osrm-backend osrm-routed --algorithm mld /data/us-northeast-latest.osrm
+docker run --volume=/routing/path/bike/:/data -p 5001:5000 ghcr.io/project-osrm/osrm-backend osrm-routed --algorithm mld /data/us-northeast-latest.osrm
+docker run --volume=/routing/path/car/:/data -p 5002:5000 ghcr.io/project-osrm/osrm-backend osrm-routed --algorithm mld /data/us-northeast-latest.osrm
+```
+
+Now you can point all occurrences to `metis.lti.cs.cmu.edu:5000,5001 and 5002` to your respective 3 routing endpoints.
+
 
 ### Documentation sites
 We are still working on dockerizing the documentation sites. As they are read-only sites and they usually don't change rapidly. It is safe to use their live sites for test purpose right now.
