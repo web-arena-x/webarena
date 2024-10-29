@@ -45,6 +45,7 @@ docker compose start
 
 5. Run
 ```bash
+docker exec gitlab update-permissions
 docker exec shopping /var/www/magento2/bin/magento setup:store-config:set --base-url="http://<your-server-hostname>:7770" # no trailing /
 docker exec shopping mysql -u magentouser -pMyPassword magentodb -e  'UPDATE core_config_data SET value="http://<your-server-hostname>:7770/" WHERE path = "web/secure/base_url";'
 # remove the requirement to reset password
