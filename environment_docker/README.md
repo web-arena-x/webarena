@@ -199,7 +199,11 @@ Then run the tile server:
 docker run --volume=osm-data:/data/database/ --volume=osm-tiles:/data/tiles/ -p 8080:80 --detach=true overv/openstreetmap-tile-server run
 ```
 
-Now you can point all occurrences to `ogma.lti.cs.cmu.edu:8080` in the frontend server directory to your own tile server.
+Now, inside the file `webarena/openstreetmap-website/vendor/assets/leaflet/leaflet.osm.js`, change `http://ogma.lti.cs.cmu.edu:8080/tile/{z}/{x}/{y}.png` to `http://<public-url-to-your-tile-server>:8080/tile/{z}/{x}/{y}.png` 
+
+> [!NOTE]
+> By default, the `url` in `TileLayer` and `Mapnik` is set to `"http://ogma.lti.cs.cmu.edu:8080/tile/{z}/{x}/{y}.png"`. You replace it with `https://tile.openstreetmap.org/{z}/{x}/{y}.png` (the official link)  as a way to test in case you run into issues during the setup.
+
 
 #### Geocoding Server
 First download http://metis.lti.cs.cmu.edu/map_server_data/nominatim_volumes.tar and extract the docker volumes to your docker volume directory (default to `/var/lib/docker/volumes/`). Make sure that you have `nominatim-data` and `nominatim-flatnode` volume copied.
@@ -212,22 +216,53 @@ Then run the geocoding server:
 docker run --env=IMPORT_STYLE=extratags --env=PBF_PATH=/nominatim/data/us-northeast-latest.osm.pbf --env=IMPORT_WIKIPEDIA=/nominatim/data/wikimedia-importance.sql.gz --volume=/path/to/osm_dump:/nominatim/data --volume=nominatim-data:/var/lib/postgresql/14/main --volume=nominatim-flatnode:/nominatim/flatnode -p 8085:8080 mediagis/nominatim:4.2 /app/start.sh
 ```
 
-Now you can point all occurrences to `metis.lti.cs.cmu.edu:8085` in the frontend server directory to your own geocoding server.
+Now, inside the config file `webarena/openstreetmap-website/config/settings.yml`, update the value of `fossgis_osrm_url` from `"http://metis.lti.cs.cmu.edu:8085/"` to `"http://<your-geocoding-server-domain>:8085/"`
+
+
+> [!NOTE]
+> By default, `nominatim_url` is set to `"http://metis.lti.cs.cmu.edu:"`. However, the [official openstreetmap-website default config file](https://github.com/openstreetmap/openstreetmap-website/blob/edda4af515cfb0bd4de1ed0650b47e124bfad6ed/config/settings.yml#L111) is set to `"https://nominatim.openstreetmap.org/"`. You can use that as a way to test in case you run into issues during the setup.
+
 
 #### Routing Server
 
 First download http://metis.lti.cs.cmu.edu/map_server_data/osrm_routing.tar and extract all the directories to your local path.
-Make sure to have `/routing/path/<foot, car, bike>`, which will be used in 3 different routing endpoints.
+Make sure to have `/your/routing/path/<foot, car, bike>`, which will be used in 3 different routing endpoints.
 
 Then run the 3 routing servers:
 ```bash
-docker run --volume=/routing/path/foot/:/data -p 5002:5000 ghcr.io/project-osrm/osrm-backend osrm-routed --algorithm mld /data/us-northeast-latest.osrm
-docker run --volume=/routing/path/bike/:/data -p 5001:5000 ghcr.io/project-osrm/osrm-backend osrm-routed --algorithm mld /data/us-northeast-latest.osrm
-docker run --volume=/routing/path/car/:/data -p 5002:5000 ghcr.io/project-osrm/osrm-backend osrm-routed --algorithm mld /data/us-northeast-latest.osrm
+docker run --volume=/your/routing/path/foot/:/data -p 5000:5000 ghcr.io/project-osrm/osrm-backend osrm-routed --algorithm mld /data/us-northeast-latest.osrm
+docker run --volume=/your/routing/path/bike/:/data -p 5001:5000 ghcr.io/project-osrm/osrm-backend osrm-routed --algorithm mld /data/us-northeast-latest.osrm
+docker run --volume=/your/routing/path/car/:/data -p 5002:5000 ghcr.io/project-osrm/osrm-backend osrm-routed --algorithm mld /data/us-northeast-latest.osrm
 ```
 
-Now you can point all occurrences to `metis.lti.cs.cmu.edu:5000,5001 and 5002` to your respective 3 routing endpoints.
+Now, inside the config file `webarena/openstreetmap-website/config/settings.yml`, update the value of `nominatim_url` from `"http://metis.lti.cs.cmu.edu:"` to `"http://<your-geocoding-server-domain>"`
 
+
+> [!NOTE]
+> By default, `fossgis_osrm_url` is set to `"http://metis.lti.cs.cmu.edu:8085/"`. However, the [official openstreetmap-website default config file](https://github.com/openstreetmap/openstreetmap-website/blob/edda4af515cfb0bd4de1ed0650b47e124bfad6ed/config/settings.yml#L125) is set to `"https://routing.openstreetmap.de/"`. You can use that as a way to test in case you run into issues during the setup.
+
+
+##### Selecting different routing ports
+
+The ports 5000, 5001, 5002 are chosen respectively for car, bike and foot inside `webarena/openstreetmap-website/app/assets/javascripts/index/directions/fossgis_osrm.js`
+
+The mapping looks like this:
+
+```javascript
+// ...
+      var vehicleTypePortMapping = {
+        "car": "5000",
+        "bike": "5001",
+        "foot": "5002"
+      }
+// ...
+```
+
+If your port is different, you can update the mapping in the aforementioned file to match your own ports.
+
+#### Secure header
+
+The file `webarena/openstreetmap-website/config/initializers/secure_headers.rb` allows you to specify domains for secure serving of images. Specfically, in `csp_policy` > `img_src`, you can add your domain, e.g. `ogma.lti.cs.cmu.edu`. Do not include "http" or "https". You can also use the `*` operator, e.g. `*.openstreetmap.fr`.
 
 ### Documentation sites
 We are still working on dockerizing the documentation sites. As they are read-only sites and they usually don't change rapidly. It is safe to use their live sites for test purpose right now.
