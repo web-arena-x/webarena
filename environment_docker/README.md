@@ -220,7 +220,7 @@ Now, inside the config file `webarena/openstreetmap-website/config/settings.yml`
 
 
 > [!NOTE]
-> By default, `nominatim_url` is set to `"http://metis.lti.cs.cmu.edu:"`. However, the [official openstreetmap-website default config file](https://github.com/openstreetmap/openstreetmap-website/blob/edda4af515cfb0bd4de1ed0650b47e124bfad6ed/config/settings.yml#L125) is set to `"https://nominatim.openstreetmap.org/"`. You can use that as a way to test in case you run into issues during the setup.
+> By default, `nominatim_url` is set to `"http://metis.lti.cs.cmu.edu:"`. However, the [official openstreetmap-website default config file](https://github.com/openstreetmap/openstreetmap-website/blob/edda4af515cfb0bd4de1ed0650b47e124bfad6ed/config/settings.yml#L111) is set to `"https://nominatim.openstreetmap.org/"`. You can use that as a way to test in case you run into issues during the setup.
 
 
 #### Routing Server
@@ -239,7 +239,7 @@ Now, inside the config file `webarena/openstreetmap-website/config/settings.yml`
 
 
 > [!NOTE]
-> By default, `fossgis_osrm_url` is set to `"http://metis.lti.cs.cmu.edu:8085/"`. However, the [official openstreetmap-website default config file](https://github.com/openstreetmap/openstreetmap-website/blob/edda4af515cfb0bd4de1ed0650b47e124bfad6ed/config/settings.yml#L111) is set to `"https://routing.openstreetmap.de/"`. You can use that as a way to test in case you run into issues during the setup.
+> By default, `fossgis_osrm_url` is set to `"http://metis.lti.cs.cmu.edu:8085/"`. However, the [official openstreetmap-website default config file](https://github.com/openstreetmap/openstreetmap-website/blob/edda4af515cfb0bd4de1ed0650b47e124bfad6ed/config/settings.yml#L125) is set to `"https://routing.openstreetmap.de/"`. You can use that as a way to test in case you run into issues during the setup.
 
 
 ##### Selecting different routing ports
