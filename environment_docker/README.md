@@ -201,6 +201,10 @@ docker run --volume=osm-data:/data/database/ --volume=osm-tiles:/data/tiles/ -p 
 
 Now, inside the file `webarena/openstreetmap-website/vendor/assets/leaflet/leaflet.osm.js`, change `http://ogma.lti.cs.cmu.edu:8080/tile/{z}/{x}/{y}.png` to `http://<public-url-to-your-tile-server>:8080/tile/{z}/{x}/{y}.png` 
 
+> [!NOTE]
+> By default, the `url` in `TileLayer` is set to `"http://ogma.lti.cs.cmu.edu:8080/tile/{z}/{x}/{y}.png"`. THe official tile server uses `https://tile.openstreetmap.org/{z}/{x}/{y}.png`. You can use that as a way to test in case you run into issues during the setup.
+
+
 #### Geocoding Server
 First download http://metis.lti.cs.cmu.edu/map_server_data/nominatim_volumes.tar and extract the docker volumes to your docker volume directory (default to `/var/lib/docker/volumes/`). Make sure that you have `nominatim-data` and `nominatim-flatnode` volume copied.
 
