@@ -215,7 +215,7 @@ docker run --env=IMPORT_STYLE=extratags --env=PBF_PATH=/nominatim/data/us-northe
 Now, inside the config file `webarena/openstreetmap-website/config/settings.yml`, update the value of `fossgis_osrm_url` from `"http://metis.lti.cs.cmu.edu:8085/"` to `"http://<your-geocoding-server-domain>:8085/"`
 
 
-> ![NOTE]
+> [!NOTE]
 > By default, `fossgis_osrm_url` is set to `"http://metis.lti.cs.cmu.edu:8085/"`. However, the [official openstreetmap-website default config file](https://github.com/openstreetmap/openstreetmap-website/blob/edda4af515cfb0bd4de1ed0650b47e124bfad6ed/config/settings.yml#L111) is set to `"https://routing.openstreetmap.de/"`. You can use that as a way to test in case you run into issues during the setup.
 
 
@@ -233,10 +233,12 @@ docker run --volume=/your/routing/path/car/:/data -p 5002:5000 ghcr.io/project-o
 
 Now, inside the config file `webarena/openstreetmap-website/config/settings.yml`, update the value of `nominatim_url` from `"http://metis.lti.cs.cmu.edu:"` to `"http://<your-geocoding-server-domain>"`
 
-> ![NOTE]
-> By default, `nominatim_url` is set to `"http://metis.lti.cs.cmu.edu:"`. However, the [official openstreetmap-website default config file](https://github.com/openstreetmap/openstreetmap-website/blob/edda4af515cfb0bd4de1ed0650b47e124bfad6ed/config/settings.yml#L111) is set to `"https://nominatim.openstreetmap.org/"`. You can use that as a way to test in case you run into issues during the setup.
+> [!NOTE]
+> By default, `nominatim_url` is set to `"http://metis.lti.cs.cmu.edu:"`. However, the [official openstreetmap-website default config file](https://github.com/openstreetmap/openstreetmap-website/blob/edda4af515cfb0bd4de1ed0650b47e124bfad6ed/config/settings.yml#L125) is set to `"https://nominatim.openstreetmap.org/"`. You can use that as a way to test in case you run into issues during the setup.
 
-Note: The ports 5000, 5001, 5002 are chosen respectively for car, bike and foot inside `webarena/openstreetmap-website/app/assets/javascripts/index/directions/fossgis_osrm.js`
+##### Selecting different routing ports
+
+The ports 5000, 5001, 5002 are chosen respectively for car, bike and foot inside `webarena/openstreetmap-website/app/assets/javascripts/index/directions/fossgis_osrm.js`
 
 The mapping looks like this:
 
