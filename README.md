@@ -18,6 +18,7 @@
 <a href="https://webarena.dev/">Website</a> •
 <a href="https://arxiv.org/abs/2307.13854">Paper</a> •
 <a href="https://docs.google.com/spreadsheets/d/1M801lEpBbKSNwP-vDBkC_pF7LdyGU1f_ufZb_NWNBZQ/edit?usp=sharing">Leaderboard</a>
+<a href="https://the-agent-company.com">TheAgentCompany</a>
 </p>
 
 ![Overview](media/overview.png)
