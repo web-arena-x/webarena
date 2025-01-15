@@ -13,7 +13,7 @@ import openai
 from tqdm.asyncio import tqdm_asyncio
 from dotenv import load_dotenv
 from openai import OpenAI, AzureOpenAI
-from azure.identity import AzureCliCredential, get_bearer_token_provider
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 
 def create_client():
@@ -24,6 +24,7 @@ def create_client():
     azure_openai_deployment = os.getenv("AZURE_OPEN_AI_DEPLOYMENT_ID", "")
     azure_openai_ad_token = os.getenv("AZURE_OPENAI_AD_TOKEN", "")
 
+    api_version = "2024-12-01-preview"
     # a few options:
     # 1. openai key
     # 2. azure openai key
@@ -34,15 +35,21 @@ def create_client():
     elif azure_openai_api_key:
         assert azure_openai_endpoint, "AZURE_OPENAI_ENDPOINT must be set"
         assert azure_openai_deployment, "AZURE_OPENAI_DEPLOYMENT must be set"
-        return AzureOpenAI(api_key=azure_openai_api_key, azure_endpoint=azure_openai_endpoint)
+        return AzureOpenAI(api_key=azure_openai_api_key, azure_endpoint=azure_openai_endpoint, api_version=api_version)
     elif azure_openai_ad_token:
         assert azure_openai_endpoint, "AZURE_OPENAI_ENDPOINT must be set"
         assert azure_openai_deployment, "AZURE_OPENAI_DEPLOYMENT must be set"
-        return AzureOpenAI(azure_ad_token=azure_openai_ad_token, azure_endpoint=azure_openai_endpoint)
+        return AzureOpenAI(
+            azure_ad_token=azure_openai_ad_token, azure_endpoint=azure_openai_endpoint, api_version=api_version
+        )
     elif azure_openai_endpoint:
         assert azure_openai_deployment, "AZURE_OPENAI_DEPLOYMENT must be set"
-        token_provider = get_bearer_token_provider(AzureCliCredential(), "https://cognitiveservices.azure.com/.default")
-        return AzureOpenAI(azure_endpoint=azure_openai_endpoint, azure_ad_token_provider=token_provider)
+        token_provider = get_bearer_token_provider(
+            DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+        )
+        return AzureOpenAI(
+            azure_endpoint=azure_openai_endpoint, azure_ad_token_provider=token_provider, api_version=api_version
+        )
     else:
         raise ValueError("No valid OpenAI API key or Azure OpenAI endpoint found")
 
