@@ -11,9 +11,44 @@ from typing import Any
 import aiolimiter
 import openai
 from tqdm.asyncio import tqdm_asyncio
-from project24.utility.llmClient import LLMClient, LLMType, LLMResponseType
+from dotenv import load_dotenv
+from openai import OpenAI, AzureOpenAI
+from azure.identity import AzureCliCredential, get_bearer_token_provider
 
-client = LLMClient.create()
+
+def create_client():
+    load_dotenv()
+    openai_api_key = os.getenv("OPENAI_API_KEY", "")
+    azure_openai_api_key = os.getenv("AZURE_OPENAI_API_KEY", "")
+    azure_openai_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT", "")
+    azure_openai_deployment = os.getenv("AZURE_OPEN_AI_DEPLOYMENT_ID", "")
+    azure_openai_ad_token = os.getenv("AZURE_OPENAI_AD_TOKEN", "")
+
+    # a few options:
+    # 1. openai key
+    # 2. azure openai key
+    # 3. azure openai ad token
+    # 4. azure openai ad token provider
+    if openai_api_key:
+        return OpenAI(api_key=openai_api_key)
+    elif azure_openai_api_key:
+        assert azure_openai_endpoint, "AZURE_OPENAI_ENDPOINT must be set"
+        assert azure_openai_deployment, "AZURE_OPENAI_DEPLOYMENT must be set"
+        return AzureOpenAI(api_key=azure_openai_api_key, azure_endpoint=azure_openai_endpoint)
+    elif azure_openai_ad_token:
+        assert azure_openai_endpoint, "AZURE_OPENAI_ENDPOINT must be set"
+        assert azure_openai_deployment, "AZURE_OPENAI_DEPLOYMENT must be set"
+        return AzureOpenAI(azure_ad_token=azure_openai_ad_token, azure_endpoint=azure_openai_endpoint)
+    elif azure_openai_endpoint:
+        assert azure_openai_deployment, "AZURE_OPENAI_DEPLOYMENT must be set"
+        token_provider = get_bearer_token_provider(AzureCliCredential(), "https://cognitiveservices.azure.com/.default")
+        return AzureOpenAI(azure_endpoint=azure_openai_endpoint, azure_ad_token_provider=token_provider)
+    else:
+        raise ValueError("No valid OpenAI API key or Azure OpenAI endpoint found")
+
+
+client = create_client()
+AZURE_OPENAI_DEPLOYMENT = os.getenv("AZURE_OPEN_AI_DEPLOYMENT_ID", "")
 
 
 def retry_with_exponential_backoff(  # type: ignore
@@ -68,9 +103,8 @@ async def _throttled_openai_completion_acreate(
     async with limiter:
         for _ in range(3):
             try:
-                return client.get_response(
-                    model_type=LLMType.TEXT,
-                    response_type=LLMResponseType.MESSAGE,
+                return client.chat.completions.create(
+                    model=AZURE_OPENAI_DEPLOYMENT if AZURE_OPENAI_DEPLOYMENT else engine,
                     messages=[{"role": "user", "content": prompt}],
                     temperature=temperature,
                     max_tokens=max_tokens,
@@ -139,19 +173,15 @@ def generate_from_openai_completion(
     context_length: int,
     stop_token: str | None = None,
 ) -> str:
-    if "OPENAI_API_KEY" not in os.environ:
-        raise ValueError("OPENAI_API_KEY environment variable must be set when using OpenAI API.")
-    openai.api_key = os.environ["OPENAI_API_KEY"]
-    openai.organization = os.environ.get("OPENAI_ORGANIZATION", "")
-    response = client.get_response(
-        model_type=LLMType.TEXT,
-        response_type=LLMResponseType.MESSAGE,
+
+    response = client.chat.completions.create(
+        model=AZURE_OPENAI_DEPLOYMENT if AZURE_OPENAI_DEPLOYMENT else engine,
         messages=[{"role": "user", "content": prompt}],
         temperature=temperature,
         max_tokens=max_tokens,
         top_p=top_p,
     )
-    answer: str = response["choices"][0]["text"]
+    answer: str = response.choices[0].message.content
     return answer
 
 
@@ -166,9 +196,8 @@ async def _throttled_openai_chat_completion_acreate(
     async with limiter:
         for _ in range(3):
             try:
-                return client.get_response(
-                    model_type=LLMType.TEXT,
-                    response_type=LLMResponseType.MESSAGE,
+                return client.chat.completions.create(
+                    model=AZURE_OPENAI_DEPLOYMENT if AZURE_OPENAI_DEPLOYMENT else model,
                     messages=messages,
                     temperature=temperature,
                     max_tokens=max_tokens,
@@ -208,10 +237,6 @@ async def agenerate_from_openai_chat_completion(
     Returns:
         List of generated responses.
     """
-    if "OPENAI_API_KEY" not in os.environ:
-        raise ValueError("OPENAI_API_KEY environment variable must be set when using OpenAI API.")
-    openai.api_key = os.environ["OPENAI_API_KEY"]
-    openai.organization = os.environ.get("OPENAI_ORGANIZATION", "")
 
     limiter = aiolimiter.AsyncLimiter(requests_per_minute)
     async_responses = [
@@ -239,20 +264,14 @@ def generate_from_openai_chat_completion(
     context_length: int,
     stop_token: str | None = None,
 ) -> str:
-    if "OPENAI_API_KEY" not in os.environ:
-        raise ValueError("OPENAI_API_KEY environment variable must be set when using OpenAI API.")
-    openai.api_key = os.environ["OPENAI_API_KEY"]
-    openai.organization = os.environ.get("OPENAI_ORGANIZATION", "")
-
-    response = client.get_response(
-        model_type=LLMType.TEXT,
-        response_type=LLMResponseType.MESSAGE,
+    response = client.chat.completions.create(
+        model=AZURE_OPENAI_DEPLOYMENT if AZURE_OPENAI_DEPLOYMENT else model,
         messages=messages,
         temperature=temperature,
         max_tokens=max_tokens,
         top_p=top_p,
     )
-    answer: str = response["choices"][0]["message"]["content"]
+    answer: str = response.choices[0].message.content
     return answer
 
 
@@ -267,9 +286,5 @@ def fake_generate_from_openai_chat_completion(
     context_length: int,
     stop_token: str | None = None,
 ) -> str:
-    if "OPENAI_API_KEY" not in os.environ:
-        raise ValueError("OPENAI_API_KEY environment variable must be set when using OpenAI API.")
-    openai.api_key = os.environ["OPENAI_API_KEY"]
-    openai.organization = os.environ.get("OPENAI_ORGANIZATION", "")
     answer = "Let's think step-by-step. This page shows a list of links and buttons. There is a search box with the label 'Search query'. I will click on the search box to type the query. So the action I will perform is \"click [60]\"."
     return answer
