@@ -230,9 +230,9 @@ Make sure to have `/your/routing/path/<foot, car, bike>`, which will be used in 
 
 Then run the 3 routing servers:
 ```bash
-docker run --volume=/your/routing/path/car/:/data -p 5000:5000 ghcr.io/project-osrm/osrm-backend osrm-routed --algorithm mld /data/us-northeast-latest.osrm
-docker run --volume=/your/routing/path/bike/:/data -p 5001:5000 ghcr.io/project-osrm/osrm-backend osrm-routed --algorithm mld /data/us-northeast-latest.osrm
-docker run --volume=/your/routing/path/foot/:/data -p 5002:5000 ghcr.io/project-osrm/osrm-backend osrm-routed --algorithm mld /data/us-northeast-latest.osrm
+docker run --volume=/your/routing/path/car:/data -p 5000:5000 ghcr.io/project-osrm/osrm-backend osrm-routed --algorithm mld /data/us-northeast-latest.osrm
+docker run --volume=/your/routing/path/bike:/data -p 5001:5000 ghcr.io/project-osrm/osrm-backend osrm-routed --algorithm mld /data/us-northeast-latest.osrm
+docker run --volume=/your/routing/path/foot:/data -p 5002:5000 ghcr.io/project-osrm/osrm-backend osrm-routed --algorithm mld /data/us-northeast-latest.osrm
 ```
 
 Now, inside the config file `webarena/openstreetmap-website/config/settings.yml`, update the value of `nominatim_url` from `"http://metis.lti.cs.cmu.edu:"` to `"http://<your-geocoding-server-domain>"`
