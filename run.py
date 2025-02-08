@@ -293,9 +293,14 @@ def test(
                     action = create_stop_action(f"Early stop: {stop_info}")
                 else:
                     try:
-                        action = agent.next_action(
+                        action, hard_coded_menu_ele_numbers = agent.next_action(
                             trajectory, intent, meta_data=meta_data
                         )
+                        if action['element_id'] in hard_coded_menu_ele_numbers:
+                            if action['element_id'] == hard_coded_menu_ele_numbers[0]:
+                                action = {'action_type': ActionTypes.GOTO_URL, 'element_id': action['element_id'], 'url': env.page.url + '&product_list_order=name', 'raw_prediction': 'go to URL'}
+                            if action['element_id'] == hard_coded_menu_ele_numbers[1]:
+                                action = {'action_type': ActionTypes.GOTO_URL, 'element_id': action['element_id'], 'url': env.page.url + '&product_list_order=price', 'raw_prediction': 'go to URL'}
                     except ValueError as e:
                         # get the error message
                         action = create_stop_action(f"ERROR: {str(e)}")
