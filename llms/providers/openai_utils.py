@@ -45,7 +45,7 @@ def create_client():
     elif azure_openai_endpoint:
         assert azure_openai_deployment, "AZURE_OPENAI_DEPLOYMENT must be set"
         token_provider = get_bearer_token_provider(
-            DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+            DefaultAzureCredential(), os.getenv("P24_SCOPE", "https://cognitiveservices.azure.com/.default")
         )
         return AzureOpenAI(
             azure_endpoint=azure_openai_endpoint, azure_ad_token_provider=token_provider, api_version=api_version
