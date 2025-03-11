@@ -13,8 +13,12 @@ import openai
 from tqdm.asyncio import tqdm_asyncio
 from dotenv import load_dotenv
 from openai import OpenAI, AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-
+from azure.identity import (
+    AzureCliCredential,
+    ChainedTokenCredential,
+    DefaultAzureCredential,
+    get_bearer_token_provider,
+)
 
 def create_client():
     load_dotenv()
@@ -45,14 +49,27 @@ def create_client():
     elif azure_openai_endpoint:
         assert azure_openai_deployment, "AZURE_OPENAI_DEPLOYMENT must be set"
         token_provider = get_bearer_token_provider(
-            DefaultAzureCredential(), os.getenv("P24_SCOPE", "https://cognitiveservices.azure.com/.default")
+            ChainedTokenCredential(
+                AzureCliCredential(),
+                DefaultAzureCredential(
+                    exclude_cli_credential=True,
+                    # Exclude other credentials we are not interested in.
+                    exclude_environment_credential=True,
+                    exclude_shared_token_cache_credential=True,
+                    exclude_developer_cli_credential=True,
+                    exclude_powershell_credential=True,
+                    exclude_interactive_browser_credential=True,
+                    exclude_visual_studio_code_credentials=True,
+                ),
+            ),
+            "https://cognitiveservices.azure.com/.default"
         )
         return AzureOpenAI(
             azure_endpoint=azure_openai_endpoint, azure_ad_token_provider=token_provider, api_version=api_version
         )
     else:
         raise ValueError("No valid OpenAI API key or Azure OpenAI endpoint found")
-
+ 
 
 client = create_client()
 AZURE_OPENAI_DEPLOYMENT = os.getenv("AZURE_OPEN_AI_DEPLOYMENT_ID", "")
