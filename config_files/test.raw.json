@@ -530,8 +530,7 @@
       ],
       "reference_answers": {
         "fuzzy_match": [
-          "driving: 2min",
-          "walking: 16min"
+          "driving: 2min; walking: 16min"
         ]
       },
       "reference_url": "",
@@ -563,8 +562,7 @@
       ],
       "reference_answers": {
         "fuzzy_match": [
-          "driving: 13min",
-          "walking: 1h 35min"
+          "driving: 13min; walking: 1h 35min"
         ]
       },
       "reference_url": "",
@@ -596,8 +594,7 @@
       ],
       "reference_answers": {
         "fuzzy_match": [
-          "driving: 15min",
-          "walking: 1h 47min"
+          "driving: 15min; walking: 1h 47min"
         ]
       },
       "reference_url": "",
@@ -629,8 +626,7 @@
       ],
       "reference_answers": {
         "fuzzy_match": [
-          "driving: 12min",
-          "walking: 1h 44min."
+          "driving: 12min; walking: 1h 44min."
         ]
       },
       "reference_url": "",
@@ -662,8 +658,7 @@
       ],
       "reference_answers": {
         "fuzzy_match": [
-          "driving: 13min",
-          "walking: 1h 45min"
+          "driving: 13min; walking: 1h 45min"
         ]
       },
       "reference_url": "",
@@ -3117,7 +3112,7 @@
       ],
       "reference_answers": {
         "must_include": [
-          "914km"
+          "914km |OR| 914 km"
         ]
       },
       "reference_url": "",
@@ -3814,7 +3809,8 @@
           "locator": "",
           "required_contents": {
             "must_include": [
-              "jaw bruxism",
+              "jaw",
+              "bruxism",
               "mouth guard"
             ]
           }
@@ -4704,7 +4700,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "must_include": [
+        "fuzzy_match": [
           "16x24"
         ]
       },
@@ -5689,7 +5685,7 @@
         "url_match"
       ],
       "reference_answers": {
-        "exact_match": "Yes"
+        "fuzzy_match": ["Yes, it is closed"]
       },
       "reference_url": "__GITLAB__/a11yproject/a11yproject.com/-/issues/566",
       "program_html": [],
@@ -5719,7 +5715,7 @@
         "url_match"
       ],
       "reference_answers": {
-        "exact_match": "Yes"
+        "fuzzy_match": ["Yes, it is closed"]
       },
       "reference_url": "__GITLAB__/a11yproject/a11yproject.com/-/issues/1517",
       "program_html": [],
@@ -5749,7 +5745,7 @@
         "url_match"
       ],
       "reference_answers": {
-        "exact_match": "No"
+        "fuzzy_match": ["No, it is open"]
       },
       "reference_url": "__GITLAB__/byteblaze/empathy-prompts/-/issues/18",
       "program_html": [],
@@ -5779,7 +5775,7 @@
         "url_match"
       ],
       "reference_answers": {
-        "exact_match": "No"
+        "fuzzy_match": ["No, it is open"]
       },
       "reference_url": "__GITLAB__/byteblaze/a11y-syntax-highlighting/-/issues/1",
       "program_html": [],
@@ -5809,7 +5805,7 @@
         "url_match"
       ],
       "reference_answers": {
-        "exact_match": "Yes"
+        "fuzzy_match": ["Yes, it is closed"]
       },
       "reference_url": "__GITLAB__/a11yproject/a11yproject.com/-/issues/719",
       "program_html": [],
@@ -8047,7 +8043,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "4125785000"
+        "fuzzy_match": ["4125785000"]
       },
       "reference_url": "",
       "program_html": [],
@@ -8247,7 +8243,8 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/electronics/headphones.html",
       "program_html": [],
-      "url_note": "GOLD in PRED"
+      "url_note": "GOLD in PRED",
+      "or": [{"reference_url": "__SHOPPING__/electronics.html?cat=60"}]
     },
     "intent_template_id": 211
   },
@@ -8273,7 +8270,8 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/clothing-shoes-jewelry/men/shoes.html",
       "program_html": [],
-      "url_note": "GOLD in PRED"
+      "url_note": "GOLD in PRED",
+      "or": [{"reference_url": "__SHOPPING__/clothing-shoes-jewelry.html?cat=145"}]
     },
     "intent_template_id": 211
   },
@@ -8299,7 +8297,8 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/clothing-shoes-jewelry/women/clothing.html",
       "program_html": [],
-      "url_note": "GOLD in PRED"
+      "url_note": "GOLD in PRED",
+      "or": [{"reference_url": "__SHOPPING__/clothing-shoes-jewelry.html?cat=143"}]
     },
     "intent_template_id": 211
   },
@@ -8325,7 +8324,8 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/office-products/office-furniture-lighting/cabinets-racks-shelves.html",
       "program_html": [],
-      "url_note": "GOLD in PRED"
+      "url_note": "GOLD in PRED",
+      "or": [{"reference_url": "__SHOPPING__/office-products.html?cat=187"}]
     },
     "intent_template_id": 211
   },
@@ -9194,7 +9194,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "git clone ssh://git@metis.lti.cs.cmu.edu:2222/convexegg/super_awesome_robot.git"
+        "must_include": ["git clone ssh://git@metis.lti.cs.cmu.edu:2222/convexegg/super_awesome_robot.git"]
       },
       "reference_url": "",
       "program_html": [],
@@ -9223,7 +9223,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "git clone ssh://git@metis.lti.cs.cmu.edu:2222/convexegg/chatgpt.git"
+        "must_include": ["git clone ssh://git@metis.lti.cs.cmu.edu:2222/convexegg/chatgpt.git"]
       },
       "reference_url": "",
       "program_html": [],
@@ -9252,7 +9252,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "git clone ssh://git@metis.lti.cs.cmu.edu:2222/root/metaseq.git"
+        "must_include": ["git clone ssh://git@metis.lti.cs.cmu.edu:2222/root/metaseq.git"]
       },
       "reference_url": "",
       "program_html": [],
@@ -9281,7 +9281,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "ssh://git@metis.lti.cs.cmu.edu:2222/eriklindernoren/PyTorch-GAN.git"
+        "must_include": ["git clone ssh://git@metis.lti.cs.cmu.edu:2222/eriklindernoren/PyTorch-GAN.git"]
       },
       "reference_url": "",
       "program_html": [],
@@ -9310,7 +9310,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "ssh://git@metis.lti.cs.cmu.edu:2222/yjlou/2019-nCov.git"
+        "must_include": ["git clone ssh://git@metis.lti.cs.cmu.edu:2222/yjlou/2019-nCov.git"]
       },
       "reference_url": "",
       "program_html": [],
@@ -9328,11 +9328,11 @@
     "storage_state": "./.auth/shopping_state.json",
     "start_url": "__SHOPPING__",
     "geolocation": null,
-    "intent_template": "Show the most recent {{status}} order",
+    "intent_template": "Show the most recent {{status}} order page",
     "instantiation_dict": {
       "status": "completed"
     },
-    "intent": "Show the most recent completed order",
+    "intent": "Show the most recent completed order page",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -9354,11 +9354,11 @@
     "storage_state": "./.auth/shopping_state.json",
     "start_url": "__SHOPPING__",
     "geolocation": null,
-    "intent_template": "Show the most recent {{status}} order",
+    "intent_template": "Show the most recent {{status}} order page",
     "instantiation_dict": {
       "status": "cancelled"
     },
-    "intent": "Show the most recent cancelled order",
+    "intent": "Show the most recent cancelled order page",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -9380,11 +9380,11 @@
     "storage_state": "./.auth/shopping_state.json",
     "start_url": "__SHOPPING__",
     "geolocation": null,
-    "intent_template": "Show the most recent {{status}} order",
+    "intent_template": "Show the most recent {{status}} order page",
     "instantiation_dict": {
       "status": "pending"
     },
-    "intent": "Show the most recent pending order",
+    "intent": "Show the most recent pending order page",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -9406,11 +9406,11 @@
     "storage_state": "./.auth/shopping_state.json",
     "start_url": "__SHOPPING__",
     "geolocation": null,
-    "intent_template": "Show the most recent {{status}} order",
+    "intent_template": "Show the most recent {{status}} order page",
     "instantiation_dict": {
       "status": "processing"
     },
-    "intent": "Show the most recent processing order",
+    "intent": "Show the most recent processing order page",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -9432,11 +9432,11 @@
     "storage_state": "./.auth/shopping_state.json",
     "start_url": "__SHOPPING__",
     "geolocation": null,
-    "intent_template": "Show the most recent {{status}} order",
+    "intent_template": "Show the most recent {{status}} order page",
     "instantiation_dict": {
       "status": "out of delivery"
     },
-    "intent": "Show the most recent out of delivery order",
+    "intent": "Show the most recent out of delivery order page",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -9629,7 +9629,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "Shawn Allen"
+        "must_include": ["Shawn Allen"]
       },
       "reference_url": "",
       "program_html": [],
@@ -9658,7 +9658,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "Grayson Wright"
+        "must_include": ["Grayson Wright"]
       },
       "reference_url": "",
       "program_html": [],
@@ -9687,7 +9687,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "tokudu"
+        "must_include": ["tokudu"]
       },
       "reference_url": "",
       "program_html": [],
@@ -9716,7 +9716,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "Erik Linder-Nor\u00e9n"
+        "must_include": ["Erik Linder-Nor\u00e9n"]
       },
       "reference_url": "",
       "program_html": [],
@@ -9745,7 +9745,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "Christopher Groskopf"
+        "must_include": ["Christopher Groskopf"]
       },
       "reference_url": "",
       "program_html": [],
@@ -10293,7 +10293,7 @@
       ],
       "reference_answers": {
         "must_include": [
-          "81.31"
+          "83.31"
         ]
       },
       "reference_url": "",
@@ -10921,7 +10921,8 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/video-games/playstation-4/accessories.html?product_list_order=price",
       "program_html": [],
-      "url_note": "GOLD in PRED"
+      "url_note": "GOLD in PRED",
+      "or": [{"reference_url": "__SHOPPING__/video-games.html?cat=67&product_list_order=price"}]
     },
     "intent_template_id": 137
   },
@@ -10948,7 +10949,8 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/health-household/diet-sports-nutrition/nutrition-bars-drinks.html?product_list_order=price",
       "program_html": [],
-      "url_note": "GOLD in PRED"
+      "url_note": "GOLD in PRED",
+      "or": [{"reference_url": "__SHOPPING__/health-household.html?cat=192&product_list_order=price"}]
     },
     "intent_template_id": 137
   },
@@ -10975,7 +10977,8 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/clothing-shoes-jewelry/sport-specific-clothing/competitive-swimwear.html?product_list_order=price",
       "program_html": [],
-      "url_note": "GOLD in PRED"
+      "url_note": "GOLD in PRED",
+      "or": [{"reference_url": "__SHOPPING__/clothing-shoes-jewelry.html?cat=149&product_list_order=price"}]
     },
     "intent_template_id": 137
   },
@@ -11002,7 +11005,8 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/home-kitchen/furniture/living-room-furniture.html?product_list_order=price&product_list_dir=desc",
       "program_html": [],
-      "url_note": "GOLD in PRED"
+      "url_note": "GOLD in PRED",
+      "or": [{"reference_url": "__SHOPPING__/home-kitchen.html?cat=154&product_list_order=price&product_list_dir=desc"}]
     },
     "intent_template_id": 137
   },
@@ -11029,7 +11033,8 @@
       "reference_answers": null,
       "reference_url": "__SHOPPING__/home-kitchen/bedding/kids-bedding.html?product_list_dir=desc",
       "program_html": [],
-      "url_note": "GOLD in PRED"
+      "url_note": "GOLD in PRED",
+      "or": [{"reference_url": "__SHOPPING__/home-kitchen.html?cat=155&product_list_dir=desc"}]
     },
     "intent_template_id": 137
   },
@@ -11295,7 +11300,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "748m"
+        "must_include": ["778m |OR| 778 m"]
       },
       "reference_url": "",
       "program_html": [],
@@ -11325,7 +11330,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "1.7km"
+        "must_include": ["1.7km |OR| 1.7 km"]
       },
       "reference_url": "",
       "program_html": [],
@@ -11355,7 +11360,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "2.2km"
+        "must_include": ["2.2km |OR| 2.2 km"]
       },
       "reference_url": "",
       "program_html": [],
@@ -11385,7 +11390,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "1.2km"
+        "must_include": ["1.2km |OR| 1.2 km"]
       },
       "reference_url": "",
       "program_html": [],
@@ -11415,7 +11420,7 @@
         "string_match"
       ],
       "reference_answers": {
-        "exact_match": "1.4km"
+        "must_include": ["1.4km |OR| 1.4 km"]
       },
       "reference_url": "",
       "program_html": [],
@@ -13038,7 +13043,7 @@
           "url": "__GITLAB__/byteblaze/a11y-webring.club/-/merge_requests/40",
           "locator": "document.querySelector('[id=\"notes-list\"').lastElementChild.querySelector('.timeline-discussion-body').outerText",
           "required_contents": {
-            "exact_match": "@davepgreene"
+            "must_include": ["@davepgreene"]
           }
         }
       ]
@@ -13071,7 +13076,7 @@
           "url": "__GITLAB__/a11yproject/a11yproject.com/-/merge_requests/1270",
           "locator": "document.querySelector('[id=\"notes-list\"').lastElementChild.querySelector('.timeline-discussion-body').outerText",
           "required_contents": {
-            "exact_match": "Thank you"
+            "must_include": ["Thank you"]
           }
         }
       ]
@@ -13104,7 +13109,7 @@
           "url": "__GITLAB__/a11yproject/a11yproject.com/-/merge_requests/1485",
           "locator": "document.querySelector('[id=\"notes-list\"').lastElementChild.querySelector('.timeline-discussion-body').outerText",
           "required_contents": {
-            "exact_match": "@Roshanjossey"
+            "must_include": ["@Roshanjossey"]
           }
         }
       ]
@@ -13135,9 +13140,9 @@
       "program_html": [
         {
           "url": "__GITLAB__/byteblaze",
-          "locator": "document.querySelector('.cover-status').lastChild.textContent",
+          "locator": "document.querySelector('.cover-title').textContent",
           "required_contents": {
-            "exact_match": "Busy"
+            "must_include": ["Busy"]
           }
         }
       ]
@@ -15566,9 +15571,9 @@
     "intent_template": "Change the page title of \"{{old-heading}}\" page on my site to \"{{heading}}\".",
     "instantiation_dict": {
       "old-heading": "Privacy Policy",
-      "heading": "No privacy policy is needed is this dystopian world"
+      "heading": "No privacy policy is needed in this dystopian world"
     },
-    "intent": "Change the page title of \"Privacy Policy\" page on my site to \"No privacy policy is needed is this dystopian world\".",
+    "intent": "Change the page title of \"Privacy Policy\" page on my site to \"No privacy policy is needed in this dystopian world\".",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -15581,7 +15586,7 @@
           "url": "__SHOPPING_ADMIN__/cms/page/edit/page_id/4/",
           "locator": "document.querySelector('input[name=\"title\"').value",
           "required_contents": {
-            "exact_match": "No privacy policy is needed is this dystopian world"
+            "exact_match": "No privacy policy is needed in this dystopian world"
           }
         }
       ]
@@ -16946,7 +16951,8 @@
           "required_contents": {
             "must_include": [
               "refund",
-              "it broke after three days of use",
+              "broke",
+              "three days of use",
               "000000180",
               "12.99"
             ]
@@ -16985,7 +16991,8 @@
           "required_contents": {
             "must_include": [
               "refund",
-              "it broke after three days of use",
+              "broke",
+              "three days of use",
               "000000148",
               "169.95"
             ]
@@ -17024,7 +17031,8 @@
           "required_contents": {
             "must_include": [
               "refund",
-              "it broke after three days of use",
+              "broke",
+              "three days of use",
               "000000161",
               "68.88"
             ]
@@ -17063,7 +17071,8 @@
           "required_contents": {
             "must_include": [
               "refund",
-              "it broke after three days of use",
+              "broke",
+              "three days of use",
               "000000180",
               "$12.99"
             ]
@@ -17102,7 +17111,8 @@
           "required_contents": {
             "must_include": [
               "refund",
-              "it broke after three days of use",
+              "broke",
+              "three days of use",
               "000000180",
               "1.63"
             ]
@@ -19247,7 +19257,7 @@
     "intent_template": "Create a new forum named {{name}}, with a description of {{description}}, and include {{sidebar_list}} in the sidebar?",
     "instantiation_dict": {
       "name": "PlantsForCatParents",
-      "description": "Cat parents & plan lovers",
+      "description": "Cat parents & plant lovers",
       "sidebar_list": [
         "Cat friendly",
         "Local vendors",
@@ -19255,7 +19265,7 @@
         "Toxic plants!"
       ]
     },
-    "intent": "Create a new forum named PlantsForCatParents, with a description of Cat parents & plan lovers, and include ['Cat friendly', 'Local vendors', 'Promotion', 'Toxic plants!'] in the sidebar?",
+    "intent": "Create a new forum named PlantsForCatParents, with a description of Cat parents & plant lovers, and include ['Cat friendly', 'Local vendors', 'Promotion', 'Toxic plants!'] in the sidebar?",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -19269,7 +19279,7 @@
           "locator": "document.querySelector(\"#forum_description\").value",
           "required_contents": {
             "must_include": [
-              "Cat parents & plan lovers"
+              "Cat parents & plant lovers"
             ]
           }
         },
@@ -19317,7 +19327,7 @@
       "reference_url": "",
       "program_html": [
         {
-          "url": "__REDDIT__/f/Karaoke",
+          "url": "__REDDIT__/f/Karaoke/edit",
           "locator": "document.querySelector(\"#forum_description\").value",
           "required_contents": {
             "must_include": [
@@ -19326,7 +19336,7 @@
           }
         },
         {
-          "url": "__REDDIT__/f/Karaoke",
+          "url": "__REDDIT__/f/Karaoke/edit",
           "locator": "document.querySelector(\"#forum_sidebar\").value",
           "required_contents": {
             "must_include": [
@@ -20104,7 +20114,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "is car necessary in NYC"
+              "is car necessary in NYC |OR| is a car necessary in NYC"
             ]
           }
         }
@@ -20161,9 +20171,9 @@
     "geolocation": null,
     "intent_template": "Post my question, \"{{question}}\", in a subreddit where I'm likely to get an answer",
     "instantiation_dict": {
-      "question": "safe and budge apartment to live in nyc"
+      "question": "safe and budget apartment to live in nyc"
     },
-    "intent": "Post my question, \"safe and budge apartment to live in nyc\", in a subreddit where I'm likely to get an answer",
+    "intent": "Post my question, \"safe and budget apartment to live in nyc\", in a subreddit where I'm likely to get an answer",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -20178,7 +20188,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "safe and budge apartment to live in nyc"
+              "safe and budget apartment to live in nyc"
             ]
           }
         }
@@ -20291,7 +20301,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "is car necessary"
+              "is car necessary |OR| is a car necessary"
             ]
           }
         }
@@ -20350,9 +20360,9 @@
     "intent_template": "Find a subreddit focused on topics related to {{topic}}, and post my question, \"{{question}}\" there",
     "instantiation_dict": {
       "topic": "city lives in DMV area",
-      "question": "safe and budge apartment to live"
+      "question": "safe and budget apartment to live"
     },
-    "intent": "Find a subreddit focused on topics related to city lives in DMV area, and post my question, \"safe and budge apartment to live\" there",
+    "intent": "Find a subreddit focused on topics related to city lives in DMV area, and post my question, \"safe and budget apartment to live\" there",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -20367,7 +20377,7 @@
           "locator": "document.querySelector('.submission__inner').outerText",
           "required_contents": {
             "must_include": [
-              "safe and budge apartment to live"
+              "safe and budget apartment to live"
             ]
           }
         }
@@ -21215,7 +21225,7 @@
           "required_contents": {
             "must_include": [
               "your opinion",
-              "Fun thing to do in Pittsburgh"
+              "Fun thing to do in Pittsburgh |OR| Fun things to do in Pittsburgh"
             ]
           }
         }
@@ -21658,8 +21668,9 @@
           "required_contents": {
             "must_include": [
               "book reading",
-              "March 15th",
-              "virtual meetup"
+              "Mar 15th |OR| March 15th",
+              "virtual",
+              "meetup"
             ]
           }
         }
@@ -21699,8 +21710,9 @@
           "required_contents": {
             "must_include": [
               "Harry Potter",
-              "July 8th",
-              "virtual meetup"
+              "Jul 8th |OR| July 8th",
+              "virtual",
+              "meetup"
             ]
           }
         }
@@ -21740,8 +21752,9 @@
           "required_contents": {
             "must_include": [
               "Big little lies",
-              "Sep 10th",
-              "virtual meetup"
+              "Sep 10th |OR| September 10th",
+              "virtual",
+              "meetup"
             ]
           }
         }
@@ -21781,8 +21794,9 @@
           "required_contents": {
             "must_include": [
               "racing cars",
-              "Oct 21st",
-              "virtual meetup"
+              "Oct 21st |OR| October 21st",
+              "virtual",
+              "meetup"
             ]
           }
         }
@@ -21804,9 +21818,9 @@
     "instantiation_dict": {
       "interest": "Tears of Kingdom",
       "date": "Dec 15th",
-      "subreddit": "games"
+      "subreddit": "gaming"
     },
-    "intent": "Post a notice on a virtual meetup for Tears of Kingdom enthusiasts on Dec 15th in the games subreddit",
+    "intent": "Post a notice on a virtual meetup for Tears of Kingdom enthusiasts on Dec 15th in the gaming subreddit",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -21814,7 +21828,7 @@
         "program_html"
       ],
       "reference_answers": null,
-      "reference_url": "__REDDIT__/f/games",
+      "reference_url": "__REDDIT__/f/gaming",
       "program_html": [
         {
           "url": "func:reddit_get_post_url('__last_url__')",
@@ -21822,8 +21836,9 @@
           "required_contents": {
             "must_include": [
               "Tears of Kingdom",
-              "Dec 15th",
-              "virtual meetup"
+              "Dec 15th |OR| December 15th",
+              "virtual",
+              "meetup"
             ]
           }
         }
@@ -21841,11 +21856,11 @@
     "storage_state": "./.auth/reddit_state.json",
     "start_url": "__REDDIT__",
     "geolocation": null,
-    "intent_template": "Post in {{subreddit}} subreddit about what could machine learning help the correpong field.",
+    "intent_template": "Post in {{subreddit}} subreddit about what could machine learning help the corresponding field.",
     "instantiation_dict": {
       "subreddit": "books"
     },
-    "intent": "Post in books subreddit about what could machine learning help the correpong field.",
+    "intent": "Post in books subreddit about what could machine learning help the corresponding field.",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -21861,7 +21876,7 @@
           "required_contents": {
             "must_include": [
               "machine learning",
-              "help"
+              "help |OR| assist |OR| benefit |OR| improve |OR| enhance |OR| transform |OR| revolutionize"
             ]
           }
         }
@@ -21879,11 +21894,11 @@
     "storage_state": "./.auth/reddit_state.json",
     "start_url": "__REDDIT__",
     "geolocation": null,
-    "intent_template": "Post in {{subreddit}} subreddit about what could midjourney help the correpong field.",
+    "intent_template": "Post in {{subreddit}} subreddit about what could midjourney help the corresponding field.",
     "instantiation_dict": {
       "subreddit": "DIY"
     },
-    "intent": "Post in DIY subreddit about what could midjourney help the correpong field.",
+    "intent": "Post in DIY subreddit about what could midjourney help the corresponding field.",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -21899,7 +21914,7 @@
           "required_contents": {
             "must_include": [
               "midjourney",
-              "help"
+              "help |OR| assist |OR| benefit |OR| improve |OR| enhance |OR| transform |OR| revolutionize"
             ]
           }
         }
@@ -21917,11 +21932,11 @@
     "storage_state": "./.auth/reddit_state.json",
     "start_url": "__REDDIT__",
     "geolocation": null,
-    "intent_template": "Post in {{subreddit}} forum about what could open-source LLMs help the correpong field.",
+    "intent_template": "Post in {{subreddit}} forum about what could open-source LLMs help the corresponding field.",
     "instantiation_dict": {
       "subreddit": "technology"
     },
-    "intent": "Post in technology forum about what could open-source LLMs help the correpong field.",
+    "intent": "Post in technology forum about what could open-source LLMs help the corresponding field.",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -21937,7 +21952,7 @@
           "required_contents": {
             "must_include": [
               "open-source LLMs",
-              "help"
+              "help |OR| assist |OR| benefit |OR| improve |OR| enhance |OR| transform |OR| revolutionize"
             ]
           }
         }
@@ -21955,11 +21970,11 @@
     "storage_state": "./.auth/reddit_state.json",
     "start_url": "__REDDIT__",
     "geolocation": null,
-    "intent_template": "Post in {{subreddit}} forum about what could large language models help the correpong field.",
+    "intent_template": "Post in {{subreddit}} forum about what could large language models help the corresponding field.",
     "instantiation_dict": {
       "subreddit": "dataisbeautiful"
     },
-    "intent": "Post in dataisbeautiful forum about what could large language models help the correpong field.",
+    "intent": "Post in dataisbeautiful forum about what could large language models help the corresponding field.",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -21975,7 +21990,7 @@
           "required_contents": {
             "must_include": [
               "large language models",
-              "help"
+              "help |OR| assist |OR| benefit |OR| improve |OR| enhance |OR| transform |OR| revolutionize"
             ]
           }
         }
@@ -21993,11 +22008,11 @@
     "storage_state": "./.auth/reddit_state.json",
     "start_url": "__REDDIT__",
     "geolocation": null,
-    "intent_template": "Post in {{subreddit}} subreddit about what could diffusion model help the correpong field.",
+    "intent_template": "Post in {{subreddit}} subreddit about what could diffusion model help the corresponding field.",
     "instantiation_dict": {
       "subreddit": "history"
     },
-    "intent": "Post in history subreddit about what could diffusion model help the correpong field.",
+    "intent": "Post in history subreddit about what could diffusion model help the corresponding field.",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -22013,7 +22028,7 @@
           "required_contents": {
             "must_include": [
               "diffusion model",
-              "help"
+              "help |OR| assist |OR| benefit |OR| improve |OR| enhance |OR| transform |OR| revolutionize"
             ]
           }
         }
@@ -22160,7 +22175,8 @@
           "required_contents": {
             "must_include": [
               "refund",
-              "it broke after three days of use",
+              "broke",
+              "three days of use",
               "000000180",
               "B087QJN9W1"
             ]
@@ -22201,7 +22217,8 @@
           "required_contents": {
             "must_include": [
               "refund",
-              "it broke after three days of use",
+              "broke",
+              "three days of use",
               "161",
               "B09P7BFL4H"
             ]
@@ -22242,7 +22259,8 @@
           "required_contents": {
             "must_include": [
               "refund",
-              "it broke after three days of use",
+              "broke",
+              "three days of use",
               "180",
               "B087QJN9W1"
             ]
@@ -22283,7 +22301,8 @@
           "required_contents": {
             "must_include": [
               "refund",
-              "it broke after three days of use",
+              "broke",
+              "three days of use",
               "180",
               "B0041MSF2S"
             ]
@@ -22324,7 +22343,8 @@
           "required_contents": {
             "must_include": [
               "refund",
-              "broke after three days of use",
+              "broke",
+              "three days of use",
               "148",
               "B003FVW3VA"
             ]
@@ -23313,7 +23333,7 @@
           "locator": "document.querySelector(\"div.admin__data-grid-filters-current\").outerText",
           "required_contents": {
             "must_include": [
-              "Completed"
+              "Complete"
             ]
           }
         }
@@ -24784,14 +24804,14 @@
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_from\"').value",
           "required_contents": {
-            "exact_match": "1/1/2022"
+            "exact_match": "1/1/22"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_to\"').value",
           "required_contents": {
-            "exact_match": "12/31/2022"
+            "exact_match": "12/31/22"
           }
         }
       ],
@@ -24827,14 +24847,14 @@
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_from\"').value",
           "required_contents": {
-            "exact_match": "1/1/2023"
+            "exact_match": "1/1/23"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_to\"').value",
           "required_contents": {
-            "exact_match": "12/31/2023"
+            "exact_match": "12/31/23"
           }
         }
       ],
@@ -24871,14 +24891,14 @@
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_from\"').value",
           "required_contents": {
-            "exact_match": "5/1/2021"
+            "exact_match": "5/1/21"
           }
         },
         {
           "url": "last",
           "locator": "document.querySelector('[id=\"sales_report_to\"').value",
           "required_contents": {
-            "exact_match": "3/31/2022"
+            "exact_match": "3/31/22"
           }
         }
       ],
@@ -28642,7 +28662,7 @@
       ],
       "reference_answers": {
         "must_include": [
-          "412"
+          "414"
         ]
       },
       "reference_url": "",

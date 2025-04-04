@@ -7,10 +7,13 @@ import json
 import time
 import urllib
 from pathlib import Path
-from typing import Any, Tuple, Union
+from typing import Any, Tuple, Union, Optional
 
 from beartype import beartype
+import nltk
+nltk.download('punkt')
 from nltk.tokenize import word_tokenize  # type: ignore
+
 from playwright.sync_api import CDPSession, Page
 
 from browser_env.actions import Action
@@ -100,6 +103,22 @@ class StringEvaluator(Evaluator):
         clean_pred = StringEvaluator.clean_answer(pred)
         # tokenize the answer if the ref is a single word
         # prevent false positive (e.g, 0)
+        if " |or| " in clean_ref or " |OR| " in clean_ref:
+            refs = clean_ref.split(" |or| ") if " |or| " in clean_ref else clean_ref.split(" |OR| ")
+            refs = [r.strip() for r in refs]
+            for r in refs:
+                if (
+                    tokenize
+                    and len(r) == 1
+                    and len(word_tokenize(r)) == 1
+                ):
+                    tok_pred = word_tokenize(r)
+                    if r in tok_pred:
+                        return float(r in tok_pred)
+                else:
+                    if r in clean_pred:
+                        return float(r in clean_pred)
+            return 0.0
         if (
             tokenize
             and len(clean_ref) == 1
@@ -141,12 +160,15 @@ class StringEvaluator(Evaluator):
 
                 case "must_include":
                     assert isinstance(value, list)
+                    must_include_score = 0.
                     for must_value in value:
-                        score *= self.must_include(
+                        must_include_score += self.must_include(
                             ref=must_value,
                             pred=pred,
                             tokenize=(len(value) == 1),
                         )
+                    must_include_score /= len(value)
+                    score *= must_include_score
                 case "fuzzy_match":
                     intent = configs["intent"]
                     if value == "N/A":
@@ -162,11 +184,14 @@ class StringEvaluator(Evaluator):
                                 pred=pred,
                             )
                     else:
-                        assert isinstance(value, list)
-                        for reference in value:
-                            score *= self.fuzzy_match(
-                                ref=reference, pred=pred, intent=intent
-                            )
+                        if isinstance(value, list):
+                            fuzzy_match_value = "; ".join(value)
+                        else:
+                            fuzzy_match_value = value
+                        fuzzy_match_score = self.fuzzy_match(
+                            ref=fuzzy_match_value, pred=pred, intent=intent
+                        )
+                        score *= fuzzy_match_score
         return score
 
 
@@ -187,6 +212,7 @@ class URLEvaluator(Evaluator):
         def clean_url(url: str) -> str:
             url = str(url)
             url = url.rstrip("/")
+            url = url.lower()
             return url
 
         def parse_url(url: str) -> tuple[str, dict[str, list[str]]]:
@@ -210,30 +236,37 @@ class URLEvaluator(Evaluator):
             return base_paths, queries
 
         pred = clean_url(page.url)
-        ref_urls = configs["eval"]["reference_url"].split(" |OR| ")
-        ref_urls = [clean_url(url) for url in ref_urls]
         matching_rule = configs["eval"].get("url_note", "GOLD in PRED")
         if matching_rule == "GOLD in PRED":
-            ref_base_paths, ref_queries = parse_urls(ref_urls)
-            pred_base_paths, pred_query = parse_url(pred)
+            if "or" in configs["eval"].keys():
+                or_ref_urls_list = [configs["eval"]["reference_url"]] + [item["reference_url"] for item in configs["eval"]["or"]]
+            else:
+                or_ref_urls_list = [configs["eval"]["reference_url"]]
+            or_score_list = []
+            for or_ref_urls in or_ref_urls_list:
+                ref_urls = or_ref_urls.split(" |OR| ")
+                ref_urls = [clean_url(url) for url in ref_urls]
+                ref_base_paths, ref_queries = parse_urls(ref_urls)
+                pred_base_paths, pred_query = parse_url(pred)
 
-            base_score = float(
-                any(
-                    [
-                        ref_base_path in pred_base_paths
-                        for ref_base_path in ref_base_paths
-                    ]
-                )
-            )
-            query_score = 1.0
-            for k, possible_values in ref_queries.items():
-                query_score *= float(
+                base_score = float(
                     any(
-                        possible_ref_value in pred_query.get(k, [])
-                        for possible_ref_value in possible_values
+                        [
+                            ref_base_path in pred_base_paths
+                            for ref_base_path in ref_base_paths
+                        ]
                     )
                 )
-            score = base_score * query_score
+                query_score = 1.0
+                for k, possible_values in ref_queries.items():
+                    query_score *= float(
+                        any(
+                            possible_ref_value in pred_query.get(k, [])
+                            for possible_ref_value in possible_values
+                        )
+                    )
+                or_score_list.append(base_score * query_score)
+            score = max(or_score_list)
 
         else:
             raise ValueError(f"Unknown matching rule: {matching_rule}")
@@ -259,77 +292,89 @@ class HTMLContentEvaluator(Evaluator):
 
         score = 1.0
         for target in targets:
-            target_url: str = target["url"]  # which url to check
-            if target_url.startswith("func"):
-                func = target_url.split("func:")[1]
-                func = func.replace("__last_url__", page.url)
-                target_url = eval(func)
+            if "or" in target.keys():
+                or_target_list = [target] + [t for t in target["or"]]
+            else:
+                or_target_list = [target]
+            or_score_list = []
+            for or_target in or_target_list:
+                target_url: str = or_target["url"]  # which url to check
+                if target_url.startswith("func"):
+                    func = target_url.split("func:")[1]
+                    func = func.replace("__last_url__", page.url)
+                    target_url = eval(func)
 
-            locator: str = target["locator"]  # js element locator
+                locator: str = or_target["locator"]  # js element locator
 
-            # navigate to that url
-            if target_url != "last":
-                page.goto(target_url)
-                time.sleep(3)  # TODO [shuyanzh]: fix this hard-coded sleep
+                # navigate to that url
+                if target_url != "last":
+                    page.goto(target_url)
+                    time.sleep(3)  # TODO [shuyanzh]: fix this hard-coded sleep
 
-            # empty, use the full page
-            if not locator.strip():
-                selected_element = page.content()
-            # use JS to select the element
-            elif locator.startswith("document.") or locator.startswith(
-                "[...document."
-            ):
-                if "prep_actions" in target:
+                # empty, use the full page
+                if not locator.strip():
+                    selected_element = page.content()
+                # use JS to select the element
+                elif locator.startswith("document.") or locator.startswith(
+                    "[...document."
+                ):
+                    if "prep_actions" in or_target:
+                        try:
+                            for prep_action in or_target["prep_actions"]:
+                                page.evaluate(f"() => {prep_action}")
+                        except Exception:
+                            pass
                     try:
-                        for prep_action in target["prep_actions"]:
-                            page.evaluate(f"() => {prep_action}")
+                        selected_element = str(page.evaluate(f"() => {locator}"))
+                        if not selected_element:
+                            selected_element = ""
                     except Exception:
-                        pass
-                try:
-                    selected_element = str(page.evaluate(f"() => {locator}"))
-                    if not selected_element:
+                        # the page is wrong, return empty
                         selected_element = ""
-                except Exception:
-                    # the page is wrong, return empty
-                    selected_element = ""
-            # run program to call API
-            elif locator.startswith("func:"):  # a helper function
-                func = locator.split("func:")[1]
-                func = func.replace("__page__", "page")
-                selected_element = eval(func)
-            else:
-                raise ValueError(f"Unknown locator: {locator}")
+                # run program to call API
+                elif locator.startswith("func:"):  # a helper function
+                    func = locator.split("func:")[1]
+                    func = func.replace("__page__", "page")
+                    selected_element = eval(func)
+                else:
+                    raise ValueError(f"Unknown locator: {locator}")
 
-            selected_element = html.unescape(selected_element)
+                selected_element = html.unescape(selected_element)
 
-            if "exact_match" in target["required_contents"]:
-                required_contents = target["required_contents"]["exact_match"]
-                cur_score = StringEvaluator.exact_match(
-                    ref=required_contents, pred=selected_element
-                )
-                score *= float(cur_score)
-                # print(f"[exact match] {cur_score}, selected element: {selected_element}, required contents: {required_contents}")
-            elif "must_include" in target["required_contents"]:
-                required_contents = target["required_contents"]["must_include"]
-                assert isinstance(required_contents, list)
-                for content in required_contents:
-                    content_or = content.split(" |OR| ")
-                    cur_score = any(
-                        [
-                            StringEvaluator.must_include(
-                                ref=content,
-                                pred=selected_element,
-                                tokenize=False,
-                            )
-                            for content in content_or
-                        ]
+                if "exact_match" in or_target["required_contents"]:
+                    required_contents = or_target["required_contents"]["exact_match"]
+                    cur_score = StringEvaluator.exact_match(
+                        ref=required_contents, pred=selected_element
                     )
-                    score *= float(cur_score)
-                    # print(f"[must include] {cur_score}, selected element: {selected_element}, required contents: {content_or}")
-            else:
-                raise ValueError(
-                    f"Unknown required_contents: {target['required_contents'].keys()}"
-                )
+                    or_score_list.append(cur_score)
+                    print(f"[exact match] {cur_score}, selected element: {selected_element}, required contents: {required_contents}")
+                elif "must_include" in or_target["required_contents"]:
+                    required_contents = or_target["required_contents"]["must_include"]
+                    assert isinstance(required_contents, list)
+                    content_score_list = []
+                    for content in required_contents:
+                        content_or = content.split(" |OR| ")
+                        cur_score = any(
+                            [
+                                StringEvaluator.must_include(
+                                    ref=content,
+                                    pred=selected_element,
+                                    tokenize=False,
+                                )
+                                for content in content_or
+                            ]
+                        )
+                        content_score_list.append(cur_score)
+                        # score *= float(cur_score)
+                        print(f"[must include] {cur_score}, selected element: {selected_element}, required contents: {content_or}")
+                    or_score_list.append(sum(content_score_list)/len(content_score_list))
+                else:
+                    raise ValueError(
+                        f"Unknown required_contents: {or_target['required_contents'].keys()}"
+                    )
+            or_score = max(or_score_list)
+            score *= or_score
+
         return score
 
 
@@ -342,8 +387,8 @@ class EvaluatorComb:
         self,
         trajectory: Trajectory,
         config_file: Path | str,
-        page: Page | PseudoPage,
-        client: CDPSession,
+        page: Optional[Page | PseudoPage] = None,
+        client: Optional[CDPSession] = None,
     ) -> float:
         score = 1.0
         for evaluator in self.evaluators:
