@@ -254,11 +254,7 @@ Endpoints (after the instance boots)
 - Geocoding: http://<your-server-hostname>:8085/
 - Routing: http://<your-server-hostname>:5000 (car), :5001 (bike), :5002 (foot)
 
-Frontend configuration notes
-- Leaflet tile URL: Update `TileLayer`/`Mapnik` URL in your frontend to `http://<your-server-hostname>:8080/tile/{z}/{x}/{y}.png`.
-- openstreetmap-website settings.yml:
-  - `nominatim_url`: set to `http://<your-server-hostname>:8085/`
-  - `fossgis_osrm_url`: use OSRM endpoints above or the official defaults as needed.
+Note: The instructions here cover backend services (tiles/geocoding/routing) only. The map frontend server setup remains unchanged; see the AMI section above.
 
 Advanced/manual details (if not using cloud-init)
 - The S3 keys available are:
