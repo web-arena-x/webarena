@@ -186,7 +186,11 @@ The homepage will be available at `http://<your-server-hostname>:4399`.
 
 ### Map
 
-Recommended: AWS-based setup using S3 data bucket s3://webarena-map-server-data. This bucket contains prebuilt data for all map backends so you don't need to generate tiles or preprocess OSM data.
+Please refer to the AMI setup for the map frontend setup. For most use cases this is enough.
+
+If you wish to also set up all map backends (tile server, geocoding server, routing servers), read along and please be aware of very large downloads and disk space requirements.
+
+AWS backend setup (tile/geocoding/routing) using S3 data bucket s3://webarena-map-server-data. This bucket contains prebuilt data for the map backends so you don't need to generate tiles or preprocess OSM data.
 
 The map stack consists of:
 - Tile server: overv/openstreetmap-tile-server (serves raster tiles)
