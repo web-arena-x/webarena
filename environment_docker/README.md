@@ -211,13 +211,13 @@ runcmd:
   - systemctl enable --now docker
   - mkdir -p /opt/osm_dump /opt/osrm /var/lib/docker/volumes
   # Pull prebuilt data from public S3
-  - aws s3 cp s3://webarena-map-server-data/osm_tile_server.tar /root/osm_tile_server.tar
+  - aws s3 cp --no-sign-request s3://webarena-map-server-data/osm_tile_server.tar /root/osm_tile_server.tar
   - tar -C /var/lib/docker/volumes -xf /root/osm_tile_server.tar
-  - aws s3 cp s3://webarena-map-server-data/nominatim_volumes.tar /root/nominatim_volumes.tar
+  - aws s3 cp --no-sign-request s3://webarena-map-server-data/nominatim_volumes.tar /root/nominatim_volumes.tar
   - tar -C /var/lib/docker/volumes -xf /root/nominatim_volumes.tar
-  - aws s3 cp s3://webarena-map-server-data/osm_dump.tar /root/osm_dump.tar
+  - aws s3 cp --no-sign-request s3://webarena-map-server-data/osm_dump.tar /root/osm_dump.tar
   - tar -C /opt/osm_dump -xf /root/osm_dump.tar
-  - aws s3 cp s3://webarena-map-server-data/osrm_routing.tar /root/osrm_routing.tar
+  - aws s3 cp --no-sign-request s3://webarena-map-server-data/osrm_routing.tar /root/osrm_routing.tar
   - tar -C /opt/osrm -xf /root/osrm_routing.tar
   # Start containers (set restart policies)
   - docker pull overv/openstreetmap-tile-server
