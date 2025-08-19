@@ -185,84 +185,87 @@ flask run --host=0.0.0.0 --port=4399
 The homepage will be available at `http://<your-server-hostname>:4399`.
 
 ### Map
-Please refer to the AMI setup for the map frontend setup. For most use cases this is enough.
 
-If you wish to also set up all map backends, namely tile server, geocoding server and routing server, read along and please be aware of very large downloads and disk space requirements.
+Recommended: AWS-based setup using S3 data bucket s3://webarena-map-server-data. This bucket contains prebuilt data for all map backends so you don't need to generate tiles or preprocess OSM data.
 
-#### Tile Sever
+The map stack consists of:
+- Tile server: overv/openstreetmap-tile-server (serves raster tiles)
+- Geocoding server: mediagis/nominatim:4.2 (search/addresses)
+- Routing servers: ghcr.io/project-osrm/osrm-backend for car, bike, foot
 
-First download http://metis.lti.cs.cmu.edu/map_server_data/osm_tile_server.tar and extract the docker volumes to your docker volume directory (default to `/var/lib/docker/volumes/`). Make sure that you have `osm-data` volume copied.
+High-level steps
+1) Launch an EC2 instance (e.g., t3a.xlarge with 500–1000 GB gp3 EBS) in your VPC.
+2) Open inbound ports: 22 (SSH), 8080 (tiles), 8085 (geocoding), 5000 (car), 5001 (bike), 5002 (foot).
+3) Use the cloud-init script below to install Docker and bootstrap all services by pulling data from s3://webarena-map-server-data.
+4) Point your frontend to the instance hostname on the ports above.
 
-Then run the tile server:
-
-```bash
-docker run --volume=osm-data:/data/database/ --volume=osm-tiles:/data/tiles/ -p 8080:80 --detach=true overv/openstreetmap-tile-server run
+Cloud-init user data (paste into EC2 “User data” on launch)
+```
+#cloud-config
+package_update: true
+packages:
+  - docker.io
+  - docker-compose-plugin
+  - awscli
+runcmd:
+  - systemctl enable --now docker
+  - mkdir -p /opt/osm_dump /opt/osrm /var/lib/docker/volumes
+  # Pull prebuilt data from public S3
+  - aws s3 cp s3://webarena-map-server-data/osm_tile_server.tar /root/osm_tile_server.tar
+  - tar -C /var/lib/docker/volumes -xf /root/osm_tile_server.tar
+  - aws s3 cp s3://webarena-map-server-data/nominatim_volumes.tar /root/nominatim_volumes.tar
+  - tar -C /var/lib/docker/volumes -xf /root/nominatim_volumes.tar
+  - aws s3 cp s3://webarena-map-server-data/osm_dump.tar /root/osm_dump.tar
+  - tar -C /opt/osm_dump -xf /root/osm_dump.tar
+  - aws s3 cp s3://webarena-map-server-data/osrm_routing.tar /root/osrm_routing.tar
+  - tar -C /opt/osrm -xf /root/osrm_routing.tar
+  # Start containers (set restart policies)
+  - docker pull overv/openstreetmap-tile-server
+  - docker run --name tile --restart unless-stopped \
+      --volume=osm-data:/data/database/ --volume=osm-tiles:/data/tiles/ \
+      -p 8080:80 -d overv/openstreetmap-tile-server run
+  - docker pull mediagis/nominatim:4.2
+  - docker run --name nominatim --restart unless-stopped \
+      --env=IMPORT_STYLE=extratags \
+      --env=PBF_PATH=/nominatim/data/us-northeast-latest.osm.pbf \
+      --env=IMPORT_WIKIPEDIA=/nominatim/data/wikimedia-importance.sql.gz \
+      --volume=/opt/osm_dump:/nominatim/data \
+      --volume=nominatim-data:/var/lib/postgresql/14/main \
+      --volume=nominatim-flatnode:/nominatim/flatnode \
+      -p 8085:8080 -d mediagis/nominatim:4.2 /app/start.sh
+  - docker pull ghcr.io/project-osrm/osrm-backend
+  - docker run --name osrm-car --restart unless-stopped \
+      --volume=/opt/osrm/car:/data -p 5000:5000 -d \
+      ghcr.io/project-osrm/osrm-backend osrm-routed --algorithm mld /data/us-northeast-latest.osrm
+  - docker run --name osrm-bike --restart unless-stopped \
+      --volume=/opt/osrm/bike:/data -p 5001:5000 -d \
+      ghcr.io/project-osrm/osrm-backend osrm-routed --algorithm mld /data/us-northeast-latest.osrm
+  - docker run --name osrm-foot --restart unless-stopped \
+      --volume=/opt/osrm/foot:/data -p 5002:5000 -d \
+      ghcr.io/project-osrm/osrm-backend osrm-routed --algorithm mld /data/us-northeast-latest.osrm
 ```
 
-Now, inside the file `webarena/openstreetmap-website/vendor/assets/leaflet/leaflet.osm.js`, change `http://ogma.lti.cs.cmu.edu:8080/tile/{z}/{x}/{y}.png` to `http://<public-url-to-your-tile-server>:8080/tile/{z}/{x}/{y}.png` 
+Endpoints (after the instance boots)
+- Tiles: http://<your-server-hostname>:8080/tile/{z}/{x}/{y}.png
+- Geocoding: http://<your-server-hostname>:8085/
+- Routing: http://<your-server-hostname>:5000 (car), :5001 (bike), :5002 (foot)
 
-> [!NOTE]
-> By default, the `url` in `TileLayer` and `Mapnik` is set to `"http://ogma.lti.cs.cmu.edu:8080/tile/{z}/{x}/{y}.png"`. You replace it with `https://tile.openstreetmap.org/{z}/{x}/{y}.png` (the official link)  as a way to test in case you run into issues during the setup.
+Frontend configuration notes
+- Leaflet tile URL: Update `TileLayer`/`Mapnik` URL in your frontend to `http://<your-server-hostname>:8080/tile/{z}/{x}/{y}.png`.
+- openstreetmap-website settings.yml:
+  - `nominatim_url`: set to `http://<your-server-hostname>:8085/`
+  - `fossgis_osrm_url`: use OSRM endpoints above or the official defaults as needed.
 
+Advanced/manual details (if not using cloud-init)
+- The S3 keys available are:
+  - s3://webarena-map-server-data/osm_tile_server.tar → contains Docker volumes `osm-data`, `osm-tiles` for the tile server
+  - s3://webarena-map-server-data/nominatim_volumes.tar → volumes `nominatim-data`, `nominatim-flatnode`
+  - s3://webarena-map-server-data/osm_dump.tar → extracted to a host path and mounted at `/nominatim/data`
+  - s3://webarena-map-server-data/osrm_routing.tar → expands to `/opt/osrm/{car,bike,foot}` directories
+- If you customize ports, also update the mapping in `webarena/openstreetmap-website/app/assets/javascripts/index/directions/fossgis_osrm.js`.
 
-#### Geocoding Server
-First download http://metis.lti.cs.cmu.edu/map_server_data/nominatim_volumes.tar and extract the docker volumes to your docker volume directory (default to `/var/lib/docker/volumes/`). Make sure that you have `nominatim-data` and `nominatim-flatnode` volume copied.
-
-Also download http://metis.lti.cs.cmu.edu/map_server_data/osm_dump.tar and extract the OSM dump to a host directory `/path/to/osm_dump`, which will be used in the following command.
-
-
-Then run the geocoding server:
-```bash
-docker run --env=IMPORT_STYLE=extratags --env=PBF_PATH=/nominatim/data/us-northeast-latest.osm.pbf --env=IMPORT_WIKIPEDIA=/nominatim/data/wikimedia-importance.sql.gz --volume=/path/to/osm_dump:/nominatim/data --volume=nominatim-data:/var/lib/postgresql/14/main --volume=nominatim-flatnode:/nominatim/flatnode -p 8085:8080 mediagis/nominatim:4.2 /app/start.sh
-```
-
-Now, inside the config file `webarena/openstreetmap-website/config/settings.yml`, update the value of `fossgis_osrm_url` from `"http://metis.lti.cs.cmu.edu:8085/"` to `"http://<your-geocoding-server-domain>:8085/"`
-
-
-> [!NOTE]
-> By default, `nominatim_url` is set to `"http://metis.lti.cs.cmu.edu:"`. However, the [official openstreetmap-website default config file](https://github.com/openstreetmap/openstreetmap-website/blob/edda4af515cfb0bd4de1ed0650b47e124bfad6ed/config/settings.yml#L111) is set to `"https://nominatim.openstreetmap.org/"`. You can use that as a way to test in case you run into issues during the setup.
-
-
-#### Routing Server
-
-First download http://metis.lti.cs.cmu.edu/map_server_data/osrm_routing.tar and extract all the directories to your local path.
-Make sure to have `/your/routing/path/<foot, car, bike>`, which will be used in 3 different routing endpoints.
-
-Then run the 3 routing servers:
-```bash
-docker run --volume=/your/routing/path/car:/data -p 5000:5000 ghcr.io/project-osrm/osrm-backend osrm-routed --algorithm mld /data/us-northeast-latest.osrm
-docker run --volume=/your/routing/path/bike:/data -p 5001:5000 ghcr.io/project-osrm/osrm-backend osrm-routed --algorithm mld /data/us-northeast-latest.osrm
-docker run --volume=/your/routing/path/foot:/data -p 5002:5000 ghcr.io/project-osrm/osrm-backend osrm-routed --algorithm mld /data/us-northeast-latest.osrm
-```
-
-Now, inside the config file `webarena/openstreetmap-website/config/settings.yml`, update the value of `nominatim_url` from `"http://metis.lti.cs.cmu.edu:"` to `"http://<your-geocoding-server-domain>"`
-
-
-> [!NOTE]
-> By default, `fossgis_osrm_url` is set to `"http://metis.lti.cs.cmu.edu:8085/"`. However, the [official openstreetmap-website default config file](https://github.com/openstreetmap/openstreetmap-website/blob/edda4af515cfb0bd4de1ed0650b47e124bfad6ed/config/settings.yml#L125) is set to `"https://routing.openstreetmap.de/"`. You can use that as a way to test in case you run into issues during the setup.
-
-
-##### Selecting different routing ports
-
-The ports 5000, 5001, 5002 are chosen respectively for car, bike and foot inside `webarena/openstreetmap-website/app/assets/javascripts/index/directions/fossgis_osrm.js`
-
-The mapping looks like this:
-
-```javascript
-// ...
-      var vehicleTypePortMapping = {
-        "car": "5000",
-        "bike": "5001",
-        "foot": "5002"
-      }
-// ...
-```
-
-If your port is different, you can update the mapping in the aforementioned file to match your own ports.
-
-#### Secure header
-
-The file `webarena/openstreetmap-website/config/initializers/secure_headers.rb` allows you to specify domains for secure serving of images. Specfically, in `csp_policy` > `img_src`, you can add your domain, e.g. `ogma.lti.cs.cmu.edu`. Do not include "http" or "https". You can also use the `*` operator, e.g. `*.openstreetmap.fr`.
+Security headers
+If serving images/tiles under CSP, add your domain (without scheme) to `img_src` in `webarena/openstreetmap-website/config/initializers/secure_headers.rb` (wildcards like `*.example.com` are supported).
 
 ### Documentation sites
 We are still working on dockerizing the documentation sites. As they are read-only sites and they usually don't change rapidly. It is safe to use their live sites for test purpose right now.
