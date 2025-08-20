@@ -43,7 +43,7 @@ systemctl enable docker
 echo "💾 Mounting S3 bucket..."
 mkdir -p "$MOUNT_POINT"
 if ! mountpoint -q "$MOUNT_POINT"; then
-    s3fs "$S3_BUCKET" "$MOUNT_POINT" -o allow_other,default_permissions,uid=1000,gid=1000
+    s3fs "$S3_BUCKET" "$MOUNT_POINT" -o allow_other,default_permissions,uid=1000,gid=1000,iam_role=auto
     echo "✅ S3 bucket mounted at $MOUNT_POINT"
 else
     echo "✅ S3 bucket already mounted"
