@@ -86,7 +86,7 @@ if aws s3 ls s3://webarena-map-server-data/osm_tile_server.tar >/dev/null 2>&1; 
     echo "   Target: /opt/webarena-local/tile-server/"
     (
         cd /opt/webarena-local/tile-server/
-        aws s3 cp s3://webarena-map-server-data/osm_tile_server.tar - | tar -xf -
+        aws s3 cp s3://webarena-map-server-data/osm_tile_server.tar - | tar -xf - --strip-components=5
     ) &
     TILE_PID=$!
 else
@@ -102,7 +102,7 @@ if aws s3 ls s3://webarena-map-server-data/nominatim_volumes.tar >/dev/null 2>&1
     echo "   Target: /opt/webarena-local/nominatim/"
     (
         cd /opt/webarena-local/nominatim/
-        aws s3 cp s3://webarena-map-server-data/nominatim_volumes.tar - | tar -xf -
+        aws s3 cp s3://webarena-map-server-data/nominatim_volumes.tar - | tar -xf - --strip-components=6
     ) &
     NOMINATIM_PID=$!
 else
