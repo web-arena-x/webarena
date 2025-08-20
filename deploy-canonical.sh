@@ -22,6 +22,11 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
+# Install dependencies first
+echo "📦 Installing dependencies..."
+apt-get update
+apt-get install -y docker.io s3fs awscli pv
+
 # Check AWS credentials (works with IAM roles on EC2)
 echo "🔑 Checking AWS access..."
 if ! aws sts get-caller-identity &>/dev/null; then
@@ -29,11 +34,6 @@ if ! aws sts get-caller-identity &>/dev/null; then
     exit 1
 fi
 echo "✅ AWS access confirmed"
-
-# Install dependencies
-echo "📦 Installing dependencies..."
-apt-get update
-apt-get install -y docker.io s3fs awscli pv
 
 # Start Docker
 systemctl start docker
