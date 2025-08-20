@@ -22,11 +22,13 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
-# Check AWS credentials
+# Check AWS credentials (works with IAM roles on EC2)
+echo "🔑 Checking AWS access..."
 if ! aws sts get-caller-identity &>/dev/null; then
-    echo "❌ AWS credentials not configured. Please run 'aws configure'"
+    echo "❌ AWS access not available. Ensure EC2 instance has IAM role with S3 access"
     exit 1
 fi
+echo "✅ AWS access confirmed"
 
 # Install dependencies
 echo "📦 Installing dependencies..."
