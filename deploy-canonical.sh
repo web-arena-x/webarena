@@ -74,32 +74,39 @@ mkdir -p /opt/webarena-local/{tile-server,nominatim}
 chown -R 999:999 /opt/webarena-local/
 
 echo ""
-echo "📥 COPYING CANONICAL DATABASES FROM S3"
-echo "======================================"
-echo "This ensures exact same data as original WebArena deployment"
+echo "📥 EXTRACTING CANONICAL DATABASES FROM S3 TAR ARCHIVES"
+echo "======================================================"
+echo "Using tar archives for much faster extraction (5-8 minutes vs 30+ minutes)"
 
-# Copy Tile Server database (39GB)
-echo "🗺️  Copying Tile Server database (39GB)..."
-echo "   This will take 10-15 minutes but ensures data consistency"
-if [ -d "$MOUNT_POINT/tile-server-extracted/volumes/osm-data/_data" ]; then
-    echo "   Source: $MOUNT_POINT/tile-server-extracted/volumes/osm-data/_data"
+# Extract Tile Server database from tar (background process)
+echo "🗺️  Extracting Tile Server database from tar archive (41GB)..."
+echo "   This will take 3-5 minutes (much faster than file-by-file copy)"
+if aws s3 ls s3://webarena-map-server-data/osm_tile_server.tar >/dev/null 2>&1; then
+    echo "   Source: s3://webarena-map-server-data/osm_tile_server.tar"
     echo "   Target: /opt/webarena-local/tile-server/"
-    cp -r "$MOUNT_POINT/tile-server-extracted/volumes/osm-data/_data"/* /opt/webarena-local/tile-server/ &
+    (
+        cd /opt/webarena-local/tile-server/
+        aws s3 cp s3://webarena-map-server-data/osm_tile_server.tar - | tar -xf -
+    ) &
     TILE_PID=$!
 else
-    echo "❌ Tile server data not found in S3"
+    echo "❌ Tile Server tar archive not found in S3"
     exit 1
 fi
 
-# Copy Nominatim database (background)
-echo "🔍 Copying Nominatim database..."
-if [ -d "$MOUNT_POINT/nominatim-extracted/docker/volumes/nominatim-data/_data" ]; then
-    echo "   Source: $MOUNT_POINT/nominatim-extracted/docker/volumes/nominatim-data/_data"
+# Extract Nominatim database from tar (background process)
+echo "🔍 Extracting Nominatim database from tar archive (124GB)..."
+echo "   This will take 5-8 minutes (much faster than file-by-file copy)"
+if aws s3 ls s3://webarena-map-server-data/nominatim_volumes.tar >/dev/null 2>&1; then
+    echo "   Source: s3://webarena-map-server-data/nominatim_volumes.tar"
     echo "   Target: /opt/webarena-local/nominatim/"
-    cp -r "$MOUNT_POINT/nominatim-extracted/docker/volumes/nominatim-data/_data"/* /opt/webarena-local/nominatim/ &
+    (
+        cd /opt/webarena-local/nominatim/
+        aws s3 cp s3://webarena-map-server-data/nominatim_volumes.tar - | tar -xf -
+    ) &
     NOMINATIM_PID=$!
 else
-    echo "❌ Nominatim data not found in S3"
+    echo "❌ Nominatim tar archive not found in S3"
     exit 1
 fi
 
@@ -124,17 +131,17 @@ docker run -d --name osrm-foot -p 5002:5000 \
   ghcr.io/project-osrm/osrm-backend:v5.27.1 osrm-routed --algorithm mld /data/us-northeast-latest.osrm
 
 echo ""
-echo "⏳ WAITING FOR DATABASE COPIES TO COMPLETE"
-echo "=========================================="
+echo "⏳ WAITING FOR DATABASE EXTRACTIONS TO COMPLETE"
+echo "==============================================="
 
-# Wait for tile server copy to complete
-echo "🗺️  Waiting for Tile Server database copy..."
+# Wait for tile server extraction to complete
+echo "🗺️  Waiting for Tile Server database extraction..."
 wait $TILE_PID
 chown -R 999:999 /opt/webarena-local/tile-server/
 echo "✅ Tile Server database ready"
 
-# Wait for Nominatim copy to complete  
-echo "🔍 Waiting for Nominatim database copy..."
+# Wait for Nominatim extraction to complete  
+echo "🔍 Waiting for Nominatim database extraction..."
 wait $NOMINATIM_PID
 chown -R 999:999 /opt/webarena-local/nominatim/
 echo "✅ Nominatim database ready"
