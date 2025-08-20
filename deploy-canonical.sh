@@ -150,13 +150,18 @@ docker run -d --name tile-server -p 8080:80 \
   -v /opt/webarena-local/tile-server-tiles:/var/lib/mod_tile \
   overv/openstreetmap-tile-server run
 
-# Start Nominatim with canonical database
+# Start Nominatim with canonical database and WebArena configuration
 echo "🔍 Starting Nominatim with canonical database..."
-docker run -d --name nominatim -p 8081:8080 \
+# Fix database permissions for PostgreSQL 14
+chown -R 999:999 /opt/webarena-local/nominatim/
+chmod -R 700 /opt/webarena-local/nominatim/
+docker run -d --name nominatim -p 8085:8080 \
+  -e IMPORT_STYLE=extratags \
   -e PBF_PATH=/nominatim/data/us-northeast-latest.osm.pbf \
-  -v /opt/webarena-local/nominatim:/var/lib/postgresql/12/main \
+  -e IMPORT_WIKIPEDIA=/nominatim/data/wikimedia-importance.sql.gz \
+  -v /opt/webarena-local/nominatim:/var/lib/postgresql/14/main \
   -v "$MOUNT_POINT":/nominatim/data \
-  mediagis/nominatim:4.0
+  mediagis/nominatim:4.2 /app/start.sh
 
 echo ""
 echo "🎉 DEPLOYMENT COMPLETE!"
@@ -173,7 +178,7 @@ echo "   • OSRM Car:    http://$(curl -s ifconfig.me):5000"
 echo "   • OSRM Bike:   http://$(curl -s ifconfig.me):5001"
 echo "   • OSRM Foot:   http://$(curl -s ifconfig.me):5002"
 echo "   • Tile Server: http://$(curl -s ifconfig.me):8080"
-echo "   • Nominatim:   http://$(curl -s ifconfig.me):8081"
+echo "   • Nominatim:   http://$(curl -s ifconfig.me):8085"
 echo ""
 echo "✅ All services use EXACT same data as original WebArena deployment"
 echo ""
@@ -184,4 +189,4 @@ echo "🧪 Test Tile Server:"
 echo "   curl \"http://$(curl -s ifconfig.me):8080/tile/0/0/0.png\""
 echo ""
 echo "🧪 Test Nominatim:"
-echo "   curl \"http://$(curl -s ifconfig.me):8081/search?q=Boston&format=json\""
+echo "   curl \"http://$(curl -s ifconfig.me):8085/search?q=Boston&format=json\""
