@@ -20,7 +20,7 @@ sleep 30
 # Download and execute the canonical deployment script
 echo "📥 Downloading deployment script..."
 cd /tmp
-wget -O deploy-canonical.sh https://raw.githubusercontent.com/web-arena-x/webarena/main/deploy-canonical.sh
+wget -O deploy-canonical.sh https://raw.githubusercontent.com/web-arena-x/webarena/feat/map-aws-s3/deploy-canonical.sh
 chmod +x deploy-canonical.sh
 
 echo "🚀 Executing canonical deployment..."
