@@ -43,8 +43,19 @@ systemctl enable docker
 echo "💾 Mounting S3 bucket..."
 mkdir -p "$MOUNT_POINT"
 if ! mountpoint -q "$MOUNT_POINT"; then
-    s3fs "$S3_BUCKET" "$MOUNT_POINT" -o allow_other,default_permissions,uid=1000,gid=1000,iam_role=auto
-    echo "✅ S3 bucket mounted at $MOUNT_POINT"
+    # Try multiple s3fs configurations for IAM role support
+    if s3fs "$S3_BUCKET" "$MOUNT_POINT" -o allow_other,default_permissions,uid=1000,gid=1000,iam_role=auto,endpoint=us-east-1 2>/dev/null; then
+        echo "✅ S3 bucket mounted at $MOUNT_POINT (with iam_role=auto)"
+    elif s3fs "$S3_BUCKET" "$MOUNT_POINT" -o allow_other,default_permissions,uid=1000,gid=1000,use_cache=/tmp,endpoint=us-east-1 2>/dev/null; then
+        echo "✅ S3 bucket mounted at $MOUNT_POINT (with use_cache)"
+    else
+        echo "❌ Failed to mount S3 bucket. Trying alternative approach..."
+        # Use AWS CLI to sync data instead of mounting
+        echo "📥 Downloading data from S3 using AWS CLI..."
+        mkdir -p "$MOUNT_POINT"
+        aws s3 sync "s3://$S3_BUCKET/" "$MOUNT_POINT/" --region us-east-1
+        echo "✅ S3 data downloaded to $MOUNT_POINT"
+    fi
 else
     echo "✅ S3 bucket already mounted"
 fi
