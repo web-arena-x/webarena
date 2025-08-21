@@ -20,7 +20,7 @@ The WebArena deployment consists of two main components:
 ### Step 1: Launch Map Backend EC2 Instance
 
 1. **Instance Configuration**:
-   - **AMI**: Ubuntu 22.04 LTS (ami-0ea3c35c5c3284d82 or latest)
+   - **AMI**: Ubuntu 24.04 LTS (ami-0ea3c35c5c3284d82 or latest)
    - **Instance Type**: `t3a.xlarge` (4 vCPU, 16 GB RAM) - **minimum required**
    - **Storage**: 1000 GB gp3 EBS volume (required for data)
    - **Region**: `us-east-2` (recommended, matches successful deployment)

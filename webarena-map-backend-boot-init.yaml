@@ -20,8 +20,6 @@ apt:
 
 packages:
   - docker.io
-  - docker-compose-plugin
-  - awscli
   - curl
   - wget
   - htop
@@ -55,6 +53,21 @@ runcmd:
   # Create necessary directories
   - mkdir -p /opt/osm_dump /opt/osrm /var/lib/docker/volumes
   - mkdir -p /root/logs
+  
+  # Install AWS CLI v2 (awscli package not available in Ubuntu 24.04)
+  - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o /tmp/awscliv2.zip
+  - unzip /tmp/awscliv2.zip -d /tmp/
+  - /tmp/aws/install
+  - rm -rf /tmp/awscliv2.zip /tmp/aws
+  
+  # Configure AWS CLI for S3 access (no credentials needed for public buckets)
+  - mkdir -p /root/.aws
+  - |
+    cat > /root/.aws/config << 'EOF'
+    [default]
+    region = us-east-2
+    output = json
+    EOF
   
   # Create a comprehensive bootstrap script that runs in background
   - |
