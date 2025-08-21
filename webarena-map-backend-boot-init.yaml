@@ -1,0 +1,298 @@
+#cloud-config
+# WebArena Map Backend Server Boot-Init Script
+# Based on successful deployment from trajectory analysis
+# This script sets up tile server, geocoding server, and routing servers
+
+package_update: true
+package_upgrade: false
+package_reboot_if_required: false
+
+# Configure APT with retry logic and better error handling
+apt:
+  conf: |
+    APT::Acquire::Retries "3";
+    APT::Acquire::http::Timeout "30";
+    APT::Acquire::https::Timeout "30";
+    Dpkg::Options {
+       "--force-confdef";
+       "--force-confold";
+    };
+
+packages:
+  - docker.io
+  - docker-compose-plugin
+  - awscli
+  - curl
+  - wget
+  - htop
+  - unzip
+
+# Create swap file to handle memory-intensive operations
+bootcmd:
+  - |
+    # Create 4GB swap file to handle large data extractions (reduced from 8GB to save space)
+    if [ ! -f /swapfile ]; then
+      fallocate -l 4G /swapfile
+      chmod 600 /swapfile
+      mkswap /swapfile
+      swapon /swapfile
+      echo '/swapfile none swap sw 0 0' >> /etc/fstab
+    fi
+
+runcmd:
+  # Wait for package locks to be released
+  - while fuser /var/lib/dpkg/lock-frontend >/dev/null 2>&1; do echo "Waiting for dpkg lock..."; sleep 5; done
+  - while fuser /var/lib/apt/lists/lock >/dev/null 2>&1; do echo "Waiting for apt lock..."; sleep 5; done
+  
+  # Enable and start Docker with retries
+  - systemctl enable docker
+  - systemctl start docker
+  - sleep 10
+  
+  # Add ubuntu user to docker group
+  - usermod -aG docker ubuntu
+  
+  # Create necessary directories
+  - mkdir -p /opt/osm_dump /opt/osrm /var/lib/docker/volumes
+  - mkdir -p /root/logs
+  
+  # Create a comprehensive bootstrap script that runs in background
+  - |
+    cat > /root/bootstrap.sh << 'EOF'
+    #!/bin/bash
+    set -euo pipefail
+    exec > >(tee -a /var/log/webarena-map-bootstrap.log) 2>&1
+    
+    echo "$(date): Starting WebArena map server bootstrap"
+    echo "$(date): System info: $(uname -a)"
+    echo "$(date): Available memory: $(free -h)"
+    echo "$(date): Available disk space: $(df -h)"
+    
+    # Check if we have enough disk space (need at least 200GB free)
+    AVAILABLE_GB=$(df / | awk 'NR==2 {print int($4/1024/1024)}')
+    echo "$(date): Available disk space: ${AVAILABLE_GB}GB"
+    if [ "$AVAILABLE_GB" -lt 200 ]; then
+        echo "$(date): ERROR: Insufficient disk space. Need at least 200GB, have ${AVAILABLE_GB}GB"
+        exit 1
+    fi
+    
+    # Function to retry commands with exponential backoff
+    retry() {
+        local n=1
+        local max=5
+        local delay=30
+        while true; do
+            "$@" && break || {
+                if [[ $n -lt $max ]]; then
+                    ((n++))
+                    echo "$(date): Command failed. Attempt $n/$max. Waiting ${delay}s..."
+                    sleep $delay
+                    delay=$((delay * 2))  # Exponential backoff
+                else
+                    echo "$(date): Command failed after $n attempts: $*"
+                    return 1
+                fi
+            }
+        done
+    }
+    
+    # Function to monitor background processes
+    monitor_extraction() {
+        local pid=$1
+        local desc=$2
+        echo "$(date): Monitoring $desc (PID: $pid)"
+        while kill -0 $pid 2>/dev/null; do
+            echo "$(date): $desc still running..."
+            sleep 60
+        done
+        wait $pid
+        local exit_code=$?
+        if [ $exit_code -eq 0 ]; then
+            echo "$(date): ✅ $desc completed successfully"
+        else
+            echo "$(date): ❌ $desc failed with exit code $exit_code"
+            return $exit_code
+        fi
+    }
+    
+    # Download and extract data with retries and parallel processing where safe
+    echo "$(date): Starting data downloads..."
+    
+    # Download all files first (can be done in parallel)
+    echo "$(date): Downloading OSM tile server data..."
+    retry aws s3 cp --no-sign-request s3://webarena-map-server-data/osm_tile_server.tar /root/osm_tile_server.tar &
+    DOWNLOAD_TILE_PID=$!
+    
+    echo "$(date): Downloading Nominatim data..."
+    retry aws s3 cp --no-sign-request s3://webarena-map-server-data/nominatim_volumes.tar /root/nominatim_volumes.tar &
+    DOWNLOAD_NOM_PID=$!
+    
+    echo "$(date): Downloading OSM dump..."
+    retry aws s3 cp --no-sign-request s3://webarena-map-server-data/osm_dump.tar /root/osm_dump.tar &
+    DOWNLOAD_DUMP_PID=$!
+    
+    echo "$(date): Downloading OSRM routing data..."
+    retry aws s3 cp --no-sign-request s3://webarena-map-server-data/osrm_routing.tar /root/osrm_routing.tar &
+    DOWNLOAD_OSRM_PID=$!
+    
+    # Wait for all downloads to complete
+    echo "$(date): Waiting for downloads to complete..."
+    monitor_extraction $DOWNLOAD_TILE_PID "OSM tile server download"
+    monitor_extraction $DOWNLOAD_NOM_PID "Nominatim download"
+    monitor_extraction $DOWNLOAD_DUMP_PID "OSM dump download"
+    monitor_extraction $DOWNLOAD_OSRM_PID "OSRM routing download"
+    
+    echo "$(date): All downloads completed. Starting extractions..."
+    
+    # Extract files sequentially to avoid memory issues and clean up immediately
+    echo "$(date): Extracting OSM tile server data..."
+    tar -C /var/lib/docker/volumes -xf /root/osm_tile_server.tar
+    rm -f /root/osm_tile_server.tar  # Clean up immediately to save space
+    echo "$(date): ✅ OSM tile server data extracted and cleaned up"
+    
+    echo "$(date): Extracting Nominatim data..."
+    tar -C /var/lib/docker/volumes -xf /root/nominatim_volumes.tar
+    rm -f /root/nominatim_volumes.tar  # Clean up immediately to save space
+    echo "$(date): ✅ Nominatim data extracted and cleaned up"
+    
+    echo "$(date): Extracting OSM dump..."
+    tar -C /opt/osm_dump -xf /root/osm_dump.tar
+    rm -f /root/osm_dump.tar  # Clean up immediately to save space
+    echo "$(date): ✅ OSM dump extracted and cleaned up"
+    
+    echo "$(date): Extracting OSRM routing data..."
+    tar -C /opt/osrm -xf /root/osrm_routing.tar
+    rm -f /root/osrm_routing.tar  # Clean up immediately to save space
+    echo "$(date): ✅ OSRM routing data extracted and cleaned up"
+    
+    # Verify extracted data
+    echo "$(date): Verifying extracted data..."
+    ls -la /var/lib/docker/volumes/ | head -20
+    ls -la /opt/osm_dump/ | head -10
+    ls -la /opt/osrm/ | head -10
+    
+    # Pull Docker images
+    echo "$(date): Pulling Docker images..."
+    docker pull overv/openstreetmap-tile-server
+    docker pull mediagis/nominatim:4.2
+    docker pull ghcr.io/project-osrm/osrm-backend:v5.27.1
+    
+    # Start containers with restart policies and proper resource limits
+    echo "$(date): Starting tile server..."
+    docker run --name tile --restart unless-stopped \
+        --memory=2g --memory-swap=4g \
+        --volume=osm-data:/data/database/ --volume=osm-tiles:/data/tiles/ \
+        -p 8080:80 -d overv/openstreetmap-tile-server run
+    
+    # Wait a bit for tile server to initialize
+    sleep 30
+    
+    echo "$(date): Starting Nominatim geocoding server..."
+    docker run --name nominatim --restart unless-stopped \
+        --memory=4g --memory-swap=8g \
+        --env=IMPORT_STYLE=extratags \
+        --env=PBF_PATH=/nominatim/data/us-northeast-latest.osm.pbf \
+        --env=IMPORT_WIKIPEDIA=/nominatim/data/wikimedia-importance.sql.gz \
+        --volume=/opt/osm_dump:/nominatim/data \
+        --volume=nominatim-data:/var/lib/postgresql/14/main \
+        --volume=nominatim-flatnode:/nominatim/flatnode \
+        -p 8085:8080 -d mediagis/nominatim:4.2 /app/start.sh
+    
+    # Wait for Nominatim to initialize
+    sleep 60
+    
+    echo "$(date): Starting OSRM routing servers..."
+    
+    # Start OSRM car routing
+    docker run --name osrm-car --restart unless-stopped \
+        --memory=1g --memory-swap=2g \
+        --volume=/opt/osrm/car:/data -p 5000:5000 -d \
+        ghcr.io/project-osrm/osrm-backend:v5.27.1 osrm-routed --algorithm mld /data/us-northeast-latest.osrm
+    
+    # Start OSRM bike routing
+    docker run --name osrm-bike --restart unless-stopped \
+        --memory=1g --memory-swap=2g \
+        --volume=/opt/osrm/bike:/data -p 5001:5000 -d \
+        ghcr.io/project-osrm/osrm-backend:v5.27.1 osrm-routed --algorithm mld /data/us-northeast-latest.osrm
+    
+    # Start OSRM foot routing
+    docker run --name osrm-foot --restart unless-stopped \
+        --memory=1g --memory-swap=2g \
+        --volume=/opt/osrm/foot:/data -p 5002:5000 -d \
+        ghcr.io/project-osrm/osrm-backend:v5.27.1 osrm-routed --algorithm mld /data/us-northeast-latest.osrm
+    
+    echo "$(date): All services started. Waiting for initialization..."
+    sleep 120
+    
+    echo "$(date): Verifying service health..."
+    docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}"
+    
+    # Test service endpoints
+    echo "$(date): Testing service endpoints..."
+    
+    # Test tile server
+    if curl -f -s -o /dev/null "http://localhost:8080/tile/0/0/0.png"; then
+        echo "$(date): ✅ Tile server is responding"
+    else
+        echo "$(date): ❌ Tile server is not responding"
+    fi
+    
+    # Test Nominatim
+    if curl -f -s -o /dev/null "http://localhost:8085/search?q=test&format=json&limit=1"; then
+        echo "$(date): ✅ Nominatim is responding"
+    else
+        echo "$(date): ❌ Nominatim is not responding"
+    fi
+    
+    # Test OSRM services
+    for service in car bike foot; do
+        port=$((5000 + $(echo "car bike foot" | tr ' ' '\n' | grep -n $service | cut -d: -f1) - 1))
+        if curl -f -s -o /dev/null "http://localhost:$port/route/v1/$service/-79.9959,40.4406;-79.9,40.45?overview=false"; then
+            echo "$(date): ✅ OSRM $service routing is responding"
+        else
+            echo "$(date): ❌ OSRM $service routing is not responding"
+        fi
+    done
+    
+    # All tar files already cleaned up during extraction
+    
+    # Final status report
+    echo "$(date): Bootstrap completed!"
+    echo "$(date): Final service status:"
+    docker ps
+    echo "$(date): Available disk space after cleanup:"
+    df -h
+    echo "$(date): Memory usage:"
+    free -h
+    
+    echo "$(date): Services are available at:"
+    echo "  - Tile server: http://$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4):8080/tile/{z}/{x}/{y}.png"
+    echo "  - Geocoding: http://$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4):8085/"
+    echo "  - OSRM Car: http://$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4):5000/"
+    echo "  - OSRM Bike: http://$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4):5001/"
+    echo "  - OSRM Foot: http://$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4):5002/"
+    
+    echo "$(date): Bootstrap script completed successfully!"
+    EOF
+  
+  # Make bootstrap script executable and run it in background
+  - chmod +x /root/bootstrap.sh
+  - nohup /root/bootstrap.sh > /var/log/webarena-map-bootstrap.log 2>&1 &
+
+# Write completion marker
+write_files:
+  - path: /root/cloud-init-completed
+    content: |
+      Cloud-init completed at $(date)
+      Bootstrap script started in background
+      Check /var/log/webarena-map-bootstrap.log for progress
+    permissions: '0644'
+
+final_message: |
+  WebArena map server cloud-init completed.
+  Bootstrap script is running in background.
+  Check /var/log/webarena-map-bootstrap.log for progress.
+  Services will be available at:
+  - Tiles: http://<instance-ip>:8080/tile/{z}/{x}/{y}.png
+  - Geocoding: http://<instance-ip>:8085/
+  - Routing: http://<instance-ip>:5000 (car), :5001 (bike), :5002 (foot)
