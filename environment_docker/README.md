@@ -187,7 +187,25 @@ The homepage will be available at `http://<your-server-hostname>:4399`.
 ### Map
 Please refer to the AMI setup for the map frontend setup. For most use cases this is enough.
 
-If you wish to also set up all map backends, namely tile server, geocoding server and routing server, read along and please be aware of very large downloads and disk space requirements.
+If you wish to also set up all map backends, namely tile server, geocoding server and routing server, you have two options:
+
+#### Option 1: Automated Backend Deployment (Recommended)
+Use the provided cloud-init script for automated setup:
+
+1. Launch Ubuntu 24.04 LTS instance (t3a.xlarge, 1000GB storage) in us-east-2
+2. Use `webarena-map-backend-boot-init.yaml` as user data during launch
+3. Wait 60-90 minutes for automatic setup (~180GB download)
+4. Update frontend configuration to point to your backend server IP:
+   ```bash
+   # Replace <BACKEND_IP> with your map backend server's public IP
+   sudo sed -i 's|http://ogma.lti.cs.cmu.edu:8080|http://<BACKEND_IP>:8080|g' /home/ubuntu/openstreetmap-website/vendor/assets/leaflet/leaflet.osm.js
+   sudo sed -i 's|metis.lti.cs.cmu.edu:8085|<BACKEND_IP>:8085|g' /home/ubuntu/openstreetmap-website/config/settings.yml
+   sudo sed -i 's|metis.lti.cs.cmu.edu:|<BACKEND_IP>:|g' /home/ubuntu/openstreetmap-website/config/settings.yml
+   cd /home/ubuntu/openstreetmap-website/ && docker compose restart web
+   ```
+
+#### Option 2: Manual Backend Setup
+For manual setup, read along and please be aware of very large downloads and disk space requirements.
 
 #### Tile Sever
 
