@@ -7,14 +7,14 @@
 #   source setup_env.sh <your-server-hostname-or-ip>
 #
 # Example:
-#   source setup_env.sh 18.208.187.221
+#   source setup_env.sh YOUR_WEBARENA_SERVER
 #   source setup_env.sh ec2-xx-xx-xx-xx.us-east-2.compute.amazonaws.com
 
 if [ $# -eq 0 ]; then
     echo "Usage: source setup_env.sh <your-server-hostname-or-ip>"
     echo ""
     echo "Example:"
-    echo "  source setup_env.sh 18.208.187.221"
+    echo "  source setup_env.sh YOUR_SERVER_IP"
     echo "  source setup_env.sh ec2-xx-xx-xx-xx.us-east-2.compute.amazonaws.com"
     return 1
 fi

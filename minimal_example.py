@@ -30,25 +30,21 @@ if missing_vars:
         f"ERROR: Missing required environment variables: {', '.join(missing_vars)}"
     )
     print("\nPlease set the following environment variables before running:")
-    print("export SHOPPING='http://your-server:7770'")
-    print("export SHOPPING_ADMIN='http://your-server:7780/admin'")
-    print("export REDDIT='http://your-server:9999'")
-    print("export GITLAB='http://your-server:8023'")
-    print("export MAP='http://your-server:3000'")
+    print("export SHOPPING='http://YOUR_WEBARENA_SERVER:7770'")
+    print("export SHOPPING_ADMIN='http://YOUR_WEBARENA_SERVER:7780/admin'")
+    print("export REDDIT='http://YOUR_WEBARENA_SERVER:9999'")
+    print("export GITLAB='http://YOUR_WEBARENA_SERVER:8023'")
+    print("export MAP='http://YOUR_WEBARENA_SERVER:3000'")
     print(
-        "export WIKIPEDIA='http://your-server:8888/wikipedia_en_all_maxi_2022-05/A/User:The_other_Kiwix_guy/Landing'"
+        "export WIKIPEDIA='http://YOUR_WEBARENA_SERVER:8888/wikipedia_en_all_maxi_2022-05/A/User:The_other_Kiwix_guy/Landing'"
     )
     print("export HOMEPAGE='PASS'")
-    print("\nFor the current demo server, you can use:")
-    print("export SHOPPING='http://18.208.187.221:7770'")
-    print("export SHOPPING_ADMIN='http://18.208.187.221:7780/admin'")
-    print("export REDDIT='http://18.208.187.221:9999'")
-    print("export GITLAB='http://18.208.187.221:8023'")
-    print("export MAP='http://18.208.187.221:3000'")
     print(
-        "export WIKIPEDIA='http://18.208.187.221:8888/wikipedia_en_all_maxi_2022-05/A/User:The_other_Kiwix_guy/Landing'"
+        "\nReplace YOUR_WEBARENA_SERVER with your WebArena server's IP address."
     )
-    print("export HOMEPAGE='PASS'")
+    print(
+        "Note: 18.208.187.221 is the map backend server, not the WebArena frontend server."
+    )
     exit(1)
 
 print("Environment variables are properly configured")
