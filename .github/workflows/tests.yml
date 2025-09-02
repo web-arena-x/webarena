@@ -4,14 +4,6 @@ on: [push]
 jobs:
   test-all:
     runs-on: ubuntu-latest
-    env:
-      SHOPPING: "http://18.208.187.221:7770"
-      SHOPPING_ADMIN: "http://18.208.187.221:7780/admin"
-      REDDIT: "http://18.208.187.221:9999"
-      GITLAB: "http://18.208.187.221:8023"
-      MAP: "http://18.208.187.221:3000"
-      WIKIPEDIA: "http://18.208.187.221:8888/wikipedia_en_all_maxi_2022-05/A/User:The_other_Kiwix_guy/Landing"
-      HOMEPAGE: "PASS"
     strategy:
       max-parallel: 5
     steps:
@@ -35,9 +27,6 @@ jobs:
         # Run this mypy instance against our main package.
         mypy --install-types --non-interactive .
         mypy --strict . --exclude scripts
-    - name: Enviroment prepare
-      run: |
-        bash prepare.sh
     - name: Test with pytest
       run: |
         pytest
