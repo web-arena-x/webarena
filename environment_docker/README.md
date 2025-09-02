@@ -199,7 +199,7 @@ Then run the tile server:
 docker run --volume=osm-data:/data/database/ --volume=osm-tiles:/data/tiles/ -p 8080:80 --detach=true overv/openstreetmap-tile-server run
 ```
 
-Now, inside the file `webarena/openstreetmap-website/vendor/assets/leaflet/leaflet.osm.js`, change `http://ogma.lti.cs.cmu.edu:8080/tile/{z}/{x}/{y}.png` to `http://<public-url-to-your-tile-server>:8080/tile/{z}/{x}/{y}.png` 
+Now, inside the file `webarena/openstreetmap-website/vendor/assets/leaflet/leaflet.osm.js`, change `http://ogma.lti.cs.cmu.edu:8080/tile/{z}/{x}/{y}.png` to `http://<public-url-to-your-tile-server>:8080/tile/{z}/{x}/{y}.png`
 
 > [!NOTE]
 > By default, the `url` in `TileLayer` and `Mapnik` is set to `"http://ogma.lti.cs.cmu.edu:8080/tile/{z}/{x}/{y}.png"`. You replace it with `https://tile.openstreetmap.org/{z}/{x}/{y}.png` (the official link)  as a way to test in case you run into issues during the setup.

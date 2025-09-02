@@ -38,6 +38,8 @@ The WebArena deployment consists of two main components:
 3. **User Data**: Copy the entire contents of `webarena-map-backend-boot-init.yaml` into the "User data" field during instance launch.
 
 4. **Key Pair**: Select or create an SSH key pair for access.
+   - **Important**: Save the private key file (`.pem`) securely as you'll need it for both backend and frontend instances
+   - If using AWS CLI, you can create a key pair with: `aws ec2 create-key-pair --key-name webarena-key --query 'KeyMaterial' --output text > webarena-key.pem && chmod 600 webarena-key.pem`
 
 5. **Launch the instance** and note the **Instance ID** and **Public IP**.
 
@@ -99,6 +101,8 @@ curl "http://<PUBLIC_IP>:5000/route/v1/driving/-79.9959,40.4406;-79.9,40.45?over
    ```
 
 3. **Key Pair**: Use the same SSH key pair as the backend server.
+   - **Critical**: Ensure you have access to the private key file from Step 1
+   - If you don't have the key, you'll need to terminate and relaunch the instance with a new key pair
 
 4. **Launch the instance** and note the **Instance ID** and **Public IP**.
 
@@ -274,6 +278,28 @@ cat /home/ubuntu/openstreetmap-website/config/settings.yml | grep -A5 -B5 nomina
 - For production, restrict access to specific IP ranges
 - Consider using VPC and private subnets for backend services
 - Rotate any AWS credentials used during setup
+
+## Resource Cleanup
+
+When you're done with testing, clean up AWS resources to avoid ongoing charges:
+
+```bash
+# Get instance IDs
+aws ec2 describe-instances --region us-east-2 --filters "Name=tag:Name,Values=webarena-*" --query 'Reservations[*].Instances[*].[InstanceId,Tags[?Key==`Name`].Value|[0],State.Name]' --output table
+
+# Terminate instances
+aws ec2 terminate-instances --region us-east-2 --instance-ids <FRONTEND_INSTANCE_ID> <BACKEND_INSTANCE_ID>
+
+# Release Elastic IP (optional, but saves costs)
+aws ec2 describe-addresses --region us-east-2 --query 'Addresses[*].[AllocationId,PublicIp]' --output table
+aws ec2 release-address --region us-east-2 --allocation-id <ALLOCATION_ID>
+
+# Delete security groups (optional)
+aws ec2 delete-security-group --region us-east-2 --group-id <SECURITY_GROUP_ID>
+
+# Delete key pair (optional)
+aws ec2 delete-key-pair --region us-east-2 --key-name webarena-key
+```
 
 ## Support
 
