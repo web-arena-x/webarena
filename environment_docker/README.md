@@ -194,7 +194,25 @@ The homepage will be available at `http://<your-server-hostname>:4399`.
 
 The WebArena AMI automatically configures the map frontend to use the current AWS tile server when you set `MAP_BACKEND_IP=18.208.187.221` in the user data (as shown in step 3 above). No manual configuration is required.
 
-**Setting up your own map backend**: If you want to run your own tile server, geocoding server, and routing server instead of using the existing AWS infrastructure, follow the automated setup steps in the `webarena-map-backend-boot-init.yaml` file included in this repository. This will handle the complex setup process including large downloads (~180GB) and configuration.
+#### Setting up your own map backend (Recommended for production)
+
+If you want to run your own tile server, geocoding server, and routing server instead of using the existing AWS infrastructure:
+
+1. **Launch Ubuntu 24.04 LTS instance** (t3a.xlarge, 1000GB storage) in us-east-2
+   - [AWS EC2 Launch Tutorial](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/tutorial-launch-my-first-ec2-instance.html)
+
+2. **Use automated setup script** as user data during launch:
+   - Copy the contents of `webarena-map-backend-boot-init.yaml` from this repository
+   - Paste it into the "User data" field when launching your instance
+   - [AWS User Data Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html)
+
+3. **Wait for setup completion** (60-90 minutes for automatic setup, ~180GB download)
+
+4. **Update your WebArena frontend** to point to your new backend server:
+   - Set `MAP_BACKEND_IP=<your-backend-server-ip>` when launching your WebArena instances
+   - The AMI will automatically configure all map services to use your backend
+
+This automated approach handles all the complex setup including tile server, geocoding server, and routing server configuration.
 
 ### Documentation sites
 We are still working on dockerizing the documentation sites. As they are read-only sites and they usually don't change rapidly. It is safe to use their live sites for test purpose right now.
