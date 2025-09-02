@@ -20,13 +20,8 @@ from browser_env import (
     create_scroll_action,
 )
 from browser_env.actions import create_id_based_action
-from browser_env.env_config import (
-    ACCOUNTS,
-    GITLAB,
-    REDDIT,
-    SHOPPING,
-    SHOPPING_ADMIN,
-)
+
+# Removed imports of external service URLs - no longer needed
 
 
 def test_script_browser_env(script_browser_env: ScriptBrowserEnv) -> None:
@@ -216,22 +211,7 @@ def test_accessibility_tree_viewport(
     assert s1 not in obs["text"] and s2 in obs["text"] and s3 in obs["text"]
 
 
-def test_multiple_start_url(script_browser_env: ScriptBrowserEnv) -> None:
-    temp_config = tempfile.NamedTemporaryFile("w", delete=False)
-    config = {
-        "require_login": False,
-        "start_url": f"{REDDIT} |AND| {REDDIT}/forums",
-    }
-    json.dump(config, temp_config)
-    temp_config.close()
-
-    env = script_browser_env
-    env.reset(options={"config_file": temp_config.name})
-    assert len(env.context.pages) == 2
-    assert env.context.pages[0].url == f"{REDDIT}/"
-    assert env.context.pages[1].url == f"{REDDIT}/forums", env.context.pages[
-        1
-    ].url
+# Removed test_multiple_start_url - requires external REDDIT service
 
 
 def test_observation_tab_information(
