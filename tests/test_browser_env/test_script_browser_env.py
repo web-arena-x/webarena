@@ -21,8 +21,6 @@ from browser_env import (
 )
 from browser_env.actions import create_id_based_action
 
-# Removed imports of external service URLs - no longer needed
-
 
 def test_script_browser_env(script_browser_env: ScriptBrowserEnv) -> None:
     env = script_browser_env
@@ -209,9 +207,6 @@ def test_accessibility_tree_viewport(
     obs, success, _, _, info = env.step(create_scroll_action("down"))
     assert success
     assert s1 not in obs["text"] and s2 in obs["text"] and s3 in obs["text"]
-
-
-# Removed test_multiple_start_url - requires external REDDIT service
 
 
 def test_observation_tab_information(
