@@ -194,7 +194,7 @@ The homepage will be available at `http://<your-server-hostname>:4399`.
 
 The WebArena AMI automatically configures the map frontend to use the current AWS tile server when you set `MAP_BACKEND_IP=18.208.187.221` in the user data (as shown in step 3 above). No manual configuration is required.
 
-#### Setting up your own map backend (Recommended for production)
+#### Setting up your own map backend
 
 If you want to run your own tile server, geocoding server, and routing server instead of using the existing AWS infrastructure:
 
