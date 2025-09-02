@@ -187,6 +187,16 @@ The homepage will be available at `http://<your-server-hostname>:4399`.
 ### Map
 Please refer to the AMI setup for the map frontend setup. For most use cases this is enough.
 
+**Important**: Even if you don't set up your own map backend, you need to configure the frontend to use the currently running AWS tile server:
+
+```bash
+# Configure frontend to use the existing AWS tile server (18.208.187.221)
+sudo sed -i 's|http://ogma.lti.cs.cmu.edu:8080|http://18.208.187.221:8080|g' /home/ubuntu/openstreetmap-website/vendor/assets/leaflet/leaflet.osm.js
+sudo sed -i 's|metis.lti.cs.cmu.edu:8085|18.208.187.221:8085|g' /home/ubuntu/openstreetmap-website/config/settings.yml
+sudo sed -i 's|metis.lti.cs.cmu.edu:|18.208.187.221:|g' /home/ubuntu/openstreetmap-website/config/settings.yml
+cd /home/ubuntu/openstreetmap-website/ && docker compose restart web
+```
+
 If you wish to also set up all map backends, namely tile server, geocoding server and routing server, you have two options:
 
 #### Option 1: Automated Backend Deployment (Recommended)
