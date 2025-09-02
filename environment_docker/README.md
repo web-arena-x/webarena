@@ -30,9 +30,9 @@ ID: ami-08a862bf98e3bd7aa
 
 3. **Map Backend Configuration**: Add the following to your instance's user data to automatically configure the map backend:
    ```
-   MAP_BACKEND_IP=18.208.187.221
+   MAP_BACKEND_IP=YOUR_MAP_BACKEND_IP
    ```
-   This will automatically configure the frontend to use the current AWS tile server.
+   Replace `YOUR_MAP_BACKEND_IP` with your map backend server's IP address.
 
 4. Create an Elastic IP and bind to the instance to associate the instance with a static IP and hostname. Take note of the hostname, usually in the form of "ec2-xx-xx-xx-xx.us-east-2.compute.amazonaws.com". This will be used as "<your-server-hostname>" in the following commands.
 
@@ -192,7 +192,7 @@ The homepage will be available at `http://<your-server-hostname>:4399`.
 
 ### Map
 
-The WebArena AMI automatically configures the map frontend to use the current AWS tile server when you set `MAP_BACKEND_IP=18.208.187.221` in the user data (as shown in step 3 above). No manual configuration is required.
+The WebArena AMI automatically configures the map frontend to use your specified map backend server when you set `MAP_BACKEND_IP=YOUR_MAP_BACKEND_IP` in the user data (as shown in step 3 above). No manual configuration is required.
 
 #### Setting up your own map backend
 
