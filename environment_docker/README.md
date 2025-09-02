@@ -193,7 +193,9 @@ If you wish to also set up all map backends, namely tile server, geocoding serve
 Use the provided cloud-init script for automated setup:
 
 1. Launch Ubuntu 24.04 LTS instance (t3a.xlarge, 1000GB storage) in us-east-2
+   - [AWS EC2 Launch Tutorial](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/tutorial-launch-my-first-ec2-instance.html)
 2. Use `webarena-map-backend-boot-init.yaml` as user data during launch
+   - [AWS User Data Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html)
 3. Wait 60-90 minutes for automatic setup (~180GB download)
 4. Update frontend configuration to point to your backend server IP:
    ```bash
