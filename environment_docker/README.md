@@ -20,17 +20,23 @@ We provide AMI which have all the websites pre-installed. You can use the AMI to
 ```
 AMI Information: find in console, EC2 - AMI Catalog
 Region: us-east-2
-Name: webarena
-ID: ami-06290d70feea35450
+Name: webarena-with-configurable-map-backend
+ID: ami-08a862bf98e3bd7aa
 ```
 
 1. Create a security group that allows all inbound traffic.
 
 2. Create an instance (recommended type: t3a.xlarge, 1000GB EBS root volume) from the webarena AMI. Use the security group just created and remember to select SSH key-pair.
 
-3. Create an Elastic IP and bind to the instance to associate the instance with a static IP and hostname. Take note of the hostname, usually in the form of "ec2-xx-xx-xx-xx.us-east-2.compute.amazonaws.com". This will be used as "<your-server-hostname>" in the following commands.
+3. **Map Backend Configuration**: Add the following to your instance's user data to automatically configure the map backend:
+   ```
+   MAP_BACKEND_IP=18.208.187.221
+   ```
+   This will automatically configure the frontend to use the current AWS tile server.
 
-4. Log into the server, start all dockers by:
+4. Create an Elastic IP and bind to the instance to associate the instance with a static IP and hostname. Take note of the hostname, usually in the form of "ec2-xx-xx-xx-xx.us-east-2.compute.amazonaws.com". This will be used as "<your-server-hostname>" in the following commands.
+
+5. Log into the server, start all dockers by:
 ```bash
 docker start gitlab
 docker start shopping
@@ -43,7 +49,7 @@ docker compose start
 
 :clock1: wait ~1 min to wait all services to start
 
-5. Run
+6. Run
 ```bash
 docker exec shopping /var/www/magento2/bin/magento setup:store-config:set --base-url="http://<your-server-hostname>:7770" # no trailing /
 docker exec shopping mysql -u magentouser -pMyPassword magentodb -e  'UPDATE core_config_data SET value="http://<your-server-hostname>:7770/" WHERE path = "web/secure/base_url";'
@@ -186,25 +192,9 @@ The homepage will be available at `http://<your-server-hostname>:4399`.
 
 ### Map
 
-#### Option A: Use New AMI with Auto-Configuration (Recommended)
-**NEW**: Use the updated WebArena AMI that automatically configures map backend URLs:
+The WebArena AMI automatically configures the map frontend to use the current AWS tile server when you set `MAP_BACKEND_IP=18.208.187.221` in the user data (as shown in step 3 above). No manual configuration is required.
 
-- **AMI ID**: `ami-08a862bf98e3bd7aa` (us-east-2)
-- **Features**: Automatic map backend configuration via environment variables
-- **Usage**: Set `MAP_BACKEND_IP=18.208.187.221` in user data when launching
-
-See `NEW_AMI_README.md` for complete details and usage instructions.
-
-#### Option B: Manual Configuration (Original AMI)
-If using the original AMI (`ami-06290d70feea35450`), you need to manually configure the frontend:
-
-```bash
-# Configure frontend to use the existing AWS tile server (18.208.187.221)
-sudo sed -i 's|http://ogma.lti.cs.cmu.edu:8080|http://18.208.187.221:8080|g' /home/ubuntu/openstreetmap-website/vendor/assets/leaflet/leaflet.osm.js
-sudo sed -i 's|metis.lti.cs.cmu.edu:8085|18.208.187.221:8085|g' /home/ubuntu/openstreetmap-website/config/settings.yml
-sudo sed -i 's|metis.lti.cs.cmu.edu:|18.208.187.221:|g' /home/ubuntu/openstreetmap-website/config/settings.yml
-cd /home/ubuntu/openstreetmap-website/ && docker compose restart web
-```
+**Legacy Note**: If you're using the original AMI (`ami-06290d70feea35450`), you'll need to manually configure the frontend using the commands shown in the previous version of this documentation.
 
 If you wish to also set up all map backends, namely tile server, geocoding server and routing server, you have two options:
 
