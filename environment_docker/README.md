@@ -197,6 +197,15 @@ sudo sed -i 's|metis.lti.cs.cmu.edu:|18.208.187.221:|g' /home/ubuntu/openstreetm
 cd /home/ubuntu/openstreetmap-website/ && docker compose restart web
 ```
 
+#### Creating an Updated AMI (Optional)
+To help other users, you can create a new AMI with the fixed configuration:
+
+1. After applying the frontend configuration above, stop your instance
+2. In AWS Console: EC2 → Instances → Select your instance → Actions → Image and templates → Create image
+   - [AWS AMI Creation Guide](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html)
+3. Name it something like "webarena-fixed-map-config-YYYY-MM-DD"
+4. Share the AMI ID with the WebArena community
+
 If you wish to also set up all map backends, namely tile server, geocoding server and routing server, you have two options:
 
 #### Option 1: Automated Backend Deployment (Recommended)
