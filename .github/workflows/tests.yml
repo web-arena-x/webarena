@@ -5,12 +5,12 @@ jobs:
   test-all:
     runs-on: ubuntu-latest
     env:
-      SHOPPING: "http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:7770"
-      SHOPPING_ADMIN: "http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:7780/admin"
-      REDDIT: "http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:9999"
-      GITLAB: "http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:8023"
-      MAP: "http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:3000"
-      WIKIPEDIA: "http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:8888/wikipedia_en_all_maxi_2022-05/A/User:The_other_Kiwix_guy/Landing"
+      SHOPPING: "http://18.208.187.221:7770"
+      SHOPPING_ADMIN: "http://18.208.187.221:7780/admin"
+      REDDIT: "http://18.208.187.221:9999"
+      GITLAB: "http://18.208.187.221:8023"
+      MAP: "http://18.208.187.221:3000"
+      WIKIPEDIA: "http://18.208.187.221:8888/wikipedia_en_all_maxi_2022-05/A/User:The_other_Kiwix_guy/Landing"
       HOMEPAGE: "PASS"
     strategy:
       max-parallel: 5
