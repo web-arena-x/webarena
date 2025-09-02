@@ -9,29 +9,24 @@ WIKIPEDIA = os.environ.get("WIKIPEDIA", "")
 MAP = os.environ.get("MAP", "")
 HOMEPAGE = os.environ.get("HOMEPAGE", "")
 
-# Environment variables are optional for testing
-# Only assert if they're needed for actual evaluation runs
-if any([REDDIT, SHOPPING, SHOPPING_ADMIN, GITLAB, WIKIPEDIA, MAP, HOMEPAGE]):
-    # If any are set, warn about missing ones but don't fail
-    missing = []
-    if not REDDIT:
-        missing.append("REDDIT")
-    if not SHOPPING:
-        missing.append("SHOPPING")
-    if not SHOPPING_ADMIN:
-        missing.append("SHOPPING_ADMIN")
-    if not GITLAB:
-        missing.append("GITLAB")
-    if not WIKIPEDIA:
-        missing.append("WIKIPEDIA")
-    if not MAP:
-        missing.append("MAP")
-    if not HOMEPAGE:
-        missing.append("HOMEPAGE")
-
-    if missing:
-        print(f"Warning: Missing environment variables: {', '.join(missing)}")
-        print("Set these for full evaluation functionality.")
+assert (
+    REDDIT
+    and SHOPPING
+    and SHOPPING_ADMIN
+    and GITLAB
+    and WIKIPEDIA
+    and MAP
+    and HOMEPAGE
+), (
+    f"Please setup the URLs to each site. Current: \n"
+    + f"Reddit: {REDDIT}\n"
+    + f"Shopping: {SHOPPING}\n"
+    + f"Shopping Admin: {SHOPPING_ADMIN}\n"
+    + f"Gitlab: {GITLAB}\n"
+    + f"Wikipedia: {WIKIPEDIA}\n"
+    + f"Map: {MAP}\n"
+    + f"Homepage: {HOMEPAGE}\n"
+)
 
 
 ACCOUNTS = {

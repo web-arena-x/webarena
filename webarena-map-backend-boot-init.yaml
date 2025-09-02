@@ -279,6 +279,8 @@ runcmd:
     free -h
 
     echo "$(date): Services are available at:"
+    # 169.254.169.254 is the AWS Instance Metadata Service (IMDS) endpoint
+    # It provides instance metadata including the public IP address
     echo "  - Tile server: http://$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4):8080/tile/{z}/{x}/{y}.png"
     echo "  - Geocoding: http://$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4):8085/"
     echo "  - OSRM Car: http://$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4):5000/"
