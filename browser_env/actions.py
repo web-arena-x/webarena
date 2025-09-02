@@ -1378,7 +1378,9 @@ def parse_playwright_code(code: str) -> list[ParsedPlaywrightCode]:
             if isinstance(node, ast.Call):
                 function_name = node.func.id  # type: ignore[attr-defined]
                 arguments = [
-                    ast.literal_eval(arg) if isinstance(arg, ast.Str) else arg
+                    str(ast.literal_eval(arg))
+                    if isinstance(arg, ast.Str)
+                    else str(arg)
                     for arg in node.args
                 ]
                 keywords = {

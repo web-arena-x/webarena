@@ -123,7 +123,7 @@ def test_parallel_script_browser_env() -> None:
     # assert is_bearable(info["page"].tolist(), list[DetachedPage])
     assert info["page"][0].url == "https://www.rfc-editor.org/rfc/rfc2606.html"
     assert info["page"][1].url == "https://www.rfc-editor.org/rfc/rfc6761.html"
-    vector_env.close()  # type: ignore[no-untyped-call]
+    vector_env.close()
 
 
 def test_focus_placeholder_and_label(
