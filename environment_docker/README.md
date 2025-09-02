@@ -198,6 +198,7 @@ Use the provided cloud-init script for automated setup:
 4. Update frontend configuration to point to your backend server IP:
    ```bash
    # Replace <BACKEND_IP> with your map backend server's public IP
+   # Example: if your backend is at 18.208.187.221, use that IP
    sudo sed -i 's|http://ogma.lti.cs.cmu.edu:8080|http://<BACKEND_IP>:8080|g' /home/ubuntu/openstreetmap-website/vendor/assets/leaflet/leaflet.osm.js
    sudo sed -i 's|metis.lti.cs.cmu.edu:8085|<BACKEND_IP>:8085|g' /home/ubuntu/openstreetmap-website/config/settings.yml
    sudo sed -i 's|metis.lti.cs.cmu.edu:|<BACKEND_IP>:|g' /home/ubuntu/openstreetmap-website/config/settings.yml
