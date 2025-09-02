@@ -184,7 +184,7 @@ def test_accessibility_tree_viewport(
     accessibility_tree_current_viewport_script_browser_env: ScriptBrowserEnv,
 ) -> None:
     s1 = "combobox 'Favourite mammal'"
-    s2 = "gridcell 'Canyon bat'"
+    s2 = "cell 'Canyon bat'"
     s3 = "heading 'Useful links'"
     env = accessibility_tree_current_viewport_script_browser_env
     env.reset()
