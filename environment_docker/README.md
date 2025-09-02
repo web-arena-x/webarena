@@ -185,9 +185,18 @@ flask run --host=0.0.0.0 --port=4399
 The homepage will be available at `http://<your-server-hostname>:4399`.
 
 ### Map
-Please refer to the AMI setup for the map frontend setup. For most use cases this is enough.
 
-**Important**: Even if you don't set up your own map backend, you need to configure the frontend to use the currently running AWS tile server:
+#### Option A: Use New AMI with Auto-Configuration (Recommended)
+**NEW**: Use the updated WebArena AMI that automatically configures map backend URLs:
+
+- **AMI ID**: `ami-08a862bf98e3bd7aa` (us-east-2)
+- **Features**: Automatic map backend configuration via environment variables
+- **Usage**: Set `MAP_BACKEND_IP=18.208.187.221` in user data when launching
+
+See `NEW_AMI_README.md` for complete details and usage instructions.
+
+#### Option B: Manual Configuration (Original AMI)
+If using the original AMI (`ami-06290d70feea35450`), you need to manually configure the frontend:
 
 ```bash
 # Configure frontend to use the existing AWS tile server (18.208.187.221)

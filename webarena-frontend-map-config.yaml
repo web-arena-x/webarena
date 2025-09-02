@@ -1,0 +1,55 @@
+#cloud-config
+# WebArena Frontend Map Configuration Script
+# This script configures the frontend to use configurable map backend URLs
+
+write_files:
+  - path: /home/ubuntu/configure-map-backend.sh
+    permissions: '0755'
+    content: |
+      #!/bin/bash
+
+      # Get map backend URL from environment variable or use default
+      MAP_BACKEND_IP="${MAP_BACKEND_IP:-18.208.187.221}"
+
+      echo "Configuring WebArena frontend to use map backend: $MAP_BACKEND_IP"
+
+      # Wait for OpenStreetMap website directory to be available
+      while [ ! -d "/home/ubuntu/openstreetmap-website" ]; do
+        echo "Waiting for openstreetmap-website directory..."
+        sleep 10
+      done
+
+      # Configure tile server URL in leaflet.osm.js
+      if [ -f "/home/ubuntu/openstreetmap-website/vendor/assets/leaflet/leaflet.osm.js" ]; then
+        sudo sed -i "s|http://ogma.lti.cs.cmu.edu:8080|http://$MAP_BACKEND_IP:8080|g" /home/ubuntu/openstreetmap-website/vendor/assets/leaflet/leaflet.osm.js
+        echo "Updated tile server URL in leaflet.osm.js"
+      else
+        echo "Warning: leaflet.osm.js not found"
+      fi
+
+      # Configure geocoding and routing URLs in settings.yml
+      if [ -f "/home/ubuntu/openstreetmap-website/config/settings.yml" ]; then
+        sudo sed -i "s|metis.lti.cs.cmu.edu:8085|$MAP_BACKEND_IP:8085|g" /home/ubuntu/openstreetmap-website/config/settings.yml
+        sudo sed -i "s|metis.lti.cs.cmu.edu:|$MAP_BACKEND_IP:|g" /home/ubuntu/openstreetmap-website/config/settings.yml
+        echo "Updated geocoding and routing URLs in settings.yml"
+      else
+        echo "Warning: settings.yml not found"
+      fi
+
+      # Restart the web service if docker compose is available
+      if [ -d "/home/ubuntu/openstreetmap-website" ]; then
+        cd /home/ubuntu/openstreetmap-website
+        if command -v docker-compose >/dev/null 2>&1; then
+          sudo docker-compose restart web 2>/dev/null || echo "Could not restart web service with docker-compose"
+        elif command -v docker >/dev/null 2>&1 && docker compose version >/dev/null 2>&1; then
+          sudo docker compose restart web 2>/dev/null || echo "Could not restart web service with docker compose"
+        fi
+      fi
+
+      echo "Map backend configuration completed for IP: $MAP_BACKEND_IP"
+
+runcmd:
+  # Run the configuration script
+  - /home/ubuntu/configure-map-backend.sh > /var/log/map-config.log 2>&1
+
+final_message: "WebArena frontend map configuration completed. Check /var/log/map-config.log for details."
