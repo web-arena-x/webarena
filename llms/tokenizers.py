@@ -1,7 +1,7 @@
 from typing import Any
 
 import tiktoken
-from transformers import LlamaTokenizer  # type: ignore
+from transformers import LlamaTokenizer
 
 
 class Tokenizer(object):

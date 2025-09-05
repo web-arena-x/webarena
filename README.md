@@ -24,7 +24,7 @@
 ![Overview](media/overview.png)
 
 ## Update on 12/5/2024
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > This repository hosts the *canonical* implementation of WebArena to reproduce the results reported in the paper. The web navigation infrastructure has been significantly enhanced by [AgentLab](https://github.com/ServiceNow/AgentLab/), introducing several key features: (1) support for parallel experiments using [BrowserGym](https://github.com/ServiceNow/BrowserGym), (2) integration of popular web navigation benchmarks (e.g., VisualWebArena) within a unified framework, (3) unified leaderboard reporting, and (4) improved handling of environment edge cases. We strongly recommend using this framework for your experiments.
 
 ## News

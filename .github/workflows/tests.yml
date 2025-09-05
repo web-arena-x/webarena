@@ -4,14 +4,6 @@ on: [push]
 jobs:
   test-all:
     runs-on: ubuntu-latest
-    env:
-      SHOPPING: "http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:7770"
-      SHOPPING_ADMIN: "http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:7780/admin"
-      REDDIT: "http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:9999"
-      GITLAB: "http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:8023"
-      MAP: "http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:3000"
-      WIKIPEDIA: "http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:8888/wikipedia_en_all_maxi_2022-05/A/User:The_other_Kiwix_guy/Landing"
-      HOMEPAGE: "PASS"
     strategy:
       max-parallel: 5
     steps:
@@ -35,9 +27,6 @@ jobs:
         # Run this mypy instance against our main package.
         mypy --install-types --non-interactive .
         mypy --strict . --exclude scripts
-    - name: Enviroment prepare
-      run: |
-        bash prepare.sh
     - name: Test with pytest
       run: |
         pytest

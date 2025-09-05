@@ -8,29 +8,46 @@ import subprocess
 import time
 
 SLEEP = 1.5
-# set the URLs of each website, we use the demo sites as an example
-os.environ[
-    "SHOPPING"
-] = "http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:7770"
-os.environ[
-    "SHOPPING_ADMIN"
-] = "http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:7780/admin"
-os.environ[
-    "REDDIT"
-] = "http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:9999"
-os.environ[
-    "GITLAB"
-] = "http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:8023"
-os.environ[
-    "MAP"
-] = "http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:3000"
-os.environ[
-    "WIKIPEDIA"
-] = "http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:8888/wikipedia_en_all_maxi_2022-05/A/User:The_other_Kiwix_guy/Landing"
-os.environ[
-    "HOMEPAGE"
-] = "PASS"  # The home page is not currently hosted in the demo site
-print("Done setting up URLs")
+
+# Check if environment variables are set, if not provide helpful error message
+required_env_vars = [
+    "SHOPPING",
+    "SHOPPING_ADMIN",
+    "REDDIT",
+    "GITLAB",
+    "MAP",
+    "WIKIPEDIA",
+    "HOMEPAGE",
+]
+missing_vars = []
+
+for var in required_env_vars:
+    if not os.environ.get(var):
+        missing_vars.append(var)
+
+if missing_vars:
+    print(
+        f"ERROR: Missing required environment variables: {', '.join(missing_vars)}"
+    )
+    print("\nPlease set the following environment variables before running:")
+    print("export SHOPPING='http://YOUR_WEBARENA_SERVER:7770'")
+    print("export SHOPPING_ADMIN='http://YOUR_WEBARENA_SERVER:7780/admin'")
+    print("export REDDIT='http://YOUR_WEBARENA_SERVER:9999'")
+    print("export GITLAB='http://YOUR_WEBARENA_SERVER:8023'")
+    print("export MAP='http://YOUR_WEBARENA_SERVER:3000'")
+    print(
+        "export WIKIPEDIA='http://YOUR_WEBARENA_SERVER:8888/wikipedia_en_all_maxi_2022-05/A/User:The_other_Kiwix_guy/Landing'"
+    )
+    print("export HOMEPAGE='PASS'")
+    print(
+        "\nReplace YOUR_WEBARENA_SERVER with your WebArena server's IP address."
+    )
+    print(
+        "Note: 18.208.187.221 is the map backend server, not the WebArena frontend server."
+    )
+    exit(1)
+
+print("Environment variables are properly configured")
 
 # First, run `python scripts/generate_test_data.py` to generate the config files
 p = subprocess.run(

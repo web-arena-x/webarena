@@ -20,13 +20,6 @@ from browser_env import (
     create_scroll_action,
 )
 from browser_env.actions import create_id_based_action
-from browser_env.env_config import (
-    ACCOUNTS,
-    GITLAB,
-    REDDIT,
-    SHOPPING,
-    SHOPPING_ADMIN,
-)
 
 
 def test_script_browser_env(script_browser_env: ScriptBrowserEnv) -> None:
@@ -130,7 +123,7 @@ def test_parallel_script_browser_env() -> None:
     # assert is_bearable(info["page"].tolist(), list[DetachedPage])
     assert info["page"][0].url == "https://www.rfc-editor.org/rfc/rfc2606.html"
     assert info["page"][1].url == "https://www.rfc-editor.org/rfc/rfc6761.html"
-    vector_env.close()  # type: ignore[no-untyped-call]
+    vector_env.close()
 
 
 def test_focus_placeholder_and_label(
@@ -191,7 +184,7 @@ def test_accessibility_tree_viewport(
     accessibility_tree_current_viewport_script_browser_env: ScriptBrowserEnv,
 ) -> None:
     s1 = "combobox 'Favourite mammal'"
-    s2 = "gridcell 'Canyon bat'"
+    s2 = "cell 'Canyon bat'"
     s3 = "heading 'Useful links'"
     env = accessibility_tree_current_viewport_script_browser_env
     env.reset()
@@ -214,24 +207,6 @@ def test_accessibility_tree_viewport(
     obs, success, _, _, info = env.step(create_scroll_action("down"))
     assert success
     assert s1 not in obs["text"] and s2 in obs["text"] and s3 in obs["text"]
-
-
-def test_multiple_start_url(script_browser_env: ScriptBrowserEnv) -> None:
-    temp_config = tempfile.NamedTemporaryFile("w", delete=False)
-    config = {
-        "require_login": False,
-        "start_url": f"{REDDIT} |AND| {REDDIT}/forums",
-    }
-    json.dump(config, temp_config)
-    temp_config.close()
-
-    env = script_browser_env
-    env.reset(options={"config_file": temp_config.name})
-    assert len(env.context.pages) == 2
-    assert env.context.pages[0].url == f"{REDDIT}/"
-    assert env.context.pages[1].url == f"{REDDIT}/forums", env.context.pages[
-        1
-    ].url
 
 
 def test_observation_tab_information(

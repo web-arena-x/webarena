@@ -1,4 +1,4 @@
-from text_generation import Client  # type: ignore
+from text_generation import Client
 
 
 def generate_from_huggingface_completion(

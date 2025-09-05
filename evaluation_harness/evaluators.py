@@ -10,7 +10,7 @@ from pathlib import Path
 from typing import Any, Tuple, Union
 
 from beartype import beartype
-from nltk.tokenize import word_tokenize  # type: ignore
+from nltk.tokenize import word_tokenize
 from playwright.sync_api import CDPSession, Page
 
 from browser_env.actions import Action

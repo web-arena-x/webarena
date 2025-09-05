@@ -35,7 +35,7 @@ def get_observation(
         sleep_after_execution=2.0,
     )
     env.reset(options={"config_file": f"scripts/tmp_storage_state.json"})
-    s = f"""page.goto("http://ec2-3-131-244-37.us-east-2.compute.amazonaws.com:7780/admin/admin/dashboard/")
+    s = f"""page.goto("{SHOPPING_ADMIN}/admin/dashboard/")
     page.get_by_label("", exact=True).fill("reviews")
     page.get_by_label("", exact=True).press("Enter")
     page.scroll(down)"""

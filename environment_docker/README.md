@@ -20,17 +20,26 @@ We provide AMI which have all the websites pre-installed. You can use the AMI to
 ```
 AMI Information: find in console, EC2 - AMI Catalog
 Region: us-east-2
-Name: webarena
-ID: ami-06290d70feea35450
+Name: webarena-with-configurable-map-backend
+ID: ami-08a862bf98e3bd7aa
 ```
 
-1. Create a security group that allows all inbound traffic.
+1. Create a security group that allows all inbound traffic, or at minimum, create a security group with the following inbound rules:
+   - SSH (port 22) from your IP
+   - HTTP (port 80) from anywhere (0.0.0.0/0)
+   - Custom TCP ports: 3000, 7770, 7780, 8023, 8888, 9999 from anywhere (0.0.0.0/0)
 
 2. Create an instance (recommended type: t3a.xlarge, 1000GB EBS root volume) from the webarena AMI. Use the security group just created and remember to select SSH key-pair.
 
-3. Create an Elastic IP and bind to the instance to associate the instance with a static IP and hostname. Take note of the hostname, usually in the form of "ec2-xx-xx-xx-xx.us-east-2.compute.amazonaws.com". This will be used as "<your-server-hostname>" in the following commands.
+3. **Map Backend Configuration**: Add the following to your instance's user data to automatically configure the map backend:
+   ```
+   MAP_BACKEND_IP=YOUR_MAP_BACKEND_IP
+   ```
+   Replace `YOUR_MAP_BACKEND_IP` with your map backend server's IP address.
 
-4. Log into the server, start all dockers by:
+4. Create an Elastic IP and bind to the instance to associate the instance with a static IP and hostname. Take note of the hostname, usually in the form of "ec2-xx-xx-xx-xx.us-east-2.compute.amazonaws.com". This will be used as "<your-server-hostname>" in the following commands.
+
+5. Log into the server, start all dockers by:
 ```bash
 docker start gitlab
 docker start shopping
@@ -43,7 +52,17 @@ docker compose start
 
 :clock1: wait ~1 min to wait all services to start
 
-5. Run
+**If services are not accessible externally**, run these iptables rules:
+```bash
+sudo iptables -t nat -A PREROUTING -p tcp --dport 7770 -j REDIRECT --to-port 7770
+sudo iptables -t nat -A PREROUTING -p tcp --dport 7780 -j REDIRECT --to-port 7780
+sudo iptables -t nat -A PREROUTING -p tcp --dport 3000 -j REDIRECT --to-port 3000
+sudo iptables -t nat -A PREROUTING -p tcp --dport 8888 -j REDIRECT --to-port 8888
+sudo iptables -t nat -A PREROUTING -p tcp --dport 9999 -j REDIRECT --to-port 9999
+sudo iptables -t nat -A PREROUTING -p tcp --dport 8023 -j REDIRECT --to-port 8023
+```
+
+6. Run
 ```bash
 docker exec shopping /var/www/magento2/bin/magento setup:store-config:set --base-url="http://<your-server-hostname>:7770" # no trailing /
 docker exec shopping mysql -u magentouser -pMyPassword magentodb -e  'UPDATE core_config_data SET value="http://<your-server-hostname>:7770/" WHERE path = "web/secure/base_url";'
@@ -58,6 +77,25 @@ docker exec shopping_admin /var/www/magento2/bin/magento cache:flush
 
 docker exec gitlab sed -i "s|^external_url.*|external_url 'http://<your-server-hostname>:8023'|" /etc/gitlab/gitlab.rb
 docker exec gitlab gitlab-ctl reconfigure
+```
+
+**If GitLab shows 502 errors**, run:
+```bash
+docker exec gitlab rm -f /var/opt/gitlab/postgresql/data/postmaster.pid
+docker exec gitlab /opt/gitlab/embedded/bin/pg_resetwal -f /var/opt/gitlab/postgresql/data
+docker exec gitlab gitlab-ctl restart
+```
+
+**Test all services** (should return HTTP 200):
+```bash
+HOSTNAME="<your-server-hostname>"
+curl -s -o /dev/null -w "Shopping (7770): %{http_code}\n" http://$HOSTNAME:7770
+curl -s -o /dev/null -w "Shopping Admin (7780): %{http_code}\n" http://$HOSTNAME:7780
+curl -s -o /dev/null -w "Forum (9999): %{http_code}\n" http://$HOSTNAME:9999
+curl -s -o /dev/null -w "Wikipedia (8888): %{http_code}\n" http://$HOSTNAME:8888
+curl -s -o /dev/null -w "Map (3000): %{http_code}\n" http://$HOSTNAME:3000
+curl -s -o /dev/null -w "GitLab (8023): %{http_code}\n" http://$HOSTNAME:8023
+curl -s -o /dev/null -w "Map tile: %{http_code}\n" http://$HOSTNAME:3000/tile/0/0/0.png
 ```
 
 You should be able to access your environment websites now, and stop reading.
@@ -185,84 +223,28 @@ flask run --host=0.0.0.0 --port=4399
 The homepage will be available at `http://<your-server-hostname>:4399`.
 
 ### Map
-Please refer to the AMI setup for the map frontend setup. For most use cases this is enough.
 
-If you wish to also set up all map backends, namely tile server, geocoding server and routing server, read along and please be aware of very large downloads and disk space requirements.
+The WebArena AMI automatically configures the map frontend to use your specified map backend server when you set `MAP_BACKEND_IP=YOUR_MAP_BACKEND_IP` in the user data (as shown in step 3 above). No manual configuration is required.
 
-#### Tile Sever
+#### Setting up your own map backend
 
-First download http://metis.lti.cs.cmu.edu/map_server_data/osm_tile_server.tar and extract the docker volumes to your docker volume directory (default to `/var/lib/docker/volumes/`). Make sure that you have `osm-data` volume copied.
+If you want to run your own tile server, geocoding server, and routing server instead of using the existing AWS infrastructure:
 
-Then run the tile server:
+1. **Launch Ubuntu 24.04 LTS instance** (t3a.xlarge, 1000GB storage) in us-east-2
+   - [AWS EC2 Launch Tutorial](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/tutorial-launch-my-first-ec2-instance.html)
 
-```bash
-docker run --volume=osm-data:/data/database/ --volume=osm-tiles:/data/tiles/ -p 8080:80 --detach=true overv/openstreetmap-tile-server run
-```
+2. **Use automated setup script** as user data during launch:
+   - Copy the contents of `webarena-map-backend-boot-init.yaml` from this repository
+   - Paste it into the "User data" field when launching your instance
+   - [AWS User Data Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html)
 
-Now, inside the file `webarena/openstreetmap-website/vendor/assets/leaflet/leaflet.osm.js`, change `http://ogma.lti.cs.cmu.edu:8080/tile/{z}/{x}/{y}.png` to `http://<public-url-to-your-tile-server>:8080/tile/{z}/{x}/{y}.png` 
+3. **Wait for setup completion** (60-90 minutes for automatic setup, ~180GB download)
 
-> [!NOTE]
-> By default, the `url` in `TileLayer` and `Mapnik` is set to `"http://ogma.lti.cs.cmu.edu:8080/tile/{z}/{x}/{y}.png"`. You replace it with `https://tile.openstreetmap.org/{z}/{x}/{y}.png` (the official link)  as a way to test in case you run into issues during the setup.
+4. **Update your WebArena frontend** to point to your new backend server:
+   - Set `MAP_BACKEND_IP=<your-backend-server-ip>` when launching your WebArena instances
+   - The AMI will automatically configure all map services to use your backend
 
-
-#### Geocoding Server
-First download http://metis.lti.cs.cmu.edu/map_server_data/nominatim_volumes.tar and extract the docker volumes to your docker volume directory (default to `/var/lib/docker/volumes/`). Make sure that you have `nominatim-data` and `nominatim-flatnode` volume copied.
-
-Also download http://metis.lti.cs.cmu.edu/map_server_data/osm_dump.tar and extract the OSM dump to a host directory `/path/to/osm_dump`, which will be used in the following command.
-
-
-Then run the geocoding server:
-```bash
-docker run --env=IMPORT_STYLE=extratags --env=PBF_PATH=/nominatim/data/us-northeast-latest.osm.pbf --env=IMPORT_WIKIPEDIA=/nominatim/data/wikimedia-importance.sql.gz --volume=/path/to/osm_dump:/nominatim/data --volume=nominatim-data:/var/lib/postgresql/14/main --volume=nominatim-flatnode:/nominatim/flatnode -p 8085:8080 mediagis/nominatim:4.2 /app/start.sh
-```
-
-Now, inside the config file `webarena/openstreetmap-website/config/settings.yml`, update the value of `fossgis_osrm_url` from `"http://metis.lti.cs.cmu.edu:8085/"` to `"http://<your-geocoding-server-domain>:8085/"`
-
-
-> [!NOTE]
-> By default, `nominatim_url` is set to `"http://metis.lti.cs.cmu.edu:"`. However, the [official openstreetmap-website default config file](https://github.com/openstreetmap/openstreetmap-website/blob/edda4af515cfb0bd4de1ed0650b47e124bfad6ed/config/settings.yml#L111) is set to `"https://nominatim.openstreetmap.org/"`. You can use that as a way to test in case you run into issues during the setup.
-
-
-#### Routing Server
-
-First download http://metis.lti.cs.cmu.edu/map_server_data/osrm_routing.tar and extract all the directories to your local path.
-Make sure to have `/your/routing/path/<foot, car, bike>`, which will be used in 3 different routing endpoints.
-
-Then run the 3 routing servers:
-```bash
-docker run --volume=/your/routing/path/car:/data -p 5000:5000 ghcr.io/project-osrm/osrm-backend osrm-routed --algorithm mld /data/us-northeast-latest.osrm
-docker run --volume=/your/routing/path/bike:/data -p 5001:5000 ghcr.io/project-osrm/osrm-backend osrm-routed --algorithm mld /data/us-northeast-latest.osrm
-docker run --volume=/your/routing/path/foot:/data -p 5002:5000 ghcr.io/project-osrm/osrm-backend osrm-routed --algorithm mld /data/us-northeast-latest.osrm
-```
-
-Now, inside the config file `webarena/openstreetmap-website/config/settings.yml`, update the value of `nominatim_url` from `"http://metis.lti.cs.cmu.edu:"` to `"http://<your-geocoding-server-domain>"`
-
-
-> [!NOTE]
-> By default, `fossgis_osrm_url` is set to `"http://metis.lti.cs.cmu.edu:8085/"`. However, the [official openstreetmap-website default config file](https://github.com/openstreetmap/openstreetmap-website/blob/edda4af515cfb0bd4de1ed0650b47e124bfad6ed/config/settings.yml#L125) is set to `"https://routing.openstreetmap.de/"`. You can use that as a way to test in case you run into issues during the setup.
-
-
-##### Selecting different routing ports
-
-The ports 5000, 5001, 5002 are chosen respectively for car, bike and foot inside `webarena/openstreetmap-website/app/assets/javascripts/index/directions/fossgis_osrm.js`
-
-The mapping looks like this:
-
-```javascript
-// ...
-      var vehicleTypePortMapping = {
-        "car": "5000",
-        "bike": "5001",
-        "foot": "5002"
-      }
-// ...
-```
-
-If your port is different, you can update the mapping in the aforementioned file to match your own ports.
-
-#### Secure header
-
-The file `webarena/openstreetmap-website/config/initializers/secure_headers.rb` allows you to specify domains for secure serving of images. Specfically, in `csp_policy` > `img_src`, you can add your domain, e.g. `ogma.lti.cs.cmu.edu`. Do not include "http" or "https". You can also use the `*` operator, e.g. `*.openstreetmap.fr`.
+This automated approach handles all the complex setup including tile server, geocoding server, and routing server configuration.
 
 ### Documentation sites
 We are still working on dockerizing the documentation sites. As they are read-only sites and they usually don't change rapidly. It is safe to use their live sites for test purpose right now.
