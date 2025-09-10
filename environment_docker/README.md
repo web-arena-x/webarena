@@ -75,6 +75,7 @@ docker exec shopping_admin /var/www/magento2/bin/magento setup:store-config:set 
 docker exec shopping_admin mysql -u magentouser -pMyPassword magentodb -e  'UPDATE core_config_data SET value="http://<your-server-hostname>:7780/" WHERE path = "web/secure/base_url";'
 docker exec shopping_admin /var/www/magento2/bin/magento cache:flush
 
+docker exec gitlab update-permissions
 docker exec gitlab sed -i "s|^external_url.*|external_url 'http://<your-server-hostname>:8023'|" /etc/gitlab/gitlab.rb
 docker exec gitlab gitlab-ctl reconfigure
 ```
