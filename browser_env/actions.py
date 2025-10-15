@@ -1126,8 +1126,27 @@ def execute_action(
             # TODO[shuyanzh]: order is temp now
             if action["element_id"]:
                 element_id = action["element_id"]
-                element_center = obseration_processor.get_element_center(element_id)  # type: ignore[attr-defined]
-                execute_mouse_click(element_center[0], element_center[1], page)
+                node = obseration_processor.get_node_info_by_element_id(int(element_id))  # type: ignore[attr-defined]
+                if node and node.role == "option":
+                    # For native options, use JavaScript to select (most reliable)
+                    page.get_by_role("option", name=node.name).evaluate(
+                        """(el) => {
+                            if (el.parentElement && el.parentElement.tagName === 'SELECT') {
+                                el.selected = true;
+                                el.parentElement.dispatchEvent(new Event('change', { bubbles: true }));
+                            }
+                        }"""
+                    )
+                elif node and node.role == "menuitem":
+                    # Custom JavaScript dropdown item
+                    if node.parent and node.parent.role in ["combobox", "button"]:
+                        page.get_by_role(node.parent.role, name=node.parent.name).click()
+                        page.wait_for_timeout(500)
+                    page.wait_for_timeout(300)
+                    page.get_by_role(node.role, name=node.name).click(force=True)
+                else:
+                    element_center = obseration_processor.get_element_center(element_id)  # type: ignore[attr-defined]
+                    execute_mouse_click(element_center[0], element_center[1], page)
             elif action["element_role"] and action["element_name"]:
                 element_role = int(action["element_role"])
                 element_name = action["element_name"]
