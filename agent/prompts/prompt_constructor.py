@@ -172,7 +172,7 @@ class DirectPromptConstructor(PromptConstructor):
         obs = state_info["observation"][self.obs_modality]
         max_obs_length = self.lm_config.gen_config["max_obs_length"]
         if max_obs_length:
-            obs = self.tokenizer.decode(self.tokenizer.encode(obs)[:max_obs_length])  # type: ignore[arg-type]
+            tokens = self.tokenizer.encode(obs)[-max_obs_length:]; obs = self.tokenizer.decode(tokens)  # type: ignore[arg-type]
 
         page = state_info["info"]["page"]
         url = page.url
@@ -230,7 +230,7 @@ class CoTPromptConstructor(PromptConstructor):
         obs = state_info["observation"][self.obs_modality]
         max_obs_length = self.lm_config.gen_config["max_obs_length"]
         if max_obs_length:
-            obs = self.tokenizer.decode(self.tokenizer.encode(obs)[:max_obs_length])  # type: ignore[arg-type]
+            tokens = self.tokenizer.encode(obs)[-max_obs_length:]; obs = self.tokenizer.decode(tokens)  # type: ignore[arg-type]
 
         page = state_info["info"]["page"]
         url = page.url
