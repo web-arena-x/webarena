@@ -28,6 +28,33 @@ from .utils import (
 
 IN_VIEWPORT_RATIO_THRESHOLD = 0.6
 
+class TreeNode:
+    def __init__(self, node_id, role, name, depth, **kwargs):
+        self.visible = True
+        self.node_id = node_id
+        self.role = role
+        self.name = name
+        self.depth = depth
+        self.properties = None
+        if "properties" in kwargs.keys():
+            self.properties = kwargs["properties"]
+
+        self.children = []
+        self.parent = None
+
+    def add_child(self, child):
+        child.parent = self
+        self.children.append(child)
+
+    def search_node_by_id(self, target_id):
+        if self.node_id == target_id or (self.name and f"[{target_id}]" in self.name):
+            return self
+        for child in self.children:
+            result = child.search_node_by_id(target_id)
+            if result:
+                return result
+        return None
+
 
 class ObservationProcessor:
     def process(self, page: Page, client: CDPSession) -> Observation:
@@ -473,7 +500,7 @@ class TextObervationProcessor(ObservationProcessor):
     @staticmethod
     def parse_accessibility_tree(
         accessibility_tree: AccessibilityTree,
-    ) -> tuple[str, dict[str, Any]]:
+    ) -> tuple[str, dict[str, Any], TreeNode]:
         """Parse the accessibility tree into a string text"""
         node_id_to_idx = {}
         for idx, node in enumerate(accessibility_tree):
@@ -481,7 +508,7 @@ class TextObervationProcessor(ObservationProcessor):
 
         obs_nodes_info = {}
 
-        def dfs(idx: int, obs_node_id: str, depth: int) -> str:
+        def dfs(idx: int, obs_node_id: str, depth: int, active_node_dict: dict) -> tuple[str, TreeNode]:
             tree_str = ""
             node = accessibility_tree[idx]
             indent = "\t" * depth
@@ -491,6 +518,7 @@ class TextObervationProcessor(ObservationProcessor):
                 name = node["name"]["value"]
                 node_str = f"[{obs_node_id}] {role} {repr(name)}"
                 properties = []
+                structured_properties = {}
                 for property in node.get("properties", []):
                     try:
                         if property["name"] in IGNORED_ACTREE_PROPERTIES:
@@ -498,6 +526,7 @@ class TextObervationProcessor(ObservationProcessor):
                         properties.append(
                             f'{property["name"]}: {property["value"]["value"]}'
                         )
+                        structured_properties[property["name"]] = property["value"]["value"]
                     except KeyError:
                         pass
 
@@ -539,23 +568,28 @@ class TextObervationProcessor(ObservationProcessor):
             except Exception as e:
                 valid_node = False
 
+            structured_node = TreeNode(node_id=int(obs_node_id), role=node["role"]["value"], name=node["name"]["value"], depth=depth, properties=structured_properties) if valid_node else None
+            active_node_dict[depth] = structured_node if valid_node else active_node_dict.get(depth, None)
+
             for _, child_node_id in enumerate(node["childIds"]):
                 if child_node_id not in node_id_to_idx:
                     continue
                 # mark this to save some tokens
                 child_depth = depth + 1 if valid_node else depth
-                child_str = dfs(
-                    node_id_to_idx[child_node_id], child_node_id, child_depth
+                child_str, child_node = dfs(
+                    node_id_to_idx[child_node_id], child_node_id, child_depth, active_node_dict=active_node_dict
                 )
                 if child_str.strip():
                     if tree_str.strip():
                         tree_str += "\n"
                     tree_str += child_str
+                if child_depth > 0 and child_node:
+                    active_node_dict[child_depth - 1].add_child(child_node)
 
-            return tree_str
+            return tree_str, structured_node
 
-        tree_str = dfs(0, accessibility_tree[0]["nodeId"], 0)
-        return tree_str, obs_nodes_info
+        tree_str, structured_node = dfs(0, accessibility_tree[0]["nodeId"], 0, active_node_dict={})
+        return tree_str, obs_nodes_info, structured_node
 
     @staticmethod
     def clean_accesibility_tree(tree_str: str) -> str:
@@ -622,11 +656,12 @@ class TextObervationProcessor(ObservationProcessor):
                 client,
                 current_viewport_only=self.current_viewport_only,
             )
-            content, obs_nodes_info = self.parse_accessibility_tree(
+            content, obs_nodes_info, node_root = self.parse_accessibility_tree(
                 accessibility_tree
             )
             content = self.clean_accesibility_tree(content)
             self.obs_nodes_info = obs_nodes_info
+            self.node_root = node_root
             self.meta_data["obs_nodes_info"] = obs_nodes_info
 
         else:
@@ -648,6 +683,9 @@ class TextObervationProcessor(ObservationProcessor):
             center_x / self.viewport_size["width"],
             center_y / self.viewport_size["height"],
         )
+
+    def get_node_info_by_element_id(self, AXTreeId):
+        return self.node_root.search_node_by_id(AXTreeId)
 
 
 class ImageObservationProcessor(ObservationProcessor):
