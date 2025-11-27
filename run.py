@@ -278,8 +278,19 @@ def test(
                             trajectory, intent, meta_data=meta_data
                         )
                     except ValueError as e:
-                        # get the error message
                         action = create_stop_action(f"ERROR: {str(e)}")
+                        # Automatic 3-attempt retry for transient LLM/parse fails (no CLI needed)
+                        for attempt in range(2):  # 2 retries after initial fail (total 3)
+                            try:
+                                action = agent.next_action(
+                                    trajectory, intent, meta_data=meta_data
+                                )
+                                logger.info(f"Recovered from parse fail on attempt {attempt+2}/3")
+                                break
+                            except ValueError as e2:
+                                logger.warning(f"Attempt {attempt+2}/3 failed: {str(e2)}")
+                        else:
+                            action = create_stop_action(f"Parse failed after 3 attempts")
 
                 trajectory.append(action)
 
