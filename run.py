@@ -258,11 +258,23 @@ def test(
             logger.info(f"[Config file]: {config_file}")
             logger.info(f"[Intent]: {intent}")
 
+            # Trajectory JSONL streaming for persistence/debug/replay
+            traj_path = Path(args.result_dir) / f"{task_id}.traj.jsonl"
+            traj_file = None
+            try:
+                traj_file = open(traj_path, "w")
+                logger.info(f"Streaming trajectory to {traj_path}")
+            except Exception as e:
+                logger.warning(f"Trajectory streaming init failed: {e}")
+
             agent.reset(config_file)
             trajectory: Trajectory = []
             obs, info = env.reset(options={"config_file": config_file})
             state_info: StateInfo = {"observation": obs, "info": info}
             trajectory.append(state_info)
+            if traj_file:
+                traj_file.write(json.dumps(state_info) + "\n")
+                traj_file.flush()
 
             meta_data = {"action_history": ["None"]}
             while True:
@@ -293,6 +305,9 @@ def test(
                             action = create_stop_action(f"Parse failed after 3 attempts")
 
                 trajectory.append(action)
+                if traj_file:
+                    traj_file.write(json.dumps(action) + "\n")
+                    traj_file.flush()
 
                 action_str = get_action_description(
                     action,
@@ -313,6 +328,9 @@ def test(
                 obs, _, terminated, _, info = env.step(action)
                 state_info = {"observation": obs, "info": info}
                 trajectory.append(state_info)
+                if traj_file:
+                    traj_file.write(json.dumps(state_info) + "\n")
+                    traj_file.flush()
 
                 if terminated:
                     # add a action place holder
