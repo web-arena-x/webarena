@@ -183,34 +183,15 @@ def early_stop(
         ):
             return True, f"Failed to parse actions for {k} times"
 
-    # Case: same action for k times
+    # Unified consecutive repeating action check (TYPE/non-TYPE)
     k = thresholds["repeating_action"]
     last_k_actions = trajectory[1::2][-k:]  # type: ignore[assignment]
-    action_seq = trajectory[1::2]  # type: ignore[assignment]
-
-    if len(action_seq) == 0:
+    if len(last_k_actions) < k:
         return False, ""
-
-    last_action: Action = action_seq[-1]
-
-    if last_action["action_type"] != ActionTypes.TYPE:
-        if len(last_k_actions) >= k:
-            if all(
-                [
-                    is_equivalent(action, last_action)
-                    for action in last_k_actions
-                ]
-            ):
-                return True, f"Same action for {k} times"
-
-    else:
-        # check the action sequence
-        if (
-            sum([is_equivalent(action, last_action) for action in action_seq])
-            >= k
-        ):
-            return True, f"Same typing action for {k} times"
-
+    last_action: Action = trajectory[1::2][-1]  # type: ignore[assignment]
+    if all(is_equivalent(action, last_action) for action in last_k_actions):
+        prefix = "typing " if last_action["action_type"] == ActionTypes.TYPE else ""
+        return True, f"Consecutive same {prefix}action x{k}"
     return False, ""
 
 
@@ -277,11 +258,23 @@ def test(
             logger.info(f"[Config file]: {config_file}")
             logger.info(f"[Intent]: {intent}")
 
+            # Trajectory JSONL streaming for persistence/debug/replay
+            traj_path = Path(args.result_dir) / f"{task_id}.traj.jsonl"
+            traj_file = None
+            try:
+                traj_file = open(traj_path, "w")
+                logger.info(f"Streaming trajectory to {traj_path}")
+            except Exception as e:
+                logger.warning(f"Trajectory streaming init failed: {e}")
+
             agent.reset(config_file)
             trajectory: Trajectory = []
             obs, info = env.reset(options={"config_file": config_file})
             state_info: StateInfo = {"observation": obs, "info": info}
             trajectory.append(state_info)
+            if traj_file:
+                traj_file.write(json.dumps(state_info) + "\n")
+                traj_file.flush()
 
             meta_data = {"action_history": ["None"]}
             while True:
@@ -297,10 +290,24 @@ def test(
                             trajectory, intent, meta_data=meta_data
                         )
                     except ValueError as e:
-                        # get the error message
                         action = create_stop_action(f"ERROR: {str(e)}")
+                        # Automatic 3-attempt retry for transient LLM/parse fails (no CLI needed)
+                        for attempt in range(2):  # 2 retries after initial fail (total 3)
+                            try:
+                                action = agent.next_action(
+                                    trajectory, intent, meta_data=meta_data
+                                )
+                                logger.info(f"Recovered from parse fail on attempt {attempt+2}/3")
+                                break
+                            except ValueError as e2:
+                                logger.warning(f"Attempt {attempt+2}/3 failed: {str(e2)}")
+                        else:
+                            action = create_stop_action(f"Parse failed after 3 attempts")
 
                 trajectory.append(action)
+                if traj_file:
+                    traj_file.write(json.dumps(action) + "\n")
+                    traj_file.flush()
 
                 action_str = get_action_description(
                     action,
@@ -321,6 +328,9 @@ def test(
                 obs, _, terminated, _, info = env.step(action)
                 state_info = {"observation": obs, "info": info}
                 trajectory.append(state_info)
+                if traj_file:
+                    traj_file.write(json.dumps(state_info) + "\n")
+                    traj_file.flush()
 
                 if terminated:
                     # add a action place holder
