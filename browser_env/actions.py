@@ -291,7 +291,7 @@ def is_equivalent(a: Action, b: Action) -> bool:
             return np.allclose(a["coords"], b["coords"])
         case ActionTypes.KEYBOARD_TYPE:
             return a["text"] == b["text"]
-        case ActionTypes.CLICK | ActionTypes.HOVER | ActionTypes.TYPE:  # TODO: can be further optimized
+        case ActionTypes.CLICK | ActionTypes.HOVER:
             if a["element_id"] and b["element_id"]:
                 return a["element_id"] == b["element_id"]
             elif a["element_role"] and b["element_role"]:
@@ -303,6 +303,11 @@ def is_equivalent(a: Action, b: Action) -> bool:
                 return a["pw_code"] == b["pw_code"]
             else:
                 return False
+        case ActionTypes.TYPE:
+            return (a["text"] == b["text"] and
+                    (a["element_id"] == b["element_id"] or
+                     (a["element_role"] == b["element_role"] and a["element_name"] == b["element_name"]) or
+                     a["pw_code"] == b["pw_code"]))
         case ActionTypes.PAGE_FOCUS:
             return a["page_number"] == b["page_number"]
         case ActionTypes.NEW_TAB:
