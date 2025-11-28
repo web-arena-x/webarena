@@ -15,7 +15,7 @@ Page Operation Actions:
 `type [id] [content] [press_enter_after=0|1]`: Use this to type the content into the field with id. By default, the "Enter" key is pressed after typing unless press_enter_after is set to 0.
 `hover [id]`: Hover over an element with id.
 `press [key_comb]`:  Simulates the pressing of a key combination on the keyboard (e.g., Ctrl+v).
-`scroll [direction=down|up]`: Scroll the page up or down.
+`scroll [down|up]`: Scroll the page up or down.
 
 Tab Management Actions:
 `new_tab`: Open a new, empty browser tab.
