@@ -54,6 +54,8 @@ pre-commit install
 ## Quick Walkthrough
 Check out [this script](minimal_example.py) for a quick walkthrough on how to set up the browser environment and interact with it using the demo sites we hosted. This script is only for education purpose, to perform *reproducible* experiments, please check out the next section. In the nutshell, using WebArena is very similar to using OpenAI Gym. The following code snippet shows how to interact with the environment.
 ```python
+import random
+
 from browser_env import ScriptBrowserEnv, create_id_based_action
 # init the environment
 env = ScriptBrowserEnv(
@@ -69,7 +71,7 @@ obs, info = env.reset(options={"config_file": config_file})
 
 # create a random action
 id = random.randint(0, 1000)
-action = create_id_based_action(f"click [id]")
+action = create_id_based_action(f"click [{id}]")
 
 # take the action
 obs, _, terminated, _, info = env.step(action)
