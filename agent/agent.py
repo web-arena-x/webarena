@@ -118,10 +118,19 @@ class PromptAgent(Agent):
     @beartype
     def next_action(
         self, trajectory: Trajectory, intent: str, meta_data: dict[str, Any]
-    ) -> Action:
+    ) -> tuple[Action, list[str]]:
         prompt = self.prompt_constructor.construct(
             trajectory, intent, meta_data
         )
+        pattern = r"\[(\d+)\] (combobox 'Sort By' hasPopup: menu expanded: True|menuitem 'Product Name' selected: False|menuitem 'Price' selected: False|menuitem 'Relevance' selected: True)"
+
+        # Finding all matches including the numbers
+        matches_with_numbers = re.findall(pattern, prompt[-1]['content'])
+        if not matches_with_numbers:
+            hard_coded_menu_ele_numbers = []
+        else:
+            hard_coded_menu_ele_numbers = [match[0] for match in matches_with_numbers]
+
         lm_config = self.lm_config
         n = 0
         while True:
@@ -151,7 +160,7 @@ class PromptAgent(Agent):
                     action["raw_prediction"] = response
                     break
 
-        return action
+        return (action, hard_coded_menu_ele_numbers)
 
     def reset(self, test_config_file: str) -> None:
         pass
