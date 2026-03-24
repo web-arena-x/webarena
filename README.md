@@ -105,18 +105,45 @@ You will see `*.json` files generated in [config_files](./config_files) folder. 
 mkdir -p ./.auth
 python browser_env/auto_login.py
 ```
-5. export `OPENAI_API_KEY=your_key`, a valid OpenAI API key starts with `sk-`
+5. Export your API key for the chosen provider:
+```bash
+# OpenAI (default)
+export OPENAI_API_KEY=your_key
+
+# MiniMax (alternative)
+export MINIMAX_API_KEY=your_key
+```
 
 6. Launch the evaluation
 ```bash
+# Using OpenAI (default)
 python run.py \
-  --instruction_path agent/prompts/jsons/p_cot_id_actree_2s.json \ # this is the reasoning agent prompt we used in the paper
+  --instruction_path agent/prompts/jsons/p_cot_id_actree_2s.json \
   --test_start_idx 0 \
   --test_end_idx 1 \
   --model gpt-3.5-turbo \
   --result_dir <your_result_dir>
+
+# Using MiniMax
+python run.py \
+  --instruction_path agent/prompts/jsons/p_cot_id_actree_2s.json \
+  --test_start_idx 0 \
+  --test_end_idx 1 \
+  --provider minimax \
+  --model MiniMax-M2.7 \
+  --mode chat \
+  --temperature 0.8 \
+  --result_dir <your_result_dir>
 ```
-This script will run the first example with GPT-3.5 reasoning agent. The trajectory will be saved in `<your_result_dir>/0.html`
+This script will run the first example with the chosen model. The trajectory will be saved in `<your_result_dir>/0.html`.
+
+### Supported LLM Providers
+
+| Provider | Models | Mode | API Key Env Var |
+|----------|--------|------|-----------------|
+| `openai` (default) | `gpt-3.5-turbo`, `gpt-4`, etc. | chat, completion | `OPENAI_API_KEY` |
+| `huggingface` | Custom endpoints | completion | N/A (uses `--model_endpoint`) |
+| `minimax` | `MiniMax-M2.7`, `MiniMax-M2.5`, `MiniMax-M2.5-highspeed` | chat | `MINIMAX_API_KEY` |
 
 
 ## Develop Your Prompt-based Agent
