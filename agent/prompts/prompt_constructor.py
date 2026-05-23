@@ -78,34 +78,46 @@ class PromptConstructor(object):
         elif "huggingface" in self.lm_config.provider:
             # https://huggingface.co/blog/llama2#how-to-prompt-llama-2
             # https://github.com/facebookresearch/llama/blob/main/llama/generation.py#L320
-            if "Llama-2" in self.lm_config.model:
-                if self.lm_config.mode == "chat":
-                    B_INST, E_INST = "[INST]", "[/INST]"
-                    B_SYS, E_SYS = "<<SYS>>\n", "\n<</SYS>>\n\n"
-                    BOS, EOS = "<s>", "</s>"
-                    # adding the system message to be the starting of the first example
-                    examples = [
-                        (
-                            B_SYS + intro + E_SYS + examples[0][0],
-                            examples[0][1],
-                        )
-                    ] + examples[1:]
-                    message = "".join(
-                        [
-                            f"{BOS}{B_INST} {x.strip()} {E_INST} {y.strip()} {EOS}"
-                            for (x, y) in examples
-                        ]
-                    )
-                    # add the current observation
-                    message += f"{BOS}{B_INST} {current.strip()} {E_INST} {self.instruction['meta_data'].get('force_prefix', '')}"
+            if self.lm_config.mode == "completion":
+                message = f"{intro}\n\n"
+                message += "Here are a few examples:\n"
+                for example in examples:
+                    message += f"Observation\n:{example[0]}\n\n"
+                    message += f"Action: {example[1]}\n\n"
+                message += "Now make prediction given the observation\n\n"
+                message += f"Observation\n:{current}\n\n"
+                message += "Action:"
+                return message
 
-                    return message
-                else:
-                    raise ValueError("Only chat mode is supported for Llama-2")
-            else:
+            if "Llama-2" not in self.lm_config.model:
                 raise ValueError(
-                    f"Huggingface models do not support model_tag {self.lm_config.gen_config['model_tag']}"
+                    "Huggingface chat mode is only supported for Llama-2 models. "
+                    "Use --mode completion for other Hugging Face generation endpoints."
                 )
+
+            if self.lm_config.mode == "chat":
+                B_INST, E_INST = "[INST]", "[/INST]"
+                B_SYS, E_SYS = "<<SYS>>\n", "\n<</SYS>>\n\n"
+                BOS, EOS = "<s>", "</s>"
+                # adding the system message to be the starting of the first example
+                examples = [
+                    (
+                        B_SYS + intro + E_SYS + examples[0][0],
+                        examples[0][1],
+                    )
+                ] + examples[1:]
+                message = "".join(
+                    [
+                        f"{BOS}{B_INST} {x.strip()} {E_INST} {y.strip()} {EOS}"
+                        for (x, y) in examples
+                    ]
+                )
+                # add the current observation
+                message += f"{BOS}{B_INST} {current.strip()} {E_INST} {self.instruction['meta_data'].get('force_prefix', '')}"
+
+                return message
+
+            raise ValueError("Only chat mode is supported for Llama-2")
         else:
             raise NotImplementedError(
                 f"Provider {self.lm_config.provider} not implemented"
