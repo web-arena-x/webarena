@@ -105,7 +105,17 @@ You will see `*.json` files generated in [config_files](./config_files) folder. 
 mkdir -p ./.auth
 python browser_env/auto_login.py
 ```
-5. export `OPENAI_API_KEY=your_key`, a valid OpenAI API key starts with `sk-`
+5. Export model and judge credentials. Agent model credentials can still use
+`OPENAI_API_KEY`. LLM fuzzy-match judges must use Qwen3.7 Max with
+judge-specific credentials:
+```bash
+export QWEN_API_KEY=your_qwen_key
+export WEBARENA_JUDGE_MODEL=qwen3.7-max
+export WEBARENA_JUDGE_BASE_URL=https://dashscope.aliyuncs.com/compatible-mode/v1
+```
+For OpenRouter, use `OPENROUTER_API_KEY`,
+`WEBARENA_JUDGE_MODEL=qwen/qwen3.7-max`, and
+`WEBARENA_JUDGE_BASE_URL=https://openrouter.ai/api/v1`.
 
 6. Launch the evaluation
 ```bash

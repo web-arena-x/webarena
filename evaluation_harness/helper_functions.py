@@ -1,5 +1,6 @@
 """Implements helper functions to assist evaluation cases where other evaluators are not suitable."""
 import json
+import os
 from typing import Any
 from urllib.parse import urlparse
 
@@ -16,8 +17,28 @@ from browser_env.env_config import (
     WIKIPEDIA,
 )
 from llms.providers.openai_utils import (
+    OPENROUTER_QWEN_JUDGE_MODEL,
+    QWEN_JUDGE_MODELS,
+    QWEN_JUDGE_MODEL,
     generate_from_openai_chat_completion,
 )
+
+
+def _qwen_judge_model() -> str:
+    model = (
+        os.environ.get("WEBARENA_JUDGE_MODEL")
+        or os.environ.get("QWEN_GRADER_MODEL")
+        or (
+            OPENROUTER_QWEN_JUDGE_MODEL
+            if os.environ.get("OPENROUTER_API_KEY")
+            and not os.environ.get("QWEN_API_KEY")
+            else QWEN_JUDGE_MODEL
+        )
+    )
+    if model not in QWEN_JUDGE_MODELS:
+        allowed = ", ".join(sorted(QWEN_JUDGE_MODELS))
+        raise ValueError(f"WebArena LLM judge must use Qwen3.7 Max ({allowed}), got {model!r}.")
+    return model
 
 
 def shopping_get_auth_token() -> str:
@@ -144,7 +165,7 @@ def gitlab_get_project_memeber_role(page: Page, account_name: str) -> str:
 
 
 def llm_fuzzy_match(pred: str, reference: str, question: str) -> float:
-    """Check whether the prediction matches the reference with GPT4-turbo"""
+    """Check whether the prediction matches the reference with Qwen3.7 Max."""
     messages: list[dict[str, Any]] = []
     # construct the question to ask
     message = "Help a teacher to grade the answer of a student given a question. Keep in mind that the student may use different phrasing or wording to answer the question. The goal is to evaluate whether the answer is semantically equivalent to the reference answer.\n"
@@ -159,7 +180,7 @@ def llm_fuzzy_match(pred: str, reference: str, question: str) -> float:
     ]
 
     response = generate_from_openai_chat_completion(
-        model="gpt-4-1106-preview",
+        model=_qwen_judge_model(),
         messages=messages,
         temperature=0,
         max_tokens=768,
@@ -174,7 +195,7 @@ def llm_fuzzy_match(pred: str, reference: str, question: str) -> float:
 
 
 def llm_ua_match(pred: str, reference: str, question: str) -> float:
-    """Check whether the prediction matches the reference with GPT-turbo"""
+    """Check whether the prediction matches the reference with Qwen3.7 Max."""
     messages: list[dict[str, Any]] = []
     # construct the question to ask
     message = ""
@@ -194,7 +215,7 @@ def llm_ua_match(pred: str, reference: str, question: str) -> float:
     ]
 
     response = generate_from_openai_chat_completion(
-        model="gpt-4-1106-preview",
+        model=_qwen_judge_model(),
         messages=messages,
         temperature=0,
         max_tokens=768,

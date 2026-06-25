@@ -13,6 +13,61 @@ import openai
 import openai.error
 from tqdm.asyncio import tqdm_asyncio
 
+QWEN_JUDGE_MODEL = "qwen3.7-max"
+OPENROUTER_QWEN_JUDGE_MODEL = "qwen/qwen3.7-max"
+QWEN_JUDGE_MODELS = {QWEN_JUDGE_MODEL, OPENROUTER_QWEN_JUDGE_MODEL}
+QWEN_JUDGE_BASE_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
+OPENROUTER_JUDGE_BASE_URL = "https://openrouter.ai/api/v1"
+
+
+def _qwen_judge_key(model: str) -> str:
+    explicit = (
+        os.environ.get("WEBARENA_JUDGE_API_KEY")
+        or os.environ.get("QWEN_GRADER_API_KEY")
+    )
+    if explicit:
+        return explicit
+    if model == OPENROUTER_QWEN_JUDGE_MODEL:
+        return os.environ.get("OPENROUTER_API_KEY") or ""
+    return os.environ.get("QWEN_API_KEY") or ""
+
+
+def _qwen_judge_base_url(model: str) -> str:
+    explicit = (
+        os.environ.get("WEBARENA_JUDGE_BASE_URL")
+        or os.environ.get("QWEN_GRADER_BASE_URL")
+    )
+    if explicit:
+        return explicit.rstrip("/")
+    if model == OPENROUTER_QWEN_JUDGE_MODEL:
+        return (os.environ.get("OPENROUTER_BASE_URL") or OPENROUTER_JUDGE_BASE_URL).rstrip("/")
+    return (os.environ.get("QWEN_BASE_URL") or QWEN_JUDGE_BASE_URL).rstrip("/")
+
+
+def _configure_chat_provider(model: str) -> None:
+    if model in QWEN_JUDGE_MODELS:
+        api_key = _qwen_judge_key(model)
+        if not api_key:
+            raise ValueError(
+                "Qwen3.7 Max judge calls need WEBARENA_JUDGE_API_KEY, "
+                "QWEN_API_KEY, or OPENROUTER_API_KEY."
+            )
+        openai.api_key = api_key
+        openai.api_base = _qwen_judge_base_url(model)
+        openai.organization = os.environ.get("OPENAI_ORGANIZATION", "")
+        return
+
+    if "OPENAI_API_KEY" not in os.environ:
+        raise ValueError(
+            "OPENAI_API_KEY environment variable must be set when using OpenAI API."
+        )
+    openai.api_key = os.environ["OPENAI_API_KEY"]
+    openai.api_base = (
+        os.environ.get("OPENAI_API_BASE")
+        or os.environ.get("OPENAI_BASE_URL")
+        or "https://api.openai.com/v1"
+    ).rstrip("/")
+    openai.organization = os.environ.get("OPENAI_ORGANIZATION", "")
 
 def retry_with_exponential_backoff(  # type: ignore
     func,
@@ -246,12 +301,7 @@ def generate_from_openai_chat_completion(
     context_length: int,
     stop_token: str | None = None,
 ) -> str:
-    if "OPENAI_API_KEY" not in os.environ:
-        raise ValueError(
-            "OPENAI_API_KEY environment variable must be set when using OpenAI API."
-        )
-    openai.api_key = os.environ["OPENAI_API_KEY"]
-    openai.organization = os.environ.get("OPENAI_ORGANIZATION", "")
+    _configure_chat_provider(model)
 
     response = openai.ChatCompletion.create(  # type: ignore
         model=model,
