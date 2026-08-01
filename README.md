@@ -27,6 +27,8 @@
 > [!IMPORTANT]
 > This repository hosts the *canonical* implementation of WebArena to reproduce the results reported in the paper. The web navigation infrastructure has been significantly enhanced by [AgentLab](https://github.com/ServiceNow/AgentLab/), introducing several key features: (1) support for parallel experiments using [BrowserGym](https://github.com/ServiceNow/BrowserGym), (2) integration of popular web navigation benchmarks (e.g., VisualWebArena) within a unified framework, (3) unified leaderboard reporting, and (4) improved handling of environment edge cases. We strongly recommend using this framework for your experiments.
 
+For a complementary live-web setting, [ClawBench](https://github.com/TIGER-AI-Lab/ClawBench) evaluates browser agents on everyday tasks across production websites, with execution traces and request-interception-based scoring.
+
 ## News
 * [12/20/2024] Check out our new benchmark on even more consequential tasks, including terminal use and coding, [TheAgentCompany](https://the-agent-company.com).
 * [12/21/2023] We release the recording of trajectories performed by human annotators on ~170 tasks. Check out the [resource page](./resources/README.md#12212023-human-trajectories) for more details.
