@@ -166,11 +166,16 @@ def llm_fuzzy_match(pred: str, reference: str, question: str) -> float:
         top_p=1.0,
         context_length=0,
     ).lower()
-    if "partially correct" in response or "incorrect" in response:
+    # Check the last line of the judge response for the verdict, so that
+    # reasoning text mentioning "correct" or "incorrect" earlier does not
+    # override the judge's concluding verdict.
+    last_line = response.strip().split("\n")[-1].strip()
+    if "partially correct" in last_line or "incorrect" in last_line:
         return 0.0
-    else:
-        assert "correct" in response
+    elif "correct" in last_line:
         return 1.0
+    else:
+        return 0.0
 
 
 def llm_ua_match(pred: str, reference: str, question: str) -> float:
@@ -201,11 +206,14 @@ def llm_ua_match(pred: str, reference: str, question: str) -> float:
         top_p=1.0,
         context_length=0,
     ).lower()
-    if "different" in response:
+    # Check the last line for the verdict to avoid matching reasoning text.
+    last_line = response.strip().split("\n")[-1].strip()
+    if "different" in last_line:
         return 0.0
-    else:
-        assert "same" in response
+    elif "same" in last_line:
         return 1.0
+    else:
+        return 0.0
 
 
 class PseudoPage:
