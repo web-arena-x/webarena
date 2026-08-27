@@ -2048,11 +2048,8 @@
       ],
       "reference_answers": {
         "must_include": [
-          "Lisa Kim",
-          "Lisa Green",
-          "Julia Williams",
-          "Brian Smith",
-          "Alexander Thomas"
+          "Emma Davis",
+          "Veronica Costello"
         ]
       },
       "reference_url": "",
@@ -3428,7 +3425,7 @@
           "June: 13 orders",
           "July: 9 orders",
           "August: 8 orders",
-          "Sepetember: 10 orders",
+          "September: 10 orders",
           "October: 4 orders",
           "November: 5 orders",
           "December: 10 orders"
@@ -3437,7 +3434,7 @@
       "reference_url": "",
       "program_html": [],
       "string_note": "",
-      "reference_answer_raw_annotation": "May: 8 orders June: 13 orders July: 9 orders August: 8 orders Sepetember: 10 orders Octorbor: 4 orders November: 5 orders December: 10 orders  "
+      "reference_answer_raw_annotation": "May: 8 orders June: 13 orders July: 9 orders August: 8 orders September: 10 orders October: 4 orders November: 5 orders December: 10 orders  "
     },
     "intent_template_id": 270
   },
@@ -3463,7 +3460,7 @@
       "reference_answers": {
         "fuzzy_match": [
           "January: 12 orders",
-          "Feburary: 7 orders",
+          "February: 7 orders",
           "March: 5 orders",
           "April: 9 orders",
           "May: 5 orders"
@@ -3498,15 +3495,15 @@
       "reference_answers": {
         "fuzzy_match": [
           "January: 11 orders",
-          "Feburary: 16 orders",
+          "February: 16 orders",
           "March: 14 orders",
           "April: 7 orders",
           "May: 8 orders",
           "June: 13 orders",
           "July: 9 orders",
           "August: 8 orders",
-          "Sepetember: 10 orders",
-          "Octorbor: 4 orders",
+          "September: 10 orders",
+          "October: 4 orders",
           "November: 5 orders",
           "December: 10 orders"
         ]
@@ -3514,7 +3511,7 @@
       "reference_url": "",
       "program_html": [],
       "string_note": "",
-      "reference_answer_raw_annotation": "January: 11 orders Feburary: 16 orders March: 14 orders April: 7 orders May: 8 orders June: 13 orders July: 9 orders August: 8 orders Sepetember: 10 orders Octorbor: 4 orders November: 5 orders December: 10 orders  "
+      "reference_answer_raw_annotation": "January: 11 orders February: 16 orders March: 14 orders April: 7 orders May: 8 orders June: 13 orders July: 9 orders August: 8 orders September: 10 orders October: 4 orders November: 5 orders December: 10 orders  "
     },
     "intent_template_id": 270
   },
@@ -3540,22 +3537,22 @@
       "reference_answers": {
         "fuzzy_match": [
           "January: 11 orders",
-          "Feburary: 16 orders",
+          "February: 16 orders",
           "March: 14 orders",
           "April: 7 orders",
           "May: 8 orders",
           "June: 13 orders",
           "July: 9 orders",
           "August: 8 orders",
-          "Sepetember: 10 orders",
-          "Octorbor: 4 orders",
+          "September: 10 orders",
+          "October: 4 orders",
           "November: 5 orders"
         ]
       },
       "reference_url": "",
       "program_html": [],
       "string_note": "",
-      "reference_answer_raw_annotation": "January: 11 orders Feburary: 16 orders March: 14 orders April: 7 orders May: 8 orders June: 13 orders July: 9 orders August: 8 orders Sepetember: 10 orders Octorbor: 4 orders November: 5 orders  "
+      "reference_answer_raw_annotation": "January: 11 orders February: 16 orders March: 14 orders April: 7 orders May: 8 orders June: 13 orders July: 9 orders August: 8 orders September: 10 orders October: 4 orders November: 5 orders  "
     },
     "intent_template_id": 270
   },
@@ -3580,22 +3577,22 @@
       ],
       "reference_answers": {
         "fuzzy_match": [
-          "Feburary: 16 orders",
+          "February: 16 orders",
           "March: 14 orders",
           "April: 7 orders",
           "May: 8 orders",
           "June: 13 orders",
           "July: 9 orders",
           "August: 8 orders",
-          "Sepetember: 10 orders",
-          "Octorbor: 4 orders",
+          "September: 10 orders",
+          "October: 4 orders",
           "November: 5 orders"
         ]
       },
       "reference_url": "",
       "program_html": [],
       "string_note": "",
-      "reference_answer_raw_annotation": "Feburary: 16 orders March: 14 orders April: 7 orders May: 8 orders June: 13 orders July: 9 orders August: 8 orders Sepetember: 10 orders Octorbor: 4 orders November: 5 orders  "
+      "reference_answer_raw_annotation": "February: 16 orders March: 14 orders April: 7 orders May: 8 orders June: 13 orders July: 9 orders August: 8 orders September: 10 orders October: 4 orders November: 5 orders  "
     },
     "intent_template_id": 270
   },
@@ -5934,13 +5931,13 @@
       "reference_answers": {
         "fuzzy_match": [
           "Eos V-Neck Hoodie: S",
-          "Minera Luma Tech V-Tee: XS"
+          "Minerva LumaTech V-Tee: XS"
         ]
       },
       "reference_url": "",
       "program_html": [],
       "string_note": "",
-      "reference_answer_raw_annotation": "Eos V-Neck Hoodie: S Minera Luma Tech V-Tee: XS"
+      "reference_answer_raw_annotation": "Eos V-Neck Hoodie: S Minerva LumaTech V-Tee: XS"
     },
     "intent_template_id": 368
   },
@@ -6821,13 +6818,13 @@
       ],
       "reference_answers": {
         "fuzzy_match": [
-          "It is hard to find the right size. Won't last long"
+          "No negative aspects"
         ]
       },
       "reference_url": "",
       "program_html": [],
       "string_note": "",
-      "reference_answer_raw_annotation": "It is hard to find the right size. Won't last long"
+      "reference_answer_raw_annotation": "No negative aspects"
     },
     "intent_template_id": 249
   },
@@ -16115,9 +16112,9 @@
     "geolocation": null,
     "intent_template": "Make all {{product}} as out of stock",
     "instantiation_dict": {
-      "product": "Aeno capri"
+      "product": "Aeon capri"
     },
-    "intent": "Make all Aeno capri as out of stock",
+    "intent": "Make all Aeon capri as out of stock",
     "require_reset": false,
     "eval": {
       "eval_types": [
@@ -23313,7 +23310,7 @@
           "locator": "document.querySelector(\"div.admin__data-grid-filters-current\").outerText",
           "required_contents": {
             "must_include": [
-              "Completed"
+              "Complete"
             ]
           }
         }
@@ -28417,14 +28414,14 @@
           "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/1264/",
           "locator": "document.querySelector('[name=\"product[price]\"').value",
           "required_contents": {
-            "exact_match": "64.00"
+            "exact_match": "101.00"
           }
         },
         {
           "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/1267/",
           "locator": "document.querySelector('[name=\"product[price]\"').value",
           "required_contents": {
-            "exact_match": "64.00"
+            "exact_match": "101.00"
           }
         }
       ]
@@ -28494,28 +28491,28 @@
           "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/496/",
           "locator": "document.querySelector('[name=\"product[price]\"').value",
           "required_contents": {
-            "exact_match": "22.33"
+            "exact_match": "35.67"
           }
         },
         {
           "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/499/",
           "locator": "document.querySelector('[name=\"product[price]\"').value",
           "required_contents": {
-            "exact_match": "22.33"
+            "exact_match": "35.67"
           }
         },
         {
           "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/479/",
           "locator": "document.querySelector('[name=\"product[price]\"').value",
           "required_contents": {
-            "exact_match": "21.56"
+            "exact_match": "34.44"
           }
         },
         {
           "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/482/",
           "locator": "document.querySelector('[name=\"product[price]\"').value",
           "required_contents": {
-            "exact_match": "21.56"
+            "exact_match": "34.44"
           }
         }
       ]
