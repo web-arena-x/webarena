@@ -1,11 +1,14 @@
 """base class for evaluation"""
+
 # answer string match
+import ast
 import collections
 import html
 import importlib
 import json
 import time
 import urllib
+from collections.abc import Callable
 from pathlib import Path
 from typing import Any, Tuple, Union
 
@@ -27,6 +30,58 @@ from evaluation_harness.helper_functions import (
 )
 
 Trajectory = list[Union[Action, StateInfo]]
+
+# Helpers that task configs may call via "func:" strings. Only these names
+# are dispatchable; see _call_config_func.
+_CONFIG_FUNCS: dict[str, Callable[..., Any]] = {
+    "gitlab_get_project_memeber_role": gitlab_get_project_memeber_role,
+    "reddit_get_post_url": reddit_get_post_url,
+    "shopping_get_latest_order_url": shopping_get_latest_order_url,
+    "shopping_get_sku_latest_review_author": shopping_get_sku_latest_review_author,
+    "shopping_get_sku_latest_review_rating": shopping_get_sku_latest_review_rating,
+}
+
+
+def _call_config_func(func: str, page: Page | PseudoPage) -> Any:
+    """Dispatch a "func:" config string to a known helper function.
+
+    The string must be a single call whose name is in _CONFIG_FUNCS. Each
+    argument must be a literal (parsed with ast.literal_eval) or a
+    placeholder: the unquoted name __page__ (the page object) or the literal
+    string "__last_url__" (the page's URL). Placeholders are passed as
+    values, so page content is never parsed as code. Anything else raises
+    ValueError instead of being evaluated.
+    """
+    try:
+        tree = ast.parse(func, mode="eval")
+    except SyntaxError as e:
+        raise ValueError(f"Invalid func expression: {func}") from e
+
+    call = tree.body
+    if not isinstance(call, ast.Call) or not isinstance(call.func, ast.Name):
+        raise ValueError(f"Invalid func expression: {func}")
+    config_func = _CONFIG_FUNCS.get(call.func.id)
+    if config_func is None:
+        raise ValueError(f"Unknown func name: {call.func.id}")
+
+    args: list[Any] = []
+    for node in call.args:
+        if isinstance(node, ast.Name) and node.id == "__page__":
+            args.append(page)
+        else:
+            try:
+                arg = ast.literal_eval(node)
+            except ValueError as e:
+                raise ValueError(
+                    f"Invalid argument in func expression: {func}"
+                ) from e
+            if arg == "__last_url__":
+                arg = page.url
+            args.append(arg)
+    if call.keywords:
+        raise ValueError(f"Keyword arguments are not supported: {func}")
+
+    return config_func(*args)
 
 
 class Evaluator(object):
@@ -262,8 +317,7 @@ class HTMLContentEvaluator(Evaluator):
             target_url: str = target["url"]  # which url to check
             if target_url.startswith("func"):
                 func = target_url.split("func:")[1]
-                func = func.replace("__last_url__", page.url)
-                target_url = eval(func)
+                target_url = _call_config_func(func, page)
 
             locator: str = target["locator"]  # js element locator
 
@@ -295,8 +349,7 @@ class HTMLContentEvaluator(Evaluator):
             # run program to call API
             elif locator.startswith("func:"):  # a helper function
                 func = locator.split("func:")[1]
-                func = func.replace("__page__", "page")
-                selected_element = eval(func)
+                selected_element = _call_config_func(func, page)
             else:
                 raise ValueError(f"Unknown locator: {locator}")
 
